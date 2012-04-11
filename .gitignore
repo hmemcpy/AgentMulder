@@ -1,7 +1,6 @@
 *.pdb
 *.suo
 *.vspcc
-*resharper*
 .svn
 bin
 Debug
@@ -41,9 +40,11 @@ obj/
 [Dd]ebug*/
 [Rr]elease*/
 Ankh.NoLoad
+packages/
 
 #Tooling
 _ReSharper*/
+*.resharper
 [Tt]est[Rr]esult*
 
 #Project files

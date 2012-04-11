@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8FED260D-8CDB-45A1-B927-116DE2FECD8F}</ProjectGuid>
+    <ProjectGuid>{BF46C7EC-4B24-408E-A13F-794D775E23D1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgentMulder.ReSharper.Plugin</RootNamespace>
-    <AssemblyName>AgentMulder.ReSharper.Plugin</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>AgentMulder.ReSharper.Plugin.Tests</RootNamespace>
+    <AssemblyName>AgentMulder.ReSharper.Plugin.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -45,18 +45,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AboutAction.cs" />
-    <Compile Include="ReverseStringAction.cs" />
+    <Compile Include="ReverseStringAvailabilityTests.cs" />
+    <Compile Include="ReverseStringExecuteTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.csproj">
+      <Project>{8fed260d-8cdb-45a1-b927-116de2fecd8f}</Project>
+      <Name>AgentMulder.ReSharper.Plugin</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ReadMe.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Actions.xml" />
-  </ItemGroup>
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>
   </PropertyGroup>
-  <Import Project="$(ReSharperSdkTargets)\Plugin.Targets" />
+  <Import Project="$(ReSharperSdkTargets)\Plugin.Tests.Targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

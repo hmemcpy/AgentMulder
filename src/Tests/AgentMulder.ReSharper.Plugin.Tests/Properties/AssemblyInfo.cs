@@ -1,8 +1,7 @@
+using AgentMulder.ReSharper.Plugin;
 using JetBrains.Application;
 using JetBrains.Threading;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -22,7 +21,7 @@ public class TestEnvironmentAssembly : ReSharperTestEnvironmentAssembly
     yield return Assembly.GetExecutingAssembly();
 
     #warning you need specify a type from the assembly being tested
-    yield return typeof(AgentMulder.ReSharper.Plugin.ReverseStringAction).Assembly;
+    yield return typeof(AboutAction).Assembly;
   }
 
   public override void SetUp()

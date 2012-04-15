@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using AgentMulder.Core.NRefactory;
 using ICSharpCode.NRefactory.ConsistencyCheck;
 using NUnit.Framework;
 
@@ -11,13 +12,13 @@ namespace AgentMulder.Core.Tests
         [Test]
         public void UnderTest_Scenario_ExpectedResult()
         {
-            Solution s = new Solution(@"D:\dev\AgentMulder\src\AgentMulder.sln");
-            CSharpProject project =
-                s.Projects.Find(p => p.Compilation.Assemblies.Any(a => a.AssemblyName == "Castle.Windsor"));
+            //Solution s = new Solution(@"D:\dev\AgentMulder\src\AgentMulder.sln");
+            //CSharpProject project =
+            //    s.Projects.Find(p => p.Compilation.Assemblies.Any(a => a.AssemblyName == "Castle.Windsor"));
             
-            WindsorAnalyzer windsorAnalyzer = new WindsorAnalyzer();
+            //WindsorAnalyzer windsorAnalyzer = new WindsorAnalyzer();
            
-            windsorAnalyzer.Analyze(project);
+            //windsorAnalyzer.Analyze(project);
             
         }    
     }

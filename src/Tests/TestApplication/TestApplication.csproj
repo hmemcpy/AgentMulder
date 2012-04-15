@@ -58,6 +58,7 @@
       <HintPath>..\..\packages\Castle.Windsor.3.0.0.4001\lib\net40-client\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -68,6 +69,10 @@
   <ItemGroup>
     <Compile Include="Data\Foo.cs" />
     <Compile Include="Data\IFoo.cs" />
+    <Compile Include="Mef\ConcreteDependencies.cs" />
+    <Compile Include="Mef\IService.cs" />
+    <Compile Include="Mef\IDependency.cs" />
+    <Compile Include="Mef\Service.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Windsor\WindsorInstaller.cs" />
     <Compile Include="Windsor\WindsorManual.cs" />

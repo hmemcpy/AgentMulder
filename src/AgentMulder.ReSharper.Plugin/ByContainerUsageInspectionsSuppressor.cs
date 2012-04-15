@@ -1,11 +1,7 @@
-﻿using System.Linq;
-using AgentMulder.ReSharper.Plugin;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using JetBrains.Application;
-using JetBrains.ReSharper.Daemon.CSharp.Stages;
 using JetBrains.ReSharper.Daemon.UsageChecking;
 using JetBrains.ReSharper.Psi;
-using JetBrains.TextControl.Markup;
 
 namespace AgentMulder.ReSharper.Plugin
 {

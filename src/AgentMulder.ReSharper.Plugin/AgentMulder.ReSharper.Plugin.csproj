@@ -45,8 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ByContainerUsageInspectionsSuppressor.cs" />
-    <Compile Include="ContainerAnalysisDaemonStage.cs" />
+    <Compile Include="Daemon\ContainerAnalysisDaemonStage.cs" />
     <Compile Include="ContainerGutterMark.cs" />
+    <Compile Include="Daemon\ContainerAnalysisStageProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AboutAction.cs" />
     <Compile Include="RegisteredByContainerHighlighting.cs" />

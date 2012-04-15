@@ -1,28 +1,17 @@
-﻿using System;
+using System;
 using System.Linq;
 using AgentMulder.Core;
-using ICSharpCode.NRefactory.ConsistencyCheck;
-using JetBrains.Application.Settings;
+using AgentMulder.Core.NRefactory;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon;
-using JetBrains.ReSharper.Daemon.CSharp.Stages;
 using JetBrains.ReSharper.Daemon.UsageChecking;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.ReSharper.Plugin
+namespace AgentMulder.ReSharper.Plugin.Daemon
 {
-    [DaemonStage(StagesBefore = new[] { typeof(CollectUsagesStage) }, StagesAfter = new[] { typeof(LanguageSpecificDaemonStage) })]
-    public class ContainerAnalysisDaemonStage : CSharpDaemonStageBase
-    {
-        public override IDaemonStageProcess CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
-        {
-            return new ContainerAnalysisStageProcess(process);
-        }
-    }
-
     public class ContainerAnalysisStageProcess : IDaemonStageProcess
     {
         private readonly IDaemonProcess process;
@@ -51,17 +40,21 @@ namespace AgentMulder.ReSharper.Plugin
             }
 
             Solution solution = new Solution(process.Solution.SolutionFilePath.FullPath);
-            CSharpProject project =
-                solution.Projects.Find(sharpProject => sharpProject.FileName == proj.ProjectFileLocation.FullPath);
-            WindsorAnalyzer analyzer = new WindsorAnalyzer();
-            analyzer.Analyze(project);
+            var solutionnAnalyzer = new SolutionnAnalyzer();
+            solutionnAnalyzer.Analyze(solution);
 
             CollectUsagesStageProcess usages = process.GetStageProcess<CollectUsagesStageProcess>();
-
-            file.ProcessChildren<ITypeDeclaration>(declaration => 
+            
+            file.ProcessChildren<ITypeDeclaration>(declaration =>
             {
-                if (analyzer.RegisteredTypes.Contains(declaration.CLRName))
+                Registration registration = solutionnAnalyzer.RegisteredTypes.FirstOrDefault(r => r.TypeName == declaration.CLRName);
+                if (registration != null)
                 {
+                    if (usages != null)
+                    {
+                        usages.SetElementState(declaration.DeclaredElement, UsageState.USED_MASK);
+                    }
+
                     var highlight = new HighlightingInfo(declaration.GetDocumentRange(),
                                                          new RegisteredByContainerHighlighting(new ContainerInfo("Castle Windsor", process.SourceFile.DisplayName)));
 
@@ -69,7 +62,6 @@ namespace AgentMulder.ReSharper.Plugin
 
                     commiter(result);
                 }
-
             });
 
 
@@ -84,12 +76,12 @@ namespace AgentMulder.ReSharper.Plugin
     public class ContainerInfo
     {
         public string ContainerName { get; set; }
-        public string LocationName { get; set; }
+        public string DisplayName { get; set; }
 
-        public ContainerInfo(string containerName, string locationName)
+        public ContainerInfo(string castleWindsor, string displayName)
         {
-            ContainerName = containerName;
-            LocationName = locationName;
+            ContainerName = castleWindsor;
+            DisplayName = displayName;
         }
     }
 }

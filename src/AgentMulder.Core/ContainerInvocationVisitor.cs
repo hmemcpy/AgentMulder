@@ -4,16 +4,16 @@ namespace AgentMulder.Core
 {
     public class ContainerInvocationVisitor : DepthFirstAstVisitor
     {
-        private readonly IContainerAnalyzer analyzer;
+        private readonly IRegistrationParser parser;
 
-        public ContainerInvocationVisitor(IContainerAnalyzer analyzer)
+        public ContainerInvocationVisitor(IRegistrationParser parser)
         {
-            this.analyzer = analyzer;
+            this.parser = parser;
         }
 
         public override void VisitInvocationExpression(InvocationExpression invocationExpression)
         {
-            if (!analyzer.IsContainerInvocation(invocationExpression))
+            if (!parser.ParseInvocation(invocationExpression))
             {
                 base.VisitInvocationExpression(invocationExpression);   
             }

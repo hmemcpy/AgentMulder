@@ -1,4 +1,5 @@
-﻿using JetBrains.ReSharper.Daemon;
+﻿using AgentMulder.ReSharper.Plugin.Daemon;
+using JetBrains.ReSharper.Daemon;
 
 namespace AgentMulder.ReSharper.Plugin
 {
@@ -19,7 +20,7 @@ namespace AgentMulder.ReSharper.Plugin
 
         public string ToolTip
         {
-            get { return string.Format("Registered by {0} in file: '{1}'", containerInfo.ContainerName, containerInfo.LocationName); }
+            get { return string.Format("Registered by {0} in file: '{1}'", containerInfo.ContainerName, containerInfo.DisplayName); }
         }
 
         public string ErrorStripeToolTip

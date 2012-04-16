@@ -1,19 +1,26 @@
 ﻿using System;
 using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon;
-using JetBrains.ReSharper.Daemon.CSharp.Stages;
 using JetBrains.ReSharper.Daemon.UsageChecking;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp;
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {
-    [DaemonStage(GlobalAnalysisStage = true, 
-                 StagesBefore = new[] { typeof(CollectUsagesStage) }, 
-                 StagesAfter = new[] { typeof(LanguageSpecificDaemonStage) })]
-    public class ContainerAnalysisDaemonStage : CSharpDaemonStageBase
+    [DaemonStage(StagesBefore = new[] { typeof(LanguageSpecificDaemonStage) })]
+    public class ContainerAnalysisDaemonStage : IDaemonStage
     {
-        public override IDaemonStageProcess CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
+        public IDaemonStageProcess CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
         {
-            return new ContainerAnalysisStageProcess(process);
+            var usagesStageProcess = process.GetStageProcess<CollectUsagesStageProcess>();
+            
+            return usagesStageProcess == null ? null : new ContainerAnalysisStageProcess(process, usagesStageProcess);
+        }
+
+        public ErrorStripeRequest NeedsErrorStripe(IPsiSourceFile sourceFile, IContextBoundSettingsStore settingsStore)
+        {
+            return ErrorStripeRequest.NONE;
         }
     }
+
 }

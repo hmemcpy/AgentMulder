@@ -8,7 +8,7 @@ namespace AgentMulder.Containers.CastleWindsor
     [Export(typeof(IContainerInfo))]
     public class WindsorContainerInfo : IContainerInfo
     {
-        private readonly string[] assemblyNames = new[] { "Castle.Windsor.dll" };
+        private readonly string[] assemblyNames = new[] { "Castle.Windsor" };
         private readonly IRegistrationParser registrationParser;
 
         public WindsorContainerInfo()

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using AgentMulder.Core.NRefactory;
+using AgentMulder.Core.TypeSystem;
 using ICSharpCode.NRefactory.CSharp;
 
 namespace AgentMulder.Core
@@ -8,6 +8,6 @@ namespace AgentMulder.Core
     {
         bool ParseInvocation(InvocationExpression invocationExpression);
 
-        IEnumerable<Registration> Parse(CSharpProject project);
+        IEnumerable<Registration> Parse(IProject project);
     }
 }

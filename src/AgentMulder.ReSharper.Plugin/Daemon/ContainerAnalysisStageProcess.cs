@@ -1,8 +1,9 @@
 using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using AgentMulder.Core;
-using AgentMulder.Core.NRefactory;
-using JetBrains.ProjectModel;
+using AgentMulder.Core.TypeSystem;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.UsageChecking;
 using JetBrains.ReSharper.Psi;
@@ -15,10 +16,12 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
     public class ContainerAnalysisStageProcess : IDaemonStageProcess
     {
         private readonly IDaemonProcess process;
+        private readonly CollectUsagesStageProcess usagesStageProcess;
 
-        public ContainerAnalysisStageProcess(IDaemonProcess process)
+        public ContainerAnalysisStageProcess(IDaemonProcess process, CollectUsagesStageProcess usagesStageProcess)
         {
             this.process = process;
+            this.usagesStageProcess = usagesStageProcess;
         }
 
         public void Execute(Action<DaemonStageResult> commiter)
@@ -30,30 +33,16 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                 return;
             }
 
-            IProject proj =
-                process.Solution.GetAllProjects().SingleOrDefault(
-                    p => p.GetAssemblyReferences().Any(reference => reference.Name == "Castle.Windsor"));
-
-            if (proj == null)
-            {
-                return;
-            }
-
-            Solution solution = new Solution(process.Solution.SolutionFilePath.FullPath);
-            var solutionnAnalyzer = new SolutionnAnalyzer();
+            ISolution solution = SolutonReader.ReadSolution(process.Solution.SolutionFilePath.FullPath);
+            var solutionnAnalyzer = new SolutionnAnalyzer(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             solutionnAnalyzer.Analyze(solution);
-
-            CollectUsagesStageProcess usages = process.GetStageProcess<CollectUsagesStageProcess>();
             
             file.ProcessChildren<ITypeDeclaration>(declaration =>
             {
                 Registration registration = solutionnAnalyzer.RegisteredTypes.FirstOrDefault(r => r.TypeName == declaration.CLRName);
                 if (registration != null)
                 {
-                    if (usages != null)
-                    {
-                        usages.SetElementState(declaration.DeclaredElement, UsageState.USED_MASK);
-                    }
+                    RemovedHighlightings(declaration.DeclaredElement);
 
                     var highlight = new HighlightingInfo(declaration.GetDocumentRange(),
                                                          new RegisteredByContainerHighlighting(new ContainerInfo("Castle Windsor", process.SourceFile.DisplayName)));
@@ -63,8 +52,14 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                     commiter(result);
                 }
             });
+        }
 
-
+        private void RemovedHighlightings(ITypeElement typeElement)
+        {
+            foreach (IConstructor constructor in typeElement.Constructors)
+            {
+                usagesStageProcess.SetElementState(constructor, UsageState.CANNOT_BE_PROTECTED | UsageState.CANNOT_BE_INTERNAL | UsageState.CANNOT_BE_PRIVATE | UsageState.USED_MASK);
+            }
         }
 
         public IDaemonProcess DaemonProcess

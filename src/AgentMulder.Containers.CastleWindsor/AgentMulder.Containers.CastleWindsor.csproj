@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\output\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\output\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,18 +37,11 @@
     <Reference Include="ICSharpCode.NRefactory.CSharp">
       <HintPath>..\packages\ICSharpCode.NRefactory.5.0.0.6\lib\Net40\ICSharpCode.NRefactory.CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="JetBrains.Platform.ReSharper.ProjectModel">
-      <HintPath>C:\Program Files (x86)\JetBrains\ReSharper\v6.1\SDK\Bin\JetBrains.Platform.ReSharper.ProjectModel.dll</HintPath>
-    </Reference>
-    <Reference Include="JetBrains.Platform.ReSharper.Util">
-      <HintPath>C:\Program Files (x86)\JetBrains\ReSharper\v6.1\SDK\Bin\JetBrains.Platform.ReSharper.Util.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>

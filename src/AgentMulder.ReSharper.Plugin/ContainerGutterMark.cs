@@ -1,7 +1,5 @@
 using AgentMulder.ReSharper.Plugin;
 using JetBrains.ReSharper.Intentions.Asp.Generate;
-using JetBrains.ReSharper.Psi.Services;
-using JetBrains.ReSharper.VS.Actions;
 using JetBrains.TextControl.Markup;
 using JetBrains.UI;
 

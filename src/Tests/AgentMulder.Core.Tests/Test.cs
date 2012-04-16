@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Linq;
-using AgentMulder.Core.NRefactory;
-using ICSharpCode.NRefactory.ConsistencyCheck;
 using NUnit.Framework;
 
-namespace AgentMulder.Core.Tests
+namespace AgentMulder.Tests
 {
     [TestFixture]
     public class Test

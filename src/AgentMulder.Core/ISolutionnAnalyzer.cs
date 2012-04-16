@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using AgentMulder.Core.NRefactory;
-using JetBrains.ProjectModel;
+using AgentMulder.Core.TypeSystem;
 
 namespace AgentMulder.Core
 {
@@ -10,6 +9,6 @@ namespace AgentMulder.Core
 
         IEnumerable<Registration> RegisteredTypes { get; }
 
-        void Analyze(Solution solution);
+        void Analyze(ISolution solution);
     }
 }

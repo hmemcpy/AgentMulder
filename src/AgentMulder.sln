@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5EE72A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Core", "AgentMulder.Core\AgentMulder.Core.csproj", "{90F68C50-AA0C-4540-ADE2-7FF942E31641}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Core.Tests", "Tests\AgentMulder.Core.Tests\AgentMulder.Core.Tests.csproj", "{2C183B60-B85D-43FF-A156-DD406F926DDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Tests", "Tests\AgentMulder.Core.Tests\AgentMulder.Tests.csproj", "{2C183B60-B85D-43FF-A156-DD406F926DDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.CastleWindsor", "AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.csproj", "{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}"
 EndProject

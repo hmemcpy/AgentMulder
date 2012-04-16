@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.Core;
-using AgentMulder.Core.NRefactory;
+using AgentMulder.Core.TypeSystem;
 using ICSharpCode.NRefactory.CSharp;
 using ICSharpCode.NRefactory.CSharp.Resolver;
 using ICSharpCode.NRefactory.PatternMatching;
@@ -21,11 +21,11 @@ namespace AgentMulder.Containers.CastleWindsor
             visitor = new ContainerInvocationVisitor(this);
         }
 
-        public IEnumerable<Registration> Parse(CSharpProject project)
+        public IEnumerable<Registration> Parse(IProject project)
         {
-            foreach (var file in project.Files)
+            foreach (IFile file in project.Files)
             {
-                resolver = new CSharpAstResolver(project.Compilation, file.CompilationUnit, file.ParsedFile);
+                resolver = new CSharpAstResolver(project.Compilation, file.CompilationUnit, file.CompilationUnit.ToTypeSystem());
                 file.CompilationUnit.AcceptVisitor(visitor);
             }
 
@@ -54,7 +54,7 @@ namespace AgentMulder.Containers.CastleWindsor
 
                 ResolveResult implBy = resolver.Resolve(implementedByType);
 
-                registrations.Add(new Registration(implBy.Type.Name));
+                registrations.Add(new Registration(implBy.Type.FullName));
             }
 
             //if (match2.Success)

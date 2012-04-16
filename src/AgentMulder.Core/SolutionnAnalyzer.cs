@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
-using AgentMulder.Core.NRefactory;
+using AgentMulder.Core.TypeSystem;
 using ICSharpCode.NRefactory.CSharp.TypeSystem;
-using JetBrains.ProjectModel;
 
 namespace AgentMulder.Core
 {
@@ -20,24 +19,21 @@ namespace AgentMulder.Core
         [ImportMany(typeof(IContainerInfo))]
         public IEnumerable<IContainerInfo> KnownContainers { get; private set; }
 
-        public SolutionnAnalyzer()
+        public SolutionnAnalyzer(string rootDirectory)
         {
-            var catalog = new DirectoryCatalog(".", "*.dll");
+            var catalog = new DirectoryCatalog(rootDirectory, "*.dll");
             var container = new CompositionContainer(catalog);
             container.ComposeParts(this);
         }
 
-        public void Analyze(Solution solution)
+        public void Analyze(ISolution solution)
         {
             foreach (var project in solution.Projects)
             {
-                var context = new CSharpTypeResolveContext(project.Compilation.MainAssembly);
-                var assemblyReferences =
-                    project.ProjectContent.AssemblyReferences.Select(reference => reference.Resolve(context));
-
+                IProject current = project;
                 var matchingContainers = from container in KnownContainers
                                          where container.HasContainerReference(
-                                             assemblyReferences.Select(assembly => assembly.AssemblyName))
+                                             current.ResolvedAssemblyReferences.Select(assembly => assembly.AssemblyName))
                                          select container;
 
                 foreach (var matchingContainer in matchingContainers)

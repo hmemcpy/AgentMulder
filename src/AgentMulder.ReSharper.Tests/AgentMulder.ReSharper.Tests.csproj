@@ -34,12 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net35\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net35\Castle.Windsor.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,17 +46,19 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StructuralSearch\StructuralSearchTestDaemonProcess.cs" />
-    <Compile Include="StructuralSearch\CSharpStructuralSearchBaseTest.cs" />
+    <Compile Include="PatternMatching\PatternSearcherTestsBase.cs" />
+    <Compile Include="PatternMatching\WindsorPatternsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StructuralSearch\StructuralSearchBaseTest.cs" />
-    <Compile Include="Test01.cs" />
-    <Compile Include="WindsorSearchTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.csproj">
+      <Project>{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}</Project>
+      <Name>AgentMulder.Containers.CastleWindsor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">
+      <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
+      <Name>AgentMulder.ReSharper.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.csproj">
       <Project>{8FED260D-8CDB-45A1-B927-116DE2FECD8F}</Project>
       <Name>AgentMulder.ReSharper.Plugin</Name>

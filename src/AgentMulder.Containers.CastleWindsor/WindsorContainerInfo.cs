@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using AgentMulder.Core;
+using AgentMulder.Containers.CastleWindsor.Patterns;
+using AgentMulder.ReSharper.Domain;
+using AgentMulder.ReSharper.Domain.Containers;
+using AgentMulder.ReSharper.Domain.Search;
 
 namespace AgentMulder.Containers.CastleWindsor
 {
@@ -9,26 +12,25 @@ namespace AgentMulder.Containers.CastleWindsor
     public class WindsorContainerInfo : IContainerInfo
     {
         private readonly string[] assemblyNames = new[] { "Castle.Windsor" };
-        private readonly IRegistrationParser registrationParser;
 
-        public WindsorContainerInfo()
+        private static readonly List<IComponentRegistrationPattern> patterns = new List<IComponentRegistrationPattern> 
         {
-            registrationParser = new WindsorRegistrationParser();
-        }
+            new GenericComponentRegistrationPattern()
+        };
 
         public string Name
         {
             get { return "Castle Windsor"; }
         }
 
-        public IEnumerable<string> AssemblyNames
+        public IEnumerable<string> ContainerAssemblyNames
         {
             get { return assemblyNames; }
         }
 
-        public IRegistrationParser RegistrationParser
+        public IEnumerable<IComponentRegistrationPattern> RegistrationPatterns
         {
-            get { return registrationParser; }
+            get { return patterns; }
         }
 
         public bool HasContainerReference(IEnumerable<string> projectAssemblyReferences)

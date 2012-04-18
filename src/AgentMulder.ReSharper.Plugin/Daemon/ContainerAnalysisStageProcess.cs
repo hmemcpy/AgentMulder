@@ -1,14 +1,18 @@
 using System;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using AgentMulder.Core;
-using AgentMulder.Core.TypeSystem;
+using AgentMulder.ReSharper.Domain;
+using AgentMulder.ReSharper.Domain.Registrations;
+using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.UsageChecking;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
@@ -17,11 +21,13 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
     {
         private readonly IDaemonProcess process;
         private readonly CollectUsagesStageProcess usagesStageProcess;
+        private readonly SearchDomainFactory searchDomainFactory;
 
-        public ContainerAnalysisStageProcess(IDaemonProcess process, CollectUsagesStageProcess usagesStageProcess)
+        public ContainerAnalysisStageProcess(IDaemonProcess process, CollectUsagesStageProcess usagesStageProcess, SearchDomainFactory searchDomainFactory)
         {
             this.process = process;
             this.usagesStageProcess = usagesStageProcess;
+            this.searchDomainFactory = searchDomainFactory;
         }
 
         public void Execute(Action<DaemonStageResult> commiter)
@@ -33,13 +39,13 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                 return;
             }
 
-            ISolution solution = SolutonReader.ReadSolution(process.Solution.SolutionFilePath.FullPath);
-            var solutionnAnalyzer = new SolutionnAnalyzer(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-            solutionnAnalyzer.Analyze(solution);
-            
+            var solutionnAnalyzer = new SolutionAnalyzer(searchDomainFactory);
+            LoadKnownContainersInfo(solutionnAnalyzer);
+            solutionnAnalyzer.Analyze(process.Solution);
+
             file.ProcessChildren<ITypeDeclaration>(declaration =>
             {
-                Registration registration = solutionnAnalyzer.RegisteredTypes.FirstOrDefault(r => r.TypeName == declaration.CLRName);
+                IComponentRegistration registration = solutionnAnalyzer.ComponentRegistrations.FirstOrDefault(r => r.IsSatisfiedBy(declaration.DeclaredElement));
                 if (registration != null)
                 {
                     RemovedHighlightings(declaration.DeclaredElement);
@@ -52,6 +58,16 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                     commiter(result);
                 }
             });
+        }
+
+        private void LoadKnownContainersInfo(SolutionAnalyzer solutionnAnalyzer)
+        {
+            string rootDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            string containersDirectory = Path.Combine(rootDirectory, "Containers");
+            var catalog = new DirectoryCatalog(containersDirectory, "*.dll");
+            var container = new CompositionContainer(catalog);
+            container.ComposeParts(solutionnAnalyzer);
         }
 
         private void RemovedHighlightings(ITypeElement typeElement)

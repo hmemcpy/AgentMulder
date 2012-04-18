@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -44,7 +45,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ByContainerUsageInspectionsSuppressor.cs" />
     <Compile Include="Daemon\ContainerAnalysisDaemonStage.cs" />
     <Compile Include="ContainerGutterMark.cs" />
     <Compile Include="Daemon\ContainerAnalysisStageProcess.cs" />
@@ -58,9 +58,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.Core\AgentMulder.Core.csproj">
-      <Project>{90F68C50-AA0C-4540-ADE2-7FF942E31641}</Project>
-      <Name>AgentMulder.Core</Name>
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">
+      <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
+      <Name>AgentMulder.ReSharper.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -1,13 +1,11 @@
 using System.Collections.Generic;
-using AgentMulder.Core.TypeSystem;
-using ICSharpCode.NRefactory.CSharp;
+using AgentMulder.Core.ProjectModel;
+using AgentMulder.ReSharper.Domain;
 
 namespace AgentMulder.Core
 {
     public interface IRegistrationParser
     {
-        bool ParseInvocation(InvocationExpression invocationExpression);
-
-        IEnumerable<Registration> Parse(IProject project);
+        IEnumerable<IComponentRegistration> Parse(IProject project, SearchDomain);
     }
 }

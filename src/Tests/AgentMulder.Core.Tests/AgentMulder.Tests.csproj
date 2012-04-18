@@ -81,19 +81,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ParserTests\Windsor\" />
     <Folder Include="Properties\" />
+    <Folder Include="TestCases\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ParserTests\WindsorRegistrationParser.cs" />
+    <Compile Include="ParserTests\ParseUtil.cs" />
     <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AgentMulder.Core\AgentMulder.Core.csproj">
-      <Project>{90F68C50-AA0C-4540-ADE2-7FF942E31641}</Project>
-      <Name>AgentMulder.Core</Name>
+    <ProjectReference Include="..\..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.csproj">
+      <Project>{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}</Project>
+      <Name>AgentMulder.Containers.CastleWindsor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -63,15 +63,18 @@ namespace AgentMulder.ReSharper.Domain.Search
             return results;
         }
         
-        private static ISearchDomain NarrowSearchDomain(IEnumerable<string> words, IEnumerable<string> extendedWords, ISearchDomain domain, ISolution solution)
+        private ISearchDomain NarrowSearchDomain(IEnumerable<string> words, IEnumerable<string> extendedWords, ISearchDomain domain, ISolution solution)
         {
-            if (domain.IsEmpty || CollectionUtil.IsEmpty(words))
+            List<string> allWords = words.ToList();
+            List<string> allExtendedWords = extendedWords.ToList();
+
+            if (domain.IsEmpty || allWords.IsEmpty())
                 return domain;
             IWordIndex wordIndex = solution.GetPsiServices().CacheManager.WordIndex;
-            var jetHashSet1 = new JetHashSet<IPsiSourceFile>(wordIndex.GetFilesContainingWord(words.First()), null);
-            foreach (string word in words.Skip(1))
+            var jetHashSet1 = new JetHashSet<IPsiSourceFile>(wordIndex.GetFilesContainingWord(allWords.First()), null);
+            foreach (string word in allWords.Skip(1))
                 jetHashSet1.IntersectWith(wordIndex.GetFilesContainingWord(word));
-            if (extendedWords.Any())
+            if (allExtendedWords.Any())
             {
                 var jetHashSet2 = new JetHashSet<IPsiSourceFile>(null);
                 using (JetHashSet<IPsiSourceFile>.ElementEnumerator enumerator = jetHashSet1.GetEnumerator())
@@ -79,13 +82,13 @@ namespace AgentMulder.ReSharper.Domain.Search
                     while (enumerator.MoveNext())
                     {
                         IPsiSourceFile file = enumerator.Current;
-                        if (extendedWords.Any(word => wordIndex.CanContainWord(file, word)))
+                        if (allExtendedWords.Any(word => wordIndex.CanContainWord(file, word)))
                             jetHashSet2.Add(file);
                     }
                 }
                 jetHashSet1 = jetHashSet2;
             }
-            return domain.Intersect(SearchDomainFactory.Instance.CreateSearchDomain(jetHashSet1));
+            return domain.Intersect(domainFactory.CreateSearchDomain(jetHashSet1));
         }
     }
 }

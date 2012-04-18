@@ -1,1 +1,0 @@
-TO: [O] container.Register(|Component.For<IFoo>().ImplementedBy<Foo>()|); RANGE: (317,359) @ Test01.cs

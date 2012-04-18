@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AgentMulder.Specs")]
+[assembly: AssemblyTitle("TestApplication")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AgentMulder.Specs")]
+[assembly: AssemblyProduct("TestApplication")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f7dd3ea0-575a-48c7-92e5-ec62f85b7602")]
+[assembly: Guid("4ff13675-0db5-49de-9b57-8f5ae53c4f9f")]
 
 // Version information for an assembly consists of the following four values:
 //

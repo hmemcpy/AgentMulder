@@ -2,7 +2,6 @@
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns;
-using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Search;
 

@@ -6,6 +6,7 @@ using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.Application.Components;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.Search;
+using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.TestFramework;
 
 namespace AgentMulder.ReSharper.Tests.PatternMatching
@@ -31,7 +32,19 @@ namespace AgentMulder.ReSharper.Tests.PatternMatching
             var searchDomainFactory = ShellInstance.GetComponent<SearchDomainFactory>();
             var patternSearcher = new PatternSearcher(testProject.GetSolution(), searchDomainFactory);
 
-            componentRegistrations.AddRange(Patterns.SelectMany(pattern => pattern.CreateRegistrations(patternSearcher)));
+            componentRegistrations.AddRange(Patterns.SelectMany(pattern =>
+            {
+                IEnumerable<IStructuralMatchResult> results = patternSearcher.Search(pattern);
+                if (results != null)
+                {
+                    IComponentRegistrationCreator creator = pattern.CreateComponentRegistrationCreator();
+                    IEnumerable<IComponentRegistration> registrations = creator.CreateRegistrations(results.ToArray());
+
+                    return registrations;
+                }
+
+                return null;
+            }));
         }
     }
 }

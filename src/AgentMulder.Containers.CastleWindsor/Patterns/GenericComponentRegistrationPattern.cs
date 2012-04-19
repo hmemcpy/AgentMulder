@@ -2,8 +2,6 @@
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.Occurences;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
@@ -23,34 +21,19 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
                 new TypePlaceholder("impl"));   
         }
 
-        public IEnumerable<IComponentRegistration> CreateRegistrations(IPatternSearcher patternSearcher)
-        {
-            if (pattern.Check() != null)
-            {
-                yield break;
-            }
-
-            IEnumerable<IStructuralMatchResult> results = patternSearcher.Search(this);
-
-            if (results == null)
-            {
-                yield break;
-            }
-        }
-
         public IStructuralMatcher CreateMatcher()
         {
             return pattern.CreateMatcher();
         }
 
-        public IComponentRegistrationCreator GetComponentRegistrationCreator()
+        public IComponentRegistrationCreator CreateComponentRegistrationCreator()
         {
-            return new GenericComponentRegistrationCreator();
+            return new GenericComponentRegistrationsCreator();
         }
 
-        private sealed class GenericComponentRegistrationCreator : IComponentRegistrationCreator
+        private sealed class GenericComponentRegistrationsCreator : IComponentRegistrationCreator
         {
-            public IEnumerable<IComponentRegistration> CreateRegistrations(ISolution solution, params IStructuralMatchResult[] matchResults)
+            public IEnumerable<IComponentRegistration> CreateRegistrations(params IStructuralMatchResult[] matchResults)
             {
                 return (from match in matchResults
                         let matchedType = match.GetMatchedType("impl") as IDeclaredType

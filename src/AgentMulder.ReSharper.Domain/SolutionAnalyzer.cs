@@ -37,8 +37,8 @@ namespace AgentMulder.ReSharper.Domain
                 IEnumerable<IStructuralMatchResult> results = patternSearcher.Search(pattern);
                 if (results != null)
                 {
-                    IComponentRegistrationCreator creator = pattern.GetComponentRegistrationCreator();
-                    IEnumerable<IComponentRegistration> registrations = creator.CreateRegistrations(solution, results.ToArray());
+                    IComponentRegistrationCreator creator = pattern.CreateComponentRegistrationCreator();
+                    IEnumerable<IComponentRegistration> registrations = creator.CreateRegistrations(results.ToArray());
 
                     componentRegistrations.AddRange(registrations);
                 }

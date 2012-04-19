@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
@@ -6,6 +7,8 @@ using System.Linq;
 using System.Reflection;
 using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Registrations;
+using AgentMulder.ReSharper.Domain.Search;
+using AgentMulder.ReSharper.Plugin.Highlighting;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.UsageChecking;
@@ -39,25 +42,32 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                 return;
             }
 
-            var solutionnAnalyzer = new SolutionAnalyzer(searchDomainFactory);
-            LoadKnownContainersInfo(solutionnAnalyzer);
-            solutionnAnalyzer.Analyze(process.Solution);
+            var solutionnAnalyzer = CreateSolutionAnalyzer(process.Solution);
+            IEnumerable<IComponentRegistration> componentRegistrations = solutionnAnalyzer.Analyze(process.Solution);
 
             file.ProcessChildren<ITypeDeclaration>(declaration =>
             {
-                IComponentRegistration registration = solutionnAnalyzer.ComponentRegistrations.FirstOrDefault(r => r.IsSatisfiedBy(declaration.DeclaredElement));
+                IComponentRegistration registration = componentRegistrations.FirstOrDefault(c => c.IsSatisfiedBy(declaration.DeclaredElement));
                 if (registration != null)
                 {
                     RemovedHighlightings(declaration.DeclaredElement);
 
-                    var highlight = new HighlightingInfo(declaration.GetDocumentRange(),
-                                                         new RegisteredByContainerHighlighting(new ContainerInfo("Castle Windsor", process.SourceFile.DisplayName)));
+                    var highlight = new HighlightingInfo(declaration.GetHighlightingRange(),
+                                                         new RegisteredByContainerHighlighting(process.Solution, registration));
 
                     var result = new DaemonStageResult(new[] { highlight });
 
                     commiter(result);
                 }
             });
+        }
+
+        private SolutionAnalyzer CreateSolutionAnalyzer(ISolution solution)
+        {
+            var patternSearcher = new PatternSearcher(solution, searchDomainFactory);
+            var solutionnAnalyzer = new SolutionAnalyzer(patternSearcher);
+            LoadKnownContainersInfo(solutionnAnalyzer);
+            return solutionnAnalyzer;
         }
 
         private void LoadKnownContainersInfo(SolutionAnalyzer solutionnAnalyzer)
@@ -81,18 +91,6 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
         public IDaemonProcess DaemonProcess
         {
             get { return process; }
-        }
-    }
-
-    public class ContainerInfo
-    {
-        public string ContainerName { get; set; }
-        public string DisplayName { get; set; }
-
-        public ContainerInfo(string castleWindsor, string displayName)
-        {
-            ContainerName = castleWindsor;
-            DisplayName = displayName;
         }
     }
 }

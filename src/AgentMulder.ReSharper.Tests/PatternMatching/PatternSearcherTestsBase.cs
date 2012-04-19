@@ -29,7 +29,7 @@ namespace AgentMulder.ReSharper.Tests.PatternMatching
         protected override void DoTest(IProject testProject)
         {
             var searchDomainFactory = ShellInstance.GetComponent<SearchDomainFactory>();
-            var patternSearcher = new PatternSearcher(testProject, searchDomainFactory);
+            var patternSearcher = new PatternSearcher(testProject.GetSolution(), searchDomainFactory);
 
             componentRegistrations.AddRange(Patterns.SelectMany(pattern => pattern.CreateRegistrations(patternSearcher)));
         }

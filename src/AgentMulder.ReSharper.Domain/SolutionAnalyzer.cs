@@ -6,49 +6,45 @@ using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.Search;
+using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.ReSharper.Domain
 {
     public class SolutionAnalyzer
     {
-        private readonly SearchDomainFactory searchDomainFactory;
-        private readonly List<IComponentRegistration> componentRegistrations = new List<IComponentRegistration>();
-
-        public IEnumerable<IComponentRegistration> ComponentRegistrations
-        {
-            get { return componentRegistrations; }
-        }
+        private readonly IPatternSearcher patternSearcher;
 
         [ImportMany(typeof(IContainerInfo))]
         private IEnumerable<IContainerInfo> KnownContainers { get; set; }
 
-        public SolutionAnalyzer(SearchDomainFactory searchDomainFactory,  params IContainerInfo[] knownContainers)
+        public SolutionAnalyzer(IPatternSearcher patternSearcher,  params IContainerInfo[] knownContainers)
         {
-            this.searchDomainFactory = searchDomainFactory;
+            this.patternSearcher = patternSearcher;
             KnownContainers = knownContainers;
         }
 
-        public void Analyze(ISolution solution)
+        public IEnumerable<IComponentRegistration> Analyze(ISolution solution)
         {
-            foreach (var project in solution.GetAllProjects())
-            {
-                IProject current = project;
-                var matchingContainers = from container in KnownContainers
-                                         where container.HasContainerReference(
-                                             current.GetModuleReferences().Select(reference => reference.Name))
-                                         select container;
-
-                componentRegistrations.AddRange(
-                    matchingContainers.SelectMany(containerInfo => GetProjectRegistrations(current, containerInfo)));
-            }
+            return KnownContainers.SelectMany(info => ScanRegistrations(solution, info));
         }
 
-        private IEnumerable<IComponentRegistration> GetProjectRegistrations(IProject project, IContainerInfo containerInfo)
+        private IEnumerable<IComponentRegistration> ScanRegistrations(ISolution solution, IContainerInfo containerInfo)
         {
-            var patternSearcher = new PatternSearcher(project, searchDomainFactory);
+            var componentRegistrations = new List<IComponentRegistration>();
 
-            return containerInfo.RegistrationPatterns.SelectMany(pattern => pattern.CreateRegistrations(patternSearcher));
+            foreach (IComponentRegistrationPattern pattern in containerInfo.RegistrationPatterns)
+            {
+                IEnumerable<IStructuralMatchResult> results = patternSearcher.Search(pattern);
+                if (results != null)
+                {
+                    IComponentRegistrationCreator creator = pattern.GetComponentRegistrationCreator();
+                    IEnumerable<IComponentRegistration> registrations = creator.CreateRegistrations(solution, results.ToArray());
+
+                    componentRegistrations.AddRange(registrations);
+                }
+            }
+
+            return componentRegistrations;
         }
     }
 }

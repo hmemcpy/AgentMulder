@@ -1,12 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Search;
-using JetBrains.Application.Components;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.TestFramework;
 using NUnit.Framework;
 
@@ -34,11 +29,11 @@ namespace AgentMulder.ReSharper.Tests.PatternMatching
             // single registration:
             // Component.For<IFoo>().ImplementedBy<Foo>();
 
-            DoTestSolution("Test01.cs");
+            DoOneTest("Test01.cs");
 
             CollectionAssert.IsNotEmpty(ComponentRegistrations);
             IComponentRegistration registration = ComponentRegistrations.First();
-            Assert.That(registration, Is.InstanceOf<ConcreteRegistration>());
+            Assert.That(registration, Is.InstanceOf<ComponentRegistration>());
         }
     }
 }

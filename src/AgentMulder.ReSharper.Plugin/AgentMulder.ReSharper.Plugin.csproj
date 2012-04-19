@@ -46,11 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Daemon\ContainerAnalysisDaemonStage.cs" />
-    <Compile Include="ContainerGutterMark.cs" />
+    <Compile Include="Highlighting\ContainerGutterMark.cs" />
     <Compile Include="Daemon\ContainerAnalysisStageProcess.cs" />
+    <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AboutAction.cs" />
-    <Compile Include="RegisteredByContainerHighlighting.cs" />
+    <Compile Include="Highlighting\RegisteredByContainerHighlighting.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Actions.xml">

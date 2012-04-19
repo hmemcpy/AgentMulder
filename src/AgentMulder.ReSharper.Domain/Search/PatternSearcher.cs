@@ -6,6 +6,7 @@ using JetBrains.DocumentManagers;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Features.StructuralSearch.Finding;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.Caches;
 using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -16,22 +17,21 @@ namespace AgentMulder.ReSharper.Domain.Search
 {
     public class PatternSearcher : IPatternSearcher
     {
-        private readonly IProject project;
+        private readonly ISolution solution;
         private readonly SearchDomainFactory domainFactory;
 
-        public PatternSearcher(IProject project, SearchDomainFactory domainFactory)
+        public PatternSearcher(ISolution solution, SearchDomainFactory domainFactory)
         {
-            this.project = project;
+            this.solution = solution;
             this.domainFactory = domainFactory;
         }
 
         public IEnumerable<IStructuralMatchResult> Search(IComponentRegistrationPattern patern)
         {
-            var solution = project.GetSolution();
             var searchDomain = domainFactory.CreateSearchDomain(solution, false);
             var documentManager = solution.GetComponent<DocumentManager>();
             
-            IStructuralMatcher matcher = patern.Pattern.CreateMatcher();
+            IStructuralMatcher matcher = patern.CreateMatcher();
             if (matcher == null)
                 return null;
 
@@ -41,11 +41,10 @@ namespace AgentMulder.ReSharper.Domain.Search
                 var findResultStructural = result as FindResultStructural;
                 if (findResultStructural != null && findResultStructural.DocumentRange.IsValid())
                 {
-                    // todo get document range too, to navigate to registration!
                     return findResultStructural.MatchResult;
                 }
                 
-                return (IStructuralMatchResult)null;
+                return null;
             }, match =>
             {
                 if (match != null)
@@ -55,7 +54,8 @@ namespace AgentMulder.ReSharper.Domain.Search
                 return FindExecution.Continue;
             });
 
-            var structuralSearcher = new StructuralSearcher(documentManager, patern.Pattern.Language, matcher);
+            // todo add support for VB (eventually)
+            var structuralSearcher = new StructuralSearcher(documentManager, CSharpLanguage.Instance, matcher);
             var searchDomainSearcher = new StructuralSearchDomainSearcher<IStructuralMatchResult>(
                 NarrowSearchDomain(matcher.Words, matcher.GetExtendedWords(solution), searchDomain, solution), structuralSearcher, consumer, NullProgressIndicator.Instance, true);
             searchDomainSearcher.Run();

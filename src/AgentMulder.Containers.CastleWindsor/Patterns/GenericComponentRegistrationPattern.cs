@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
+using JetBrains.ProjectModel;
+using JetBrains.ReSharper.Feature.Services.Occurences;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
-using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns
 {
@@ -23,11 +23,6 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
                 new TypePlaceholder("impl"));   
         }
 
-        public IStructuralSearchPattern Pattern
-        {
-            get { return pattern; }
-        }
-
         public IEnumerable<IComponentRegistration> CreateRegistrations(IPatternSearcher patternSearcher)
         {
             if (pattern.Check() != null)
@@ -41,15 +36,26 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
             {
                 yield break;
             }
+        }
 
-            foreach (IStructuralMatchResult match in results)
+        public IStructuralMatcher CreateMatcher()
+        {
+            return pattern.CreateMatcher();
+        }
+
+        public IComponentRegistrationCreator GetComponentRegistrationCreator()
+        {
+            return new GenericComponentRegistrationCreator();
+        }
+
+        private sealed class GenericComponentRegistrationCreator : IComponentRegistrationCreator
+        {
+            public IEnumerable<IComponentRegistration> CreateRegistrations(ISolution solution, params IStructuralMatchResult[] matchResults)
             {
-                IType matchedType = match.GetMatchedType("impl");
-                var declaredType = matchedType as IDeclaredType;
-                if (declaredType != null)
-                {
-                    yield return new ConcreteRegistration(declaredType.GetTypeElement());
-                }
+                return (from match in matchResults
+                        let matchedType = match.GetMatchedType("impl") as IDeclaredType
+                        where matchedType != null
+                        select new ComponentRegistration(match.GetDocumentRange(), matchedType.GetTypeElement()));
             }
         }
     }

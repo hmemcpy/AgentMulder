@@ -18,7 +18,7 @@ namespace AgentMulder.Containers.CastleWindsor
             new GenericComponentRegistrationPattern()
         };
 
-        public string Name
+        public string ContainerDisplayName
         {
             get { return "Castle Windsor"; }
         }

@@ -23,5 +23,10 @@ namespace AgentMulder.ReSharper.Domain.Registrations
         {
             return implementedType.Equals(typeElement);
         }
+
+        public override string ToString()
+        {
+            return string.Format("Implemented by: {0}", implementedType.GetClrName().GetFullNameFast());
+        }
     }
 }

@@ -46,8 +46,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PatternMatching\PatternSearcherTestsBase.cs" />
-    <Compile Include="PatternMatching\WindsorPatternsTests.cs" />
+    <Compile Include="WindsorPatternsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

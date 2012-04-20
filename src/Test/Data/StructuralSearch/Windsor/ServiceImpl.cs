@@ -1,15 +1,18 @@
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using JetBrains.TestShell.Components.Settings;
 
-namespace AgentMulder.ReSharper.Tests.TestCases
+namespace AgentMulder.TestCases
 {
-    public class Test01
+    public class ManualRegistration
     {
-        public Test01()
+        public ManualRegistration()
         {
             var container = new WindsorContainer();
             container.Register(Component.For<IFoo>().ImplementedBy<Foo>());
         }
+
+        public interface IFoo { }
+
+        public class Foo : IFoo { }
     }
 }

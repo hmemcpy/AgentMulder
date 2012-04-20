@@ -74,7 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patterns\GenericComponentRegistrationPattern.cs" />
+    <Compile Include="Patterns\ServiceImplementationGenericPattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindsorContainerInfo.cs" />
   </ItemGroup>

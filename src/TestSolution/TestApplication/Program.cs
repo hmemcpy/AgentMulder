@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using AgentMulder.TestCases;
 
 namespace TestApplication
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
+            var pm = new Service();
+            var resolve = pm.container.Resolve<Service.IFoo>();
         }
     }
 }

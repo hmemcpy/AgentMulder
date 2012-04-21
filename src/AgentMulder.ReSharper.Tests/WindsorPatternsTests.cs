@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.Containers.CastleWindsor.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
@@ -51,37 +50,17 @@ namespace AgentMulder.ReSharper.Tests
             base.SetUp();
             componentRegistrations = new List<IComponentRegistration>();
         }
-        
-        [Test, Ignore("Solution gets cleaned, and the data is invalid")]
+
+        [Test]
         public void TestWindsorServiceRegistration()
         {
-            patterns = new List<IComponentRegistrationPattern> { new ServiceRegistrationPattern() };
-
-            DoOneTest("WindsorRegistration");
-
-            CollectionAssert.IsNotEmpty(componentRegistrations);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.TestCases.Foo"));
-        }
-
-        [Test, Ignore("Solution gets cleaned, and the data is invalid")]
-        public void TestWindsorServiceWithImplementationRegistration()
-        {
-            patterns = new List<IComponentRegistrationPattern> { new ServiceWithImplementationRegistrationPattern() };
-
-            DoOneTest("WindsorRegistration");
-
-            CollectionAssert.IsNotEmpty(componentRegistrations);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.TestCases.Foo"));
-        }
-
-        [Test, Ignore("Solution gets cleaned, and the data is invalid")]
-        public void TestWindsorManualRegistration()
-        {
-            patterns = new List<IComponentRegistrationPattern> { new ServiceCompoisitePattern() };
+            patterns = new List<IComponentRegistrationPattern> { new ComponentRegistrationPattern() };
 
             DoOneTest("WindsorRegistration");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(2));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Foo")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Bar")));
         }
 
         [Test]
@@ -91,7 +70,8 @@ namespace AgentMulder.ReSharper.Tests
 
             DoOneTest("WindsorRegistration");
 
-            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
+            Assert.That(componentRegistrations.Count, Is.EqualTo(1));
+            StringAssert.Contains("AgentMulder.TestApplication.Baz", componentRegistrations.First().ToString());
         }
     }
 }

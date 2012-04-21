@@ -78,9 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Patterns\FromTypesPattern.cs" />
-    <Compile Include="Patterns\ServiceRegistrationPattern.cs" />
-    <Compile Include="Patterns\ServiceCompoisitePattern.cs" />
-    <Compile Include="Patterns\ServiceWithImplementationRegistrationPattern.cs" />
+    <Compile Include="Patterns\ComponentRegistrationPattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindsorContainerInfo.cs" />
   </ItemGroup>

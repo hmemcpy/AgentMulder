@@ -1,4 +1,5 @@
 ﻿using System;
+using AgentMulder.TestApplication;
 using TestApplication.Windsor;
 
 namespace TestApplication
@@ -8,7 +9,7 @@ namespace TestApplication
         static void Main(string[] args)
         {
             var pm = new WindsorRegistration();
-            var resolve = pm.container.Resolve<WindsorRegistration.IFoo>();
+            var resolve = pm.container.Resolve<IFoo>();
         }
     }
 }

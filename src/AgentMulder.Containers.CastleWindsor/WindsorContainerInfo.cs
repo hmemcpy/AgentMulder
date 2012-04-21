@@ -14,7 +14,8 @@ namespace AgentMulder.Containers.CastleWindsor
 
         private static readonly List<IComponentRegistrationPattern> patterns = new List<IComponentRegistrationPattern> 
         {
-            new ServiceImplementationGenericPattern()
+            new ServiceCompoisitePattern(),
+            new FromTypesPattern()
         };
 
         public string ContainerDisplayName

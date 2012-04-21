@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.Containers.CastleWindsor.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
@@ -19,7 +20,7 @@ namespace AgentMulder.ReSharper.Tests
         // These files are loaded into the test solution that is being created by this test fixture
         protected override string RelativeTestDataPath
         {
-            get { return @"StructuralSearch\Windsor"; }
+            get { return @"Windsor"; }
         }
 
         protected override void DoTest(IProject testProject)
@@ -35,7 +36,7 @@ namespace AgentMulder.ReSharper.Tests
                     IComponentRegistrationCreator creator = pattern.CreateComponentRegistrationCreator();
                     IEnumerable<IComponentRegistration> registrations = creator.CreateRegistrations(results.ToArray());
 
-                    return registrations;
+                    return registrations.ToList();
                 }
 
                 return null;
@@ -51,37 +52,46 @@ namespace AgentMulder.ReSharper.Tests
             componentRegistrations = new List<IComponentRegistration>();
         }
         
-        [Test]
-        public void TestWindsorManualRegistration()
-        {
-            patterns = new List<IComponentRegistrationPattern> { new ServiceImplementationGenericPattern() };
-
-            DoOneTest("Test01"); // runs the file Test01.cs in the data directory
-
-            CollectionAssert.IsNotEmpty(componentRegistrations);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.TestCases.Foo"));
-        }
-        
-        [Test]
+        [Test, Ignore("Solution gets cleaned, and the data is invalid")]
         public void TestWindsorServiceRegistration()
         {
-            patterns = new List<IComponentRegistrationPattern> { new ServiceImplementationGenericPattern() };
+            patterns = new List<IComponentRegistrationPattern> { new ServiceRegistrationPattern() };
 
-            DoOneTest("Service"); // runs the file Service.cs in the data directory
+            DoOneTest("WindsorRegistration");
 
             CollectionAssert.IsNotEmpty(componentRegistrations);
             Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.TestCases.Foo"));
         }
 
-        [Test]
-        public void TestWindsorServiceImplementationRegistration()
+        [Test, Ignore("Solution gets cleaned, and the data is invalid")]
+        public void TestWindsorServiceWithImplementationRegistration()
         {
-            patterns = new List<IComponentRegistrationPattern> { new ServiceImplementationGenericPattern() };
+            patterns = new List<IComponentRegistrationPattern> { new ServiceWithImplementationRegistrationPattern() };
 
-            DoOneTest("ServiceImpl"); // runs the file ServiceImpl.cs in the data directory
+            DoOneTest("WindsorRegistration");
 
             CollectionAssert.IsNotEmpty(componentRegistrations);
             Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.TestCases.Foo"));
+        }
+
+        [Test, Ignore("Solution gets cleaned, and the data is invalid")]
+        public void TestWindsorManualRegistration()
+        {
+            patterns = new List<IComponentRegistrationPattern> { new ServiceCompoisitePattern() };
+
+            DoOneTest("WindsorRegistration");
+
+            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void TestFromTypes()
+        {
+            patterns = new List<IComponentRegistrationPattern> { new FromTypesPattern() };
+
+            DoOneTest("WindsorRegistration");
+
+            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
         }
     }
 }

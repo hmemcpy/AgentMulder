@@ -1,4 +1,4 @@
-﻿using AgentMulder.TestApplication;
+﻿using AgentMulder.ReSharper.Tests.Data;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 

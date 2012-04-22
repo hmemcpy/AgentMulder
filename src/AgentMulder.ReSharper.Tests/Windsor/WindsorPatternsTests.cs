@@ -61,21 +61,22 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             DoOneTest("WindsorRegistration");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(2));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Foo")));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Bar")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Foo")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
         }
 
         [Test]
-        public void TestAllTypesFromTypes()
+        public void TestAllTypesFromParams()
         {
             patterns = new List<IRegistration> { new AllTypesFrom() };
 
-            DoOneTest("WindsorRegistration");
+            DoOneTest("FromTypesParams");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(2));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Baz")));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Bar")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Baz")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
         }
+
 
         [Test]
         public void TestClassesFromTypes()
@@ -85,7 +86,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             DoOneTest("WindsorRegistration");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(1));
-            StringAssert.Contains("AgentMulder.TestApplication.Baz", componentRegistrations.First().ToString());
+            StringAssert.Contains("AgentMulder.ReSharper.Tests.Data.Baz", componentRegistrations.First().ToString());
         }
 
         [Test]
@@ -96,9 +97,9 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             DoOneTest("WindsorRegistration");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(3));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Foo")));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Bar")));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Baz")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Foo")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Baz")));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AgentMulder.Containers.CastleWindsor.Patterns.Component;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
@@ -9,7 +10,6 @@ using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.TestFramework;
 using NUnit.Framework;
-using ComponentRegistration = AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentRegistration;
 
 namespace AgentMulder.ReSharper.Tests.Windsor
 {
@@ -56,9 +56,9 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestWindsorServiceRegistration()
         {
-            patterns = new List<IRegistration> { new ComponentRegistration() };
+            patterns = new List<IRegistration> { new ManualRegistration() };
 
-            DoOneTest("WindsorRegistration");
+            DoOneTest("ManualRegistrationGeneric");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(2));
             Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Foo")));

@@ -6,14 +6,15 @@ using Castle.Windsor;
 
 namespace TestApplication.Windsor
 {
-    public class WindsorRegistration : IWindsorInstaller
+    public class ManualRegistrationGeneric : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
                 Component.For<IFoo>().ImplementedBy<Foo>(),
 
-                Component.For<Bar>());
+                Component.For<Bar>()
+                );
         }
     }
 }

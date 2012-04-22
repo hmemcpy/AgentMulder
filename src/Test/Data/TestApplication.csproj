@@ -60,7 +60,7 @@
     <Compile Include="Windsor\FromTypesNewArray.cs" />
     <Compile Include="Windsor\FromTypesNewList.cs" />
     <Compile Include="Windsor\FromTypesParams.cs" />
-    <Compile Include="Windsor\WindsorRegistration.cs" />
+    <Compile Include="Windsor\ManualRegistrationGeneric.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -77,6 +77,30 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
         }
 
+        [Test]
+        public void TestAllTypesFromNewArray()
+        {
+            patterns = new List<IRegistration> { new AllTypesFrom() };
+
+            DoOneTest("FromTypesNewArray");
+
+            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Baz")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
+        }
+
+        [Test]
+        public void TestAllTypesFromNewList()
+        {
+            patterns = new List<IRegistration> { new AllTypesFrom() };
+
+            DoOneTest("FromTypesNewList");
+
+            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Baz")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
+        }
+
 
         [Test]
         public void TestClassesFromTypes()

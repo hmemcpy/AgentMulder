@@ -10,7 +10,12 @@ namespace TestApplication.Windsor
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.From(typeof(Bar), typeof(Baz)));
+                AllTypes.From(typeof(Bar), typeof(Baz)),
+
+                Classes.From(typeof(Bar), typeof(Baz))
+                
+                
+                );
         }
     }
 }

@@ -9,7 +9,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$classes$.From($services$)",
                 new ExpressionPlaceholder("classes", "Castle.MicroKernel.Registration.Classes"),
-                new ArgumentPlaceholder("services"));
+                new ArgumentPlaceholder("services", -1, -1)); // matches any number of arguments
 
         public ClassesFrom()
             : base(pattern, "services")

@@ -1,15 +1,15 @@
 using System;
 using AgentMulder.ReSharper.Tests.Data;
 using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
 namespace TestApplication.Windsor
 {
-    public class WindsorRegistration
+    public class WindsorRegistration : IWindsorInstaller
     {
-        public WindsorRegistration()
+        public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            var container = new WindsorContainer();
             container.Register(
                 Component.For<IFoo>().ImplementedBy<Foo>(),
 

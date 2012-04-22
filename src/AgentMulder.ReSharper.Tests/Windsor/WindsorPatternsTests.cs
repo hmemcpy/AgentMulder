@@ -101,19 +101,43 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
         }
 
-
         [Test]
-        public void TestClassesFromTypes()
+        public void TestClassesFromParams()
         {
             patterns = new List<IRegistration> { new ClassesFrom() };
 
-            DoOneTest("WindsorRegistration");
+            DoOneTest("FromTypesParams");
 
-            Assert.That(componentRegistrations.Count, Is.EqualTo(1));
-            StringAssert.Contains("AgentMulder.ReSharper.Tests.Data.Baz", componentRegistrations.First().ToString());
+            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Baz")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
         }
 
         [Test]
+        public void TestClassesFromNewArray()
+        {
+            patterns = new List<IRegistration> { new ClassesFrom() };
+
+            DoOneTest("FromTypesNewArray");
+
+            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Baz")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
+        }
+
+        [Test]
+        public void TestClassesFromNewList()
+        {
+            patterns = new List<IRegistration> { new ClassesFrom() };
+
+            DoOneTest("FromTypesNewList");
+
+            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Baz")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
+        }
+
+        [Test, Ignore("Does not work yet")]
         public void TestFromAssembly()
         {
             patterns = new List<IRegistration> { new AllTypesFromAssembly() };

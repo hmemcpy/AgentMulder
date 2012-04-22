@@ -35,16 +35,11 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
             public IEnumerable<IComponentRegistration> CreateRegistrations(params IStructuralMatchResult[] matchResults)
             {
-                foreach (var match in matchResults)
-                {
-                    IEnumerable<ICSharpArgument> matchedArguments = match.GetMatchedElementList(elementName).OfType<ICSharpArgument>();
-
-                    foreach (ICSharpArgument argument in matchedArguments)
-                    {
-                        foreach (IComponentRegistration componentRegistration in ComponentRegistrations(match, argument.Value))
-                            yield return componentRegistration;
-                    }
-                }
+                return from match in matchResults
+                       let matchedArguments = match.GetMatchedElementList(elementName).OfType<ICSharpArgument>()
+                       from argument in matchedArguments
+                       from componentRegistration in ComponentRegistrations(match, argument.Value)
+                       select componentRegistration;
             }
 
             private static IEnumerable<IComponentRegistration> ComponentRegistrations(IStructuralMatchResult match, ICSharpExpression expression)

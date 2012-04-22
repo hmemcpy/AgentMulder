@@ -1,12 +1,14 @@
+using System.ComponentModel.Composition;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.ReSharper.Domain.Search
 {
-    public abstract class ComponentRegistrationPatternBase : IComponentRegistrationPattern
+    [Export(typeof(IRegistration))]
+    public abstract class RegistrationBase : IRegistration
     {
         private readonly IStructuralSearchPattern pattern;
 
-        protected ComponentRegistrationPatternBase(IStructuralSearchPattern pattern)
+        protected RegistrationBase(IStructuralSearchPattern pattern)
         {
             this.pattern = pattern;
         }

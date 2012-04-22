@@ -6,8 +6,6 @@ namespace AgentMulder.ReSharper.Domain.Containers
     public interface IContainerInfo
     {
         string ContainerDisplayName { get; }
-        IEnumerable<string> ContainerAssemblyNames { get; }
-        IEnumerable<IComponentRegistrationPattern> RegistrationPatterns { get; }
-        bool HasContainerReference(IEnumerable<string> projectAssemblyReferences);
+        IEnumerable<IRegistration> RegistrationPatterns { get; }
     }
 }

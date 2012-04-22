@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using AgentMulder.TestApplication;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -6,15 +8,17 @@ namespace TestApplication.Windsor
 {
     public class WindsorRegistration
     {
-        public readonly WindsorContainer container;
-
         public WindsorRegistration()
         {
-            container = new WindsorContainer();
+            var container = new WindsorContainer();
             container.Register(
                 Component.For<IFoo>().ImplementedBy<Foo>(),
+                
                 Component.For<Bar>(),
-                AllTypes.From(new[] { typeof(Baz) }));
+                
+                AllTypes.From(typeof(Baz), typeof(Bar)),
+
+                Classes.From(typeof(Baz), typeof(Bar)));
         }
     }
 }
@@ -27,4 +31,6 @@ namespace AgentMulder.TestApplication
     public class Foo : IFoo { }
     public class Bar : IBar { }
     public class Baz : IFoo, IBar { }
+
+    public struct MyStruct { }
 }

@@ -9,14 +9,14 @@ using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.CastleWindsor.Patterns
+namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
 {
-    internal class ComponentRegistrationPattern : ComponentRegistrationPatternBase
+    internal sealed class ComponentRegistration : RegistrationBase
     {
         private static readonly ComponentForRegistrationPattern componentForPattern = new ComponentForRegistrationPattern();
-        private readonly IComponentRegistrationPattern implementedByPattern;
+        private readonly IRegistration implementedByPattern;
 
-        public ComponentRegistrationPattern()
+        public ComponentRegistration()
             :base(componentForPattern.Pattern)
         {
             implementedByPattern = new ComponentImplementedByRegistrationPattern();
@@ -29,24 +29,24 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
             return new CompositeCreator(componentForCreator, implementedByPattern);
         }
 
-        private sealed class ComponentForRegistrationPattern : ComponentRegistrationPatternBase
+        private sealed class ComponentForRegistrationPattern : IRegistration
         {
             private static readonly IStructuralSearchPattern pattern =
                 new CSharpStructuralSearchPattern("$component$.For<$service$>()",
                                                   new ExpressionPlaceholder("component", "Castle.MicroKernel.Registration.Component"),
                                                   new TypePlaceholder("service"));
 
-            public ComponentForRegistrationPattern()
-                : base(pattern)
-            {
-            }
-
             public IStructuralSearchPattern Pattern
             {
                 get { return pattern; }
             }
 
-            public override IComponentRegistrationCreator CreateComponentRegistrationCreator()
+            public IStructuralMatcher CreateMatcher()
+            {
+                return pattern.CreateMatcher();
+            }
+
+            public IComponentRegistrationCreator CreateComponentRegistrationCreator()
             {
                 return new ServiceRegistrationCreator();
             }
@@ -61,14 +61,14 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
                         if (matchedType != null)
                         {
                             ITypeElement typeElement = matchedType.GetTypeElement(match.MatchedElement.GetPsiModule());
-                            yield return new ComponentRegistration(match.GetDocumentRange(), typeElement);
+                            yield return new ReSharper.Domain.Registrations.ComponentRegistration(match.GetDocumentRange(), typeElement);
                         }
                     }
                 }
             }
         }
 
-        private sealed class ComponentImplementedByRegistrationPattern : ComponentRegistrationPatternBase
+        private sealed class ComponentImplementedByRegistrationPattern : IRegistration
         {
             private static readonly IStructuralSearchPattern pattern =
                 new CSharpStructuralSearchPattern("$component$.For<$service$>().ImplementedBy<$impl$>()",
@@ -76,12 +76,12 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
                                                   new TypePlaceholder("service"),
                                                   new TypePlaceholder("impl"));
 
-            public ComponentImplementedByRegistrationPattern()
-                : base(pattern)
+            public IStructuralMatcher CreateMatcher()
             {
+                return pattern.CreateMatcher();
             }
 
-            public override IComponentRegistrationCreator CreateComponentRegistrationCreator()
+            public IComponentRegistrationCreator CreateComponentRegistrationCreator()
             {
                 return new ServiceWithImplementationCreator();
             }
@@ -96,7 +96,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
                         if (matchedType != null)
                         {
                             ITypeElement typeElement = matchedType.GetTypeElement(match.MatchedElement.GetPsiModule());
-                            yield return new ComponentRegistration(match.GetDocumentRange(), typeElement);
+                            yield return new ReSharper.Domain.Registrations.ComponentRegistration(match.GetDocumentRange(), typeElement);
                         }
                     }
                 }
@@ -107,9 +107,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
         private sealed class CompositeCreator : IComponentRegistrationCreator
         {
             private readonly IComponentRegistrationCreator baseCreator;
-            private readonly IComponentRegistrationPattern otherPattern;
+            private readonly IRegistration otherPattern;
 
-            public CompositeCreator(IComponentRegistrationCreator baseCreator, IComponentRegistrationPattern otherPattern)
+            public CompositeCreator(IComponentRegistrationCreator baseCreator, IRegistration otherPattern)
             {
                 this.baseCreator = baseCreator;
                 this.otherPattern = otherPattern;

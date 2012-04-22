@@ -32,7 +32,7 @@ namespace AgentMulder.ReSharper.Domain
         {
             var componentRegistrations = new List<IComponentRegistration>();
 
-            foreach (IComponentRegistrationPattern pattern in containerInfo.RegistrationPatterns)
+            foreach (IRegistration pattern in containerInfo.RegistrationPatterns)
             {
                 IEnumerable<IStructuralMatchResult> results = patternSearcher.Search(pattern);
                 if (results != null)

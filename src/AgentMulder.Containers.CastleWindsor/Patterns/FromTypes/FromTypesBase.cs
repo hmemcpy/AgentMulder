@@ -1,41 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
-using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
-using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.CastleWindsor.Patterns
+namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    public class FromTypesPattern : ComponentRegistrationPatternBase
+    public abstract class FromTypesBase : RegistrationBase
     {
-        private static readonly IStructuralSearchPattern pattern = 
-            new CSharpStructuralSearchPattern("$alltypes$.From($services$)",
-                new ExpressionPlaceholder("alltypes", "Castle.MicroKernel.Registration.AllTypes"),
-                new ArgumentPlaceholder("services"));
+        private readonly string argumentsElementName;
 
-        public FromTypesPattern()
+        protected FromTypesBase(IStructuralSearchPattern pattern, string argumentsElementName)
             : base(pattern)
         {
+            this.argumentsElementName = argumentsElementName;
         }
 
         public override IComponentRegistrationCreator CreateComponentRegistrationCreator()
         {
-            return new FromTypesComponentCreator();
+            return new FromTypesComponentCreator(argumentsElementName);
         }
 
         private sealed class FromTypesComponentCreator : IComponentRegistrationCreator
         {
+            private readonly string elementName;
+
+            public FromTypesComponentCreator(string elementName)
+            {
+                this.elementName = elementName;
+            }
+
             public IEnumerable<IComponentRegistration> CreateRegistrations(params IStructuralMatchResult[] matchResults)
             {
                 foreach (var match in matchResults)
                 {
-                    var argument = match.GetMatchedElement("services") as ICSharpArgument;
+                    var argument = match.GetMatchedElement(elementName) as ICSharpArgument;
                     if (argument == null)
                     {
                         yield break;
@@ -57,10 +58,15 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
 
                             yield return new ComponentRegistration(match.GetDocumentRange(), typeElement.GetTypeElement());
                         }
+                    }  
+
+                    var objectCreationExpression = argument.Value as IObjectCreationExpression;
+                    if (objectCreationExpression != null)
+                    {
+                        
                     }
                 }
             }
         }
-
     }
 }

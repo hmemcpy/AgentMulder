@@ -77,8 +77,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patterns\FromTypesPattern.cs" />
-    <Compile Include="Patterns\ComponentRegistrationPattern.cs" />
+    <Compile Include="Patterns\FromTypes\AllTypesFromAssembly.cs" />
+    <Compile Include="Patterns\FromTypes\AllTypesFrom.cs" />
+    <Compile Include="Patterns\FromTypes\ClassesFrom.cs" />
+    <Compile Include="Patterns\FromTypes\FromTypesBase.cs" />
+    <Compile Include="Patterns\Component\ComponentRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindsorContainerInfo.cs" />
   </ItemGroup>

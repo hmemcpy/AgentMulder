@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.Containers.CastleWindsor.Patterns;
+using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.Application.Components;
@@ -9,10 +9,12 @@ using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.TestFramework;
 using NUnit.Framework;
+using ComponentRegistration = AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentRegistration;
 
-namespace AgentMulder.ReSharper.Tests
+namespace AgentMulder.ReSharper.Tests.Windsor
 {
     [TestFixture]
+    [TestWindsor]
     public class WindsorPatternsTests : BaseTestWithSingleProject
     {
         // The source files are located in the solution directory, under Test\Data and the path below, i.e. Test\Data\StructuralSearch\Windsor
@@ -43,7 +45,7 @@ namespace AgentMulder.ReSharper.Tests
         }
 
         private List<IComponentRegistration> componentRegistrations;
-        private List<IComponentRegistrationPattern> patterns;
+        private List<IRegistration> patterns;
 
         public override void SetUp()
         {
@@ -54,7 +56,7 @@ namespace AgentMulder.ReSharper.Tests
         [Test]
         public void TestWindsorServiceRegistration()
         {
-            patterns = new List<IComponentRegistrationPattern> { new ComponentRegistrationPattern() };
+            patterns = new List<IRegistration> { new ComponentRegistration() };
 
             DoOneTest("WindsorRegistration");
 
@@ -64,14 +66,39 @@ namespace AgentMulder.ReSharper.Tests
         }
 
         [Test]
-        public void TestFromTypes()
+        public void TestAllTypesFromTypes()
         {
-            patterns = new List<IComponentRegistrationPattern> { new FromTypesPattern() };
+            patterns = new List<IRegistration> { new AllTypesFrom() };
+
+            DoOneTest("WindsorRegistration");
+
+            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Baz")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Bar")));
+        }
+
+        [Test]
+        public void TestClassesFromTypes()
+        {
+            patterns = new List<IRegistration> { new ClassesFrom() };
 
             DoOneTest("WindsorRegistration");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(1));
             StringAssert.Contains("AgentMulder.TestApplication.Baz", componentRegistrations.First().ToString());
+        }
+
+        [Test]
+        public void TestFromAssembly()
+        {
+            patterns = new List<IRegistration> { new AllTypesFromAssembly() };
+
+            DoOneTest("WindsorRegistration");
+
+            Assert.That(componentRegistrations.Count, Is.EqualTo(3));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Foo")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Bar")));
+            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.TestApplication.Baz")));
         }
     }
 }

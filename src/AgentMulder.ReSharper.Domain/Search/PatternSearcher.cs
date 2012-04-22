@@ -29,7 +29,7 @@ namespace AgentMulder.ReSharper.Domain.Search
             this.domainFactory = domainFactory;
         }
 
-        public IEnumerable<IStructuralMatchResult> Search(IComponentRegistrationPattern patern)
+        public IEnumerable<IStructuralMatchResult> Search(IRegistration patern)
         {
             var searchDomain = domainFactory.CreateSearchDomain(solution, false);
             var documentManager = solution.GetComponent<DocumentManager>();

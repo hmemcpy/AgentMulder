@@ -6,6 +6,6 @@ namespace AgentMulder.ReSharper.Domain.Search
 {
     public interface IPatternSearcher
     {
-        IEnumerable<IStructuralMatchResult> Search(IComponentRegistrationPattern patern);
+        IEnumerable<IStructuralMatchResult> Search(IRegistration patern);
     }
 }

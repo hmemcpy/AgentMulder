@@ -1,15 +1,18 @@
-﻿using System;
-using AgentMulder.TestApplication;
-using TestApplication.Windsor;
+﻿using AgentMulder.TestApplication;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
 
 namespace TestApplication
 {
-    static class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            var pm = new WindsorRegistration();
-            var resolve = pm.container.Resolve<IFoo>();
+            var container = new WindsorContainer();
+            container.Register(Types.From(typeof(Baz), typeof(MyStruct)).Pick());
+
+            var baz = container.Resolve<Baz>();
+            var s = container.Resolve<MyStruct>();
         }
     }
 }

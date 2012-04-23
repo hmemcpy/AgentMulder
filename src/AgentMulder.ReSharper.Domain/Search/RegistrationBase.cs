@@ -18,6 +18,11 @@ namespace AgentMulder.ReSharper.Domain.Search
             return pattern.CreateMatcher();
         }
 
+        public IStructuralSearchPattern Pattern
+        {
+            get { return pattern; }
+        }
+
         public abstract IComponentRegistrationCreator CreateComponentRegistrationCreator();
     }
 }

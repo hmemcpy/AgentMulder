@@ -77,8 +77,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Patterns\Component\ComponentForGeneric.cs" />
+    <Compile Include="Patterns\Component\ComponentManualRegistration.cs" />
+    <Compile Include="Patterns\Component\ImplementedByGeneric.cs" />
     <Compile Include="Patterns\Component\ManualRegistrationBase.cs" />
-    <Compile Include="Patterns\Component\ContainerRegisterPattern.cs" />
+    <Compile Include="Patterns\ContainerRegisterPattern.cs" />
     <Compile Include="Patterns\FromTypes\AllTypesFromAssembly.cs" />
     <Compile Include="Patterns\FromTypes\AllTypesFrom.cs" />
     <Compile Include="Patterns\FromTypes\AllTypesFromThisAssembly.cs" />

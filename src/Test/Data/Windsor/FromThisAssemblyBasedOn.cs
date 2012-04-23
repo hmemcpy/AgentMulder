@@ -10,7 +10,7 @@ namespace TestApplication.Windsor
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromThisAssembly().BasedOn<IFoo>()
+                AllTypes.FromThisAssembly()
 
                 );
         }

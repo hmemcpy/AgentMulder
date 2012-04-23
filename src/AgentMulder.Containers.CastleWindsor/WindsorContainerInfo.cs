@@ -2,7 +2,6 @@
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
-using AgentMulder.Containers.CastleWindsor.Patterns;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Search;
 

@@ -49,7 +49,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
                 {
                      var typeElement = (IDeclaredType)typeOfExpression.ArgumentType;
 
-                     yield return new ComponentRegistration(match.GetDocumentRange(), typeElement.GetTypeElement());
+                     yield return new ConcreteRegistration(match.GetDocumentRange(), typeElement.GetTypeElement());
                 }
 
                 var arrayExpression = expression as IArrayCreationExpression;

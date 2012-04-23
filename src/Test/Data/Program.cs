@@ -9,10 +9,9 @@ namespace TestApplication
         public static void Main(string[] args)
         {
             var container = new WindsorContainer();
-            container.Register(Types.From(typeof(Baz), typeof(MyStruct)).Pick());
+            container.Register(AllTypes.FromAssemblyContaining<IFoo>());
 
-            var baz = container.Resolve<Baz>();
-            var s = container.Resolve<MyStruct>();
+
         }
     }
 }

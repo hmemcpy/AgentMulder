@@ -23,7 +23,7 @@ namespace AgentMulder.Containers.CastleWindsor
             get { return "Castle Windsor"; }
         }
 
-        [ImportMany(typeof(IRegistration))]
-        public IEnumerable<IRegistration> RegistrationPatterns { get; private set; }
+        [ImportMany(typeof(IRegistrationPattern))]
+        public IEnumerable<IRegistrationPattern> RegistrationPatterns { get; private set; }
     }
 }

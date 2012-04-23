@@ -5,14 +5,14 @@ using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
-namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
+namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
     [PartNotDiscoverable]
-    public abstract class ManualRegistrationBase : RegistrationBase
+    public abstract class BasedOnRegistrationBase : RegistrationBase
     {
         private readonly string elementName;
 
-        protected ManualRegistrationBase(IStructuralSearchPattern pattern, string elementName)
+        protected BasedOnRegistrationBase(IStructuralSearchPattern pattern, string elementName)
             : base(pattern)
         {
             this.elementName = elementName;
@@ -20,21 +20,21 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
 
         public override IComponentRegistrationCreator CreateComponentRegistrationCreator()
         {
-            return new ComponentRegistrationCreator(elementName);
+            return new BasedOnRegistrationCreator(elementName);
         }
 
-        private class ComponentRegistrationCreator : IComponentRegistrationCreator
+        private sealed class BasedOnRegistrationCreator : IComponentRegistrationCreator
         {
             private readonly string elementName;
 
-            public ComponentRegistrationCreator(string elementName)
+            public BasedOnRegistrationCreator(string elementName)
             {
                 this.elementName = elementName;
             }
 
             public IEnumerable<IComponentRegistration> CreateRegistrations(params IStructuralMatchResult[] matchResults)
             {
-                foreach (IStructuralMatchResult match in matchResults)
+                foreach (var match in matchResults)
                 {
                     var matchedType = match.GetMatchedType(elementName) as IDeclaredType;
                     if (matchedType != null)
@@ -45,5 +45,6 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
                 }
             }
         }
+
     }
 }

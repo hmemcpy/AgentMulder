@@ -6,6 +6,6 @@ namespace AgentMulder.ReSharper.Domain.Containers
     public interface IContainerInfo
     {
         string ContainerDisplayName { get; }
-        IEnumerable<IRegistration> RegistrationPatterns { get; }
+        IEnumerable<IRegistrationPattern> RegistrationPatterns { get; }
     }
 }

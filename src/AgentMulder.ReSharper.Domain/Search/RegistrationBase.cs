@@ -3,8 +3,8 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.ReSharper.Domain.Search
 {
-    [Export(typeof(IRegistration))]
-    public abstract class RegistrationBase : IRegistration
+    [Export(typeof(IRegistrationPattern))]
+    public abstract class RegistrationBase : IRegistrationPattern
     {
         private readonly IStructuralSearchPattern pattern;
 
@@ -13,7 +13,7 @@ namespace AgentMulder.ReSharper.Domain.Search
             this.pattern = pattern;
         }
 
-        public IStructuralMatcher CreateMatcher()
+        public virtual IStructuralMatcher CreateMatcher()
         {
             return pattern.CreateMatcher();
         }

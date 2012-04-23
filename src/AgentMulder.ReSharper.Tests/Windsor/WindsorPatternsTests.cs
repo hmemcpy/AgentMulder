@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AgentMulder.Containers.CastleWindsor.Patterns;
 using AgentMulder.Containers.CastleWindsor.Patterns.Component;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
 using AgentMulder.ReSharper.Domain.Registrations;
@@ -45,7 +46,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         }
 
         private List<IComponentRegistration> componentRegistrations;
-        private List<IRegistration> patterns;
+        private List<IRegistrationPattern> patterns;
 
         public override void SetUp()
         {
@@ -54,21 +55,20 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         }
 
         [Test]
-        public void TestWindsorServiceRegistration()
+        public void TestComponentFor()
         {
-            patterns = new List<IRegistration> { new ManualRegistration() };
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern() };
 
-            DoOneTest("ManualRegistrationGeneric");
+            DoOneTest("ComponentFor");
 
-            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Foo")));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
+            Assert.AreEqual(1, componentRegistrations.Count);
+            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
         }
 
         [Test]
         public void TestAllTypesFromParams()
         {
-            patterns = new List<IRegistration> { new AllTypesFrom() };
+            patterns = new List<IRegistrationPattern> { new AllTypesFrom() };
 
             DoOneTest("FromTypesParams");
 
@@ -80,7 +80,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestAllTypesFromNewArray()
         {
-            patterns = new List<IRegistration> { new AllTypesFrom() };
+            patterns = new List<IRegistrationPattern> { new AllTypesFrom() };
 
             DoOneTest("FromTypesNewArray");
 
@@ -92,7 +92,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestAllTypesFromNewList()
         {
-            patterns = new List<IRegistration> { new AllTypesFrom() };
+            patterns = new List<IRegistrationPattern> { new AllTypesFrom() };
 
             DoOneTest("FromTypesNewList");
 
@@ -104,7 +104,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromParams()
         {
-            patterns = new List<IRegistration> { new ClassesFrom() };
+            patterns = new List<IRegistrationPattern> { new ClassesFrom() };
 
             DoOneTest("FromTypesParams");
 
@@ -116,7 +116,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromNewArray()
         {
-            patterns = new List<IRegistration> { new ClassesFrom() };
+            patterns = new List<IRegistrationPattern> { new ClassesFrom() };
 
             DoOneTest("FromTypesNewArray");
 
@@ -128,7 +128,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromNewList()
         {
-            patterns = new List<IRegistration> { new ClassesFrom() };
+            patterns = new List<IRegistrationPattern> { new ClassesFrom() };
 
             DoOneTest("FromTypesNewList");
 
@@ -138,15 +138,14 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         }
 
         [Test, Ignore("Does not work yet")]
-        public void TestFromAssembly()
+        public void TestFromThisAssemblyBasedOn()
         {
-            patterns = new List<IRegistration> { new AllTypesFromAssembly() };
+            patterns = new List<IRegistrationPattern> { new AllTypesFromThisAssembly() };
 
-            DoOneTest("WindsorRegistration");
+            DoOneTest("FromThisAssemblyBasedOn");
 
-            Assert.That(componentRegistrations.Count, Is.EqualTo(3));
+            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
             Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Foo")));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
             Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Baz")));
         }
     }

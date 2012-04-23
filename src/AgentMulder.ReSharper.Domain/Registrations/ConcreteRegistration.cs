@@ -3,25 +3,19 @@ using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
-    public class ComponentRegistration : IComponentRegistration
+    public class ConcreteRegistration : ComponentRegistrationBase
     {
-        private readonly DocumentRange documentRange;
         private readonly ITypeElement implementedType;
-        private string name;
+        private readonly string name;
 
-        public ComponentRegistration(DocumentRange documentRange, ITypeElement implementedType)
+        public ConcreteRegistration(DocumentRange documentRange, ITypeElement implementedType)
+            : base(documentRange)
         {
-            this.documentRange = documentRange;
             this.implementedType = implementedType;
             name = implementedType.GetClrName().FullName;
         }
 
-        public DocumentRange DocumentRange
-        {
-            get { return documentRange; }
-        }
-
-        public virtual bool IsSatisfiedBy(ITypeElement typeElement)
+        public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
             return implementedType.Equals(typeElement);
         }

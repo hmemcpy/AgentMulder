@@ -66,6 +66,29 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         }
 
         [Test]
+        public void TestComponentForImplementedBy()
+        {
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern() };
+
+            DoOneTest("ComponentForImplementedBy");
+
+            Assert.AreEqual(1, componentRegistrations.Count);
+            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+        }
+
+        [Test]
+        public void TestComponentForImplementedByWithAdditionalParams()
+        {
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern() };
+
+            DoOneTest("ComponentForImplementedByWithAdditionalParams");
+
+            Assert.AreEqual(1, componentRegistrations.Count);
+            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Bar"));
+        }
+
+
+        [Test]
         public void TestAllTypesFromParams()
         {
             patterns = new List<IRegistrationPattern> { new AllTypesFrom() };

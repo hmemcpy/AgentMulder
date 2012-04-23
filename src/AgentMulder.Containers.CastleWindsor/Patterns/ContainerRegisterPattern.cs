@@ -9,8 +9,6 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
 {
     internal sealed class ContainerRegisterPattern : RegistrationBase
     {
-        private readonly IRegistrationPattern[] regitrationPatterns;
-
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$container$.Register($arguments$)",
                 new ExpressionPlaceholder("container", "Castle.Windsor.IWindsorContainer"),

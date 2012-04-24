@@ -30,21 +30,11 @@ namespace AgentMulder.ReSharper.Domain
 
         private IEnumerable<IComponentRegistration> ScanRegistrations(ISolution solution, IContainerInfo containerInfo)
         {
-            var componentRegistrations = new List<IComponentRegistration>();
-
-            foreach (IRegistrationPattern pattern in containerInfo.RegistrationPatterns)
-            {
-                IEnumerable<IStructuralMatchResult> results = patternSearcher.Search(pattern);
-                if (results != null)
-                {
-                    IComponentRegistrationCreator creator = pattern.CreateComponentRegistrationCreator();
-                    IEnumerable<IComponentRegistration> registrations = creator.CreateRegistrations(results.ToArray());
-
-                    componentRegistrations.AddRange(registrations);
-                }
-            }
-
-            return componentRegistrations;
+            return from pattern in containerInfo.RegistrationPatterns
+                   let results = patternSearcher.Search(pattern)
+                   where results != null
+                   from registration in pattern.GetComponentRegistrations(results.ToArray())
+                   select registration;
         }
     }
 }

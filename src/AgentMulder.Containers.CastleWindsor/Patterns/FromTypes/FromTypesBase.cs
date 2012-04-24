@@ -19,66 +19,55 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             this.argumentsElementName = argumentsElementName;
         }
 
-        public override IComponentRegistrationCreator CreateComponentRegistrationCreator()
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(
+            params IStructuralMatchResult[] matchResults)
         {
-            return new FromTypesComponentCreator(argumentsElementName);
+            return from match in matchResults
+                   let matchedArguments = match.GetMatchedElementList(argumentsElementName).OfType<ICSharpArgument>()
+                   from argument in matchedArguments
+                   from componentRegistration in ComponentRegistrations(match, argument.Value)
+                   select componentRegistration;
         }
 
-        private sealed class FromTypesComponentCreator : IComponentRegistrationCreator
+        private static IEnumerable<IComponentRegistration> ComponentRegistrations(IStructuralMatchResult match, ICSharpExpression expression)
         {
-            private readonly string elementName;
-
-            public FromTypesComponentCreator(string elementName)
+            var typeOfExpression = expression as ITypeofExpression;
+            if (typeOfExpression != null)
             {
-                this.elementName = elementName;
+                var typeElement = (IDeclaredType)typeOfExpression.ArgumentType;
+
+                yield return new ConcreteRegistration(match.GetDocumentRange(), typeElement.GetTypeElement());
             }
 
-            public IEnumerable<IComponentRegistration> CreateRegistrations(params IStructuralMatchResult[] matchResults)
+            var arrayExpression = expression as IArrayCreationExpression;
+            if (arrayExpression != null)
             {
-                return from match in matchResults
-                       let matchedArguments = match.GetMatchedElementList(elementName).OfType<ICSharpArgument>()
-                       from argument in matchedArguments
-                       from componentRegistration in ComponentRegistrations(match, argument.Value)
-                       select componentRegistration;
-            }
-
-            private static IEnumerable<IComponentRegistration> ComponentRegistrations(IStructuralMatchResult match, ICSharpExpression expression)
-            {
-                var typeOfExpression = expression as ITypeofExpression;
-                if (typeOfExpression != null)
+                foreach (var initializer in arrayExpression.ArrayInitializer.ElementInitializers.OfType<IExpressionInitializer>())
                 {
-                     var typeElement = (IDeclaredType)typeOfExpression.ArgumentType;
-
-                     yield return new ConcreteRegistration(match.GetDocumentRange(), typeElement.GetTypeElement());
-                }
-
-                var arrayExpression = expression as IArrayCreationExpression;
-                if (arrayExpression != null)
-                {
-                    foreach (var initializer in arrayExpression.ArrayInitializer.ElementInitializers.OfType<IExpressionInitializer>())
+                    foreach (IComponentRegistration componentRegistration in ComponentRegistrations(match, initializer.Value))
                     {
-                        foreach (IComponentRegistration componentRegistration in ComponentRegistrations(match, initializer.Value))
-                        {
-                            yield return componentRegistration;
-                        }
+                        yield return componentRegistration;
                     }
                 }
+            }
 
-                var objectCreationExpression = expression as IObjectCreationExpression;
-                if (objectCreationExpression != null)
+            var objectCreationExpression = expression as IObjectCreationExpression;
+            if (objectCreationExpression != null)
+            {
+                foreach (
+                    var initializer in
+                        objectCreationExpression.Initializer.InitializerElements.OfType<ICollectionElementInitializer>()
+                    )
                 {
-                    foreach (var initializer in objectCreationExpression.Initializer.InitializerElements.OfType<ICollectionElementInitializer>())
+                    // todo fixme find out if THERE CAN BE ONLY ONE!!!1
+                    if (initializer.Arguments.Count != 1)
                     {
-                        // todo fixme find out if THERE CAN BE ONLY ONE!!!1
-                        if (initializer.Arguments.Count != 1)
-                        {
-                            continue;
-                        }
+                        continue;
+                    }
 
-                        foreach (IComponentRegistration componentRegistration in ComponentRegistrations(match, initializer.Arguments[0].Value))
-                        {
-                            yield return componentRegistration;
-                        }
+                    foreach (IComponentRegistration componentRegistration in ComponentRegistrations(match, initializer.Arguments[0].Value))
+                    {
+                        yield return componentRegistration;
                     }
                 }
             }

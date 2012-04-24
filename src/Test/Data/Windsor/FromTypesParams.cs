@@ -13,8 +13,8 @@ namespace TestApplication.Windsor
                 AllTypes.From(typeof(Bar), typeof(Baz)),
 
                 Classes.From(typeof(Bar), typeof(Baz))
-                
-                
+
+
                 );
         }
     }

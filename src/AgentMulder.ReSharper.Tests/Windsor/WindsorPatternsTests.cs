@@ -35,8 +35,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
                 IEnumerable<IStructuralMatchResult> results = patternSearcher.Search(pattern);
                 if (results != null)
                 {
-                    IComponentRegistrationCreator creator = pattern.CreateComponentRegistrationCreator();
-                    IEnumerable<IComponentRegistration> registrations = creator.CreateRegistrations(results.ToArray());
+                    IEnumerable<IComponentRegistration> registrations = pattern.GetComponentRegistrations(results.ToArray());
 
                     return registrations.ToList();
                 }
@@ -57,7 +56,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestComponentFor()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern() };
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ComponentForGeneric()) };
 
             DoOneTest("ComponentFor");
 
@@ -68,7 +67,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestComponentForImplementedBy()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern() };
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ImplementedByGeneric()) };
 
             DoOneTest("ComponentForImplementedBy");
 
@@ -79,7 +78,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestComponentForImplementedByWithAdditionalParams()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern() };
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ImplementedByGeneric()) };
 
             DoOneTest("ComponentForImplementedByWithAdditionalParams");
 
@@ -91,7 +90,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestAllTypesFromParams()
         {
-            patterns = new List<IRegistrationPattern> { new AllTypesFrom() };
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new AllTypesFrom()) };
 
             DoOneTest("FromTypesParams");
 
@@ -103,7 +102,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestAllTypesFromNewArray()
         {
-            patterns = new List<IRegistrationPattern> { new AllTypesFrom() };
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new AllTypesFrom()) };
 
             DoOneTest("FromTypesNewArray");
 
@@ -115,7 +114,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestAllTypesFromNewList()
         {
-            patterns = new List<IRegistrationPattern> { new AllTypesFrom() };
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new AllTypesFrom()) };
 
             DoOneTest("FromTypesNewList");
 
@@ -127,7 +126,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromParams()
         {
-            patterns = new List<IRegistrationPattern> { new ClassesFrom() };
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ClassesFrom()) };
 
             DoOneTest("FromTypesParams");
 
@@ -139,7 +138,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromNewArray()
         {
-            patterns = new List<IRegistrationPattern> { new ClassesFrom() };
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ClassesFrom()) };
 
             DoOneTest("FromTypesNewArray");
 
@@ -151,7 +150,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromNewList()
         {
-            patterns = new List<IRegistrationPattern> { new ClassesFrom() };
+            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ClassesFrom()) };
 
             DoOneTest("FromTypesNewList");
 

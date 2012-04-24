@@ -18,33 +18,17 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
             this.elementName = elementName;
         }
 
-        public override IComponentRegistrationCreator CreateComponentRegistrationCreator()
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(params IStructuralMatchResult[] matchResults)
         {
-            return new BasedOnRegistrationCreator(elementName);
-        }
-
-        private sealed class BasedOnRegistrationCreator : IComponentRegistrationCreator
-        {
-            private readonly string elementName;
-
-            public BasedOnRegistrationCreator(string elementName)
+            foreach (var match in matchResults)
             {
-                this.elementName = elementName;
-            }
-
-            public IEnumerable<IComponentRegistration> CreateRegistrations(params IStructuralMatchResult[] matchResults)
-            {
-                foreach (var match in matchResults)
+                var matchedType = match.GetMatchedType(elementName) as IDeclaredType;
+                if (matchedType != null)
                 {
-                    var matchedType = match.GetMatchedType(elementName) as IDeclaredType;
-                    if (matchedType != null)
-                    {
-                        ITypeElement typeElement = matchedType.GetTypeElement(match.MatchedElement.GetPsiModule());
-                        yield return new ConcreteRegistration(match.GetDocumentRange(), typeElement);
-                    }
+                    ITypeElement typeElement = matchedType.GetTypeElement(match.MatchedElement.GetPsiModule());
+                    yield return new ConcreteRegistration(match.GetDocumentRange(), typeElement);
                 }
             }
         }
-
     }
 }

@@ -5,8 +5,6 @@ using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -26,38 +24,22 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         {
         }
 
-        public override IComponentRegistrationCreator CreateComponentRegistrationCreator()
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(params IStructuralMatchResult[] matchResults)
         {
-            return new FromThisAssemblyCreator(this);
-        }
+            IStructuralMatcher basedOnMatcher = basedOnGeneric.CreateMatcher();
 
-        private sealed class FromThisAssemblyCreator : IComponentRegistrationCreator
-        {
-            private readonly AllTypesFromThisAssembly parent;
-
-            public FromThisAssemblyCreator(AllTypesFromThisAssembly parent)
+            foreach (var match in matchResults)
             {
-                this.parent = parent;
-            }
+                IModule module = match.MatchedElement.GetPsiModule().ContainingProjectModule;
 
-            public IEnumerable<IComponentRegistration> CreateRegistrations(params IStructuralMatchResult[] matchResults)
-            {
-                IComponentRegistrationCreator basedOnCreator = parent.basedOnGeneric.CreateComponentRegistrationCreator();
-                IStructuralMatcher basedOnMatcher = parent.basedOnGeneric.CreateMatcher();
-
-                foreach (var match in matchResults)
+                IStructuralMatchResult basedOnResult = basedOnMatcher.Match(match.MatchedElement.Parent.Parent);
+                if (basedOnResult.Matched)
                 {
-                    IModule module = match.MatchedElement.GetPsiModule().ContainingProjectModule;
+                    IEnumerable<BasedOnRegistration> basedOnRegistrations = basedOnGeneric.GetComponentRegistrations(basedOnResult).OfType<BasedOnRegistration>();
 
-                    IStructuralMatchResult basedOnResult = basedOnMatcher.Match(match.MatchedElement.Parent.Parent);
-                    if (basedOnResult.Matched)
+                    foreach (var registration in basedOnRegistrations)
                     {
-                        IEnumerable<BasedOnRegistration> basedOnRegistrations = basedOnCreator.CreateRegistrations(basedOnResult).OfType<BasedOnRegistration>();
-
-                        foreach (var registration in basedOnRegistrations)
-                        {
-                            yield return new ModuleBasedOnRegistration(module, registration);
-                        }
+                        yield return new ModuleBasedOnRegistration(module, registration);
                     }
                 }
             }

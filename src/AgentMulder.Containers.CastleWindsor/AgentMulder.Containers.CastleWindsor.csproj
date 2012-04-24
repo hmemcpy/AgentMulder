@@ -78,7 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Patterns\Component\ComponentForGeneric.cs" />
-    <Compile Include="Patterns\Component\ComponentManualRegistration.cs" />
     <Compile Include="Patterns\Component\ImplementedByGeneric.cs" />
     <Compile Include="Patterns\Component\ManualRegistrationBase.cs" />
     <Compile Include="Patterns\ContainerRegisterPattern.cs" />

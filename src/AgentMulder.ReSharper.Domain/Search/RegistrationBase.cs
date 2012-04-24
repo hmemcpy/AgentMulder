@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.ReSharper.Domain.Search
@@ -23,6 +25,6 @@ namespace AgentMulder.ReSharper.Domain.Search
             get { return pattern; }
         }
 
-        public abstract IComponentRegistrationCreator CreateComponentRegistrationCreator();
+        public abstract IEnumerable<IComponentRegistration> GetComponentRegistrations(params IStructuralMatchResult[] matchResults);
     }
 }

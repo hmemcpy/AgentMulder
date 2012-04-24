@@ -21,28 +21,18 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         {
         }
 
-        public override IComponentRegistrationCreator CreateComponentRegistrationCreator()
+        public override IEnumerable<IComponentRegistration>  GetComponentRegistrations(params IStructuralMatchResult[] matchResults)
         {
-            return new FromAssemblyCreator();
-        }
-
-        private sealed class FromAssemblyCreator : IComponentRegistrationCreator
-        {
-            public IEnumerable<IComponentRegistration> CreateRegistrations(params IStructuralMatchResult[] matchResults)
+            foreach (var match in matchResults)
             {
-                foreach (var match in matchResults)
+                var argument = (ICSharpArgument)match.GetMatchedElement("assembly");
+                var invocation = argument.Value as IInvocationExpression;
+                if (invocation != null)
                 {
-                    var argument = (ICSharpArgument)match.GetMatchedElement("assembly");
-                    var invocation = argument.Value as IInvocationExpression;
-                    if (invocation != null)
-                    {
-                        string dump = invocation.InvocationExpressionReference.Resolve().Result.Dump();
-
-                    }
+                    string dump = invocation.InvocationExpressionReference.Resolve().Result.Dump();
                 }
-
-                yield break;
             }
+            yield break;
         }
     }
 }

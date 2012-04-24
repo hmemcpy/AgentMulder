@@ -48,7 +48,6 @@
     <Compile Include="Registrations\ConcreteRegistration.cs" />
     <Compile Include="Registrations\IComponentRegistration.cs" />
     <Compile Include="Search\RegistrationBase.cs" />
-    <Compile Include="Search\IComponentRegistrationCreator.cs" />
     <Compile Include="Search\IPatternSearcher.cs" />
     <Compile Include="Search\IRegistrationPattern.cs" />
     <Compile Include="Search\PatternSearcher.cs" />

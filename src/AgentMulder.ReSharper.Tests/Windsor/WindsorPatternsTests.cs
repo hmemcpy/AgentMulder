@@ -168,9 +168,9 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
             DoOneTest("FromThisAssemblyBasedOn");
 
-            Assert.That(componentRegistrations.Count, Is.EqualTo(2));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Foo")));
-            Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Baz")));
+            Assert.That(componentRegistrations.Count, Is.EqualTo(1));
+            IComponentRegistration result = componentRegistrations.First();
+            Assert.That(result.ToString(), Is.EqualTo("In module: TestProject, Based on: AgentMulder.ReSharper.Tests.Data.IFoo"));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ProjectModel;
@@ -16,9 +17,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             new CSharpStructuralSearchPattern("$alltypes$.FromThisAssembly()",
                                               new ExpressionPlaceholder("alltypes"));
 
-        private readonly IRegistrationPattern[] basedOnPatterns;
+        private readonly BasedOnRegistrationBase[] basedOnPatterns;
 
-        public AllTypesFromThisAssembly(params IRegistrationPattern[] basedOnPatterns)
+        public AllTypesFromThisAssembly(params BasedOnRegistrationBase[] basedOnPatterns)
             : base(pattern)
         {
             this.basedOnPatterns = basedOnPatterns;

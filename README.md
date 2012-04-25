@@ -43,12 +43,11 @@ Agent Mulder plugin for ReSharper analyzes known IoC container registrations in 
 
 **Q: What IoC containers are currently supported?**
 
-**A:** Currently, there is only a [limited support](wiki page) for [Castle Windsor](http://www.castleproject.org/container/index.html). Support for additional registration synax is coming soon!
-
+**A:** The list of the currently supported IoC containers and their syntax can be found on the [wiki page](https://github.com/hmemcpy/AgentMulder/wiki).
 
 **Q: What about X (Ninject/StructureMap/Unity)? Can you add support for it?**
 
-**A:** Great question! Suggest a feature on the [issue tracker](https://github.com/hmemcpy/AgentMulder/issues), or better yet, [send me a patch for that](http://ayende.com/blog/154305/send-me-a-patch-for-that)!
+**A:** Great question! Suggest a feature on the [issue tracker](https://github.com/hmemcpy/AgentMulder/issues), or better yet, send me a pull request!
 
 **Q: Why the name Agent Mulder?**
 

@@ -16,6 +16,11 @@ namespace AgentMulder.ReSharper.Domain.Search
             Assertion.Assert(pattern.Check() == null, "Invalid pattern");
         }
 
+        public IStructuralSearchPattern Pattern
+        {
+            get { return pattern; }
+        }
+
         public virtual IStructuralMatcher CreateMatcher()
         {
             return pattern.CreateMatcher();

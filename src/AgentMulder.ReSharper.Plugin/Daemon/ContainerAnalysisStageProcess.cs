@@ -9,6 +9,7 @@ using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using AgentMulder.ReSharper.Plugin.Highlighting;
+using JetBrains.Application.Progress;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.UsageChecking;
@@ -35,31 +36,37 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
 
         public void Execute(Action<DaemonStageResult> commiter)
         {
-            PsiManager manager = PsiManager.GetInstance(process.Solution);
-            var file = manager.GetPsiFile(process.SourceFile, CSharpLanguage.Instance) as ICSharpFile;
-            if (file == null)
+            try
             {
-                return;
-            }
-
-            var solutionnAnalyzer = CreateSolutionAnalyzer(process.Solution);
-            IEnumerable<IComponentRegistration> componentRegistrations = solutionnAnalyzer.Analyze(process.Solution);
-
-            file.ProcessChildren<ITypeDeclaration>(declaration =>
-            {
-                IComponentRegistration registration = componentRegistrations.FirstOrDefault(c => c.IsSatisfiedBy(declaration.DeclaredElement));
-                if (registration != null)
+                PsiManager manager = PsiManager.GetInstance(process.Solution);
+                var file = manager.GetPsiFile(process.SourceFile, CSharpLanguage.Instance) as ICSharpFile;
+                if (file == null)
                 {
-                    RemovedHighlightings(declaration.DeclaredElement);
-
-                    var highlight = new HighlightingInfo(declaration.GetHighlightingRange(),
-                                                         new RegisteredByContainerHighlighting(process.Solution, registration));
-
-                    var result = new DaemonStageResult(new[] { highlight });
-
-                    commiter(result);
+                    return;
                 }
-            });
+
+                var solutionnAnalyzer = CreateSolutionAnalyzer(process.Solution);
+                IEnumerable<IComponentRegistration> componentRegistrations = solutionnAnalyzer.Analyze(process.Solution);
+
+                file.ProcessChildren<ITypeDeclaration>(declaration =>
+                {
+                    IComponentRegistration registration = componentRegistrations.FirstOrDefault(c => c.IsSatisfiedBy(declaration.DeclaredElement));
+                    if (registration != null)
+                    {
+                        RemovedHighlightings(declaration.DeclaredElement);
+
+                        var highlight = new HighlightingInfo(declaration.GetHighlightingRange(),
+                                                             new RegisteredByContainerHighlighting(process.Solution, registration));
+
+                        var result = new DaemonStageResult(new[] { highlight });
+
+                        commiter(result);
+                    }
+                });
+            }
+            catch (ProcessCancelledException)
+            {
+            }
         }
 
         private SolutionAnalyzer CreateSolutionAnalyzer(ISolution solution)

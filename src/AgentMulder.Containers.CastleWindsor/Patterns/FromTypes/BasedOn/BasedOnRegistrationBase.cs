@@ -25,7 +25,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                 if (matchedType != null)
                 {
                     ITypeElement typeElement = matchedType.GetTypeElement(match.MatchedElement.GetPsiModule());
-                    yield return new ConcreteRegistration(match.GetDocumentRange(), typeElement);
+                    yield return new BasedOnRegistration(match.GetDocumentRange(), typeElement);
                 }
             }
         }

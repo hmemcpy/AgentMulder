@@ -2,7 +2,6 @@
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Foo = TestApplication.TestData.Foo;
 
 namespace TestApplication.Windsor
 {

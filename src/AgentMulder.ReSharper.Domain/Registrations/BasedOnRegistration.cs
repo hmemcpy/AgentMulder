@@ -7,6 +7,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
     public class BasedOnRegistration : ComponentRegistrationBase
     {
         private readonly ITypeElement basedOnElement;
+        private readonly WithServiceRegistration withService;
         private readonly string name;
 
         public ITypeElement BasedOnElement
@@ -14,10 +15,17 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             get { return basedOnElement; }
         }
 
-        public BasedOnRegistration(DocumentRange documentRange, ITypeElement basedOnElement)
+        public WithServiceRegistration WithService
+        {
+            get { return withService; }
+        }
+
+        public BasedOnRegistration(DocumentRange documentRange, ITypeElement basedOnElement, WithServiceRegistration withService)
             : base(documentRange)
         {
             this.basedOnElement = basedOnElement;
+            this.withService = withService;
+
             name = basedOnElement.GetClrName().FullName;
         }
 
@@ -26,7 +34,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             IList<IDeclaredType> baseTypes = typeElement.GetSuperTypes();
             foreach (var baseType in baseTypes)
             {
-                // todo horrible hack
+                // todo fixme 
                 if (baseType.GetClrName().FullName == basedOnElement.GetClrName().FullName)
                 {
                     return true;

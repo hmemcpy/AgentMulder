@@ -48,6 +48,7 @@
     <Compile Include="Registrations\ConcreteRegistration.cs" />
     <Compile Include="Registrations\IComponentRegistration.cs" />
     <Compile Include="Registrations\ModuleBasedOnRegistration.cs" />
+    <Compile Include="Registrations\WithServiceRegistration.cs" />
     <Compile Include="Search\InvocationExpressionMatcher.cs" />
     <Compile Include="Search\RegistrationBase.cs" />
     <Compile Include="Search\IPatternSearcher.cs" />

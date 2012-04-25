@@ -6,6 +6,7 @@ using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
@@ -19,14 +20,30 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             this.argumentsElementName = argumentsElementName;
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(
-            params IStructuralMatchResult[] matchResults)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(params IStructuralMatchResult[] matchResults)
         {
-            return from match in matchResults
-                   let matchedArguments = match.GetMatchedElementList(argumentsElementName).OfType<ICSharpArgument>()
-                   from argument in matchedArguments
-                   from componentRegistration in ComponentRegistrations(match, argument.Value)
-                   select componentRegistration;
+            IStructuralMatcher matcher = Pattern.CreateMatcher();
+
+            foreach (IStructuralMatchResult match in matchResults)
+            {
+                foreach (var registration in CreateComponentRegistrations(match.MatchedElement, matcher)) yield return registration;
+            }
+        }
+
+        private IEnumerable<IComponentRegistration> CreateComponentRegistrations(ITreeNode element, IStructuralMatcher matcher)
+        {
+            IStructuralMatchResult match = matcher.Match(element);
+            if (match.Matched)
+            {
+                IEnumerable<ICSharpArgument> matchedArguments = match.GetMatchedElementList(argumentsElementName).OfType<ICSharpArgument>();
+                foreach (ICSharpArgument argument in matchedArguments)
+                {
+                    foreach (IComponentRegistration registration in ComponentRegistrations(match, argument.Value))
+                    {
+                        yield return registration;
+                    }
+                }
+            }
         }
 
         private static IEnumerable<IComponentRegistration> ComponentRegistrations(IStructuralMatchResult match, ICSharpExpression expression)

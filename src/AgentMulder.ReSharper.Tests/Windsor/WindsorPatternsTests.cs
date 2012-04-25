@@ -1,58 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.Containers.CastleWindsor.Patterns;
 using AgentMulder.Containers.CastleWindsor.Patterns.Component;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
-using JetBrains.Application.Components;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.Search;
-using JetBrains.ReSharper.Psi.Services.StructuralSearch;
-using JetBrains.ReSharper.TestFramework;
 using NUnit.Framework;
 
 namespace AgentMulder.ReSharper.Tests.Windsor
 {
     [TestFixture]
     [TestWindsor]
-    public class WindsorPatternsTests : BaseTestWithSingleProject
+    public class WindsorPatternsTests : PatternsTestBase
     {
         // The source files are located in the solution directory, under Test\Data and the path below, i.e. Test\Data\StructuralSearch\Windsor
         // These files are loaded into the test solution that is being created by this test fixture
         protected override string RelativeTestDataPath
         {
             get { return @"Windsor"; }
-        }
-
-        protected override void DoTest(IProject testProject)
-        {
-            var searchDomainFactory = ShellInstance.GetComponent<SearchDomainFactory>();
-            var patternSearcher = new PatternSearcher(testProject.GetSolution(), searchDomainFactory);
-
-            componentRegistrations.AddRange(patterns.SelectMany(pattern =>
-            {
-                IEnumerable<IStructuralMatchResult> results = patternSearcher.Search(pattern);
-                if (results != null)
-                {
-                    IEnumerable<IComponentRegistration> registrations = pattern.GetComponentRegistrations(results.ToArray());
-
-                    return registrations.ToList();
-                }
-
-                return null;
-            }));
-        }
-
-        private List<IComponentRegistration> componentRegistrations;
-        private List<IRegistrationPattern> patterns;
-
-        public override void SetUp()
-        {
-            base.SetUp();
-            componentRegistrations = new List<IComponentRegistration>();
         }
 
         [Test]
@@ -69,7 +35,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestComponentForImplementedBy()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ComponentForGeneric()) };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ComponentForGeneric(new ImplementedByGeneric())) };
 
             DoOneTest("ComponentForImplementedBy");
 
@@ -80,7 +46,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestComponentForImplementedByWithAdditionalParams()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ImplementedByGeneric()) };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ComponentForGeneric(new ImplementedByGeneric())) };
 
             DoOneTest("ComponentForImplementedByWithAdditionalParams");
 
@@ -168,9 +134,25 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
             DoOneTest("FromThisAssemblyBasedOn");
 
+            Assert.That(componentRegistrations.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestFromThisAssemblyBasedOnWithServiceBase()
+        {
+            patterns = new List<IRegistrationPattern> 
+            { new WindsorContainerRegisterPattern(
+                new AllTypesFromThisAssembly(
+                    new BasedOnGeneric(
+                        ))) };
+
+            DoOneTest("FromThisAssemblyBasedOnWithServiceBase");
+
             Assert.That(componentRegistrations.Count, Is.EqualTo(1));
             IComponentRegistration result = componentRegistrations.First();
-            Assert.That(result.ToString(), Is.EqualTo("In module: TestProject, Based on: AgentMulder.ReSharper.Tests.Data.IFoo"));
+            Assert.That(result.ToString(), Is.StringContaining("In module: TestProject"));
+            Assert.That(result.ToString(), Is.StringContaining("Based on: AgentMulder.ReSharper.Tests.Data.IFoo"));
+            Assert.That(result.ToString(), Is.StringContaining("With Service: Base Type"));
         }
     }
 }

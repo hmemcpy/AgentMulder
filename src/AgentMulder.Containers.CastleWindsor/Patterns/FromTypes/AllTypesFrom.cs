@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using AgentMulder.ReSharper.Domain.Registrations;
+using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;

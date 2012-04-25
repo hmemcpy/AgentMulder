@@ -7,7 +7,6 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
 {
-    [PartNotDiscoverable]
     public abstract class ManualRegistrationBase : RegistrationBase
     {
         private readonly string elementName;

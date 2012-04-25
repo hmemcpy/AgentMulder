@@ -9,9 +9,9 @@ namespace TestApplication
         public static void Main(string[] args)
         {
             var container = new WindsorContainer();
-            container.Register(AllTypes.FromAssemblyContaining<IFoo>());
+            container.Register(Classes.FromAssemblyContaining<IFoo>().BasedOn<IFoo>().WithServiceBase());
 
-
+            var resolve = container.Resolve<IFoo>();
         }
     }
 }

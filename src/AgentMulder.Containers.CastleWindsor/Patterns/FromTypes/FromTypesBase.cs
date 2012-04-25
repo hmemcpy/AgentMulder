@@ -31,6 +31,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
         private static IEnumerable<IComponentRegistration> ComponentRegistrations(IStructuralMatchResult match, ICSharpExpression expression)
         {
+            // match typeof() expressions
             var typeOfExpression = expression as ITypeofExpression;
             if (typeOfExpression != null)
             {
@@ -39,6 +40,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
                 yield return new ConcreteRegistration(match.GetDocumentRange(), typeElement.GetTypeElement());
             }
 
+            // match new[] or new Type[] expressions
             var arrayExpression = expression as IArrayCreationExpression;
             if (arrayExpression != null)
             {
@@ -51,13 +53,11 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
                 }
             }
 
+            // match new List<Type> expressions
             var objectCreationExpression = expression as IObjectCreationExpression;
             if (objectCreationExpression != null)
             {
-                foreach (
-                    var initializer in
-                        objectCreationExpression.Initializer.InitializerElements.OfType<ICollectionElementInitializer>()
-                    )
+                foreach (var initializer in objectCreationExpression.Initializer.InitializerElements.OfType<ICollectionElementInitializer>())
                 {
                     // todo fixme find out if THERE CAN BE ONLY ONE!!!1
                     if (initializer.Arguments.Count != 1)

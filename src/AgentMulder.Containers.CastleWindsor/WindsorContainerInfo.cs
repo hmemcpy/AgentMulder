@@ -21,7 +21,7 @@ namespace AgentMulder.Containers.CastleWindsor
         {
             registrationPatterns = new List<IRegistrationPattern> 
             {
-                new ContainerRegisterPattern(
+                new WindsorContainerRegisterPattern(
                     new ImplementedByGeneric(),
                     new ComponentForGeneric())
             };

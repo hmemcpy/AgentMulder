@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ProjectModel;
@@ -15,31 +14,35 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$alltypes$.FromThisAssembly()",
-                new ExpressionPlaceholder("alltypes", "Castle.MicroKernel.Registration.AllTypes"));
+                                              new ExpressionPlaceholder("alltypes"));
 
-        private readonly BasedOnRegistrationBase basedOnGeneric = new BasedOnGeneric();
-        
-        public AllTypesFromThisAssembly()
+        private readonly IRegistrationPattern[] basedOnPatterns;
+
+        public AllTypesFromThisAssembly(params IRegistrationPattern[] basedOnPatterns)
             : base(pattern)
         {
+            this.basedOnPatterns = basedOnPatterns;
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(params IStructuralMatchResult[] matchResults)
         {
-            IStructuralMatcher basedOnMatcher = basedOnGeneric.CreateMatcher();
-
-            foreach (var match in matchResults)
+            foreach (var basedOnPattern in basedOnPatterns)
             {
-                IModule module = match.MatchedElement.GetPsiModule().ContainingProjectModule;
+                IStructuralMatcher basedOnMatcher = basedOnPattern.CreateMatcher();
 
-                IStructuralMatchResult basedOnResult = basedOnMatcher.Match(match.MatchedElement.Parent.Parent);
-                if (basedOnResult.Matched)
+                foreach (var match in matchResults)
                 {
-                    IEnumerable<BasedOnRegistration> basedOnRegistrations = basedOnGeneric.GetComponentRegistrations(basedOnResult).OfType<BasedOnRegistration>();
+                    IModule module = match.MatchedElement.GetPsiModule().ContainingProjectModule;
 
-                    foreach (var registration in basedOnRegistrations)
+                    IStructuralMatchResult basedOnResult = basedOnMatcher.Match(match.MatchedElement);
+                    if (basedOnResult.Matched)
                     {
-                        yield return new ModuleBasedOnRegistration(module, registration);
+                        var basedOnRegistrations = basedOnPattern.GetComponentRegistrations(basedOnResult).OfType<BasedOnRegistration>();
+
+                        foreach (var registration in basedOnRegistrations)
+                        {
+                            yield return new ModuleBasedOnRegistration(module, registration);
+                        }
                     }
                 }
             }

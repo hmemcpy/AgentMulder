@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.Containers.CastleWindsor.Patterns;
 using AgentMulder.Containers.CastleWindsor.Patterns.Component;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
+using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.Application.Components;
@@ -56,7 +58,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestComponentFor()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ComponentForGeneric()) };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ComponentForGeneric()) };
 
             DoOneTest("ComponentFor");
 
@@ -67,7 +69,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestComponentForImplementedBy()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ImplementedByGeneric()) };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ComponentForGeneric()) };
 
             DoOneTest("ComponentForImplementedBy");
 
@@ -78,7 +80,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestComponentForImplementedByWithAdditionalParams()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ImplementedByGeneric()) };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ImplementedByGeneric()) };
 
             DoOneTest("ComponentForImplementedByWithAdditionalParams");
 
@@ -90,7 +92,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestAllTypesFromParams()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new AllTypesFrom()) };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new AllTypesFrom()) };
 
             DoOneTest("FromTypesParams");
 
@@ -102,7 +104,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestAllTypesFromNewArray()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new AllTypesFrom()) };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new AllTypesFrom()) };
 
             DoOneTest("FromTypesNewArray");
 
@@ -114,7 +116,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestAllTypesFromNewList()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new AllTypesFrom()) };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new AllTypesFrom()) };
 
             DoOneTest("FromTypesNewList");
 
@@ -126,7 +128,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromParams()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ClassesFrom()) };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ClassesFrom()) };
 
             DoOneTest("FromTypesParams");
 
@@ -138,7 +140,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromNewArray()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ClassesFrom()) };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ClassesFrom()) };
 
             DoOneTest("FromTypesNewArray");
 
@@ -150,7 +152,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromNewList()
         {
-            patterns = new List<IRegistrationPattern> { new ContainerRegisterPattern(new ClassesFrom()) };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ClassesFrom()) };
 
             DoOneTest("FromTypesNewList");
 
@@ -159,10 +161,10 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             Assert.That(componentRegistrations.Any((c => c.ToString() == "Implemented by: AgentMulder.ReSharper.Tests.Data.Bar")));
         }
 
-        [Test, Ignore("Does not work yet")]
+        [Test]
         public void TestFromThisAssemblyBasedOn()
         {
-            patterns = new List<IRegistrationPattern> { new AllTypesFromThisAssembly() };
+            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new AllTypesFromThisAssembly(new BasedOnGeneric())) };
 
             DoOneTest("FromThisAssemblyBasedOn");
 

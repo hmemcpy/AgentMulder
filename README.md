@@ -1,14 +1,63 @@
-**Agent Mulder for ReSharper** - coming soon!
-=============================================
+# Welcome to Agent Mulder plugin for ReSharper! #
 
-Agent Mulder plugin for ReSharper provides navigation to and finding usages of types registered or resolved via IoC containers in the entire solution.
+**Agent Mulder** plugin for ReSharper analyzes Inversion of Control (IoC) containers, provides navigation to and finding usages of types registered or resolved via IoC containers.
 
-Without Agent Mulder
-------
+## The Problem ##
 
-![Before](http://i.imgur.com/o0QRv.png)
+With all the major benefits of using smart IoC containers to wire up dependencies in code, it breaks automatic code-analysis tools like ReSharper, because IoC containers will only create concrete types at run-time (typically using Reflection), and this information is not known during static code analysis.
 
-With Agent Mulder
------
+Consider the following example with [Castle Windsor](http://www.castleproject.org/container/index.html):
 
-![Before](http://i.imgur.com/uzBim.png)
+    var container = new WindsorContainer();
+    container.Register(
+        Component.For<IMessageWriter>().ImplementedBy<ConsoleMessageWriter>());
+
+    var messageWriter = container.Resolve<IMessageWriter>();
+
+Using the configuration above, at runtime the container will resolve the concrete `ConsoleMessageWriter`, however, if you're using ReSharper with solution-wide analysis enabled, it will tell you that `ConsoleMessageWriter` is never instantiated:
+
+![Never instantiated](http://i.imgur.com/YNWby.png)
+
+This gets worse in convention-based registrations, such as:
+
+    container.Register(
+        Classes.FromThisAssembly().BasedOn<IMessageWriter>().WithServiceDefaultInterfaces()
+
+Where ReSharper will not even know that this type is being used:
+
+![Never used](http://i.imgur.com/pSezv.png)
+
+**Agent Mulder** aims to solve that problem!
+
+## The Solution ##
+
+Agent Mulder plugin for ReSharper analyzes known IoC container registrations in the entire solution, and adds the missing information to ReSharper, so it no longer flags concrete types as being unused. It even adds an visual icon to the type name, allowing you to navigate to the exact line, where the concrete type is being implicitly or explicitly registered:
+
+![Agent Mulder](http://i.imgur.com/fhq2q.png)
+
+## Frequently Asked Questions (April 25th, 2012)##
+
+**Q: Wow! How does it work?**
+
+**A:** Agent Mulder makes heavy use ReSharper's [Structural Search](http://www.jetbrains.com/resharper/webhelp/Navigation_and_Search__SSR__Searching_for_Code_with_Pattern.html) to look for registration patterns, such as `Component.For<$service$>()`. This makes searching very efficient and does not require any additional parsing. This also allows for adding new patterns easily, allowing adding support for additional IoC containers.
+
+**Q: What IoC containers are currently supported?**
+
+**A:** Currently, there is only a [limited support](wiki page) for [Castle Windsor](http://www.castleproject.org/container/index.html). Support for additional registration synax is coming soon!
+
+
+**Q: What about X (Ninject/StructureMap/Unity)? Can you add support for it?**
+
+**A:** Great question! Suggest a feature on the [issue tracker](https://github.com/hmemcpy/AgentMulder/issues), or better yet, [send me a patch for that](http://ayende.com/blog/154305/send-me-a-patch-for-that)!
+
+**Q: Why the name Agent Mulder?**
+
+**A:** There already exist a few great plugins for ReSharper called Agent Smith, Agent Johnson and Agent Ralph. I decided to continue the tradition, and after some consideration I decided on Agent Mulder - *The IoC Investigator* :)
+
+**Q: I found a bug/Agent Mulder highlights the wrong type (or doesn't)/It doesn't work!**
+
+**A:** Great! [Let me know](https://github.com/hmemcpy/AgentMulder/issues) about it, and I will try to fix it! Please note that I don't know all IoC containers and their rules - if you think a mistake in analysis has been made, please note what should be the desired outcome in the issue.
+
+Also please note that Agent Mulder plugin requires ReSharper 6.1 and only works in Visual Studio 2010. Other versions were not tested!
+
+Happy Investigating!

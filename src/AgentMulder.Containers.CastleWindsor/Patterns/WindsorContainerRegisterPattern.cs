@@ -10,16 +10,16 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns
 {
-    internal sealed class ContainerRegisterPattern : RegistrationBase
+    internal sealed class WindsorContainerRegisterPattern : RegistrationBase
     {
         private readonly IRegistrationPattern[] argumentsPatterns;
 
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$container$.Register($arguments$)",
-                new ExpressionPlaceholder("container", "Castle.Windsor.IWindsorContainer"),
+                new ExpressionPlaceholder("container", "Castle.Windsor.IWindsorContainer", false),
                 new ArgumentPlaceholder("arguments", -1, -1)); // any number of arguments
 
-        public ContainerRegisterPattern(params IRegistrationPattern[] argumentsPatterns)
+        public WindsorContainerRegisterPattern(params IRegistrationPattern[] argumentsPatterns)
             : base(pattern)
         {
             this.argumentsPatterns = argumentsPatterns;
@@ -27,26 +27,28 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(params IStructuralMatchResult[] matchResults)
         {
-            // todo yeah...
             foreach (IStructuralMatchResult match in matchResults)
             {
                 foreach (ICSharpArgument argument in match.GetMatchedElementList("arguments").OfType<ICSharpArgument>())
                 {
-                    foreach (var argumentPattern in argumentsPatterns)
+                    foreach (IRegistrationPattern argumentPattern in argumentsPatterns)
                     {
-                        foreach (var componentRegistration in GetComponentRegistration(argument.Value, argumentPattern))
+                        foreach (IComponentRegistration registration in GetComponentRegistration(argument.Value as IInvocationExpression, argumentPattern))
                         {
-                            yield return componentRegistration;
+                            yield return registration;
                         }
                     }
                 }
             }
         }
 
-        private static IEnumerable<IComponentRegistration> GetComponentRegistration(ICSharpExpression argument, IRegistrationPattern argumentPattern)
+        private static IEnumerable<IComponentRegistration> GetComponentRegistration(IInvocationExpression expression, IRegistrationPattern argumentPattern)
         {
             IStructuralMatcher argumentMatcher = argumentPattern.CreateMatcher();
-            IStructuralMatchResult result = argumentMatcher.Match(argument);
+
+            // todo fixme aaarrrgghh
+            IStructuralMatchResult result = argumentMatcher.Match(expression);
+            
             if (result.Matched)
             {
                 foreach (var registration in argumentPattern.GetComponentRegistrations(result))

@@ -11,7 +11,6 @@ namespace TestApplication.Windsor
         {
             container.Register(
                 AllTypes.FromThisAssembly().BasedOn<IFoo>()
-
                 );
         }
     }

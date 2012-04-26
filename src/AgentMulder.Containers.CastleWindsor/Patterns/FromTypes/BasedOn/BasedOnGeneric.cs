@@ -25,18 +25,20 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
-            foreach (var withServiceRegistration in base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>())
+            IStructuralMatchResult match = Match(parentElement);
+            if (match.Matched)
             {
-                IStructuralMatchResult match = Match(parentElement);
-                if (match.Matched)
+                var matchedType = match.GetMatchedType("type") as IDeclaredType;
+                if (matchedType != null)
                 {
-                    var matchedType = match.GetMatchedType("type") as IDeclaredType;
-                    if (matchedType != null)
-                    {
-                        ITypeElement typeElement = matchedType.GetTypeElement(match.MatchedElement.GetPsiModule());
-                        yield return new BasedOnRegistration(match.GetDocumentRange(), typeElement, withServiceRegistration);
-                    }
-                }   
+                    var withServiceRegistrations = base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>();
+
+                    ITypeElement typeElement = matchedType.GetTypeElement(match.MatchedElement.GetPsiModule());
+                    yield return new BasedOnRegistration(
+                        match.GetDocumentRange(), 
+                        typeElement, 
+                        withServiceRegistrations);
+                }
             }
         }
     }

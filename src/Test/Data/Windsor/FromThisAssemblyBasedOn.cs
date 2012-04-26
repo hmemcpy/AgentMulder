@@ -9,7 +9,6 @@ namespace TestApplication.Windsor
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            // this is an incomplete registration - should match 0 types
             container.Register(
                 AllTypes.FromThisAssembly().BasedOn<IFoo>()
                 );

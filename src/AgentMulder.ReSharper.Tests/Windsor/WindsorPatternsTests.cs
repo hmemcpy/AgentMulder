@@ -135,13 +135,16 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             { 
                 new WindsorContainerRegisterPattern(
                     new AllTypesFromThisAssembly(
-                        new BasedOnGeneric(
-                            new WithServiceBase()))) 
+                        new BasedOnGeneric())) 
             };
 
             DoOneTest("FromThisAssemblyBasedOn");
 
-            Assert.That(componentRegistrations.Count, Is.EqualTo(0));
+            Assert.That(componentRegistrations.Count, Is.EqualTo(1));
+            IComponentRegistration result = componentRegistrations.First();
+            Assert.That(result.ToString(), Is.StringContaining("In module: TestProject"));
+            Assert.That(result.ToString(), Is.StringContaining("Based on: AgentMulder.ReSharper.Tests.Data.IFoo"));
+            Assert.That(result.ToString(), Is.Not.StringContaining("With Service"));
         }
 
         [Test]

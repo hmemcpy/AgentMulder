@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AgentMulder.ReSharper.Domain;
+using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.Application.Components;
@@ -9,10 +10,10 @@ using JetBrains.ReSharper.TestFramework;
 
 namespace AgentMulder.ReSharper.Tests
 {
-    public class PatternsTestBase : BaseTestWithSingleProject
+    public abstract class PatternsTestBase : BaseTestWithSingleProject
     {
+        protected abstract IContainerInfo ContainerInfo { get; }
         protected List<IComponentRegistration> componentRegistrations;
-        protected List<IRegistrationPattern> patterns;
 
         public override void SetUp()
         {
@@ -25,7 +26,7 @@ namespace AgentMulder.ReSharper.Tests
             var searchDomainFactory = ShellInstance.GetComponent<SearchDomainFactory>();
             var patternSearcher = new PatternSearcher(testProject.GetSolution(), searchDomainFactory);
 
-            var solutionAnalyzer = new SolutionAnalyzer(patternSearcher, new TestContainerInfo(patterns.ToArray()));
+            var solutionAnalyzer = new SolutionAnalyzer(patternSearcher, ContainerInfo);
             componentRegistrations.AddRange(solutionAnalyzer.Analyze(Solution));
         }
     }

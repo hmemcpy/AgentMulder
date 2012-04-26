@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.Containers.CastleWindsor.Patterns;
 using AgentMulder.Containers.CastleWindsor.Patterns.Component;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
+using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ReSharper.Psi;
@@ -23,11 +25,14 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             get { return @"Windsor"; }
         }
 
+        protected override IContainerInfo ContainerInfo
+        {
+            get { return new WindsorContainerInfo();}
+        }
+
         [Test]
         public void TestComponentFor()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ComponentForGeneric()) };
-
             DoOneTest("ComponentFor");
 
             Assert.AreEqual(1, componentRegistrations.Count);
@@ -37,8 +42,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestComponentForImplementedBy()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ComponentForGeneric(new ImplementedByGeneric())) };
-
             DoOneTest("ComponentForImplementedBy");
 
             Assert.AreEqual(1, componentRegistrations.Count);
@@ -48,8 +51,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestComponentForImplementedByWithAdditionalParams()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ComponentForGeneric(new ImplementedByGeneric())) };
-
             DoOneTest("ComponentForImplementedByWithAdditionalParams");
 
             Assert.AreEqual(1, componentRegistrations.Count);
@@ -60,8 +61,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestAllTypesFromParams()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new AllTypesFrom()) };
-
             DoOneTest("FromTypesParams");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(2));
@@ -72,8 +71,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestAllTypesFromNewArray()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new AllTypesFrom()) };
-
             DoOneTest("FromTypesNewArray");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(2));
@@ -84,8 +81,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestAllTypesFromNewList()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new AllTypesFrom()) };
-
             DoOneTest("FromTypesNewList");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(2));
@@ -96,8 +91,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromParams()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ClassesFrom()) };
-
             DoOneTest("FromTypesParams");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(2));
@@ -108,8 +101,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromNewArray()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ClassesFrom()) };
-
             DoOneTest("FromTypesNewArray");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(2));
@@ -120,8 +111,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestClassesFromNewList()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new ClassesFrom()) };
-
             DoOneTest("FromTypesNewList");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(2));
@@ -132,13 +121,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestFromThisAssemblyBasedOn()
         {
-            patterns = new List<IRegistrationPattern> 
-            { 
-                new WindsorContainerRegisterPattern(
-                    new AllTypesFromThisAssembly(
-                        new BasedOnGeneric())) 
-            };
-
             DoOneTest("FromThisAssemblyBasedOn");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(1));
@@ -151,14 +133,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestFromThisAssemblyBasedOnWithServiceBase()
         {
-            patterns = new List<IRegistrationPattern> 
-            { 
-                new WindsorContainerRegisterPattern(
-                    new AllTypesFromThisAssembly(
-                        new BasedOnGeneric(
-                            new WithServiceBase()))) 
-            };
-
             DoOneTest("FromThisAssemblyBasedOnWithServiceBase");
 
             Assert.That(componentRegistrations.Count, Is.EqualTo(1));

@@ -93,6 +93,8 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
             {
                 usagesStageProcess.SetElementState(constructor, UsageState.CANNOT_BE_PROTECTED | UsageState.CANNOT_BE_INTERNAL | UsageState.CANNOT_BE_PRIVATE | UsageState.USED_MASK);
             }
+           
+            usagesStageProcess.SetElementState(typeElement, UsageState.ACCESSED);
         }
 
         public IDaemonProcess DaemonProcess

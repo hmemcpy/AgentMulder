@@ -4,6 +4,7 @@ using AgentMulder.Containers.CastleWindsor.Patterns;
 using AgentMulder.Containers.CastleWindsor.Patterns.Component;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
+using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Search;
 
@@ -27,7 +28,9 @@ namespace AgentMulder.Containers.CastleWindsor
                     new ImplementedByGeneric(),
                     new ComponentForGeneric(),
                     
-                    new AllTypesFromThisAssembly(new BasedOnGeneric()))
+                    new AllTypesFromThisAssembly(
+                        new BasedOnGeneric(
+                            new WithServiceBase())))
             };
         }
 

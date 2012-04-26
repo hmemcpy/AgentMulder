@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.Application.Components;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.Search;
-using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.TestFramework;
 
 namespace AgentMulder.ReSharper.Tests

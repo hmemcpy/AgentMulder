@@ -12,8 +12,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
     {
         private readonly WithServiceRegistrationBase[] withServicePatterns;
 
-        protected BasedOnRegistrationBase(IStructuralSearchPattern pattern,
-                                          params WithServiceRegistrationBase[] withServicePatterns)
+        protected BasedOnRegistrationBase(IStructuralSearchPattern pattern, params WithServiceRegistrationBase[] withServicePatterns)
             : base(pattern)
         {
             this.withServicePatterns = withServicePatterns;

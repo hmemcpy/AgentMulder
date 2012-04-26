@@ -17,8 +17,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
 
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$container$.Register($arguments$)",
-                                              new ExpressionPlaceholder("container", "Castle.Windsor.IWindsorContainer",
-                                                                        false),
+                                              new ExpressionPlaceholder("container", "Castle.Windsor.IWindsorContainer", false),
                                               new ArgumentPlaceholder("arguments", -1, -1)); // any number of arguments
 
         public WindsorContainerRegisterPattern(params RegistrationBase[] argumentsPatterns)
@@ -29,23 +28,17 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
-            IStructuralMatcher matcher = CreateMatcher();
-            IStructuralMatchResult match = matcher.Match(parentElement);
+            IStructuralMatchResult match = Match(parentElement);
 
             IEnumerable<IInvocationExpression> invocationExpressions =
                 match.GetMatchedElementList("arguments").Cast<ICSharpArgument>()
-                    .Select(argument => argument.Value as IInvocationExpression);
+                    .Select(argument => argument.Value)
+                    .OfType<IInvocationExpression>();
 
-            foreach (RegistrationBase argumentPattern in argumentsPatterns)
-            {
-                foreach (var expression in invocationExpressions)
-                {
-                    foreach (var registration in argumentPattern.GetComponentRegistrations(expression))
-                    {
-                        yield return registration;
-                    }
-                }
-            }
+            return from argumentPattern in argumentsPatterns
+                   from expression in invocationExpressions
+                   from registration in argumentPattern.GetComponentRegistrations(expression)
+                   select registration;
         }
     }
 }

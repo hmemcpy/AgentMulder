@@ -39,11 +39,11 @@ namespace AgentMulder.ReSharper.Domain.Registrations
                 // todo fixme 
                 if (baseType.GetClrName().FullName == basedOnElement.GetClrName().FullName)
                 {
-                    return true;
+                    return withServices.All(registration => registration.IsSatisfiedBy(typeElement));
                 }
             }
 
-            return withServices.All(registration => registration.IsSatisfiedBy(typeElement));
+            return false;
         }
 
         public override string ToString()

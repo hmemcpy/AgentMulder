@@ -55,7 +55,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                     {
                         RemovedHighlightings(declaration.DeclaredElement);
 
-                        var highlight = new HighlightingInfo(declaration.GetHighlightingRange(),
+                        var highlight = new HighlightingInfo(declaration.GetNameDocumentRange(),
                                                              new RegisteredByContainerHighlighting(process.Solution, registration));
 
                         var result = new DaemonStageResult(new[] { highlight });

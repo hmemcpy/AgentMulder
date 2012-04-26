@@ -1,9 +1,7 @@
-using AgentMulder.ReSharper.Plugin;
+using AgentMulder.ReSharper.Plugin.Daemon;
 using JetBrains.Application;
 using JetBrains.Threading;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -22,7 +20,7 @@ public class TestEnvironmentAssembly : ReSharperTestEnvironmentAssembly
     // Test assembly
     yield return Assembly.GetExecutingAssembly();
 
-    yield return typeof(AboutAction).Assembly;
+    yield return typeof(ContainerAnalysisDaemonStage).Assembly;
   }
 
   public override void SetUp()

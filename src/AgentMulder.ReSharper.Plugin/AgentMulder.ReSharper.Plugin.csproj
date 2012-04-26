@@ -51,13 +51,7 @@
     <Compile Include="Daemon\ContainerAnalysisStageProcess.cs" />
     <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AboutAction.cs" />
     <Compile Include="Highlighting\RegisteredByContainerHighlighting.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Actions.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">

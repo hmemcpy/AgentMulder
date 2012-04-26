@@ -24,7 +24,7 @@ Using the configuration above, at runtime the container will resolve the concret
 This gets worse in convention-based registrations, such as:
 
     container.Register(
-        Classes.FromThisAssembly().BasedOn<IMessageWriter>().WithServiceDefaultInterfaces()
+        AllTypes.FromThisAssembly().BasedOn<IMessageWriter>().WithServiceDefaultInterfaces()
 
 Where ReSharper will not even know that this type is being used:
 

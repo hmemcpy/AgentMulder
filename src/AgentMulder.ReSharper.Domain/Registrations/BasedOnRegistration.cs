@@ -25,7 +25,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             : base(documentRange)
         {
             this.basedOnElement = basedOnElement;
-            // without the call ToArray(), it will fail much later while iterating
+            // without the call ToArray(), it will fail much later while iterating.
             this.withServices = withServices.ToArray();
 
             name = basedOnElement.GetClrName().FullName;

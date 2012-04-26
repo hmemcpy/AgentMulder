@@ -1,6 +1,8 @@
 # Welcome to Agent Mulder plugin for ReSharper! #
 
-**Agent Mulder** plugin for ReSharper analyzes Inversion of Control (IoC) containers, provides navigation to and finding usages of types registered or resolved via IoC containers.
+**Agent Mulder** plugin for ReSharper analyzes Inversion of Control (IoC) containers, provides navigation to and finding usages of types registered or resolved via IoC containers:
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/pRJqliZ7svE" frameborder="0" allowfullscreen></iframe>
 
 ## The Problem ##
 

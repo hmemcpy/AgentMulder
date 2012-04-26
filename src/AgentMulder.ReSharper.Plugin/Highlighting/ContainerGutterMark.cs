@@ -12,7 +12,8 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
     public class ContainerGutterMark : IconGutterMark
     {
         public ContainerGutterMark()
-            : base(ImageLoader.GetImage("masterpage", typeof(AspGenerateContentItemProvider).Assembly))
+            // todo fixme change icon
+            : base(ImageLoader.GetImage("masterpage", typeof(AspGenerateContentItemProvider).Assembly)) 
         {
         }
 

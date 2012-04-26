@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using AgentMulder.ReSharper.Domain.Registrations;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
 {
@@ -21,30 +23,24 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
             this.manualRegistrationPatterns = manualRegistrationPatterns;
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(params IStructuralMatchResult[] matchResults)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
-            foreach (var match in matchResults)
+            bool innerMatch = false;
+            foreach (var innerPattern in manualRegistrationPatterns)
             {
-                bool innerMatch = false;
-                foreach (var innerPattern in manualRegistrationPatterns)
+                foreach (var registration in innerPattern.GetComponentRegistrations(parentElement))
                 {
-                    IStructuralMatcher otherMatcher = innerPattern.CreateMatcher();
-                    IStructuralMatchResult matchResult = otherMatcher.Match(match.MatchedElement);
-                    if (matchResult.Matched)
-                    {
-                        foreach (var registration in innerPattern.GetComponentRegistrations(matchResult))
-                        {
-                            innerMatch = true;
-                            yield return registration;
-                        }
-                    }
+                    innerMatch = true;
+                    yield return registration;
                 }
-                if (!innerMatch)
+            }
+            if (!innerMatch)
+            {
+                IInvocationExpression invocationExpression = GetMatchedExpression(parentElement);
+
+                foreach (var registration in base.GetComponentRegistrations(invocationExpression))
                 {
-                    foreach (var registration in base.GetComponentRegistrations(match))
-                    {
-                        yield return registration;
-                    }
+                    yield return registration;
                 }
             }
         }

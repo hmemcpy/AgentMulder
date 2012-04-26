@@ -4,6 +4,7 @@ using AgentMulder.Containers.CastleWindsor.Patterns;
 using AgentMulder.Containers.CastleWindsor.Patterns.Component;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
+using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using NUnit.Framework;
@@ -141,10 +142,12 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         public void TestFromThisAssemblyBasedOnWithServiceBase()
         {
             patterns = new List<IRegistrationPattern> 
-            { new WindsorContainerRegisterPattern(
-                new AllTypesFromThisAssembly(
-                    new BasedOnGeneric(
-                        ))) };
+            { 
+                new WindsorContainerRegisterPattern(
+                    new AllTypesFromThisAssembly(
+                        new BasedOnGeneric(
+                            new WithServiceBase()))) 
+            };
 
             DoOneTest("FromThisAssemblyBasedOnWithServiceBase");
 

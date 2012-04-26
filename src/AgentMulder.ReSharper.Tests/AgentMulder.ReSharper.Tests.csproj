@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Data\TestClasses.cs" />
     <Compile Include="PatternsTestBase.cs" />
+    <Compile Include="TestContainerInfo.cs" />
     <Compile Include="Windsor\TestWindsorAttribute.cs" />
     <Compile Include="Windsor\WindsorPatternsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

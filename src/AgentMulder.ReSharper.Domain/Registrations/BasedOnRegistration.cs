@@ -45,7 +45,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public override string ToString()
         {
-            return string.Format("Based on: {0}", name);
+            return string.Format("Based on: {0}, {1}", name, withService);
         }
     }
 }

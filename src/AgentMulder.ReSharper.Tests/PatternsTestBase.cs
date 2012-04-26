@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AgentMulder.Containers.CastleWindsor;
+using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.Application.Components;
@@ -26,18 +28,8 @@ namespace AgentMulder.ReSharper.Tests
             var searchDomainFactory = ShellInstance.GetComponent<SearchDomainFactory>();
             var patternSearcher = new PatternSearcher(testProject.GetSolution(), searchDomainFactory);
 
-            componentRegistrations.AddRange(patterns.SelectMany(pattern =>
-            {
-                IEnumerable<IStructuralMatchResult> results = patternSearcher.Search(pattern);
-                if (results != null)
-                {
-                    IEnumerable<IComponentRegistration> registrations = pattern.GetComponentRegistrations(results.ToArray());
-
-                    return registrations.ToList();
-                }
-
-                return null;
-            }));
+            var solutionAnalyzer = new SolutionAnalyzer(patternSearcher, new TestContainerInfo(patterns.ToArray()));
+            componentRegistrations.AddRange(solutionAnalyzer.Analyze(Solution));
         }
     }
 }

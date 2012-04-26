@@ -3,9 +3,11 @@ using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
@@ -21,11 +23,12 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         {
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(params IStructuralMatchResult[] matchResults)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
-            foreach (var withServiceRegistration in base.GetComponentRegistrations(matchResults).OfType<WithServiceRegistration>())
+            foreach (var withServiceRegistration in base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>())
             {
-                foreach (var match in matchResults)
+                IStructuralMatchResult match = Match(parentElement);
+                if (match.Matched)
                 {
                     var matchedType = match.GetMatchedType("type") as IDeclaredType;
                     if (matchedType != null)

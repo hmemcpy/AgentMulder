@@ -20,14 +20,12 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             this.argumentsElementName = argumentsElementName;
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(params IStructuralMatchResult[] matchResults)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
-            IStructuralMatcher matcher = Pattern.CreateMatcher();
-
-            foreach (IStructuralMatchResult match in matchResults)
-            {
-                foreach (var registration in CreateComponentRegistrations(match.MatchedElement, matcher)) yield return registration;
-            }
+            IStructuralMatcher matcher = CreateMatcher();
+            
+            foreach (var registration in CreateComponentRegistrations(parentElement, matcher))
+                yield return registration;
         }
 
         private IEnumerable<IComponentRegistration> CreateComponentRegistrations(ITreeNode element, IStructuralMatcher matcher)

@@ -6,6 +6,7 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
@@ -21,9 +22,12 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         {
         }
 
-        public override IEnumerable<IComponentRegistration>  GetComponentRegistrations(params IStructuralMatchResult[] matchResults)
+        public override IEnumerable<IComponentRegistration>  GetComponentRegistrations(ITreeNode parentElement)
         {
-            foreach (var match in matchResults)
+            IInvocationExpression invocationExpression = GetMatchedExpression(parentElement);
+            IStructuralMatcher matcher = CreateMatcher();
+            IStructuralMatchResult match = matcher.Match(invocationExpression);
+            if (match.Matched)
             {
                 var argument = (ICSharpArgument)match.GetMatchedElement("assembly");
                 var invocation = argument.Value as IInvocationExpression;

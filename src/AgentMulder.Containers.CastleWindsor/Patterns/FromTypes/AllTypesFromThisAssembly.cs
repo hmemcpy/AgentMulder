@@ -5,9 +5,11 @@ using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ProjectModel;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
@@ -25,25 +27,20 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             this.basedOnPatterns = basedOnPatterns;
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(params IStructuralMatchResult[] matchResults)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
-            foreach (var basedOnPattern in basedOnPatterns)
+            IStructuralMatchResult matchResult = Match(parentElement);
+            if (matchResult.Matched)
             {
-                IStructuralMatcher basedOnMatcher = basedOnPattern.CreateMatcher();
+                IModule module = matchResult.MatchedElement.GetPsiModule().ContainingProjectModule;
 
-                foreach (var match in matchResults)
+                foreach (var basedOnPattern in basedOnPatterns)
                 {
-                    IModule module = match.MatchedElement.GetPsiModule().ContainingProjectModule;
+                    var basedOnRegistrations = basedOnPattern.GetComponentRegistrations(parentElement).OfType<BasedOnRegistration>();
 
-                    IStructuralMatchResult basedOnResult = basedOnMatcher.Match(match.MatchedElement);
-                    if (basedOnResult.Matched)
+                    foreach (var registration in basedOnRegistrations)
                     {
-                        var basedOnRegistrations = basedOnPattern.GetComponentRegistrations(basedOnResult).OfType<BasedOnRegistration>();
-
-                        foreach (var registration in basedOnRegistrations)
-                        {
-                            yield return new ModuleBasedOnRegistration(module, registration);
-                        }
+                        yield return new ModuleBasedOnRegistration(module, registration);
                     }
                 }
             }

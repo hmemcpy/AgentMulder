@@ -31,9 +31,9 @@ namespace AgentMulder.ReSharper.Domain
         private IEnumerable<IComponentRegistration> ScanRegistrations(ISolution solution, IContainerInfo containerInfo)
         {
             return from pattern in containerInfo.RegistrationPatterns
-                   let results = patternSearcher.Search(pattern)
-                   where results != null
-                   from registration in pattern.GetComponentRegistrations(results.ToArray())
+                   let matchResults = patternSearcher.Search(pattern)
+                   from matchResult in matchResults.Where(result => result.Matched)
+                   from registration in pattern.GetComponentRegistrations(matchResult.MatchedElement)
                    select registration;
         }
     }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Application;
 using JetBrains.Application.Progress;
 using JetBrains.DocumentManagers;
 using JetBrains.ProjectModel;
@@ -9,11 +8,9 @@ using JetBrains.ReSharper.Features.StructuralSearch.Finding;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.Caches;
-using JetBrains.ReSharper.Psi.Impl.Search;
 using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch.Impl;
-using JetBrains.Threading;
 using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Domain.Search
@@ -21,12 +18,12 @@ namespace AgentMulder.ReSharper.Domain.Search
     public class PatternSearcher : IPatternSearcher
     {
         private readonly ISolution solution;
-        private readonly SearchDomainFactory domainFactory;
+        private readonly SearchDomainFactory searchDomainFactory;
 
-        public PatternSearcher(ISolution solution, SearchDomainFactory domainFactory)
+        public PatternSearcher(ISolution solution, SearchDomainFactory searchDomainFactory)
         {
             this.solution = solution;
-            this.domainFactory = domainFactory;
+            this.searchDomainFactory = searchDomainFactory;
         }
 
         public IEnumerable<IStructuralMatchResult> Search(IRegistrationPattern patern)
@@ -63,7 +60,7 @@ namespace AgentMulder.ReSharper.Domain.Search
 
         private void DoSearch(IStructuralMatcher matcher, FindResultConsumer<IStructuralMatchResult> consumer)
         {
-            var searchDomain = domainFactory.CreateSearchDomain(solution, false);
+            var searchDomain = searchDomainFactory.CreateSearchDomain(solution, false);
             var documentManager = solution.GetComponent<DocumentManager>();
             
             // todo add support for VB (eventually)
@@ -99,7 +96,7 @@ namespace AgentMulder.ReSharper.Domain.Search
                 }
                 jetHashSet1 = jetHashSet2;
             }
-            return domain.Intersect(domainFactory.CreateSearchDomain(jetHashSet1));
+            return domain.Intersect(searchDomainFactory.CreateSearchDomain(jetHashSet1));
         }
     }
 }

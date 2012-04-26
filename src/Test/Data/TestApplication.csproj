@@ -60,6 +60,7 @@
     <Compile Include="Windsor\ComponentFor.cs" />
     <Compile Include="Windsor\ComponentForImplementedByWithAdditionalParams.cs" />
     <Compile Include="Windsor\FromThisAssemblyBasedOn.cs" />
+    <Compile Include="Windsor\FromThisAssemblyBasedOnWithServiceBase.cs" />
     <Compile Include="Windsor\FromTypesNewArray.cs" />
     <Compile Include="Windsor\FromTypesNewList.cs" />
     <Compile Include="Windsor\FromTypesParams.cs" />

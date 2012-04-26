@@ -48,7 +48,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BaseCommonComponent.cs" />
+    <Compile Include="Data\CommonImpl1.cs" />
+    <Compile Include="Data\CommonImpl2.cs" />
+    <Compile Include="Data\CommonSub1Impl.cs" />
+    <Compile Include="Data\ICommon.cs" />
+    <Compile Include="Data\ICommon2.cs" />
+    <Compile Include="Data\ICommonSub1.cs" />
     <Compile Include="Data\TestClasses.cs" />
+    <Compile Include="Data\TwoInterfacesImpl.cs" />
     <Compile Include="PatternsTestBase.cs" />
     <Compile Include="TestContainerInfo.cs" />
     <Compile Include="Windsor\TestWindsorAttribute.cs" />

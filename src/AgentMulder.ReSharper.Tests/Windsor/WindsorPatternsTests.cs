@@ -131,7 +131,13 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [Test]
         public void TestFromThisAssemblyBasedOn()
         {
-            patterns = new List<IRegistrationPattern> { new WindsorContainerRegisterPattern(new AllTypesFromThisAssembly(new BasedOnGeneric())) };
+            patterns = new List<IRegistrationPattern> 
+            { 
+                new WindsorContainerRegisterPattern(
+                    new AllTypesFromThisAssembly(
+                        new BasedOnGeneric(
+                            new WithServiceBase()))) 
+            };
 
             DoOneTest("FromThisAssemblyBasedOn");
 

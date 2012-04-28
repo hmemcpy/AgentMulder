@@ -1,9 +1,7 @@
 ﻿using AgentMulder.ReSharper.Domain.Registrations;
-using JetBrains.DataFlow;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Feature.Services.Navigation;
-using JetBrains.UI.PopupWindowManager;
 
 namespace AgentMulder.ReSharper.Plugin.Highlighting
 {
@@ -27,7 +25,7 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
         public string ToolTip
         {
             // todo add container name
-            get { return "Registered by an IoC container (click to navigate)"; }
+            get { return "Registered by a DI Container (click to navigate)"; }
         }
 
         public string ErrorStripeToolTip

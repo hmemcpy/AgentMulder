@@ -29,7 +29,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
         private readonly string containersRootDirectory;
 
         public ContainerAnalysisStageProcess(IDaemonProcess process, 
-                                             CollectUsagesStageProcess usagesStageProcess, 
+                                             ITypeUsageManager usageManager,
                                              SearchDomainFactory searchDomainFactory,
                                              string containersRootDirectory)
         {

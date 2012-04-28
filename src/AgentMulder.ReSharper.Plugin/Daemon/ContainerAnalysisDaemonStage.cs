@@ -22,10 +22,20 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
         {
             var usagesStageProcess = process.GetStageProcess<CollectUsagesStageProcess>();
 
+            string containerDirectory = GetContainersDirectory();
+
+            return new ContainerAnalysisStageProcess(process,
+                                                     new TypeUsageManager(usagesStageProcess),
+                                                     searchDomainFactory,
+                                                     containerDirectory);
+        }
+
+        private static string GetContainersDirectory()
+        {
+            // todo unfortunately, in tests this returns a different path, breaking MEF
             string rootDirectory = Path.GetDirectoryName(typeof(ContainerAnalysisStageProcess).Assembly.Location);
             string containerDirectory = Path.Combine(rootDirectory, "Containers");
-
-            return new ContainerAnalysisStageProcess(process, usagesStageProcess, searchDomainFactory, containerDirectory);
+            return containerDirectory;
         }
 
         public ErrorStripeRequest NeedsErrorStripe(IPsiSourceFile sourceFile, IContextBoundSettingsStore settingsStore)

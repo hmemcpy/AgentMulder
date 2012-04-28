@@ -50,6 +50,8 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Daemon\ContainerAnalysisDaemonStage.cs" />
+    <Compile Include="Daemon\ITypeUsageManager.cs" />
+    <Compile Include="Daemon\TypeUsageManager.cs" />
     <Compile Include="Highlighting\ContainerGutterMark.cs" />
     <Compile Include="Daemon\ContainerAnalysisStageProcess.cs" />
     <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />

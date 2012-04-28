@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.UsageChecking;
@@ -21,7 +22,10 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
         {
             var usagesStageProcess = process.GetStageProcess<CollectUsagesStageProcess>();
 
-            return new ContainerAnalysisStageProcess(process, usagesStageProcess, searchDomainFactory);
+            string rootDirectory = Path.GetDirectoryName(typeof(ContainerAnalysisStageProcess).Assembly.Location);
+            string containerDirectory = Path.Combine(rootDirectory, "Containers");
+
+            return new ContainerAnalysisStageProcess(process, usagesStageProcess, searchDomainFactory, containerDirectory);
         }
 
         public ErrorStripeRequest NeedsErrorStripe(IPsiSourceFile sourceFile, IContextBoundSettingsStore settingsStore)

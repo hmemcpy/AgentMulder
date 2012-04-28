@@ -26,12 +26,17 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
         private readonly IDaemonProcess process;
         private readonly CollectUsagesStageProcess usagesStageProcess;
         private readonly SearchDomainFactory searchDomainFactory;
+        private readonly string containersRootDirectory;
 
-        public ContainerAnalysisStageProcess(IDaemonProcess process, CollectUsagesStageProcess usagesStageProcess, SearchDomainFactory searchDomainFactory)
+        public ContainerAnalysisStageProcess(IDaemonProcess process, 
+                                             CollectUsagesStageProcess usagesStageProcess, 
+                                             SearchDomainFactory searchDomainFactory,
+                                             string containersRootDirectory)
         {
             this.process = process;
             this.usagesStageProcess = usagesStageProcess;
             this.searchDomainFactory = searchDomainFactory;
+            this.containersRootDirectory = containersRootDirectory;
         }
 
         public void Execute(Action<DaemonStageResult> commiter)
@@ -79,10 +84,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
 
         private void LoadKnownContainersInfo(SolutionAnalyzer solutionnAnalyzer)
         {
-            string rootDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            string containersDirectory = Path.Combine(rootDirectory, "Containers");
-            var catalog = new DirectoryCatalog(containersDirectory, "*.dll");
+            var catalog = new DirectoryCatalog(containersRootDirectory, "*.dll");
             var container = new CompositionContainer(catalog);
             container.ComposeParts(solutionnAnalyzer);
         }

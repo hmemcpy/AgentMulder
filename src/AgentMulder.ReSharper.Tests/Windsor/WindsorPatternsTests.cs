@@ -1,15 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor;
-using AgentMulder.Containers.CastleWindsor.Patterns;
-using AgentMulder.Containers.CastleWindsor.Patterns.Component;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Search;
-using JetBrains.ReSharper.Psi;
 using NUnit.Framework;
 
 namespace AgentMulder.ReSharper.Tests.Windsor

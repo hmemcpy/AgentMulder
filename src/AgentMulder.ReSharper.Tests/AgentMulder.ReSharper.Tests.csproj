@@ -52,17 +52,22 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Bar.cs" />
     <Compile Include="Data\BaseCommonComponent.cs" />
+    <Compile Include="Data\Baz.cs" />
     <Compile Include="Data\CommonImpl1.cs" />
     <Compile Include="Data\CommonImpl2.cs" />
     <Compile Include="Data\CommonSub1Impl.cs" />
+    <Compile Include="Data\IBar.cs" />
     <Compile Include="Data\ICommon.cs" />
     <Compile Include="Data\ICommon2.cs" />
     <Compile Include="Data\ICommonSub1.cs" />
-    <Compile Include="Data\TestClasses.cs" />
+    <Compile Include="Data\IFoo.cs" />
+    <Compile Include="Data\MyStruct.cs" />
+    <Compile Include="Data\Foo.cs" />
     <Compile Include="Data\TwoInterfacesImpl.cs" />
     <Compile Include="PatternsTestBase.cs" />
-    <Compile Include="TestContainerInfo.cs" />
+    <Compile Include="Windsor\DeclarationMatchingTests.cs" />
     <Compile Include="Windsor\TestWindsorAttribute.cs" />
     <Compile Include="Windsor\WindsorPatternsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

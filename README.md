@@ -11,11 +11,13 @@ With all the major benefits of using smart DI containers to wire up dependencies
 
 Consider the following example with [Castle Windsor](http://www.castleproject.org/container/index.html):
 
-    var container = new WindsorContainer();
-    container.Register(
-        Component.For<IMessageWriter>().ImplementedBy<ConsoleMessageWriter>());
-
-    var messageWriter = container.Resolve<IMessageWriter>();
+```csharp
+var container = new WindsorContainer();
+container.Register(
+    Component.For<IMessageWriter>().ImplementedBy<ConsoleMessageWriter>());
+    
+var messageWriter = container.Resolve<IMessageWriter>();
+```    
 
 Using the configuration above, at runtime the container will resolve the concrete `ConsoleMessageWriter`, however, if you're using ReSharper with solution-wide analysis enabled, it will tell you that `ConsoleMessageWriter` is never instantiated:
 
@@ -23,8 +25,10 @@ Using the configuration above, at runtime the container will resolve the concret
 
 This gets worse in convention-based registrations, such as:
 
-    container.Register(
-        AllTypes.FromThisAssembly().BasedOn<IMessageWriter>().WithServiceDefaultInterfaces()
+```csharp
+container.Register(
+    AllTypes.FromThisAssembly().BasedOn<IMessageWriter>().WithServiceDefaultInterfaces()
+```
 
 Where ReSharper will not even know that this type is being used:
 

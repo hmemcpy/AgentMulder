@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Registrations;
+using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
@@ -19,23 +20,21 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
-            foreach (var implementedByPattern in implementedByPatterns)
+            IStructuralMatchResult match = Match(parentElement);
+            
+            if (match.Matched)
             {
-                var implementedByRegistrations = implementedByPattern.GetComponentRegistrations(parentElement).ToList();
-                if (implementedByRegistrations.Any())
+                foreach (var implementedByPattern in implementedByPatterns)
                 {
-                    return implementedByRegistrations;
+                    var implementedByRegistrations = implementedByPattern.GetComponentRegistrations(parentElement).ToList();
+                    if (implementedByRegistrations.Any())
+                    {
+                        return implementedByRegistrations;
+                    }
                 }
             }
 
-            return GetComponentForRegistrations(parentElement);
-        }
-
-        private IEnumerable<IComponentRegistration> GetComponentForRegistrations(ITreeNode parentElement)
-        {
-            IInvocationExpression invocationExpression = GetMatchedExpression(parentElement);
-
-            return base.GetComponentRegistrations(invocationExpression);
+            return base.GetComponentRegistrations(parentElement);
         }
     }
 }

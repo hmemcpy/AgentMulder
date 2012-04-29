@@ -57,7 +57,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
             Assert.AreEqual(1, componentRegistrations.Count);
             IComponentRegistration registration = componentRegistrations.First();
-            StringAssert.Equals(registration.ToString(), "Implemented by: AgentMulder.ReSharper.Tests.Data.Foo");
+            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
         }
     }
 }

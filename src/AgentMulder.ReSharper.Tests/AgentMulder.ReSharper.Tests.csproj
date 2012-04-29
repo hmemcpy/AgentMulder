@@ -70,8 +70,9 @@
     <Compile Include="Data\Foo.cs" />
     <Compile Include="Data\TwoInterfacesImpl.cs" />
     <Compile Include="PatternsTestBase.cs" />
+    <Compile Include="Windsor\AllTypesTests.cs" />
     <Compile Include="Windsor\TestWindsorAttribute.cs" />
-    <Compile Include="Windsor\WindsorPatternsTests.cs" />
+    <Compile Include="Windsor\ComponentRegistrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
@@ -9,7 +8,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 {
     [TestFixture]
     [TestWindsor]
-    public class WindsorPatternsTests : PatternsTestBase
+    public class AllTypesTests : PatternsTestBase
     {
         // The source files are located in the solution directory, under Test\Data and the path below, i.e. Test\Data\StructuralSearch\Windsor
         // These files are loaded into the test solution that is being created by this test fixture
@@ -20,36 +19,8 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
         protected override IContainerInfo ContainerInfo
         {
-            get { return new WindsorContainerInfo();}
+            get { return new WindsorContainerInfo(); }
         }
-
-        [Test]
-        public void TestComponentFor()
-        {
-            DoOneTest("ComponentFor");
-
-            Assert.AreEqual(1, componentRegistrations.Count);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
-        }
-
-        [Test]
-        public void TestComponentForImplementedBy()
-        {
-            DoOneTest("ComponentForImplementedBy");
-
-            Assert.AreEqual(1, componentRegistrations.Count);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
-        }
-
-        [Test]
-        public void TestComponentForImplementedByWithAdditionalParams()
-        {
-            DoOneTest("ComponentForImplementedByWithAdditionalParams");
-
-            Assert.AreEqual(1, componentRegistrations.Count);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Bar"));
-        }
-
 
         [Test]
         public void TestAllTypesFromParams()
@@ -133,6 +104,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             Assert.That(result.ToString(), Is.StringContaining("In module: TestProject"));
             Assert.That(result.ToString(), Is.StringContaining("Based on: AgentMulder.ReSharper.Tests.Data.IFoo"));
             Assert.That(result.ToString(), Is.StringContaining("With Service: Base Type"));
-        }
+        } 
     }
 }

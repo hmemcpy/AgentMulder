@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ReSharper.Psi;
@@ -9,11 +8,11 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
 {
-    public abstract class ManualRegistrationBase : RegistrationBase
+    public abstract class ComponentRegistrationBase : RegistrationBase
     {
         private readonly string elementName;
 
-        protected ManualRegistrationBase(IStructuralSearchPattern pattern, string elementName)
+        protected ComponentRegistrationBase(IStructuralSearchPattern pattern, string elementName)
             : base(pattern)
         {
             this.elementName = elementName;

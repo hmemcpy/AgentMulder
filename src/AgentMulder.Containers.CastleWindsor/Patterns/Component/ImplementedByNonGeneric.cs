@@ -4,14 +4,14 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
 {
-    internal class ImplementedByGeneric : ImplementedByBase
+    internal class ImplementedByNonGeneric : ImplementedByBase
     {
         private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$anything$.ImplementedBy<$impl$>()",
+            new CSharpStructuralSearchPattern("$anything$.ImplementedBy(typeof($impl$))",
                                               new ExpressionPlaceholder("anything"),
                                               new TypePlaceholder("impl"));
 
-        public ImplementedByGeneric()
+        public ImplementedByNonGeneric()
             : base(pattern, "impl")
         {
         }

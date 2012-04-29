@@ -22,17 +22,22 @@ namespace AgentMulder.Containers.CastleWindsor
 
         public WindsorContainerInfo()
         {
+            var implementedByPatterns = new ImplementedByBase[]
+            {
+                new ImplementedByGeneric(), new ImplementedByNonGeneric()
+            };
+
             registrationPatterns = new List<IRegistrationPattern> 
             {
                 new WindsorContainerRegisterPattern(
-                    new ComponentForGeneric(
-                        new ImplementedByGeneric()),
+                            new ComponentForGeneric(implementedByPatterns),
+                            new ComponentForNonGeneric(implementedByPatterns)),
                     
                     new AllTypesFrom(),
 
                     new AllTypesFromThisAssembly(
                         new BasedOnGeneric(
-                            new WithServiceBase())))
+                            new WithServiceBase()))
             };
         }
 

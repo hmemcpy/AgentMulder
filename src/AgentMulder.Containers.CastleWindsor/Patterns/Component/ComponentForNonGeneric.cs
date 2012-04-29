@@ -4,16 +4,18 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
 {
-    internal sealed class ComponentForGeneric : ComponentForBase
+    internal sealed class ComponentForNonGeneric : ComponentForBase
     {
         private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$component$.For<$service$>()",
+            new CSharpStructuralSearchPattern("$component$.For(typeof($service$))",
                                               new ExpressionPlaceholder("component", "Castle.MicroKernel.Registration.Component"),
                                               new TypePlaceholder("service"));
 
-        public ComponentForGeneric(params ImplementedByBase[] implementedByPatterns)
+
+        public ComponentForNonGeneric(params ImplementedByBase[] implementedByPatterns)
             : base(pattern, "service", implementedByPatterns)
         {
+
         }
     }
 }

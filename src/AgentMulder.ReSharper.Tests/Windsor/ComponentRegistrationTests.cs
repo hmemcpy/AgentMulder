@@ -47,7 +47,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             DoOneTest("ComponentForImplementedByWithAdditionalParams");
 
             Assert.AreEqual(1, componentRegistrations.Count);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Bar"));
+            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
         }
 
         [Test]
@@ -64,6 +64,37 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         public void TestComponentForImplementedByNonGeneric()
         {
             DoOneTest("ComponentForImplementedByNonGeneric");
+
+            Assert.AreEqual(1, componentRegistrations.Count);
+            IComponentRegistration registration = componentRegistrations.First();
+            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+        }
+
+        [Test]
+        public void TestComponentForImplementedByNonGenericWithAdditionalParams()
+        {
+            DoOneTest("ComponentForImplementedByNonGenericWithAdditionalParams");
+
+            Assert.AreEqual(1, componentRegistrations.Count);
+            IComponentRegistration registration = componentRegistrations.First();
+            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+        }
+
+        [Test]
+        public void TestComponentForGenericImplementedByNonGeneric()
+        {
+            DoOneTest("ComponentForGenericImplementedByNonGeneric");
+
+            Assert.AreEqual(1, componentRegistrations.Count);
+            IComponentRegistration registration = componentRegistrations.First();
+            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+        }
+
+
+        [Test]
+        public void TestComponentForNonGenericImplementedByGeneric()
+        {
+            DoOneTest("ComponentForNonGenericImplementedByGeneric");
 
             Assert.AreEqual(1, componentRegistrations.Count);
             IComponentRegistration registration = componentRegistrations.First();

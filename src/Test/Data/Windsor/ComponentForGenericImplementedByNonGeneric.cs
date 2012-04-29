@@ -5,11 +5,11 @@ using Castle.Windsor;
 
 namespace TestApplication.Windsor
 {
-    public class ComponentForImplementedByWithAdditionalParams : IWindsorInstaller
+    public class ComponentForGenericImplementedByNonGeneric : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IFoo>().Named("foo").LifestyleScoped().ImplementedBy<Foo>());
+            container.Register(Component.For<IFoo>().ImplementedBy(typeof(Foo)));
         }
     }
 }

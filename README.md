@@ -60,7 +60,7 @@ To build the plugin, run the file `src\build.cmd`. The files will be built and p
 
 **Q: What about X (Ninject/StructureMap/Unity)? Can you add support for it?**
 
-**A:** Great question! Suggest a feature on the [issue tracker on CodeBetter's YouTrack](http://youtrack.codebetter.com/issues/AMLD), or better yet, send me a pull request!
+**A:** Great question! Suggest a feature on the [issue tracker](https://github.com/hmemcpy/AgentMulder/issues), or better yet, send me a pull request!
 
 **Q: Why the name Agent Mulder?**
 
@@ -68,7 +68,7 @@ To build the plugin, run the file `src\build.cmd`. The files will be built and p
 
 **Q: I found a bug/Agent Mulder highlights the wrong type (or doesn't)/It doesn't work!**
 
-**A:** Great! [Let me know](http://youtrack.codebetter.com/issues/AMLD) about it, and I will try to fix it! Please note that I don't know all DI containers and their rules - if you think a mistake in analysis has been made, please note what should be the desired outcome in the issue.
+**A:** Great! [Let me know](https://github.com/hmemcpy/AgentMulder/issues) about it, and I will try to fix it! Please note that I don't know all DI containers and their rules - if you think a mistake in analysis has been made, please note what should be the desired outcome in the issue.
 
 Also please note that Agent Mulder plugin requires ReSharper 6.1 and only works in Visual Studio 2010. Other versions were not tested!
 

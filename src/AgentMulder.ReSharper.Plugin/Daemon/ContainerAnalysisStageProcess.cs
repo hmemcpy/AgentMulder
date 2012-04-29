@@ -12,7 +12,6 @@ using AgentMulder.ReSharper.Plugin.Highlighting;
 using JetBrains.Application.Progress;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon;
-using JetBrains.ReSharper.Daemon.UsageChecking;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -24,7 +23,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
     public class ContainerAnalysisStageProcess : IDaemonStageProcess
     {
         private readonly IDaemonProcess process;
-        private readonly CollectUsagesStageProcess usagesStageProcess;
+        private readonly ITypeUsageManager usageManager;
         private readonly SearchDomainFactory searchDomainFactory;
         private readonly string containersRootDirectory;
 
@@ -34,7 +33,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                                              string containersRootDirectory)
         {
             this.process = process;
-            this.usagesStageProcess = usagesStageProcess;
+            this.usageManager = usageManager;
             this.searchDomainFactory = searchDomainFactory;
             this.containersRootDirectory = containersRootDirectory;
         }
@@ -58,7 +57,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                     IComponentRegistration registration = componentRegistrations.FirstOrDefault(c => c.IsSatisfiedBy(declaration.DeclaredElement));
                     if (registration != null)
                     {
-                        RemovedHighlightings(declaration.DeclaredElement);
+                        usageManager.MarkTypeAsUsed(declaration.DeclaredElement);
 
                         var highlight = new HighlightingInfo(declaration.GetNameDocumentRange(),
                                                              new RegisteredByContainerHighlighting(process.Solution, registration));
@@ -87,16 +86,6 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
             var catalog = new DirectoryCatalog(containersRootDirectory, "*.dll");
             var container = new CompositionContainer(catalog);
             container.ComposeParts(solutionnAnalyzer);
-        }
-
-        private void RemovedHighlightings(ITypeElement typeElement)
-        {
-            foreach (IConstructor constructor in typeElement.Constructors)
-            {
-                usagesStageProcess.SetElementState(constructor, UsageState.CANNOT_BE_PROTECTED | UsageState.CANNOT_BE_INTERNAL | UsageState.CANNOT_BE_PRIVATE | UsageState.USED_MASK);
-            }
-           
-            usagesStageProcess.SetElementState(typeElement, UsageState.ACCESSED);
         }
 
         public IDaemonProcess DaemonProcess

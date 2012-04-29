@@ -4,6 +4,6 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
 {
     public interface ITypeUsageManager
     {
-        void MarkTypeUsed(ITypeElement typeElement);
+        void MarkTypeAsUsed(ITypeElement typeElement);
     }
 }

@@ -12,7 +12,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
             this.usagesStageProcess = usagesStageProcess;
         }
 
-        public void MarkTypeUsed(ITypeElement typeElement)
+        public void MarkTypeAsUsed(ITypeElement typeElement)
         {
             MarkConstructorsUsed(typeElement);
 

@@ -33,6 +33,11 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
                 }
             }
 
+            return DoCreateRegistrations(parentElement);
+        }
+
+        protected virtual IEnumerable<IComponentRegistration> DoCreateRegistrations(ITreeNode parentElement)
+        {
             return base.GetComponentRegistrations(parentElement);
         }
     }

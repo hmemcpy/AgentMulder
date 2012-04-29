@@ -22,15 +22,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
-            IStructuralMatcher matcher = CreateMatcher();
-            
-            foreach (var registration in CreateComponentRegistrations(parentElement, matcher))
-                yield return registration;
-        }
-
-        private IEnumerable<IComponentRegistration> CreateComponentRegistrations(ITreeNode element, IStructuralMatcher matcher)
-        {
-            IStructuralMatchResult match = matcher.Match(element);
+            IStructuralMatchResult match = Match(parentElement);
             if (match.Matched)
             {
                 IEnumerable<ICSharpArgument> matchedArguments = match.GetMatchedElementList(argumentsElementName).OfType<ICSharpArgument>();

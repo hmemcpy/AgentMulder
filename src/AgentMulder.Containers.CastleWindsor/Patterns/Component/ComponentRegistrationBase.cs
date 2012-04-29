@@ -11,6 +11,11 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
     {
         private readonly string elementName;
 
+        protected string ElementName
+        {
+            get { return elementName; }
+        }
+
         protected ComponentRegistrationBase(IStructuralSearchPattern pattern, string elementName)
             : base(pattern)
         {

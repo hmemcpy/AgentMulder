@@ -66,6 +66,7 @@
     <Compile Include="Data\ICommon2.cs" />
     <Compile Include="Data\ICommonSub1.cs" />
     <Compile Include="Data\IFoo.cs" />
+    <Compile Include="Data\MyList.cs" />
     <Compile Include="Data\MyStruct.cs" />
     <Compile Include="Data\Foo.cs" />
     <Compile Include="Data\TwoInterfacesImpl.cs" />

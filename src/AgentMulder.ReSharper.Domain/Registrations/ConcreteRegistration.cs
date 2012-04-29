@@ -12,7 +12,21 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             : base(documentRange)
         {
             this.implementedType = implementedType;
-            name = implementedType.GetClrName().FullName;
+            name = GetDisplayName();
+        }
+
+        private string GetDisplayName()
+        {
+            IClrTypeName clrName = implementedType.GetClrName();
+
+            string fullName = string.Format("{0}.{1}", clrName.GetNamespaceName(), clrName.ShortName);
+            
+            if (implementedType.HasTypeParameters())
+            {
+                fullName = string.Format("{0}<>", fullName);
+            }
+
+            return fullName;
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)

@@ -33,14 +33,9 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
-            IList<IDeclaredType> baseTypes = typeElement.GetSuperTypes();
-            foreach (var baseType in baseTypes)
+            if (typeElement.IsDescendantOf(basedOnElement))
             {
-                // todo fixme 
-                if (baseType.GetClrName().FullName == basedOnElement.GetClrName().FullName)
-                {
-                    return withServices.All(registration => registration.IsSatisfiedBy(typeElement));
-                }
+                return withServices.All(registration => registration.IsSatisfiedBy(typeElement));
             }
 
             return false;

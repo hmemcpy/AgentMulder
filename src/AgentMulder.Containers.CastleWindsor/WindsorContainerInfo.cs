@@ -2,6 +2,8 @@
 using System.ComponentModel.Composition;
 using AgentMulder.Containers.CastleWindsor.Patterns;
 using AgentMulder.Containers.CastleWindsor.Patterns.Component;
+using AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor;
+using AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;

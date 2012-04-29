@@ -82,6 +82,7 @@
     <Compile Include="Windsor\FromTypesNewList.cs" />
     <Compile Include="Windsor\FromTypesParams.cs" />
     <Compile Include="Windsor\ComponentForImplementedBy.cs" />
+    <Compile Include="Windsor\GenericOpenType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.csproj">

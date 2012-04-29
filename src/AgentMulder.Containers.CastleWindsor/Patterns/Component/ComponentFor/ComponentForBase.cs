@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
+using AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy;
 using AgentMulder.ReSharper.Domain.Registrations;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
+namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
 {
     internal abstract class ComponentForBase : ComponentRegistrationBase
     {

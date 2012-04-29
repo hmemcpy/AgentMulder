@@ -1,6 +1,6 @@
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
-namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
+namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy
 {
     internal abstract class ImplementedByBase : ComponentRegistrationBase
     {

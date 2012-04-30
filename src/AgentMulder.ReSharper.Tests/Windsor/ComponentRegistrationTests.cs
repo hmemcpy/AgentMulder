@@ -29,7 +29,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             DoOneTest("ComponentFor");
 
             Assert.AreEqual(1, componentRegistrations.Count);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             DoOneTest("ComponentForImplementedBy");
 
             Assert.AreEqual(1, componentRegistrations.Count);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             DoOneTest("ComponentForImplementedByWithAdditionalParams");
 
             Assert.AreEqual(1, componentRegistrations.Count);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
             Assert.AreEqual(1, componentRegistrations.Count);
             IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
             Assert.AreEqual(1, componentRegistrations.Count);
             IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
             Assert.AreEqual(1, componentRegistrations.Count);
             IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
             Assert.AreEqual(1, componentRegistrations.Count);
             IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
         }
 
 
@@ -98,7 +98,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
             Assert.AreEqual(1, componentRegistrations.Count);
             IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.Foo"));
+            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
         }
 
         [Test]
@@ -108,7 +108,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
             Assert.AreEqual(1, componentRegistrations.Count);
             IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: AgentMulder.ReSharper.Tests.Data.MyList<>"));
+            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.MyList<>"));
         }
     }
 }

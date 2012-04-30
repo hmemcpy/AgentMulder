@@ -1,4 +1,4 @@
-namespace AgentMulder.ReSharper.Tests.Data
+namespace TestApplication.Types
 {
     public abstract class BaseCommonComponent : ICommon
     {

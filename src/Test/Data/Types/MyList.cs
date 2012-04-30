@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AgentMulder.ReSharper.Tests.Data
+namespace TestApplication.Types
 {
     public class MyList<T> : IEnumerable<T>
     {

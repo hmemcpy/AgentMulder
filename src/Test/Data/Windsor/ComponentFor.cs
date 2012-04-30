@@ -1,7 +1,7 @@
-﻿using AgentMulder.ReSharper.Tests.Data;
-using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using TestApplication.Types;
 
 namespace TestApplication.Windsor
 {

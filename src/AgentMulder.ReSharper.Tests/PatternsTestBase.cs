@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
@@ -7,6 +9,7 @@ using JetBrains.Application.Components;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.TestFramework;
+using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Tests
 {
@@ -19,6 +22,15 @@ namespace AgentMulder.ReSharper.Tests
         {
             base.SetUp();
             componentRegistrations = new List<IComponentRegistration>();
+        }
+
+        protected override void DoTestSolution(params string[] fileSet)
+        {
+            const string typesRelativeDir = "..\\Types";
+            var dataPath = new DirectoryInfo(Path.Combine(SolutionItemsBasePath, typesRelativeDir));
+            fileSet = fileSet.Concat(dataPath.GetFiles("*.cs").SelectNotNull(fileInfo => Path.Combine(typesRelativeDir, fileInfo.Name))).ToArray();
+
+            base.DoTestSolution(fileSet);
         }
 
         protected override void DoTest(IProject testProject)

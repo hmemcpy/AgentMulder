@@ -24,14 +24,17 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
                 foreach (var implementedByPattern in implementedByPatterns)
                 {
                     var implementedByRegistration = implementedByPattern.GetComponentRegistrations(parentElement)
-                        .Cast<ComponentRegistration>().FirstOrDefault();
+                        .Cast<ComponentRegistration>()
+                        .FirstOrDefault();
+
                     if (implementedByRegistration != null)
                     {
                         registration.Implementation = implementedByRegistration.ServiceType;
-
-                        yield return registration;
+                        break;
                     }
                 }
+
+                yield return registration;
             }
         }
 

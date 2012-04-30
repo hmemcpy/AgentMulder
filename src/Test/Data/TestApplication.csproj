@@ -67,6 +67,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Types\Bar.cs" />
+    <Compile Include="Types\BaseCommonComponent.cs" />
+    <Compile Include="Types\Baz.cs" />
+    <Compile Include="Types\CommonImpl1.cs" />
+    <Compile Include="Types\CommonImpl2.cs" />
+    <Compile Include="Types\CommonSub1Impl.cs" />
+    <Compile Include="Types\Foo.cs" />
+    <Compile Include="Types\IBar.cs" />
+    <Compile Include="Types\ICommon.cs" />
+    <Compile Include="Types\ICommon2.cs" />
+    <Compile Include="Types\ICommonSub1.cs" />
+    <Compile Include="Types\IFoo.cs" />
+    <Compile Include="Types\MyList.cs" />
+    <Compile Include="Types\MyStruct.cs" />
+    <Compile Include="Types\TwoInterfacesImpl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Windsor\ComponentFor.cs" />

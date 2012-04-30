@@ -44,7 +44,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             {
                 var typeElement = (IDeclaredType)typeOfExpression.ArgumentType;
 
-                yield return new ConcreteRegistration(match.GetDocumentRange(), typeElement.GetTypeElement());
+                yield return new ComponentRegistration(match.GetDocumentRange(), typeElement.GetTypeElement());
             }
 
             // match new[] or new Type[] expressions

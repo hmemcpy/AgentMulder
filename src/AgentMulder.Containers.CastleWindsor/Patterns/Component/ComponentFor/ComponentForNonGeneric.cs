@@ -13,8 +13,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
 {
     internal sealed class ComponentForNonGeneric : ComponentForBase
     {
-        // todo there seems to be a bug in resharper that doesn't match open generic types, i.e. typeof(IEnumerable<>)
-        // todo changing the pattern to match all arguments, then manually extract the type.
+        // todo there seems to be an issue in ReSharper matching open generic types (such as typeof(IEnumerable<>)).
+        // changing to match the argument instead, and extract the typeof expression manually
+
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$component$.For($service$)",
                                               new ExpressionPlaceholder("component", "Castle.MicroKernel.Registration.Component"),
@@ -44,7 +45,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
                 {
                     var typeElement = (IDeclaredType)typeOfExpression.ArgumentType;
 
-                    yield return new ConcreteRegistration(typeOfExpression.GetDocumentRange(), typeElement.GetTypeElement());
+                    yield return new ComponentRegistration(typeOfExpression.GetDocumentRange(), typeElement.GetTypeElement());
                 }
             }
         }

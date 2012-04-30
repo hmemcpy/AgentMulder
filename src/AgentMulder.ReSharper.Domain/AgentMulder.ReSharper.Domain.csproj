@@ -49,7 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrations\BasedOnRegistration.cs" />
     <Compile Include="Registrations\ComponentRegistrationBase.cs" />
-    <Compile Include="Registrations\ConcreteRegistration.cs" />
+    <Compile Include="Registrations\ComponentRegistration.cs" />
     <Compile Include="Registrations\IComponentRegistration.cs" />
     <Compile Include="Registrations\ModuleBasedOnRegistration.cs" />
     <Compile Include="Registrations\WithServiceRegistration.cs" />

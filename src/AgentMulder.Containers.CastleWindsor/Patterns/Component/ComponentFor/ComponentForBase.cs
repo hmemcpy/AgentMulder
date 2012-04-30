@@ -19,21 +19,20 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
-            IStructuralMatchResult match = Match(parentElement);
-            
-            if (match.Matched)
+            foreach (var registration in DoCreateRegistrations(parentElement).OfType<ComponentRegistration>())
             {
                 foreach (var implementedByPattern in implementedByPatterns)
                 {
-                    var implementedByRegistrations = implementedByPattern.GetComponentRegistrations(parentElement).ToList();
-                    if (implementedByRegistrations.Any())
+                    var implementedByRegistration = implementedByPattern.GetComponentRegistrations(parentElement)
+                        .Cast<ComponentRegistration>().FirstOrDefault();
+                    if (implementedByRegistration != null)
                     {
-                        return implementedByRegistrations;
+                        registration.Implementation = implementedByRegistration.ServiceType;
+
+                        yield return registration;
                     }
                 }
             }
-
-            return DoCreateRegistrations(parentElement);
         }
 
         protected virtual IEnumerable<IComponentRegistration> DoCreateRegistrations(ITreeNode parentElement)

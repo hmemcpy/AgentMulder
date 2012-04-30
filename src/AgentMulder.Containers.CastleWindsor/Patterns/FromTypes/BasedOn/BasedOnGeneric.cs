@@ -25,6 +25,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
             IStructuralMatchResult match = Match(parentElement);
+
             if (match.Matched)
             {
                 var matchedType = match.GetMatchedType("type") as IDeclaredType;

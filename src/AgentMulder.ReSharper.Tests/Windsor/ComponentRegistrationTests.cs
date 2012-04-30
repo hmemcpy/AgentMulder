@@ -110,5 +110,13 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             IComponentRegistration registration = componentRegistrations.First();
             Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.MyList<>"));
         }
+
+        [Test]
+        public void TestBrokenReferenceFile()
+        {
+            DoOneTest("_DoesNotCompile-BrokenReference");
+
+            Assert.AreEqual(0, componentRegistrations.Count);
+        }
     }
 }

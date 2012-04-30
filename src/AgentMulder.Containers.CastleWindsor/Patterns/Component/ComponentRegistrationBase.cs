@@ -32,7 +32,10 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
                 if (matchedType != null)
                 {
                     ITypeElement typeElement = matchedType.GetTypeElement(match.MatchedElement.GetPsiModule());
-                    yield return new ComponentRegistration(match.GetDocumentRange(), typeElement);
+                    if (typeElement != null) // can be null in case of broken reference (unresolved type)
+                    {
+                        yield return new ComponentRegistration(match.GetDocumentRange(), typeElement);
+                    }
                 }
             }
         }

@@ -84,6 +84,7 @@
     <Compile Include="Types\TwoInterfacesImpl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Windsor\BrokenReference.cs" />
     <Compile Include="Windsor\ComponentFor.cs" />
     <Compile Include="Windsor\ComponentForGenericImplementedByNonGeneric.cs" />
     <Compile Include="Windsor\ComponentForImplementedByNonGeneric.cs" />

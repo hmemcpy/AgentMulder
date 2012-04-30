@@ -33,13 +33,15 @@ namespace AgentMulder.Containers.CastleWindsor
             {
                 new WindsorContainerRegisterPattern(
                             new ComponentForGeneric(implementedByPatterns),
-                            new ComponentForNonGeneric(implementedByPatterns)),
+                            new ComponentForNonGeneric(implementedByPatterns),
                     
                     new AllTypesFrom(),
 
                     new AllTypesFromThisAssembly(
                         new BasedOnGeneric(
-                            new WithServiceBase()))
+                            //new WithServiceBase()
+                            
+                            )))
             };
         }
 

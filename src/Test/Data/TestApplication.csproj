@@ -84,9 +84,9 @@
     <Compile Include="Types\TwoInterfacesImpl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Windsor\_DoesNotCompile-BrokenReference.cs" />
     <Compile Include="Windsor\ComponentFor.cs" />
     <Compile Include="Windsor\ComponentForGenericImplementedByNonGeneric.cs" />
+    <Compile Include="Windsor\ComponentForImplementedBy.cs" />
     <Compile Include="Windsor\ComponentForImplementedByNonGeneric.cs" />
     <Compile Include="Windsor\ComponentForImplementedByNonGenericWithAdditionalParams.cs" />
     <Compile Include="Windsor\ComponentForImplementedByWithAdditionalParams.cs" />
@@ -97,8 +97,8 @@
     <Compile Include="Windsor\FromTypesNewArray.cs" />
     <Compile Include="Windsor\FromTypesNewList.cs" />
     <Compile Include="Windsor\FromTypesParams.cs" />
-    <Compile Include="Windsor\ComponentForImplementedBy.cs" />
     <Compile Include="Windsor\GenericOpenType.cs" />
+    <None Include="Windsor\_DoesNotCompile-BrokenReference.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.csproj">

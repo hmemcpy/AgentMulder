@@ -2,14 +2,17 @@
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.ReSharper.Domain.Containers;
-using AgentMulder.ReSharper.Domain.Registrations;
+using AgentMulder.ReSharper.Tests.Windsor.Helpers;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Tree;
 using NUnit.Framework;
 
 namespace AgentMulder.ReSharper.Tests.Windsor
 {
     [TestFixture]
     [TestWindsor]
-    public class ComponentRegistrationTests : PatternsTestBase
+    public class ComponentRegistrationTests : ComponentRegistrationsTestBase
     {
         // The source files are located in the solution directory, under Test\Data and the path below, i.e. Test\Data\StructuralSearch\Windsor
         // These files are loaded into the test solution that is being created by this test fixture
@@ -20,103 +23,35 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
         protected override IContainerInfo ContainerInfo
         {
-            get { return new WindsorContainerInfo();}
+            get { return new WindsorContainerInfo(); }
         }
 
-        [Test]
-        public void TestComponentFor()
+        [TestCase("ComponentFor", "Foo.cs")]
+        [TestCase("ComponentForImplementedBy", "Foo.cs")]
+        [TestCase("ComponentForImplementedByWithAdditionalParams", "Foo.cs")]
+        [TestCase("ComponentForNonGeneric", "Foo.cs")]
+        [TestCase("ComponentForImplementedByNonGeneric", "Foo.cs")]
+        [TestCase("ComponentForImplementedByNonGenericWithAdditionalParams", "Foo.cs")]
+        [TestCase("ComponentForGenericImplementedByNonGeneric", "Foo.cs")]
+        [TestCase("ComponentForNonGenericImplementedByGeneric", "Foo.cs")]
+        [TestCase("GenericOpenType", "MyList.cs")]
+        public void DoTest(string testName, string fileName)
         {
-            DoOneTest("ComponentFor");
+            RunTest(testName, registrations =>
+            {
+                ICSharpFile file = GetCodeFile(fileName);
 
-            Assert.AreEqual(1, componentRegistrations.Count);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
+                Assert.AreEqual(1, registrations.Count());
+                file.ProcessChildren<ITypeDeclaration>(declaration =>
+                    Assert.That(registrations.First().IsSatisfiedBy(declaration.DeclaredElement)));
+            });
         }
-
-        [Test]
-        public void TestComponentForImplementedBy()
-        {
-            DoOneTest("ComponentForImplementedBy");
-
-            Assert.AreEqual(1, componentRegistrations.Count);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
-        }
-
-        [Test]
-        public void TestComponentForImplementedByWithAdditionalParams()
-        {
-            DoOneTest("ComponentForImplementedByWithAdditionalParams");
-
-            Assert.AreEqual(1, componentRegistrations.Count);
-            Assert.That(componentRegistrations.First().ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
-        }
-
-        [Test]
-        public void TestComponentForNonGeneric()
-        {
-            DoOneTest("ComponentForNonGeneric");
-
-            Assert.AreEqual(1, componentRegistrations.Count);
-            IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
-        }
-
-        [Test]
-        public void TestComponentForImplementedByNonGeneric()
-        {
-            DoOneTest("ComponentForImplementedByNonGeneric");
-
-            Assert.AreEqual(1, componentRegistrations.Count);
-            IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
-        }
-
-        [Test]
-        public void TestComponentForImplementedByNonGenericWithAdditionalParams()
-        {
-            DoOneTest("ComponentForImplementedByNonGenericWithAdditionalParams");
-
-            Assert.AreEqual(1, componentRegistrations.Count);
-            IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
-        }
-
-        [Test]
-        public void TestComponentForGenericImplementedByNonGeneric()
-        {
-            DoOneTest("ComponentForGenericImplementedByNonGeneric");
-
-            Assert.AreEqual(1, componentRegistrations.Count);
-            IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
-        }
-
-
-        [Test]
-        public void TestComponentForNonGenericImplementedByGeneric()
-        {
-            DoOneTest("ComponentForNonGenericImplementedByGeneric");
-
-            Assert.AreEqual(1, componentRegistrations.Count);
-            IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.Foo"));
-        }
-
-        [Test]
-        public void TestGenericOpenType()
-        {
-            DoOneTest("GenericOpenType");
-
-            Assert.AreEqual(1, componentRegistrations.Count);
-            IComponentRegistration registration = componentRegistrations.First();
-            Assert.That(registration.ToString(), Is.EqualTo("Implemented by: TestApplication.Types.MyList<>"));
-        }
-
+        
         [Test]
         public void TestBrokenReferenceFile()
         {
-            DoOneTest("_DoesNotCompile-BrokenReference");
-
-            Assert.AreEqual(0, componentRegistrations.Count);
+            RunTest("_DoesNotCompile-BrokenReference", registrations => 
+                Assert.AreEqual(0, registrations.Count()));
         }
     }
 }

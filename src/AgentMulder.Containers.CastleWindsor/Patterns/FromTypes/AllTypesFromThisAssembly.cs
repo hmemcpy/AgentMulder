@@ -30,6 +30,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
             IStructuralMatchResult matchResult = Match(parentElement);
+
             if (matchResult.Matched)
             {
                 IModule module = matchResult.MatchedElement.GetPsiModule().ContainingProjectModule;

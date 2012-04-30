@@ -40,9 +40,6 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="FakeItEasy">
-      <HintPath>..\packages\FakeItEasy.1.7.4257.42\lib\NET40\FakeItEasy.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,9 +52,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentRegistrationsTestBase.cs" />
     <Compile Include="PatternsTestBase.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
-    <Compile Include="Windsor\TestWindsorAttribute.cs" />
+    <Compile Include="Windsor\FromThisAssemblyTests.cs" />
+    <Compile Include="Windsor\Helpers\TestWindsorAttribute.cs" />
     <Compile Include="Windsor\ComponentRegistrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

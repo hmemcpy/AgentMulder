@@ -1,9 +1,8 @@
-﻿using System.Reflection;
-using Castle.Core;
+﻿using Castle.Core;
 using Castle.Windsor;
 using JetBrains.ReSharper.TestFramework;
 
-namespace AgentMulder.ReSharper.Tests.Windsor
+namespace AgentMulder.ReSharper.Tests.Windsor.Helpers
 {
     public class TestWindsorAttribute : TestReferencesAttribute
     {
@@ -11,7 +10,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         {
             return new[]
             {
-                Assembly.GetExecutingAssembly().Location,
                 typeof(IServiceEnabledComponent).Assembly.Location, // Castle.Core.dll
                 typeof(WindsorContainer).Assembly.Location // Castle.Windsor.dll
             };

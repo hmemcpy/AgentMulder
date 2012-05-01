@@ -13,7 +13,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
 {
     internal sealed class ComponentForNonGeneric : ComponentForBase
     {
-        // todo there seems to be an issue in ReSharper matching open generic types (such as typeof(IEnumerable<>)).
+        // there seems to be an issue in ReSharper matching open generic types (such as typeof(IEnumerable<>)).
         // changing to match the argument instead, and extract the typeof expression manually
 
         private static readonly IStructuralSearchPattern pattern =

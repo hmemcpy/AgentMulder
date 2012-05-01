@@ -26,20 +26,11 @@ namespace AgentMulder.ReSharper.Tests
             get { return "..\\Types"; }
         }
 
-        protected override void DoTestSolution(params string[] fileSet)
-        {
-            var dataPath = new DirectoryInfo(Path.Combine(SolutionItemsBasePath, RelativeTypesPath));
-            fileSet = fileSet.Concat(dataPath.GetFiles("*.cs").SelectNotNull(fileInfo => Path.Combine(RelativeTypesPath, fileInfo.Name))).ToArray();
-
-            base.DoTestSolution(fileSet);
-        }
-
         protected void RunTest(string testName, Action<IEnumerable<IComponentRegistration>> action)
         {
             string fileName = testName + Extension;
-            const string typesRelativeDir = "..\\Types";
-            var dataPath = new DirectoryInfo(Path.Combine(SolutionItemsBasePath, typesRelativeDir));
-            var fileSet = dataPath.GetFiles("*.cs").SelectNotNull(fileInfo => Path.Combine(typesRelativeDir, fileInfo.Name)).Concat(new[] { fileName });
+            var dataPath = new DirectoryInfo(Path.Combine(SolutionItemsBasePath, RelativeTypesPath));
+            var fileSet = dataPath.GetFiles("*.cs").SelectNotNull(fileInfo => Path.Combine(RelativeTypesPath, fileInfo.Name)).Concat(new[] { fileName });
 
             WithSingleProject(fileSet, (lifetime, project) => RunGuarded(() =>
             {

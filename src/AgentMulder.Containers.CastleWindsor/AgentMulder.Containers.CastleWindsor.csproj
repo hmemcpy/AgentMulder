@@ -71,6 +71,7 @@
     <Compile Include="Patterns\Component\ImplementedBy\ImplementedByGeneric.cs" />
     <Compile Include="Patterns\Component\ComponentRegistrationBase.cs" />
     <Compile Include="Patterns\Component\ImplementedBy\ImplementedByNonGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\FromAssemblyBase.cs" />
     <Compile Include="Patterns\FromTypes\WithService\WithServiceBase.cs" />
     <Compile Include="Patterns\FromTypes\WithService\WithServiceRegistrationBase.cs" />
     <Compile Include="Patterns\WindsorContainerRegisterPattern.cs" />

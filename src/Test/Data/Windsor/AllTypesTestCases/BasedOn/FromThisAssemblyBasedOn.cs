@@ -3,14 +3,14 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using TestApplication.Types;
 
-namespace TestApplication.Windsor.AllTypesTestCases
+namespace TestApplication.Windsor.AllTypesTestCases.BasedOn
 {
     public class FromThisAssemblyBasedOn : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Castle.MicroKernel.Registration.AllTypes.FromThisAssembly().BasedOn<IFoo>()
+                AllTypes.FromThisAssembly().BasedOn<IFoo>()
                 );
         }
     }

@@ -1,19 +1,29 @@
-﻿using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
+﻿using System.Collections.Generic;
+using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
+using AgentMulder.ReSharper.Domain.Registrations;
+using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    internal sealed class ClassesFrom : FromTypesBase
-    {
-        private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$classes$.From($services$)",
-                new ExpressionPlaceholder("classes", "Castle.MicroKernel.Registration.Classes"),
-                new ArgumentPlaceholder("services", -1, -1)); // matches any number of arguments
+    // todo not implemented yet
+    //internal sealed class ClassesFrom : FromTypesBase
+    //{
+    //    private static readonly IStructuralSearchPattern pattern =
+    //        new CSharpStructuralSearchPattern("$classes$.From($services$)",
+    //            new ExpressionPlaceholder("classes", "Castle.MicroKernel.Registration.Classes"),
+    //            new ArgumentPlaceholder("services", -1, -1)); // matches any number of arguments
 
-        public ClassesFrom()
-            : base(pattern, "services")
-        {
-        }
-    }
+    //    public ClassesFrom(params BasedOnRegistrationBase[] basedOnPatterns)
+    //        : base(pattern, basedOnPatterns)
+    //    {
+    //    }
+
+    //    public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
+    //    {
+    //        yield break;
+    //    }
+    //}
 }

@@ -10,10 +10,7 @@ namespace TestApplication.Windsor.AllTypesTestCases
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Castle.MicroKernel.Registration.AllTypes.From(new[] { typeof(Bar), typeof(Baz) }),
-                
-                Classes.From(new[] { typeof(Bar), typeof(Baz) })
-                
+                AllTypes.From(new[] { typeof(Bar), typeof(Baz) })
                 );
         }
     }

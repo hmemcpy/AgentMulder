@@ -37,6 +37,8 @@ namespace AgentMulder.Containers.CastleWindsor
                     
                     new AllTypesFrom(),
 
+                    new AllTypesFromAssembly(),
+
                     new AllTypesFromThisAssembly(
                         new BasedOnGeneric(
                             //new WithServiceBase()

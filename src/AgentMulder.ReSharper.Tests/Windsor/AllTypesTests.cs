@@ -29,12 +29,21 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             get { return new WindsorContainerInfo(); }
         }
 
+        [TestCase("FromTypesParams")]
+        [TestCase("FromTypesNewArray")]
+        [TestCase("FromTypesNewList")]
+        public void TestWithEmptyResult(string testName)
+        {
+            RunTest(testName, registrations => 
+                Assert.AreEqual(0, registrations.Count()));
+        }
+
         [TestCase("FromTypesParams", new[] { "Bar.cs", "Baz.cs"})]
         [TestCase("FromTypesNewArray", new[] { "Bar.cs", "Baz.cs" })]
         [TestCase("FromTypesNewList", new[] { "Bar.cs", "Baz.cs" })]
         [TestCase("FromThisAssemblyBasedOn", new[] { "Foo.cs" })]
-        [TestCase("FromAssemblyBasedOn", new[] { "Foo.cs" })]
-        public void DoTest(string testName, params string[] fileNames)
+        [TestCase("FromAssemblyTypeOf", new[] { "Foo.cs" })]
+        public void TestWithRegistrations(string testName, params string[] fileNames)
         {
             RunTest(testName, registrations =>
             {

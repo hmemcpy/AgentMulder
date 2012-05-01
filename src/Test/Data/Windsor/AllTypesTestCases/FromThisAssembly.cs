@@ -5,12 +5,13 @@ using TestApplication.Types;
 
 namespace TestApplication.Windsor.AllTypesTestCases
 {
-    public class FromAssemblyBasedOn : IWindsorInstaller
+    public class FromThisAssemblyBasedOn : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromThisAssembly().BasedOn<IFoo>()
+                AllTypes.FromThisAssembly()
+                
                 );
         }
     }

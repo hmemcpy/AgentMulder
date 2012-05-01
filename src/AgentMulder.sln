@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containers", "Containers", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "Test\Data\TestApplication.csproj", "{2A40748D-310D-4193-A2E8-079A53040A93}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AgentMulder.Setup", "AgentMulder.Setup\AgentMulder.Setup.vdproj", "{87CBA214-D910-44AA-B5C4-D17CAD2881CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,8 @@ Global
 		{2A40748D-310D-4193-A2E8-079A53040A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A40748D-310D-4193-A2E8-079A53040A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A40748D-310D-4193-A2E8-079A53040A93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87CBA214-D910-44AA-B5C4-D17CAD2881CB}.Debug|Any CPU.ActiveCfg = Debug
+		{87CBA214-D910-44AA-B5C4-D17CAD2881CB}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

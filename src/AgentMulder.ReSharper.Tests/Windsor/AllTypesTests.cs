@@ -38,9 +38,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
                 Assert.AreEqual(0, registrations.Count()));
         }
 
-        [TestCase("FromTypesParams", new[] { "Bar.cs", "Baz.cs"})]
-        [TestCase("FromTypesNewArray", new[] { "Bar.cs", "Baz.cs" })]
-        [TestCase("FromTypesNewList", new[] { "Bar.cs", "Baz.cs" })]
         [TestCase("FromThisAssemblyBasedOn", new[] { "Foo.cs" })]
         [TestCase("FromAssemblyTypeOf", new[] { "Foo.cs" })]
         public void TestWithRegistrations(string testName, params string[] fileNames)

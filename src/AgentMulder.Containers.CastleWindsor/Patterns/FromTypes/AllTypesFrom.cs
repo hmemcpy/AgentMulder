@@ -30,20 +30,25 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
             IStructuralMatchResult match = Match(parentElement);
+
             if (match.Matched)
             {
-                IEnumerable<ICSharpArgument> matchedArguments = match.GetMatchedElementList("services").OfType<ICSharpArgument>();
-                foreach (ICSharpArgument argument in matchedArguments)
+                foreach (var basedOnPattern in basedOnPatterns)
                 {
-                    foreach (IComponentRegistration registration in ComponentRegistrations(match, argument.Value))
+                    var basedOnRegistrations = basedOnPattern.GetComponentRegistrations(parentElement).OfType<BasedOnRegistration>();
+
+                    foreach (var basedOnRegistration in basedOnRegistrations)
                     {
-                        yield return registration;
+                        IEnumerable<ICSharpArgument> matchedArguments = match.GetMatchedElementList("services").OfType<ICSharpArgument>();
+                        IEnumerable<ITypeElement> typeElements = matchedArguments.SelectMany(argument => GetRegisteredTypes(match, argument.Value));
+
+                        yield return new TypesBasedOnRegistration(typeElements, basedOnRegistration);
                     }
                 }
             }
         }
 
-        private static IEnumerable<IComponentRegistration> ComponentRegistrations(IStructuralMatchResult match, ICSharpExpression expression)
+        private static IEnumerable<ITypeElement> GetRegisteredTypes(IStructuralMatchResult match, ICSharpExpression expression)
         {
             // match typeof() expressions
             var typeOfExpression = expression as ITypeofExpression;
@@ -51,7 +56,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             {
                 var typeElement = (IDeclaredType)typeOfExpression.ArgumentType;
 
-                yield return new ComponentRegistration(match.GetDocumentRange(), typeElement.GetTypeElement());
+                yield return typeElement.GetTypeElement();
             }
 
             // match new[] or new Type[] expressions
@@ -60,9 +65,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             {
                 foreach (var initializer in arrayExpression.ArrayInitializer.ElementInitializers.OfType<IExpressionInitializer>())
                 {
-                    foreach (IComponentRegistration componentRegistration in ComponentRegistrations(match, initializer.Value))
+                    foreach (ITypeElement type in GetRegisteredTypes(match, initializer.Value))
                     {
-                        yield return componentRegistration;
+                        yield return type;
                     }
                 }
             }
@@ -79,9 +84,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
                         continue;
                     }
 
-                    foreach (IComponentRegistration componentRegistration in ComponentRegistrations(match, initializer.Arguments[0].Value))
+                    foreach (ITypeElement type in GetRegisteredTypes(match, initializer.Arguments[0].Value))
                     {
-                        yield return componentRegistration;
+                        yield return type;
                     }
                 }
             }

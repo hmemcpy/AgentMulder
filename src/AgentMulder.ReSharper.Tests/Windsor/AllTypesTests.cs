@@ -32,14 +32,16 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [TestCase("FromTypesParams")]
         [TestCase("FromTypesNewArray")]
         [TestCase("FromTypesNewList")]
+        [TestCase("FromAssemblyTypeOf")]
+        [TestCase("FromAssemblyGetExecutingAssembly")]
         public void TestWithEmptyResult(string testName)
         {
             RunTest(testName, registrations => 
                 Assert.AreEqual(0, registrations.Count()));
         }
 
-        [TestCase("FromThisAssemblyBasedOn", new[] { "Foo.cs" })]
-        [TestCase("FromAssemblyTypeOf", new[] { "Foo.cs" })]
+        [TestCase(@"BasedOn\FromThisAssemblyBasedOn", new[] { "Foo.cs" })]
+        [TestCase(@"BasedOn\FromAssemblyTypeOfBasedOn", new[] { "Foo.cs" })]
         public void TestWithRegistrations(string testName, params string[] fileNames)
         {
             RunTest(testName, registrations =>

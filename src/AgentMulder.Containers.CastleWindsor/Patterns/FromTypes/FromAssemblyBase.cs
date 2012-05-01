@@ -17,11 +17,11 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
         {
-            IStructuralMatchResult matchResult = Match(parentElement);
+            IStructuralMatchResult match = Match(parentElement);
 
-            if (matchResult.Matched)
+            if (match.Matched)
             {
-                IModule module = GetTargetModule(matchResult);
+                IModule module = GetTargetModule(match);
 
                 foreach (var basedOnPattern in basedOnPatterns)
                 {

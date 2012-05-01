@@ -18,7 +18,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         // These files are loaded into the test solution that is being created by this test fixture
         protected override string RelativeTestDataPath
         {
-            get { return @"Windsor\Component"; }
+            get { return @"Windsor\ComponentTestCases"; }
         }
 
         protected override string RelativeTypesPath

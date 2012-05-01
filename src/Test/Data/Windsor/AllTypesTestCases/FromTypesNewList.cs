@@ -5,14 +5,14 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using TestApplication.Types;
 
-namespace TestApplication.Windsor
+namespace TestApplication.Windsor.AllTypesTestCases
 {
     public class FromTypesNewList : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.From(new List<Type> { typeof(Bar), typeof(Baz) }),
+                Castle.MicroKernel.Registration.AllTypes.From(new List<Type> { typeof(Bar), typeof(Baz) }),
 
                 Classes.From(new List<Type> { typeof(Bar), typeof(Baz) })
 

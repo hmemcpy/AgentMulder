@@ -16,7 +16,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         // These files are loaded into the test solution that is being created by this test fixture
         protected override string RelativeTestDataPath
         {
-            get { return @"Windsor\AllTypes"; }
+            get { return @"Windsor\AllTypesTestCases"; }
         }
 
         protected override string RelativeTypesPath
@@ -33,6 +33,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [TestCase("FromTypesNewArray", new[] { "Bar.cs", "Baz.cs" })]
         [TestCase("FromTypesNewList", new[] { "Bar.cs", "Baz.cs" })]
         [TestCase("FromThisAssemblyBasedOn", new[] { "Foo.cs" })]
+        [TestCase("FromAssemblyBasedOn", new[] { "Foo.cs" })]
         public void DoTest(string testName, params string[] fileNames)
         {
             RunTest(testName, registrations =>

@@ -3,17 +3,14 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using TestApplication.Types;
 
-namespace TestApplication.Windsor
+namespace TestApplication.Windsor.AllTypesTestCases
 {
-    public class FromTypesNewArray : IWindsorInstaller
+    public class FromThisAssemblyBasedOnWithServiceBase : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.From(new[] { typeof(Bar), typeof(Baz) }),
-                
-                Classes.From(new[] { typeof(Bar), typeof(Baz) })
-                
+                Castle.MicroKernel.Registration.AllTypes.FromThisAssembly().BasedOn<IFoo>().WithServiceBase()
                 );
         }
     }

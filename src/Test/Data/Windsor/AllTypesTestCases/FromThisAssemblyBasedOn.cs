@@ -3,13 +3,15 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using TestApplication.Types;
 
-namespace TestApplication.Windsor
+namespace TestApplication.Windsor.AllTypesTestCases
 {
-    public class ComponentForGenericImplementedByNonGeneric : IWindsorInstaller
+    public class FromThisAssemblyBasedOn : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IFoo>().ImplementedBy(typeof(Foo)));
+            container.Register(
+                Castle.MicroKernel.Registration.AllTypes.FromThisAssembly().BasedOn<IFoo>()
+                );
         }
     }
 }

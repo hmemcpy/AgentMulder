@@ -4,13 +4,13 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using TestApplication.Types;
 
-namespace TestApplication.Windsor
+namespace TestApplication.Windsor.ComponentTestCases
 {
     public class GenericOpenType : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For(typeof(IEnumerable<>)).ImplementedBy(typeof(MyList<>)));
+            container.Register(Castle.MicroKernel.Registration.Component.For(typeof(IEnumerable<>)).ImplementedBy(typeof(MyList<>)));
         }
     }
 }

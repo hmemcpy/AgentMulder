@@ -20,7 +20,10 @@ namespace AgentMulder.ReSharper.Domain.Modules
                 }
 
                 // todo horrible horrible hack, fix this later
-                return method.Element.GetContainingType().Module.ContainingProjectModule;
+                if (method.Element.XMLDocId == "M:System.Reflection.Assembly.GetExecutingAssembly")
+                {
+                    return expression.GetPsiModule().ContainingProjectModule;
+                }
             }
             return null;
         }

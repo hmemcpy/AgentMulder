@@ -12,10 +12,8 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Search;
-using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.TestFramework;
 using JetBrains.Util;
-using NUnit.Framework;
 
 namespace AgentMulder.ReSharper.Tests
 {
@@ -23,11 +21,15 @@ namespace AgentMulder.ReSharper.Tests
     {
         protected abstract IContainerInfo ContainerInfo { get; }
 
+        protected virtual string RelativeTypesPath
+        {
+            get { return "..\\Types"; }
+        }
+
         protected override void DoTestSolution(params string[] fileSet)
         {
-            const string typesRelativeDir = "..\\Types";
-            var dataPath = new DirectoryInfo(Path.Combine(SolutionItemsBasePath, typesRelativeDir));
-            fileSet = fileSet.Concat(dataPath.GetFiles("*.cs").SelectNotNull(fileInfo => Path.Combine(typesRelativeDir, fileInfo.Name))).ToArray();
+            var dataPath = new DirectoryInfo(Path.Combine(SolutionItemsBasePath, RelativeTypesPath));
+            fileSet = fileSet.Concat(dataPath.GetFiles("*.cs").SelectNotNull(fileInfo => Path.Combine(RelativeTypesPath, fileInfo.Name))).ToArray();
 
             base.DoTestSolution(fileSet);
         }

@@ -18,7 +18,12 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         // These files are loaded into the test solution that is being created by this test fixture
         protected override string RelativeTestDataPath
         {
-            get { return @"Windsor"; }
+            get { return @"Windsor\Component"; }
+        }
+
+        protected override string RelativeTypesPath
+        {
+            get { return @"..\..\Types"; }
         }
 
         protected override IContainerInfo ContainerInfo
@@ -45,13 +50,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
                 file.ProcessChildren<ITypeDeclaration>(declaration =>
                     Assert.That(registrations.First().IsSatisfiedBy(declaration.DeclaredElement)));
             });
-        }
-        
-        [Test]
-        public void TestBrokenReferenceFile()
-        {
-            RunTest("_DoesNotCompile-BrokenReference", registrations => 
-                Assert.AreEqual(0, registrations.Count()));
         }
     }
 }

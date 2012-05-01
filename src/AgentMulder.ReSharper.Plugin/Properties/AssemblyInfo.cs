@@ -7,6 +7,6 @@ using JetBrains.Application.PluginSupport;
 [assembly: AssemblyTitle("AgentMulder.ReSharper.Plugin")]
 
 // The following information is displayed by ReSharper in the Plugins dialog
-[assembly: PluginTitle("Agent Mulder Plugin for ReSharper")]
+[assembly: PluginTitle("Agent Mulder plugin for ReSharper")]
 [assembly: PluginDescription("Provides navigation to and finding usages of types, registered or resolved via DI Containers.")]
 [assembly: PluginVendor("Igal Tabachnik")]

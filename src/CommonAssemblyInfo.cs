@@ -8,5 +8,5 @@ using System.Reflection;
 [assembly: AssemblyDescription("Provides navigation to and finding usages of types, registered or resolved via DI Containers.")]
 [assembly: AssemblyConfiguration("")]
 
-[assembly: AssemblyVersion("0.0.0.1")]
-[assembly: AssemblyFileVersion("0.0.0.1")]
+[assembly: AssemblyVersion("0.1.0.0")]
+[assembly: AssemblyFileVersion("0.1.0.0")]

@@ -9,11 +9,11 @@ using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Domain.Search
 {
-    public abstract class RegistrationBase : IRegistrationPattern
+    public abstract class RegistrationBasePattern : IRegistrationPattern
     {
         private readonly IStructuralSearchPattern pattern;
 
-        protected RegistrationBase(IStructuralSearchPattern pattern)
+        protected RegistrationBasePattern(IStructuralSearchPattern pattern)
         {
             this.pattern = pattern;
             Assertion.Assert(pattern.Check() == null, "Invalid pattern");

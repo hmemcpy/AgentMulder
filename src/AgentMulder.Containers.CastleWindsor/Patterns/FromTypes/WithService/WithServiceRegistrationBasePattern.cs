@@ -3,9 +3,9 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService
 {
-    public abstract class WithServiceRegistrationBase : RegistrationBase
+    public abstract class WithServiceRegistrationBasePattern : RegistrationBasePattern
     {
-        protected WithServiceRegistrationBase(IStructuralSearchPattern pattern)
+        protected WithServiceRegistrationBasePattern(IStructuralSearchPattern pattern)
             : base(pattern)
         {
         }

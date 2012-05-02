@@ -55,9 +55,12 @@
     <Compile Include="Registrations\ComponentRegistrationBase.cs" />
     <Compile Include="Registrations\ComponentRegistration.cs" />
     <Compile Include="Registrations\IComponentRegistration.cs" />
+    <Compile Include="Registrations\InNamespaceRegistration.cs" />
     <Compile Include="Registrations\ModuleBasedOnRegistration.cs" />
+    <Compile Include="Registrations\TypesBasedOnRegistration.cs" />
     <Compile Include="Registrations\WithServiceRegistration.cs" />
-    <Compile Include="Search\RegistrationBase.cs" />
+    <Compile Include="Registrations\BasedOnRegistrationBase.cs" />
+    <Compile Include="Search\RegistrationBasePattern.cs" />
     <Compile Include="Search\IPatternSearcher.cs" />
     <Compile Include="Search\IRegistrationPattern.cs" />
     <Compile Include="Search\PatternSearcher.cs" />

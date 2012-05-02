@@ -10,14 +10,14 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal sealed class BasedOnGeneric : BasedOnRegistrationBase
+    internal sealed class BasedOnGeneric : BasedOnRegistrationBasePattern
     {
         private static readonly IStructuralSearchPattern pattern = 
-            new CSharpStructuralSearchPattern("$anything$.BasedOn<$type$>()",
-                new ExpressionPlaceholder("anything"),
+            new CSharpStructuralSearchPattern("$fromDescriptor$.BasedOn<$type$>()",
+                new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
                 new TypePlaceholder("type"));
 
-        public BasedOnGeneric(params WithServiceRegistrationBase[] withServicePatterns)
+        public BasedOnGeneric(params WithServiceRegistrationBasePattern[] withServicePatterns)
             : base(pattern, withServicePatterns)
         {
         }

@@ -11,7 +11,7 @@ using JetBrains.ReSharper.Psi.Tree;
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService
 {
     // todo not supported yet
-    //internal class WithServiceBase : WithServiceRegistrationBase
+    //internal class WithServiceBase : BasedOnRegistrationBasePattern
     //{
     //    private static readonly IStructuralSearchPattern pattern = 
     //        new CSharpStructuralSearchPattern("$basedOn$.WithServiceBase()",

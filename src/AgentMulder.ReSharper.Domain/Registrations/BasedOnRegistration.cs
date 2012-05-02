@@ -5,10 +5,9 @@ using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
-    public class BasedOnRegistration : ComponentRegistrationBase
+    public class BasedOnRegistration : BasedOnRegistrationBase
     {
         private readonly ITypeElement basedOnElement;
-        private readonly IEnumerable<WithServiceRegistration> withServices;
         private readonly string name;
 
         public ITypeElement BasedOnElement
@@ -22,11 +21,10 @@ namespace AgentMulder.ReSharper.Domain.Registrations
         }
 
         public BasedOnRegistration(DocumentRange documentRange, ITypeElement basedOnElement, IEnumerable<WithServiceRegistration> withServices)
-            : base(documentRange)
+            : base(documentRange, withServices)
         {
             this.basedOnElement = basedOnElement;
-            // without the call ToArray(), it will fail much later while iterating.
-            this.withServices = withServices.ToArray();
+            IDeclaredElement d;
 
             name = basedOnElement.GetClrName().FullName;
         }

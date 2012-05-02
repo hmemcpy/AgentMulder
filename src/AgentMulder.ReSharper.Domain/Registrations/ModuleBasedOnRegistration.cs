@@ -1,44 +1,18 @@
-using System.Collections.Generic;
-using System.Linq;
-using JetBrains.DocumentModel;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
-    public class TypesBasedOnRegistration : BasedOnRegistration
-    {
-        private readonly IEnumerable<ITypeElement> types;
-
-        public TypesBasedOnRegistration(IEnumerable<ITypeElement> types, BasedOnRegistration basedOn)
-            : base(basedOn.DocumentRange, basedOn.BasedOnElement, basedOn.WithServices)
-        {
-            this.types = types.ToArray();
-        }
-
-        public override bool IsSatisfiedBy(ITypeElement typeElement)
-        {
-            if (!types.Contains(typeElement))
-                return false;
-
-            return base.IsSatisfiedBy(typeElement);
-        }
-
-        public override string ToString()
-        {
-            return string.Format("From types: {0}, {1}",
-                string.Join(", ", types.Select(registration => registration.ToString()), base.ToString()));
-        }
-    }
-
-    public class ModuleBasedOnRegistration : BasedOnRegistration
+    public class ModuleBasedOnRegistration : ComponentRegistrationBase
     {
         private readonly IModule sourceModule;
+        private readonly BasedOnRegistrationBase basedOn;
 
-        public ModuleBasedOnRegistration(IModule sourceModule, BasedOnRegistration basedOn)
-            : base(basedOn.DocumentRange, basedOn.BasedOnElement, basedOn.WithServices)
+        public ModuleBasedOnRegistration(IModule sourceModule, BasedOnRegistrationBase basedOn)
+            : base(basedOn.DocumentRange)
         {
             this.sourceModule = sourceModule;
+            this.basedOn = basedOn;
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
@@ -47,7 +21,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             if (targetModule == null)
                 return false;
 
-            return (targetModule.Equals(sourceModule) && base.IsSatisfiedBy(typeElement));
+            return (targetModule.Equals(sourceModule) && basedOn.IsSatisfiedBy(typeElement));
         }
 
         public override string ToString()

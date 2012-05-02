@@ -64,24 +64,25 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patterns\Component\ComponentFor\ComponentForBase.cs" />
+    <Compile Include="Patterns\Component\ComponentFor\ComponentForBasePattern.cs" />
     <Compile Include="Patterns\Component\ComponentFor\ComponentForGeneric.cs" />
     <Compile Include="Patterns\Component\ComponentFor\ComponentForNonGeneric.cs" />
-    <Compile Include="Patterns\Component\ImplementedBy\ImplementedByBase.cs" />
+    <Compile Include="Patterns\Component\ImplementedBy\ImplementedByBasePattern.cs" />
     <Compile Include="Patterns\Component\ImplementedBy\ImplementedByGeneric.cs" />
-    <Compile Include="Patterns\Component\ComponentRegistrationBase.cs" />
+    <Compile Include="Patterns\Component\ComponentRegistrationBasePattern.cs" />
     <Compile Include="Patterns\Component\ImplementedBy\ImplementedByNonGeneric.cs" />
-    <Compile Include="Patterns\FromTypes\FromAssemblyBase.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\InNamespace.cs" />
+    <Compile Include="Patterns\FromTypes\FromAssemblyBasePattern.cs" />
     <Compile Include="Patterns\FromTypes\WithService\WithServiceBase.cs" />
-    <Compile Include="Patterns\FromTypes\WithService\WithServiceRegistrationBase.cs" />
+    <Compile Include="Patterns\FromTypes\WithService\WithServiceRegistrationBasePattern.cs" />
     <Compile Include="Patterns\WindsorContainerRegisterPattern.cs" />
     <Compile Include="Patterns\FromTypes\AllTypesFromAssembly.cs" />
     <Compile Include="Patterns\FromTypes\AllTypesFrom.cs" />
     <Compile Include="Patterns\FromTypes\AllTypesFromThisAssembly.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\BasedOnGeneric.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\BasedOnRegistrationBase.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\BasedOnRegistrationBasePattern.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFrom.cs" />
-    <Compile Include="Patterns\FromTypes\FromTypesBase.cs" />
+    <Compile Include="Patterns\FromTypes\FromTypesBasePattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindsorContainerInfo.cs" />
   </ItemGroup>

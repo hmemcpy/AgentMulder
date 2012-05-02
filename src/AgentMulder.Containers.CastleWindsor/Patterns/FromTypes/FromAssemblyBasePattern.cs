@@ -8,9 +8,9 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    public abstract class FromAssemblyBase : FromTypesBase
+    public abstract class FromAssemblyBasePattern : FromTypesBasePattern
     {
-        protected FromAssemblyBase(IStructuralSearchPattern pattern, params BasedOnRegistrationBase[] basedOnPatterns)
+        protected FromAssemblyBasePattern(IStructuralSearchPattern pattern, params BasedOnRegistrationBasePattern[] basedOnPatterns)
             : base(pattern, basedOnPatterns)
         {
         }
@@ -25,7 +25,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
                 foreach (var basedOnPattern in basedOnPatterns)
                 {
-                    var basedOnRegistrations = basedOnPattern.GetComponentRegistrations(parentElement).OfType<BasedOnRegistration>();
+                    var basedOnRegistrations = basedOnPattern.GetComponentRegistrations(parentElement).Cast<BasedOnRegistrationBase>();
 
                     foreach (var registration in basedOnRegistrations)
                     {

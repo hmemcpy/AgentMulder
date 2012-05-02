@@ -79,6 +79,10 @@
     <Compile Include="Types\ICommon2.cs" />
     <Compile Include="Types\ICommonSub1.cs" />
     <Compile Include="Types\IFoo.cs" />
+    <Compile Include="Types\IInSomeNamespace.cs" />
+    <Compile Include="Types\IInSomeOtherNamespace.cs" />
+    <Compile Include="Types\InSomeNamespace.cs" />
+    <Compile Include="Types\InSomeOtherNamespace.cs" />
     <Compile Include="Types\MyList.cs" />
     <Compile Include="Types\MyStruct.cs" />
     <Compile Include="Types\TwoInterfacesImpl.cs" />
@@ -86,6 +90,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Windsor\AllTypesTestCases\BasedOn\FromAssemblyGetExecutingAssemblyBasedOn.cs" />
     <Compile Include="Windsor\AllTypesTestCases\BasedOn\FromAssemblyTypeOfBasedOn.cs" />
+    <Compile Include="Windsor\AllTypesTestCases\BasedOn\FromThisAssemblyInNamespace.cs" />
     <Compile Include="Windsor\AllTypesTestCases\FromAssemblyGetExecutingAssembly.cs" />
     <Compile Include="Windsor\AllTypesTestCases\FromThisAssembly.cs" />
     <Compile Include="Windsor\AllTypesTestCases\FromAssemblyTypeOf.cs" />

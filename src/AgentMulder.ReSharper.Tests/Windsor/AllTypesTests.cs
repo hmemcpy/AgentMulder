@@ -41,6 +41,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         }
 
         [TestCase("BasedOn\\FromThisAssemblyBasedOn", new[] { "Foo.cs" })]
+        [TestCase("BasedOn\\FromThisAssemblyInNamespace", new[] { "SomeNamespace.cs" })]
         [TestCase("BasedOn\\FromAssemblyTypeOfBasedOn", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromAssemblyGetExecutingAssemblyBasedOn", new[] { "Foo.cs" })]
         public void TestWithRegistrations(string testName, params string[] fileNames)

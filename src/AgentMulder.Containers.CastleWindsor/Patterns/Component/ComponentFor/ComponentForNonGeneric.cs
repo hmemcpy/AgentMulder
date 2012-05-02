@@ -11,7 +11,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
 {
-    internal sealed class ComponentForNonGeneric : ComponentForBase
+    internal sealed class ComponentForNonGeneric : ComponentForBasePattern
     {
         // there seems to be an issue in ReSharper matching open generic types (such as typeof(IEnumerable<>)).
         // changing to match the argument instead, and extract the typeof expression manually
@@ -21,7 +21,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
                                               new ExpressionPlaceholder("component", "Castle.MicroKernel.Registration.Component"),
                                               new ArgumentPlaceholder("service"));
 
-        public ComponentForNonGeneric(params ImplementedByBase[] implementedByPatterns)
+        public ComponentForNonGeneric(params ImplementedByBasePattern[] implementedByPatterns)
             : base(pattern, "service", implementedByPatterns)
         {
 

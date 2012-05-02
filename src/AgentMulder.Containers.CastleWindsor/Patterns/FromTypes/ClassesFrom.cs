@@ -9,14 +9,14 @@ using JetBrains.ReSharper.Psi.Tree;
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
     // todo not implemented yet
-    //internal sealed class ClassesFrom : FromTypesBase
+    //internal sealed class ClassesFrom : FromTypesBasePattern
     //{
     //    private static readonly IStructuralSearchPattern pattern =
     //        new CSharpStructuralSearchPattern("$classes$.From($services$)",
     //            new ExpressionPlaceholder("classes", "Castle.MicroKernel.Registration.Classes"),
     //            new ArgumentPlaceholder("services", -1, -1)); // matches any number of arguments
 
-    //    public ClassesFrom(params BasedOnRegistrationBase[] basedOnPatterns)
+    //    public ClassesFrom(params BasedOnRegistrationBasePattern[] basedOnPatterns)
     //        : base(pattern, basedOnPatterns)
     //    {
     //    }

@@ -12,7 +12,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    internal sealed class AllTypesFrom : FromTypesBase
+    internal sealed class AllTypesFrom : FromTypesBasePattern
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$alltypes$.From($services$)",
@@ -22,7 +22,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
         // matches any number of arguments
 
-        public AllTypesFrom(params BasedOnRegistrationBase[] basedOnPatterns)
+        public AllTypesFrom(params BasedOnRegistrationBasePattern[] basedOnPatterns)
             : base(pattern, basedOnPatterns)
         {
         }

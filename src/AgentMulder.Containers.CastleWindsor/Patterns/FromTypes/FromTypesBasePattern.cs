@@ -6,11 +6,11 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    public abstract class FromTypesBase : RegistrationBase
+    public abstract class FromTypesBasePattern : RegistrationBasePattern
     {
-        protected readonly IEnumerable<BasedOnRegistrationBase> basedOnPatterns;
+        protected readonly IEnumerable<BasedOnRegistrationBasePattern> basedOnPatterns;
 
-        protected FromTypesBase(IStructuralSearchPattern pattern, IEnumerable<BasedOnRegistrationBase> basedOnPatterns)
+        protected FromTypesBasePattern(IStructuralSearchPattern pattern, IEnumerable<BasedOnRegistrationBasePattern> basedOnPatterns)
             : base(pattern)
         {
             this.basedOnPatterns = basedOnPatterns;

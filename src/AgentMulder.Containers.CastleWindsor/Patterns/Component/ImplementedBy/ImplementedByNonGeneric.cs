@@ -9,7 +9,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy
 {
-    internal class ImplementedByNonGeneric : ImplementedByBase
+    internal class ImplementedByNonGeneric : ImplementedByBasePattern
     {
         // there seems to be an issue in ReSharper matching open generic types (such as typeof(IEnumerable<>)).
         // changing to match the argument instead, and extract the typeof expression manually

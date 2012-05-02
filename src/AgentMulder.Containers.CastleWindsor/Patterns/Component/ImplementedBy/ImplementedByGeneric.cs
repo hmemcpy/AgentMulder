@@ -4,7 +4,7 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy
 {
-    internal class ImplementedByGeneric : ImplementedByBase
+    internal class ImplementedByGeneric : ImplementedByBasePattern
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$anything$.ImplementedBy<$impl$>()",

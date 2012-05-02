@@ -2,9 +2,9 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy
 {
-    internal abstract class ImplementedByBase : ComponentRegistrationBase
+    internal abstract class ImplementedByBasePattern : ComponentRegistrationBasePattern
     {
-        protected ImplementedByBase(IStructuralSearchPattern pattern, string elementName)
+        protected ImplementedByBasePattern(IStructuralSearchPattern pattern, string elementName)
             : base(pattern, elementName)
         {
         }

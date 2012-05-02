@@ -42,7 +42,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                         break;
                     case 2:
                         namespaceElement = GetNamespaceDeclaration(arguments[0].Value);
-                        includeSubnamespaces = bool.Parse(arguments[1].Value.GetText());
+                        includeSubnamespaces = (bool)arguments[1].Value.ConstantValue.Value;
                         break;
                     default:
                         yield break;

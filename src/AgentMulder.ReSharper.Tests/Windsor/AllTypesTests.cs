@@ -41,7 +41,8 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         }
 
         [TestCase("BasedOn\\FromThisAssemblyBasedOn", new[] { "Foo.cs" })]
-        [TestCase("BasedOn\\FromThisAssemblyInNamespace", new[] { "SomeNamespace.cs" })]
+        [TestCase("BasedOn\\FromThisAssemblyInNamespace", new[] { "InSomeNamespace.cs" })]
+        [TestCase("BasedOn\\FromThisAssemblyInNamespaceWithSubnamespaces", new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
         [TestCase("BasedOn\\FromAssemblyTypeOfBasedOn", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromAssemblyGetExecutingAssemblyBasedOn", new[] { "Foo.cs" })]
         public void TestWithRegistrations(string testName, params string[] fileNames)
@@ -50,7 +51,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             {
                 ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
-                Assert.AreEqual(codeFiles.Length, registrations.Count());
+                Assert.True(registrations.Any());
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>

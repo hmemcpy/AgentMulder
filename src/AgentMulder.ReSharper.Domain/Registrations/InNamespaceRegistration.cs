@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.DocumentModel;
@@ -7,29 +8,37 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public class InNamespaceRegistration : BasedOnRegistrationBase
     {
-        private readonly INamespace namespaceElement;
+        private readonly INamespace matchedNamespace;
         private readonly bool includeSubnamespaces;
 
-        public InNamespaceRegistration(DocumentRange documentRange, INamespace namespaceElement, bool includeSubnamespaces, IEnumerable<WithServiceRegistration> withServices)
+        public InNamespaceRegistration(DocumentRange documentRange, INamespace matchedNamespace, bool includeSubnamespaces, IEnumerable<WithServiceRegistration> withServices)
             : base(documentRange, withServices)
         {
-            this.namespaceElement = namespaceElement;
+            this.matchedNamespace = matchedNamespace;
             this.includeSubnamespaces = includeSubnamespaces;
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
-            var containingNamespace = typeElement.GetContainingNamespace();
-            if (containingNamespace.QualifiedName == namespaceElement.QualifiedName)
+            var elementNamespace = typeElement.GetContainingNamespace();
+
+            bool isMatch;
+            if (includeSubnamespaces)
             {
-                return withServices.All(registration => registration.IsSatisfiedBy(typeElement));
+                isMatch = elementNamespace.QualifiedName == matchedNamespace.QualifiedName ||
+                          elementNamespace.QualifiedName.StartsWith(matchedNamespace.QualifiedName + ".", StringComparison.OrdinalIgnoreCase);
             }
-            return false;
+            else
+            {
+                isMatch = elementNamespace.QualifiedName == matchedNamespace.QualifiedName;
+            }
+
+            return isMatch && withServices.All(registration => registration.IsSatisfiedBy(typeElement));
         }
 
         public override string ToString()
         {
-            return string.Format("In namespace: {0}, {1}", namespaceElement.QualifiedName,
+            return string.Format("In namespace: {0}, {1}", matchedNamespace.QualifiedName,
               string.Join(", ", withServices.Select(registration => registration.ToString())));
         }
     }

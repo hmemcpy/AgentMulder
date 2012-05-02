@@ -56,6 +56,8 @@
     <Compile Include="Patterns\Component\ComponentFor\ComponentForNonGeneric.cs" />
     <Compile Include="Patterns\Component\ImplementedBy\ImplementedByGeneric.cs" />
     <Compile Include="Patterns\Component\ImplementedBy\ImplementedByNonGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\Where.cs" />
+    <Compile Include="Patterns\FromTypes\FromAssemblyBase.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\BasedOnNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\InNamespace.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\NamespaceRegistrationBasePattern.cs" />

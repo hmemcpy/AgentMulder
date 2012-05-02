@@ -1,4 +1,4 @@
-using JetBrains.ProjectModel;
+using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.ReSharper.Domain.Modules
 {

@@ -19,7 +19,7 @@ namespace AgentMulder.ReSharper.Domain.Modules.Impl
                     return null;
                 }
 
-                // todo horrible horrible hack, fix this later
+                // todo horrible horrible hack, find non shitastick way of doing this
                 if (method.Element.XMLDocId == "M:System.Reflection.Assembly.GetExecutingAssembly")
                 {
                     return invocationExpression.GetPsiModule().ContainingProjectModule;

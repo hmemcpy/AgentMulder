@@ -35,7 +35,8 @@ namespace AgentMulder.Containers.CastleWindsor
             {
                 new BasedOnGeneric(withServices),
                 new InNamespace(withServices),
-                new InSameNamespaceAsGeneric(withServices), 
+                new InSameNamespaceAsGeneric(withServices),
+                new InSameNamespaceAsNonGeneric(withServices), 
             };
 
             registrationPatterns = new List<IRegistrationPattern> 

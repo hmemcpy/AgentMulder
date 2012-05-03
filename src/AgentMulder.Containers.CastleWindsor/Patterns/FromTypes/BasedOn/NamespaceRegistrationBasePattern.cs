@@ -8,9 +8,9 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    public abstract class InNamespaceRegistrationBasePattern : BasedOnRegistrationBasePattern
+    public abstract class NamespaceRegistrationBasePattern : BasedOnRegistrationBasePattern
     {
-        protected InNamespaceRegistrationBasePattern(IStructuralSearchPattern pattern, params WithServiceRegistrationBasePattern[] withServicePatterns)
+        protected NamespaceRegistrationBasePattern(IStructuralSearchPattern pattern, params WithServiceRegistrationBasePattern[] withServicePatterns)
             : base(pattern, withServicePatterns)
         {
         }
@@ -23,13 +23,15 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
             {
                 bool includeSubnamespaces;
                 INamespace namespaceElement = GetNamespaceElement(match, out includeSubnamespaces);
+                if (namespaceElement != null)
+                {
+                    var withServiceRegistrations = base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>();
 
-                var withServiceRegistrations = base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>();
-
-                yield return new InNamespaceRegistration(parentElement.GetDocumentRange(), namespaceElement, includeSubnamespaces, withServiceRegistrations);
+                    yield return new InNamespaceRegistration(parentElement.GetDocumentRange(), 
+                        namespaceElement, includeSubnamespaces, withServiceRegistrations);
+                }
             }
         }
-
 
         protected abstract INamespace GetNamespaceElement(IStructuralMatchResult match, out bool includeSubnamespaces);
     }

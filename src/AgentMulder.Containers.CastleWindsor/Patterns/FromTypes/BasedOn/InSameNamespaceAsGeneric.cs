@@ -11,7 +11,7 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal sealed class InSameNamespaceAsGeneric : InNamespaceRegistrationBasePattern
+    internal sealed class InSameNamespaceAsGeneric : NamespaceRegistrationBasePattern
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.InSameNamespaceAs<$type$>($subnamespace$)",

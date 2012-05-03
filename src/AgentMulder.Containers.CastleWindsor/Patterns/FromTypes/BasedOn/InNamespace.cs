@@ -11,7 +11,7 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal sealed class InNamespace : InNamespaceRegistrationBasePattern
+    internal sealed class InNamespace : NamespaceRegistrationBasePattern
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.InNamespace($arguments$)",
@@ -43,9 +43,11 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         {
             CSharpElementFactory elementFactory = CSharpElementFactory.GetInstance(expression.GetPsiModule());
 
-            var namespaceDeclaration = elementFactory.CreateNamespaceDeclaration((string)expression.ConstantValue.Value);
-
-            return namespaceDeclaration.DeclaredElement;
+            return this.With(x => expression.ConstantValue)
+                .If(x => x.IsString())
+                .With(x => Convert.ToString(x.Value))
+                .With(elementFactory.CreateNamespaceDeclaration)
+                .Return(x => x.DeclaredElement, null);
         }
     }
 }

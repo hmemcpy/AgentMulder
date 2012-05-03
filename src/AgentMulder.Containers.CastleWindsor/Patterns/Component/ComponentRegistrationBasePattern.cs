@@ -31,7 +31,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
                 var matchedType = match.GetMatchedType(elementName) as IDeclaredType;
                 if (matchedType != null)
                 {
-                    ITypeElement typeElement = matchedType.GetTypeElement(match.MatchedElement.GetPsiModule());
+                    ITypeElement typeElement = matchedType.GetTypeElement();
                     if (typeElement != null) // can be null in case of broken reference (unresolved type)
                     {
                         yield return new ComponentRegistration(match.GetDocumentRange(), typeElement);

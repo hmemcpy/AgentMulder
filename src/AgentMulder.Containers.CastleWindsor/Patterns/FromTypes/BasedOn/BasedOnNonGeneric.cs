@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
+using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -10,14 +12,14 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal sealed class BasedOnGeneric : BasedOnRegistrationBasePattern
+    internal sealed class BasedOnNonGeneric : BasedOnRegistrationBasePattern
     {
-        private static readonly IStructuralSearchPattern pattern = 
-            new CSharpStructuralSearchPattern("$fromDescriptor$.BasedOn<$type$>()",
-                new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
-                new TypePlaceholder("type"));
+        private static readonly IStructuralSearchPattern pattern =
+            new CSharpStructuralSearchPattern("$fromDescriptor$.BasedOn($argument$)",
+                                              new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
+                                              new ArgumentPlaceholder("argument"));
 
-        public BasedOnGeneric(params WithServiceRegistrationBasePattern[] withServicePatterns)
+        public BasedOnNonGeneric(params WithServiceRegistrationBasePattern[] withServicePatterns)
             : base(pattern, withServicePatterns)
         {
         }
@@ -28,12 +30,15 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 
             if (match.Matched)
             {
-                var matchedType = match.GetMatchedType("type") as IDeclaredType;
-                if (matchedType != null)
+                ITypeElement typeElement = this.With(x => match.GetMatchedElement("argument") as ICSharpArgument)
+                    .With(x => x.Value as ITypeofExpression)
+                    .With(x => x.ArgumentType as IDeclaredType)
+                    .Return(x => x.GetTypeElement(), null);
+
+                if (typeElement != null)
                 {
                     var withServiceRegistrations = base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>();
 
-                    ITypeElement typeElement = matchedType.GetTypeElement();
                     yield return new BasedOnRegistration(match.GetDocumentRange(), typeElement, withServiceRegistrations);
                 }
             }

@@ -34,6 +34,7 @@ namespace AgentMulder.Containers.CastleWindsor
             var basedOnPatterns = new BasedOnRegistrationBasePattern[]
             {
                 new BasedOnGeneric(withServices),
+                new BasedOnNonGeneric(withServices), 
                 new InNamespace(withServices),
                 new InSameNamespaceAsGeneric(withServices),
                 new InSameNamespaceAsNonGeneric(withServices), 
@@ -45,7 +46,7 @@ namespace AgentMulder.Containers.CastleWindsor
                             new ComponentForGeneric(implementedByPatterns),
                             new ComponentForNonGeneric(implementedByPatterns),
                     
-                    new AllTypesFrom(),
+                    new AllTypesFrom(basedOnPatterns),
 
                     new AllTypesFromAssembly(basedOnPatterns),
 

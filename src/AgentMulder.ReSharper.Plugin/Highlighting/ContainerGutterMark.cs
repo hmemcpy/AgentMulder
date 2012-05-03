@@ -1,9 +1,7 @@
 using AgentMulder.ReSharper.Plugin.Highlighting;
 using JetBrains.Application;
 using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Intentions.Asp.Generate;
 using JetBrains.TextControl.Markup;
-using JetBrains.UI;
 
 [assembly: RegisterHighlighter("Container Registration", "{B57372C1-16C3-4CB5-8B68-A0FBEFB487AD}", EffectType = EffectType.GUTTER_MARK, GutterMarkType = typeof(ContainerGutterMark), Layer = 2001)]
 
@@ -12,8 +10,7 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
     public class ContainerGutterMark : IconGutterMark
     {
         public ContainerGutterMark()
-            // todo fixme change icon
-            : base(ImageLoader.GetImage("masterpage", typeof(AspGenerateContentItemProvider).Assembly)) 
+            : base(Resources.Hat)
         {
         }
 

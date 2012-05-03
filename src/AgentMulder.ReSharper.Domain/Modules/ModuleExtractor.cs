@@ -10,7 +10,7 @@ namespace AgentMulder.ReSharper.Domain.Modules
         private static readonly List<IModuleExtractor> extractors = new List<IModuleExtractor> 
         {
             new GetExecutingAssemblyExtractor(),
-            new TypeofExtractor(),
+            new TypeOfExtractor(),
         };
 
         public static IModule GetTargetModule(ICSharpExpression expression)

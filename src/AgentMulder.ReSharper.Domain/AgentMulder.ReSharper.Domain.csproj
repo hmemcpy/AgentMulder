@@ -49,7 +49,7 @@
     <Compile Include="Modules\GetExecutingAssemblyExtractor.cs" />
     <Compile Include="Modules\IModuleExtractor.cs" />
     <Compile Include="Modules\ModuleExtractor.cs" />
-    <Compile Include="Modules\TypeofExtractor.cs" />
+    <Compile Include="Modules\TypeOfExtractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrations\BasedOnRegistration.cs" />
     <Compile Include="Registrations\ComponentRegistrationBase.cs" />

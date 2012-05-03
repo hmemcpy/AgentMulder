@@ -57,12 +57,29 @@
     <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Highlighting\RegisteredByContainerHighlighting.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">
       <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
       <Name>AgentMulder.ReSharper.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DI.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DI2.png" />
   </ItemGroup>
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>

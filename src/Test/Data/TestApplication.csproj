@@ -107,8 +107,7 @@
     <Compile Include="Windsor\ComponentTestCases\ComponentForImplementedByWithAdditionalParams.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentForNonGeneric.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentForNonGenericImplementedByGeneric.cs" />
-    <Compile Include="Windsor\AllTypesTestCases\BasedOn\FromThisAssemblyBasedOn.cs" />
-    <Compile Include="Windsor\AllTypesTestCases\BasedOn\FromThisAssemblyBasedOnWithServiceBase.cs" />
+    <Compile Include="Windsor\AllTypesTestCases\BasedOn\FromThisAssemblyBasedOnGeneric.cs" />
     <Compile Include="Windsor\AllTypesTestCases\FromTypesNewArray.cs" />
     <Compile Include="Windsor\AllTypesTestCases\FromTypesNewList.cs" />
     <Compile Include="Windsor\AllTypesTestCases\FromTypesParams.cs" />

@@ -5,7 +5,7 @@ using TestApplication.Types;
 
 namespace TestApplication.Windsor.AllTypesTestCases.BasedOn
 {
-    public class FromThisAssemblyBasedOn : IWindsorInstaller
+    public class FromThisAssemblyBasedOnGeneric : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {

@@ -40,7 +40,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
                 Assert.AreEqual(0, registrations.Count()));
         }
 
-        [TestCase("BasedOn\\FromThisAssemblyBasedOn", new[] { "Foo.cs" })]
+        [TestCase("BasedOn\\FromThisAssemblyBasedOnGeneric", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyInNamespace", new[] { "InSomeNamespace.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyInNamespaceWithSubnamespaces", new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyInSameNamespaceAsGeneric", new[] { "InSomeNamespace.cs" })]
@@ -55,7 +55,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             {
                 ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
-                Assert.True(registrations.Any());
+                Assert.AreEqual(1, registrations.Count());
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>

@@ -92,6 +92,8 @@
     <Compile Include="Windsor\AllTypesTestCases\BasedOn\FromAssemblyTypeOfBasedOn.cs" />
     <Compile Include="Windsor\AllTypesTestCases\BasedOn\FromThisAssemblyInNamespace.cs" />
     <Compile Include="Windsor\AllTypesTestCases\BasedOn\FromThisAssemblyInNamespaceWithSubnamespaces.cs" />
+    <Compile Include="Windsor\AllTypesTestCases\BasedOn\FromThisAssemblyInSameNamespaceAsGeneric.cs" />
+    <Compile Include="Windsor\AllTypesTestCases\BasedOn\FromThisAssemblyInSameNamespaceAsGenericWithSubnamespaces.cs" />
     <Compile Include="Windsor\AllTypesTestCases\FromAssemblyGetExecutingAssembly.cs" />
     <Compile Include="Windsor\AllTypesTestCases\FromThisAssembly.cs" />
     <Compile Include="Windsor\AllTypesTestCases\FromAssemblyTypeOf.cs" />

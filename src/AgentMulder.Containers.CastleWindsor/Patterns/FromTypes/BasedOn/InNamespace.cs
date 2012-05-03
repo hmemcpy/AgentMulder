@@ -1,19 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
 using AgentMulder.ReSharper.Domain;
-using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
-using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal sealed class InNamespace : BasedOnRegistrationBasePattern
+    internal sealed class InNamespace : InNamespaceRegistrationBasePattern
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.InNamespace($arguments$)",
@@ -25,33 +23,20 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         {
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
-        {
-            var match = Match(parentElement);
+        protected override INamespace GetNamespaceElement(IStructuralMatchResult match, out bool includeSubnamespaces)
+        {           
+            var arguments = match.GetMatchedElementList("arguments").Cast<ICSharpArgument>().ToArray();
 
-            if (match.Matched)
-            {
-                var arguments = match.GetMatchedElementList("arguments").Cast<ICSharpArgument>().ToArray();
-                
-                bool includeSubnamespaces = false;
-                INamespace namespaceElement;
-                switch (arguments.Length)
-                {
-                    case 1:
-                        namespaceElement = GetNamespaceDeclaration(arguments[0].Value);
-                        break;
-                    case 2:
-                        namespaceElement = GetNamespaceDeclaration(arguments[0].Value);
-                        includeSubnamespaces = (bool)arguments[1].Value.ConstantValue.Value;
-                        break;
-                    default:
-                        yield break;
-                }
+            INamespace namespaceElement = this.If(x => arguments.Length > 0)
+                                               .Return(x => GetNamespaceDeclaration(arguments[0].Value), null);
+            
+            includeSubnamespaces = this.If(x => arguments.Length == 2)
+                                        .With(x => arguments[arguments.Length - 1])
+                                        .With(x => x.Value.ConstantValue)
+                                        .If(x => x.IsBoolean())
+                                        .Return(x => Convert.ToBoolean(x.Value), false);
 
-                var withServiceRegistrations = base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>();
-                
-                yield return new InNamespaceRegistration(parentElement.GetDocumentRange(), namespaceElement, includeSubnamespaces, withServiceRegistrations);
-            }
+            return namespaceElement;
         }
 
         private INamespace GetNamespaceDeclaration(ICSharpExpression expression)

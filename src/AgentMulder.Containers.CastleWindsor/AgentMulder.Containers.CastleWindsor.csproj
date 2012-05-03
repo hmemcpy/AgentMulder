@@ -72,6 +72,8 @@
     <Compile Include="Patterns\Component\ComponentRegistrationBasePattern.cs" />
     <Compile Include="Patterns\Component\ImplementedBy\ImplementedByNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\InNamespace.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\InNamespaceRegistrationBasePattern.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\InSameNamespaceAsGeneric.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyBasePattern.cs" />
     <Compile Include="Patterns\FromTypes\WithService\WithServiceBase.cs" />
     <Compile Include="Patterns\FromTypes\WithService\WithServiceRegistrationBasePattern.cs" />

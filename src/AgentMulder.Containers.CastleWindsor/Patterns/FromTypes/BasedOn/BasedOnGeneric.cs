@@ -34,7 +34,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                     var withServiceRegistrations = base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>();
 
                     ITypeElement typeElement = matchedType.GetTypeElement();
-                    yield return new BasedOnRegistration(match.GetDocumentRange(), typeElement, withServiceRegistrations);
+                    yield return new BasedOnRegistration(match.MatchedElement.GetDocumentRange(), typeElement, withServiceRegistrations);
                 }
             }
         }

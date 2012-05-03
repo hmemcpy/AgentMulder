@@ -28,24 +28,43 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         {
             var arguments = match.GetMatchedElementList("arguments").Cast<ICSharpArgument>().ToArray();
 
-            INamespace namespaceElement = this.If(x => arguments.Length > 0)
-                .Return(x => GetNamespaceDeclaration(arguments[0].Value), null);
-
-            includeSubnamespaces = this.If(x => arguments.Length == 2)
-                .With(x => arguments[arguments.Length - 1])
-                .With(x => x.Value.ConstantValue)
-                .If(x => x.IsBoolean())
-                .Return(x => Convert.ToBoolean(x.Value), false);
+            INamespace namespaceElement = null;
+            if (arguments.Length > 0)
+            {
+                namespaceElement = GetNamespaceDeclaration(arguments[0].Value);
+            }
+            
+            includeSubnamespaces = false;
+            if (arguments.Length == 2)
+            {
+                ICSharpArgument boolArgument = arguments[1];
+                if (boolArgument.Value.ConstantValue != null &&
+                    boolArgument.Value.ConstantValue.IsBoolean())
+                {
+                    includeSubnamespaces = Convert.ToBoolean(boolArgument.Value.ConstantValue.Value);
+                }
+            }
 
             return namespaceElement;
         }
 
         private INamespace GetNamespaceDeclaration(ICSharpExpression expression)
         {
-            return this.With(x => expression as ITypeofExpression)
-                       .With(x => x.ArgumentType as IDeclaredType)
-                       .With(x => x.GetTypeElement())
-                       .Return(x => x.GetContainingNamespace(), null);
+            var typeofExpression = expression as ITypeofExpression;
+            if (typeofExpression != null)
+            {
+                var declaredType = typeofExpression.ArgumentType as IDeclaredType;
+                if (declaredType != null)
+                {
+                    ITypeElement typeElement = declaredType.GetTypeElement();
+                    if (typeElement != null)
+                    {
+                        return typeElement.GetContainingNamespace();
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

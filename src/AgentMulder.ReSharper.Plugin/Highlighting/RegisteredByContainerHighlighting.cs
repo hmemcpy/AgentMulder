@@ -19,7 +19,7 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
 
         public bool IsValid()
         {
-            return true;
+            return registration.DocumentRange.IsValid();
         }
 
         public string ToolTip

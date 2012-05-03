@@ -27,15 +27,23 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         {           
             var arguments = match.GetMatchedElementList("arguments").Cast<ICSharpArgument>().ToArray();
 
-            INamespace namespaceElement = this.If(x => arguments.Length > 0)
-                                               .Return(x => GetNamespaceDeclaration(arguments[0].Value), null);
-            
-            includeSubnamespaces = this.If(x => arguments.Length == 2)
-                                        .With(x => arguments[arguments.Length - 1])
-                                        .With(x => x.Value.ConstantValue)
-                                        .If(x => x.IsBoolean())
-                                        .Return(x => Convert.ToBoolean(x.Value), false);
+            INamespace namespaceElement = null;
+            if (arguments.Length > 0)
+            {
+                namespaceElement = GetNamespaceDeclaration(arguments[0].Value);
+            }
 
+            includeSubnamespaces = false;
+            if (arguments.Length == 2)
+            {
+                ICSharpArgument boolArgument = arguments[1];
+                if (boolArgument.Value.ConstantValue != null &&
+                    boolArgument.Value.ConstantValue.IsBoolean())
+                {
+                    includeSubnamespaces = Convert.ToBoolean(boolArgument.Value.ConstantValue.Value);
+                }
+            }
+            
             return namespaceElement;
         }
 
@@ -43,11 +51,15 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         {
             CSharpElementFactory elementFactory = CSharpElementFactory.GetInstance(expression.GetPsiModule());
 
-            return this.With(x => expression.ConstantValue)
-                .If(x => x.IsString())
-                .With(x => Convert.ToString(x.Value))
-                .With(elementFactory.CreateNamespaceDeclaration)
-                .Return(x => x.DeclaredElement, null);
+            if (expression.ConstantValue != null &&
+                expression.ConstantValue.IsString())
+            {
+                string namespaceName = Convert.ToString(expression.ConstantValue.Value);
+
+                return elementFactory.CreateNamespaceDeclaration(namespaceName).DeclaredElement;
+            }
+
+            return null;
         }
     }
 }

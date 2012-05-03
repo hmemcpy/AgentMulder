@@ -2,14 +2,16 @@
 using System.IO;
 using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon;
+using JetBrains.ReSharper.Daemon.CSharp.Stages;
+using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.UsageChecking;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Search;
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {
-    [DaemonStage(StagesBefore = new[] { typeof(LanguageSpecificDaemonStage) })]
-    public class ContainerAnalysisDaemonStage : IDaemonStage
+    [DaemonStage(StagesBefore = new[] { typeof(CSharpErrorStage) })]
+    public class ContainerAnalysisDaemonStage : CSharpDaemonStageBase
     {
         private readonly SearchDomainFactory searchDomainFactory;
 
@@ -18,7 +20,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
             this.searchDomainFactory = searchDomainFactory;
         }
 
-        public IDaemonStageProcess CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
+        public override IDaemonStageProcess CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
         {
             var usagesStageProcess = process.GetStageProcess<CollectUsagesStageProcess>();
 
@@ -36,11 +38,6 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
             string rootDirectory = Path.GetDirectoryName(typeof(ContainerAnalysisStageProcess).Assembly.Location);
             string containerDirectory = Path.Combine(rootDirectory, "Containers");
             return containerDirectory;
-        }
-
-        public ErrorStripeRequest NeedsErrorStripe(IPsiSourceFile sourceFile, IContextBoundSettingsStore settingsStore)
-        {
-            return ErrorStripeRequest.NONE;
         }
     }
 }

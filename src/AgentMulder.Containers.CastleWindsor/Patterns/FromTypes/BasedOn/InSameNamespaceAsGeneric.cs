@@ -8,6 +8,7 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+using JetBrains.Util.Special;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
@@ -26,15 +27,28 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 
         protected override INamespace GetNamespaceElement(IStructuralMatchResult match, out bool includeSubnamespaces)
         {
-            includeSubnamespaces = this.With(x => match.GetMatchedElement("subnamespace") as ICSharpArgument)
-                                       .With(x => x.Value.ConstantValue)
-                                       .If(x => x.IsBoolean())
-                                       .Return(x => Convert.ToBoolean(x.Value), false);
+            includeSubnamespaces = false;
+            var argument = match.GetMatchedElement("subnamespace") as ICSharpArgument;
+            if (argument != null)
+            {
+                if (argument.Value.ConstantValue != null &&
+                    argument.Value.ConstantValue.IsBoolean())
+                {
+                    includeSubnamespaces = Convert.ToBoolean(argument.Value.ConstantValue.Value);
+                }
+            }
 
+            var declaredType = match.GetMatchedType("type") as IDeclaredType;
+            if (declaredType != null)
+            {
+                ITypeElement typeElement = declaredType.GetTypeElement();
+                if (typeElement != null)
+                {
+                    return typeElement.GetContainingNamespace();
+                }
+            }
 
-            return this.With(x => match.GetMatchedType("type") as IDeclaredType)
-                       .With(x => x.GetTypeElement())
-                       .Return(x => x.GetContainingNamespace(), null);
+            return null;
         }
     }
 }

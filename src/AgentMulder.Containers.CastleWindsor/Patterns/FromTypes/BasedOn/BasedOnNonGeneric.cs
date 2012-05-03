@@ -30,16 +30,28 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 
             if (match.Matched)
             {
-                ITypeElement typeElement = this.With(x => match.GetMatchedElement("argument") as ICSharpArgument)
-                    .With(x => x.Value as ITypeofExpression)
-                    .With(x => x.ArgumentType as IDeclaredType)
-                    .Return(x => x.GetTypeElement(), null);
-
-                if (typeElement != null)
+                var argument = match.GetMatchedElement("argument") as ICSharpArgument;
+                if (argument != null)
                 {
-                    var withServiceRegistrations = base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>();
+                    var typeofExpression = argument.Value as ITypeofExpression;
+                    if (typeofExpression != null)
+                    {
+                        var declaredType = typeofExpression.ArgumentType as IDeclaredType;
+                        if (declaredType != null)
+                        {
+                            declaredType = declaredType.GetScalarType();
+                        }
+                        if (declaredType != null)
+                        {
+                            ITypeElement typeElement = declaredType.GetTypeElement();
+                            if (typeElement != null)
+                            {
+                                var withServiceRegistrations = base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>();
 
-                    yield return new BasedOnRegistration(match.GetDocumentRange(), typeElement, withServiceRegistrations);
+                                yield return new BasedOnRegistration(match.GetDocumentRange(), typeElement, withServiceRegistrations);
+                            }
+                        }
+                    }
                 }
             }
         }

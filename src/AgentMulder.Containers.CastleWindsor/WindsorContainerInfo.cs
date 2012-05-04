@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Primitives;
+using System.Linq;
+using System.Reflection;
 using AgentMulder.Containers.CastleWindsor.Patterns;
-using AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor;
-using AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
+using AgentMulder.Containers.CastleWindsor.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
+using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
 
 namespace AgentMulder.Containers.CastleWindsor
@@ -21,36 +23,28 @@ namespace AgentMulder.Containers.CastleWindsor
             get { return registrationPatterns; }
         }
 
+        [ImportMany]
+        private IEnumerable<IRegistrationPatternsProvider> PatternsProviders { get; set; }
+
         public WindsorContainerInfo()
         {
-            var implementedByPatterns = new ImplementedByBasePattern[]
+            var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+            var container = new CompositionContainer(catalog);
+            container.ComposeParts(this);
+
+            registrationPatterns = new List<IRegistrationPattern>
             {
-                new ImplementedByGeneric(), new ImplementedByNonGeneric()
+                new WindsorContainerRegisterPattern(PatternsProviders.SelectMany(provider => provider.GetRegistrationPatterns()).ToArray())
             };
-            var withServices = new WithServiceRegistrationBasePattern[]
+        }
+
+        public WindsorContainerInfo(IEnumerable<IRegistrationPatternsProvider> patternsProviders)
+        {
+            PatternsProviders = patternsProviders;
+
+            registrationPatterns = new List<IRegistrationPattern>
             {
-
-            };
-            var basedOnPatterns = new BasedOnRegistrationBasePattern[]
-            {
-                new BasedOnGeneric(withServices),
-                new BasedOnNonGeneric(withServices), 
-                new InNamespace(withServices),
-                new InSameNamespaceAsGeneric(withServices),
-                new InSameNamespaceAsNonGeneric(withServices), 
-            };
-
-            registrationPatterns = new List<IRegistrationPattern> 
-            {
-                new WindsorContainerRegisterPattern(
-                            new ComponentForGeneric(implementedByPatterns),
-                            new ComponentForNonGeneric(implementedByPatterns),
-                    
-                    new AllTypesFrom(basedOnPatterns),
-
-                    new AllTypesFromAssembly(basedOnPatterns),
-
-                    new AllTypesFromThisAssembly(basedOnPatterns))
+                new WindsorContainerRegisterPattern(PatternsProviders.SelectMany(provider => provider.GetRegistrationPatterns()).ToArray())
             };
         }
 

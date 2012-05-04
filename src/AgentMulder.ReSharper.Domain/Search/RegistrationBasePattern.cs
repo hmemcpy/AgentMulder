@@ -24,7 +24,7 @@ namespace AgentMulder.ReSharper.Domain.Search
             return pattern.CreateMatcher();
         }
 
-        protected IInvocationExpression GetMatchedExpression(ITreeNode rootElement)
+        private IInvocationExpression GetMatchedExpression(ITreeNode rootElement)
         {
             IStructuralMatcher matcher = CreateMatcher();
 

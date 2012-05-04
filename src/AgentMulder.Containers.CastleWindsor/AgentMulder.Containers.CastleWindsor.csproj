@@ -64,6 +64,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Providers\AllTypesRegistrationProvider.cs" />
+    <Compile Include="Providers\BasedOnRegistrationProvider.cs" />
+    <Compile Include="Providers\ComponentRegistrationProvider.cs" />
+    <Compile Include="Providers\ImplementedByRegistrationProvider.cs" />
     <Compile Include="Patterns\Component\ComponentFor\ComponentForBasePattern.cs" />
     <Compile Include="Patterns\Component\ComponentFor\ComponentForGeneric.cs" />
     <Compile Include="Patterns\Component\ComponentFor\ComponentForNonGeneric.cs" />
@@ -89,6 +93,7 @@
     <Compile Include="Patterns\FromTypes\FromTypesBasePattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindsorContainerInfo.cs" />
+    <Compile Include="Providers\WithServicesRegistrationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">

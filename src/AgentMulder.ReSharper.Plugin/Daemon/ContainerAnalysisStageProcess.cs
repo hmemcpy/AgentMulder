@@ -59,8 +59,8 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                     {
                         usageManager.MarkTypeAsUsed(declaration.DeclaredElement);
 
-                        var highlighting = new HighlightingInfo(declaration.GetNameDocumentRange(),
-                                                             new RegisteredByContainerHighlighting(process.Solution, registration));
+                        var highlighting = new HighlightingInfo(declaration.GetNameDocumentRange(), 
+                            new RegisteredByContainerHighlighting(process.Solution, registration));
 
                         var result = new DaemonStageResult(new[] { highlighting });
 

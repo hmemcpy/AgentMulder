@@ -9,7 +9,7 @@ namespace AgentMulder.ReSharper.Domain.Modules
         public IModule GetTargetModule(ICSharpExpression expression)
         {
             var referenceExpression = expression as IReferenceExpression;
-            if (referenceExpression != null)
+            if (referenceExpression != null && referenceExpression.Reference.GetName() == "Assembly")
             {
                 var typeofExpression = referenceExpression.QualifierExpression as ITypeofExpression;
                 if (typeofExpression != null)

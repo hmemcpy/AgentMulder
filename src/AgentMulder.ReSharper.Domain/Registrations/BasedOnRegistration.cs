@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
@@ -41,8 +42,16 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public override string ToString()
         {
-            return string.Format("Based on: {0}, {1}", name, 
-               string.Join(", ", withServices.Select(registration => registration.ToString())));
+            string format = "Based on: {0}";
+
+            string withServicesString = String.Join(", ", (string[])withServices.Select(registration => registration.ToString()));
+            
+            if (!string.IsNullOrWhiteSpace(withServicesString))
+            {
+                format += ", {1}";
+            }
+
+            return string.Format(format, name, withServicesString);
         }
     }
 }

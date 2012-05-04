@@ -8,7 +8,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    public abstract class BasedOnRegistrationBasePattern : RegistrationBasePattern
+    public abstract class BasedOnRegistrationBasePattern : RegistrationBasePattern, IRegistrationPattern
     {
         private readonly WithServiceRegistrationBasePattern[] withServicePatterns;
 

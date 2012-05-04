@@ -41,7 +41,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
                 Assert.AreEqual(0, registrations.Count()));
         }
 
-        [TestCase("BasedOn\\FromTypesParamsBasedOnGeneric", new[] { "Foo.cs" })]
+        [TestCase("BasedOn\\FromTypesParamsBasedOnGeneric", new[] { "Foo.cs", "Baz.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyBasedOnGeneric", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyBasedOnNonGeneric", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyInNamespace", new[] { "InSomeNamespace.cs" })]

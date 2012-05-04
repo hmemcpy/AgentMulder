@@ -10,8 +10,8 @@ namespace TestApplication.Windsor.TestCases.BasedOn
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.From(typeof(Foo), typeof(Bar)).BasedOn<IFoo>(),
-                Classes.From(typeof(Foo), typeof(Bar)).BasedOn<IFoo>()
+                AllTypes.From(typeof(Foo), typeof(Bar), typeof(Baz)).BasedOn<IFoo>(),
+                Classes.From(typeof(Foo), typeof(Bar), typeof(Baz)).BasedOn<IFoo>()
                 );
         }
     }

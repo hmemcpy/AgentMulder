@@ -10,7 +10,8 @@ namespace TestApplication.Windsor.TestCases.BasedOn
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromThisAssembly().InSameNamespaceAs<IInSomeNamespace>()
+                AllTypes.FromThisAssembly().InSameNamespaceAs<IInSomeNamespace>(),
+                Classes.FromThisAssembly().InSameNamespaceAs<IInSomeNamespace>()
                 );
         }
     }

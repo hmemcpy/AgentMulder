@@ -11,7 +11,8 @@ namespace TestApplication.Windsor.TestCases.BasedOn
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromAssembly(Assembly.GetExecutingAssembly()).BasedOn<IFoo>()
+                AllTypes.FromAssembly(Assembly.GetExecutingAssembly()).BasedOn<IFoo>(),
+                Classes.FromAssembly(Assembly.GetExecutingAssembly()).BasedOn<IFoo>()
                 );
         }
  

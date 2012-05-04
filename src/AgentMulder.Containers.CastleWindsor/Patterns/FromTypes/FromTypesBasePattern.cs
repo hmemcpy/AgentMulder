@@ -42,6 +42,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
         protected virtual IComponentRegistration CreateRegistration(IStructuralMatchResult match, BasedOnRegistration basedOnRegistration, IEnumerable<ITypeElement> typeElements)
         {
+            // get all non-abstract classes (same as AllTypes)
+            typeElements = typeElements.OfType<IClass>().Where(c => !c.IsAbstract);
+
             return new TypesBasedOnRegistration(typeElements, basedOnRegistration);
         }
 

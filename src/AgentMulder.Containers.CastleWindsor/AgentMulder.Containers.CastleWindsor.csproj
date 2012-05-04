@@ -64,6 +64,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Patterns\FromTypes\ClassesFromAssembly.cs" />
+    <Compile Include="Patterns\FromTypes\ClassesFromThisAssembly.cs" />
     <Compile Include="Providers\AllTypesRegistrationProvider.cs" />
     <Compile Include="Providers\BasedOnRegistrationProvider.cs" />
     <Compile Include="Providers\ClassesRegistrationProvider.cs" />

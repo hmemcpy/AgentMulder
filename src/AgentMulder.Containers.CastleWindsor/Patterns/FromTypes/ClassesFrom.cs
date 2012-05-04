@@ -22,13 +22,5 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             : base(pattern, basedOnPatterns)
         {
         }
-
-        protected override IComponentRegistration CreateRegistration(IStructuralMatchResult match, BasedOnRegistration basedOnRegistration, IEnumerable<ITypeElement> typeElements)
-        {
-            // get all non-abstract classes (same as AllTypes)
-            typeElements = typeElements.OfType<IClass>().Where(c => !c.IsAbstract);
-
-            return base.CreateRegistration(match, basedOnRegistration, typeElements);
-        }
     }
 }

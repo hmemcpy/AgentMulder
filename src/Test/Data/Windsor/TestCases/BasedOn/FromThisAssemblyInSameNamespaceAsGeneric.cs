@@ -3,7 +3,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using SomeNamespace;
 
-namespace TestApplication.Windsor.AllTypesTestCases.BasedOn
+namespace TestApplication.Windsor.TestCases.BasedOn
 {
     public class FromThisAssemblyInSameNamespaceAsGeneric : IWindsorInstaller
     {

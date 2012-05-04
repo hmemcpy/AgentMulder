@@ -2,7 +2,7 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
-namespace TestApplication.Windsor.AllTypesTestCases.BasedOn
+namespace TestApplication.Windsor.TestCases.BasedOn
 {
     public class FromThisAssemblyInNamespaceWithSubnamespaces : IWindsorInstaller
     {

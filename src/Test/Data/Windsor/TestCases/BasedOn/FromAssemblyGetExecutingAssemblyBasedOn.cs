@@ -4,7 +4,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using TestApplication.Types;
 
-namespace TestApplication.Windsor.AllTypesTestCases.BasedOn
+namespace TestApplication.Windsor.TestCases.BasedOn
 {
     public class FromAssemblyGetExecutingAssemblyBasedOn : IWindsorInstaller
     {

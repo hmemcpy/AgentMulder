@@ -3,7 +3,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using TestApplication.Types;
 
-namespace TestApplication.Windsor.AllTypesTestCases
+namespace TestApplication.Windsor.TestCases
 {
     public class FromTypesNewArray : IWindsorInstaller
     {

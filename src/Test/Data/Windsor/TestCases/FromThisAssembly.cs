@@ -9,8 +9,9 @@ namespace TestApplication.Windsor.TestCases
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromThisAssembly()
-                
+                AllTypes.FromThisAssembly(),
+                Classes.FromThisAssembly(),
+                Castle.MicroKernel.Registration.Types.FromThisAssembly()
                 );
         }
     }

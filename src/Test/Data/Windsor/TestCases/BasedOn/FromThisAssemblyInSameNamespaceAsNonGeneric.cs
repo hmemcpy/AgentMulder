@@ -11,7 +11,8 @@ namespace TestApplication.Windsor.TestCases.BasedOn
         {
             container.Register(
                 AllTypes.FromThisAssembly().InSameNamespaceAs(typeof(IInSomeNamespace)),
-                Classes.FromThisAssembly().InSameNamespaceAs(typeof(IInSomeNamespace))
+                Classes.FromThisAssembly().InSameNamespaceAs(typeof(IInSomeNamespace)),
+                Castle.MicroKernel.Registration.Types.FromThisAssembly().InSameNamespaceAs(typeof(IInSomeNamespace))
                 );
         }
     }

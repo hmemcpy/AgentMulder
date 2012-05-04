@@ -9,12 +9,12 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
 {
     [Export]
     [Export(typeof(IRegistrationPatternsProvider))]
-    public class ClassesRegistrationProvider : IRegistrationPatternsProvider
+    public class TypesRegistrationProvider : IRegistrationPatternsProvider
     {
         private readonly BasedOnRegistrationProvider basedOnProvider;
 
         [ImportingConstructor]
-        public ClassesRegistrationProvider(BasedOnRegistrationProvider basedOnProvider)
+        public TypesRegistrationProvider(BasedOnRegistrationProvider basedOnProvider)
         {
             this.basedOnProvider = basedOnProvider;
         }
@@ -25,9 +25,9 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
 
             return new FromTypesBasePattern[]
             {
-                new ClassesFrom(basedOnPatterns),
-                new ClassesFromAssembly(basedOnPatterns),
-                new ClassesFromThisAssembly(basedOnPatterns)
+                new TypesFrom(basedOnPatterns),
+                new TypesFromAssembly(basedOnPatterns),
+                new TypesFromThisAssembly(basedOnPatterns)
             };
         }
     }

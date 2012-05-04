@@ -12,7 +12,8 @@ namespace TestApplication.Windsor.TestCases.BasedOn
         {
             container.Register(
                 AllTypes.FromAssembly(Assembly.GetExecutingAssembly()).BasedOn<IFoo>(),
-                Classes.FromAssembly(Assembly.GetExecutingAssembly()).BasedOn<IFoo>()
+                Classes.FromAssembly(Assembly.GetExecutingAssembly()).BasedOn<IFoo>(),
+                Castle.MicroKernel.Registration.Types.FromAssembly(Assembly.GetExecutingAssembly()).BasedOn<IFoo>()
                 );
         }
  

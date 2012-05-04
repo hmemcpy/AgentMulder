@@ -11,7 +11,8 @@ namespace TestApplication.Windsor.TestCases.BasedOn
         {
             container.Register(
                 AllTypes.From(new[] { typeof(Foo), typeof(Bar), typeof(Baz) }).BasedOn<IFoo>(),
-                Classes.From(new[] { typeof(Foo), typeof(Bar), typeof(Baz) }).BasedOn<IFoo>()
+                Classes.From(new[] { typeof(Foo), typeof(Bar), typeof(Baz) }).BasedOn<IFoo>(),
+                Castle.MicroKernel.Registration.Types.From(new[] { typeof(Foo), typeof(Bar), typeof(Baz) }).BasedOn<IFoo>()
                 );
         }
     }

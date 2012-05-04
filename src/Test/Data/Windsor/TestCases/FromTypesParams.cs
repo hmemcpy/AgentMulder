@@ -11,7 +11,8 @@ namespace TestApplication.Windsor.TestCases
         {
             container.Register(
                 AllTypes.From(typeof(Bar), typeof(Baz)),
-                Classes.From(typeof(Bar), typeof(Baz))
+                Classes.From(typeof(Bar), typeof(Baz)),
+                Castle.MicroKernel.Registration.Types.From(typeof(Bar), typeof(Baz))
                 );
         }
     }

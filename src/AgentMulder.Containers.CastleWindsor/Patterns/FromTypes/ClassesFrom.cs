@@ -1,13 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
-using AgentMulder.ReSharper.Domain.Registrations;
-using JetBrains.ReSharper.Psi;
+﻿using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
-using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {

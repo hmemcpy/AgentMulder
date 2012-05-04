@@ -11,7 +11,9 @@ namespace TestApplication.Windsor.TestCases
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromAssembly(typeof(IFoo).Assembly)
+                AllTypes.FromAssembly(typeof(IFoo).Assembly),
+                Classes.FromAssembly(typeof(IFoo).Assembly),
+                Castle.MicroKernel.Registration.Types.FromAssembly(typeof(IFoo).Assembly)
                 );
         }
     }

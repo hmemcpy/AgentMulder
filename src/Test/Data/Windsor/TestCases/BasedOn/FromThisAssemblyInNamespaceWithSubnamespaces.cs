@@ -10,7 +10,8 @@ namespace TestApplication.Windsor.TestCases.BasedOn
         {
             container.Register(
                 AllTypes.FromThisAssembly().InNamespace("SomeNamespace", true),
-                Classes.FromThisAssembly().InNamespace("SomeNamespace", true)
+                Classes.FromThisAssembly().InNamespace("SomeNamespace", true),
+                Castle.MicroKernel.Registration.Types.FromThisAssembly().InNamespace("SomeNamespace", true)
                 );
         }
     }

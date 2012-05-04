@@ -66,6 +66,9 @@
   <ItemGroup>
     <Compile Include="Patterns\FromTypes\ClassesFromAssembly.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromThisAssembly.cs" />
+    <Compile Include="Patterns\FromTypes\TypesFrom.cs" />
+    <Compile Include="Patterns\FromTypes\TypesFromAssembly.cs" />
+    <Compile Include="Patterns\FromTypes\TypesFromThisAssembly.cs" />
     <Compile Include="Providers\AllTypesRegistrationProvider.cs" />
     <Compile Include="Providers\BasedOnRegistrationProvider.cs" />
     <Compile Include="Providers\ClassesRegistrationProvider.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="Patterns\FromTypes\ClassesFrom.cs" />
     <Compile Include="Patterns\FromTypes\FromTypesBasePattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\TypesRegistrationProvider.cs" />
     <Compile Include="WindsorContainerInfo.cs" />
     <Compile Include="Providers\WithServicesRegistrationProvider.cs" />
   </ItemGroup>

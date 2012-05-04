@@ -14,9 +14,11 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.TestFramework;
 using JetBrains.Util;
+using NUnit.Framework;
 
 namespace AgentMulder.ReSharper.Tests
 {
+    [TestFixture]
     public abstract class ComponentRegistrationsTestBase : BaseTestWithSingleProject
     {
         protected abstract IContainerInfo ContainerInfo { get; }

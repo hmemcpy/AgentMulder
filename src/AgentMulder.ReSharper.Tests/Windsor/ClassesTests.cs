@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using AgentMulder.Containers.CastleWindsor;
+using AgentMulder.Containers.CastleWindsor.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Tests.Windsor.Helpers;
 using JetBrains.ReSharper.Psi;
@@ -9,6 +10,8 @@ using NUnit.Framework;
 
 namespace AgentMulder.ReSharper.Tests.Windsor
 {
+    // todo these tests are currently duplicated, because of a bug in R# test runner involving abstract test fixtures and TestCases http://youtrack.jetbrains.com/issue/RSRP-299812
+
     [TestWindsor]
     public class ClassesTests : ComponentRegistrationsTestBase
     {
@@ -19,14 +22,14 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             get { return @"Windsor\TestCases"; }
         }
 
+        protected override IContainerInfo ContainerInfo
+        {
+            get { return new WindsorContainerInfo(new[] { new ClassesRegistrationProvider(new BasedOnRegistrationProvider(new WithServicesRegistrationProvider())) }); }
+        }
+
         protected override string RelativeTypesPath
         {
             get { return @"..\..\Types"; }
-        }
-
-        protected override IContainerInfo ContainerInfo
-        {
-            get { return new WindsorContainerInfo(); }
         }
 
         [TestCase("FromTypesParams")]
@@ -40,6 +43,9 @@ namespace AgentMulder.ReSharper.Tests.Windsor
                 Assert.AreEqual(0, registrations.Count()));
         }
 
+        [TestCase("BasedOn\\FromTypesParamsBasedOnGeneric", new[] { "Foo.cs", "Baz.cs" })]
+        [TestCase("BasedOn\\FromTypesNewListBasedOnGeneric", new[] { "Foo.cs", "Baz.cs" })]
+        [TestCase("BasedOn\\FromTypesNewArrayBasedOnGeneric", new[] { "Foo.cs", "Baz.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyBasedOnGeneric", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyBasedOnNonGeneric", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyInNamespace", new[] { "InSomeNamespace.cs" })]

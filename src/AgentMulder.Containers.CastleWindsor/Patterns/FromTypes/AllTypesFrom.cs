@@ -15,9 +15,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$alltypes$.From($services$)",
                                               new ExpressionPlaceholder("alltypes", "Castle.MicroKernel.Registration.AllTypes"),
-                                              new ArgumentPlaceholder("services", -1, -1));
-
-        // matches any number of arguments
+                                              new ArgumentPlaceholder("services", -1, -1)); // matches any number of arguments
 
         public AllTypesFrom(params BasedOnRegistrationBasePattern[] basedOnPatterns)
             : base(pattern, basedOnPatterns)

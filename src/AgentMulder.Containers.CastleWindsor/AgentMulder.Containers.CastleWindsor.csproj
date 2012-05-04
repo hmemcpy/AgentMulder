@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Providers\AllTypesRegistrationProvider.cs" />
     <Compile Include="Providers\BasedOnRegistrationProvider.cs" />
+    <Compile Include="Providers\ClassesRegistrationProvider.cs" />
     <Compile Include="Providers\ComponentRegistrationProvider.cs" />
     <Compile Include="Providers\ImplementedByRegistrationProvider.cs" />
     <Compile Include="Patterns\Component\ComponentFor\ComponentForBasePattern.cs" />

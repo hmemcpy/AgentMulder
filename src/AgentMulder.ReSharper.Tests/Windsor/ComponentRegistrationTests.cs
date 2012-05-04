@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor;
+using AgentMulder.Containers.CastleWindsor.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Tests.Windsor.Helpers;
 using JetBrains.ReSharper.Psi;
@@ -28,7 +29,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
         protected override IContainerInfo ContainerInfo
         {
-            get { return new WindsorContainerInfo(); }
+            get { return new WindsorContainerInfo(new[] { new ComponentRegistrationProvider(new ImplementedByRegistrationProvider()) }); }
         }
 
         [TestCase("ComponentFor", "Foo.cs")]

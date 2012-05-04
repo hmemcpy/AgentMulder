@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using AgentMulder.Containers.CastleWindsor;
+using AgentMulder.Containers.CastleWindsor.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Tests.Windsor.Helpers;
 using JetBrains.ReSharper.Psi;
@@ -16,7 +17,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         // These files are loaded into the test solution that is being created by this test fixture
         protected override string RelativeTestDataPath
         {
-            get { return @"Windsor\AllTypesTestCases"; }
+            get { return @"Windsor\TestCases"; }
         }
 
         protected override string RelativeTypesPath
@@ -26,7 +27,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
         protected override IContainerInfo ContainerInfo
         {
-            get { return new WindsorContainerInfo(); }
+            get { return new WindsorContainerInfo(new[] { new AllTypesRegistrationProvider(new BasedOnRegistrationProvider(new WithServicesRegistrationProvider())), }); }
         }
 
         [TestCase("FromTypesParams")]

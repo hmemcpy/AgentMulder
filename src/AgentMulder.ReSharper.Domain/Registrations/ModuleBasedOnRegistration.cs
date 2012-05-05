@@ -13,6 +13,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
         {
             this.sourceModule = sourceModule;
             this.basedOn = basedOn;
+            basedOn.Module = sourceModule;
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)

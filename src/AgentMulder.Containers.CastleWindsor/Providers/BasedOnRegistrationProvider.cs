@@ -29,7 +29,8 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
                 new InNamespace(withServices),
                 new InSameNamespaceAsGeneric(withServices),
                 new InSameNamespaceAsNonGeneric(withServices),
-                new Pick(withServices), 
+                new Pick(withServices),
+                new Where(withServices),
             };
         }
 

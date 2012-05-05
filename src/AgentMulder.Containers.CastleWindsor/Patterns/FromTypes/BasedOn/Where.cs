@@ -39,7 +39,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                     // get all type elements in a target module
                     // build a predicate
                     // match target element with predicate
-
+                    
                     IEnumerable<ITypeElement> matchedTypes = GetMatchedTypes(lambdaExpression).ToList();
 
                     foreach (var basedOnRegistration in base.GetComponentRegistrations(parentElement).OfType<BasedOnRegistration>())

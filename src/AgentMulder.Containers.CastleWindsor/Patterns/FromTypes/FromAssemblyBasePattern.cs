@@ -23,7 +23,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
             if (match.Matched)
             {
-                IPsiModule module = GetTargetModule(match);
+                IModule module = GetTargetModule(match);
 
                 foreach (var basedOnPattern in BasedOnPatterns)
                 {
@@ -39,6 +39,6 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             }
         }
 
-        protected abstract IPsiModule GetTargetModule(IStructuralMatchResult match);
+        protected abstract IModule GetTargetModule(IStructuralMatchResult match);
     }
 }

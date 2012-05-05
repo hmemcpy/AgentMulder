@@ -122,10 +122,10 @@
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewListPick.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesParamsBasedOnGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesParamsPick.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhere.cs" />    
     <Compile Include="Windsor\TestCases\FromAssemblyGetExecutingAssembly.cs" />
     <Compile Include="Windsor\TestCases\FromThisAssembly.cs" />
     <Compile Include="Windsor\TestCases\FromAssemblyTypeOf.cs" />
-    <Compile Include="Windsor\AllTypesTestCases\Where\FromThisAssemblyWhere.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentFor.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentForGenericImplementedByNonGeneric.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentForImplementedBy.cs" />

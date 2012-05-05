@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Modules.Impl;
 using JetBrains.ProjectModel;

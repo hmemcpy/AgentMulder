@@ -14,14 +14,14 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal sealed class Where : BasedOnRegistrationBase
+    internal sealed class Where : BasedOnRegistrationBasePattern
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.Where($predicate$)",
                 new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
                 new ExpressionPlaceholder("predicate"));
         
-        public Where(params WithServiceRegistrationBase[] withServicePatterns)
+        public Where(params WithServiceRegistrationBasePattern[] withServicePatterns)
             : base(pattern, withServicePatterns)
         {
         }
@@ -30,23 +30,22 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         {
             IStructuralMatchResult match = Match(parentElement);
 
-            ILambdaExpression lambdaExpression =
-                this.With(x => Match(parentElement))
-                    .If(x => x.Matched)
-                    .Return(x => x.GetMatchedElement("predicate") as ILambdaExpression, null);
-
-
-            if (lambdaExpression != null)
+            if (match.Matched)
             {
-                // get all type elements in a target module
-                // build a predicate
-                // match target element with predicate
 
-                IEnumerable<ITypeElement> matchedTypes = GetMatchedTypes(lambdaExpression).ToList();
-
-                foreach (var basedOnRegistration in base.GetComponentRegistrations(parentElement).OfType<BasedOnRegistration>())
+                var lambdaExpression = match.GetMatchedElement("predicate") as ILambdaExpression;
+                if (lambdaExpression != null)
                 {
-                    yield return new TypesBasedOnRegistration(matchedTypes, basedOnRegistration);
+                    // get all type elements in a target module
+                    // build a predicate
+                    // match target element with predicate
+
+                    IEnumerable<ITypeElement> matchedTypes = GetMatchedTypes(lambdaExpression).ToList();
+
+                    foreach (var basedOnRegistration in base.GetComponentRegistrations(parentElement).OfType<BasedOnRegistration>())
+                    {
+                        yield return new TypesBasedOnRegistration(matchedTypes, basedOnRegistration);
+                    }
                 }
             }
         }

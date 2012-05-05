@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using JetBrains.DocumentModel;
-using JetBrains.Metadata.Reader.API;
 using JetBrains.ProjectModel;
 using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
 using JetBrains.ReSharper.Psi;
@@ -21,29 +22,61 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
-            using (MetadataLoader l = new MetadataLoader())
+            FileSystemPath assemblyFilePath = GetModuleAssembly();
+            if (assemblyFilePath == null)
             {
-                var assemblyPsiModule = typeElement.Module as IAssemblyPsiModule;
-                if (assemblyPsiModule != null)
-                {
-                    FileSystemPath fileSystemPath = assemblyPsiModule.Assembly.Location;
-                    var metadataAssembly = l.LoadFrom(fileSystemPath, info => true);
-                }
-                var project = typeElement.Module.ContainingProjectModule as IProject;
-                if (project != null)
-                {
-                    var outputAssemblyFile = project.GetOutputAssemblyFile();
-                    var outputAssemblyName = project.GetOutputAssemblyName();
-                    var fileSystemPath = project.ActiveConfiguration.OutputDirectory;
-                }
+                return false;
             }
 
+            var assembly = TryLoadAsembly(assemblyFilePath);
+            if (assembly == null)
+            {
+                return false;
+            }
+
+            IEnumerable<string> matchedTypesNames = assembly.GetTypes().Where(t => predicate(t)).Select(type => type.FullName);
 
             // todo 1) convert module to assembly
             //      2) load assembly, get list of type names matching predicate
             //      3) compare typeElement full name to list
-            
-            return false;
+
+            return matchedTypesNames.Contains(typeElement.GetClrName().FullName);
+        }
+
+        private Assembly TryLoadAsembly(FileSystemPath assemblyFilePath)
+        {
+            try
+            {
+                return Assembly.ReflectionOnlyLoadFrom(assemblyFilePath.FullPath);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private FileSystemPath GetModuleAssembly()
+        {
+            var assemblyPsiModule = Module as IAssemblyPsiModule;
+            if (assemblyPsiModule != null)
+            {
+                return assemblyPsiModule.Assembly.Location;
+                
+            }
+            var project = Module as IProject;
+            if (project != null)
+            {
+                IAssemblyFile outputAssemblyFile = project.GetOutputAssemblyFile();
+                var data = outputAssemblyFile as IAssemblyFileData;
+                if (data != null)
+                {
+                    return data.Location;
+                }
+
+                return null;
+            }
+
+            return null;
         }
     }
 }

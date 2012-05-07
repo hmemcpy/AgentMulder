@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExpressionSerialization">
+      <HintPath>..\..\..\..\code\ExpressionTreesSerializer\ExpressionSerialization\bin\Debug\ExpressionSerialization.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Linq.Expressions">
       <HintPath>..\packages\Mono.Linq.Expressions.1.2.0.0\lib\Mono.Linq.Expressions.dll</HintPath>
     </Reference>
@@ -64,6 +67,7 @@
     <Compile Include="Modules\Impl\TypeAssemblyPropertyExtractor.cs" />
     <Compile Include="Modules\Impl\TypeOfExtractor.cs" />
     <Compile Include="Registrations\TypePredicateRegistration.cs" />
+    <Compile Include="Utils\SeperateAppDomainAssemblyLoader.cs" />
     <Compile Include="WherePredicateBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrations\BasedOnRegistration.cs" />
@@ -77,9 +81,7 @@
     <Compile Include="Registrations\WithServiceRegistration.cs" />
     <Compile Include="Registrations\BasedOnRegistrationBase.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

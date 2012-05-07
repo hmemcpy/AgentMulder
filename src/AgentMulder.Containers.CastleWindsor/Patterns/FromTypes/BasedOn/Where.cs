@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
 using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Registrations;
@@ -39,7 +40,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                     // build a predicate
                     // match target element with predicate
 
-                    Predicate<Type> predicate = WherePredicateBuilder.FromLambda<Type>(lambdaExpression);
+                    Expression<Predicate<Type>> predicate = WherePredicateBuilder.FromLambda<Type>(lambdaExpression);
 
                     var withServiceRegistrations = base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>();
 

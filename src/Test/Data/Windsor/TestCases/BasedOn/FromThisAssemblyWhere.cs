@@ -10,7 +10,7 @@ namespace TestApplication.Windsor.TestCases.BasedOn
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromThisAssembly().Where(type => true)
+                AllTypes.FromThisAssembly().Where(type => typeof(IFoo).IsAssignableFrom(type))
                 
                 );
         }

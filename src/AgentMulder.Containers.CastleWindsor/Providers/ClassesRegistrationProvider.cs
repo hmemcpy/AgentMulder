@@ -27,7 +27,8 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
             {
                 new ClassesFrom(basedOnPatterns),
                 new ClassesFromAssembly(basedOnPatterns),
-                new ClassesFromThisAssembly(basedOnPatterns)
+                new ClassesFromThisAssembly(basedOnPatterns),
+                new ClassesFromAssemblyNamed(basedOnPatterns), 
             };
         }
     }

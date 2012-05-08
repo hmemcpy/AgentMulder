@@ -89,6 +89,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyNamedBasedOnGeneric.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyNamedBasedOnNonGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyBasedOnNonGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInSameNamespaceAsNonGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInSameNamespaceAsNonGenericWithSubnamespaces.cs" />

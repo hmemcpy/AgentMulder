@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containers", "Containers", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "Test\Data\TestApplication.csproj", "{2A40748D-310D-4193-A2E8-079A53040A93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Ninject", "AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.csproj", "{E1798D1B-C0DC-4A17-8683-230E89960E49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{C6154279-CFEE-47FC-8F17-F901A5636B0A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A40748D-310D-4193-A2E8-079A53040A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A40748D-310D-4193-A2E8-079A53040A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1798D1B-C0DC-4A17-8683-230E89960E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1798D1B-C0DC-4A17-8683-230E89960E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1798D1B-C0DC-4A17-8683-230E89960E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1798D1B-C0DC-4A17-8683-230E89960E49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +59,6 @@ Global
 		{C6154279-CFEE-47FC-8F17-F901A5636B0A} = {F0AF21D8-9FFB-4641-AA4A-404A86F9029D}
 		{2A40748D-310D-4193-A2E8-079A53040A93} = {F0AF21D8-9FFB-4641-AA4A-404A86F9029D}
 		{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60} = {0AFEAB16-D259-49ED-A30C-08B4D9997E48}
+		{E1798D1B-C0DC-4A17-8683-230E89960E49} = {0AFEAB16-D259-49ED-A30C-08B4D9997E48}
 	EndGlobalSection
 EndGlobal

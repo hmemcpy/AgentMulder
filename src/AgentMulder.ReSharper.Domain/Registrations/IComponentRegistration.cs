@@ -1,11 +1,11 @@
-using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public interface IComponentRegistration
     {
-        DocumentRange DocumentRange { get; }
+        ITreeNode RegistrationElement { get; }
 
         bool IsSatisfiedBy(ITypeElement typeElement);
     }

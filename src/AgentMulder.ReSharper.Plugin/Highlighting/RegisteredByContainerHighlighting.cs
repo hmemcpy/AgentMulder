@@ -1,4 +1,5 @@
 ﻿using AgentMulder.ReSharper.Domain.Registrations;
+using JetBrains.Application;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Feature.Services.Navigation;
@@ -8,18 +9,16 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
     [StaticSeverityHighlighting(Severity.INFO, "GutterMarks", OverlapResolve = OverlapResolveKind.NONE, AttributeId = "Container Registration", ShowToolTipInStatusBar = false)]
     public sealed class RegisteredByContainerHighlighting : IClickableGutterHighlighting
     {
-        private readonly ISolution solution;
         private readonly IComponentRegistration registration;
 
-        public RegisteredByContainerHighlighting(ISolution solution, IComponentRegistration registration)
+        public RegisteredByContainerHighlighting(IComponentRegistration registration)
         {
-            this.solution = solution;
             this.registration = registration;
         }
 
         public bool IsValid()
         {
-            return registration.DocumentRange.IsValid();
+            return registration.RegistrationElement.IsValid();
         }
 
         public string ToolTip
@@ -40,7 +39,13 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
 
         public void OnClick()
         {
-            NavigationManager.Navigate(registration.DocumentRange, solution, true);
+            ISolution currentSolution = Shell.Instance.GetComponent<ISolutionManager>().CurrentSolution;
+            if (currentSolution == null)
+            {
+                return;
+            }
+
+            NavigationManager.Navigate(registration.RegistrationElement.GetNavigationRange(), currentSolution, true);
         }
     }
 }

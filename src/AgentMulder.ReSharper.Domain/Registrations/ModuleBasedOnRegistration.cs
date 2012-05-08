@@ -9,7 +9,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
         private readonly BasedOnRegistrationBase basedOn;
 
         public ModuleBasedOnRegistration(IModule sourceModule, BasedOnRegistrationBase basedOn)
-            : base(basedOn.DocumentRange)
+            : base(basedOn.RegistrationElement)
         {
             this.sourceModule = sourceModule;
             this.basedOn = basedOn;

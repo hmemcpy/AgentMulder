@@ -17,13 +17,13 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
             this.implementedByPatterns = implementedByPatterns;
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            foreach (var registration in DoCreateRegistrations(parentElement).OfType<ComponentRegistration>())
+            foreach (var registration in DoCreateRegistrations(registrationRootElement).OfType<ComponentRegistration>())
             {
                 foreach (var implementedByPattern in implementedByPatterns)
                 {
-                    var implementedByRegistration = implementedByPattern.GetComponentRegistrations(parentElement)
+                    var implementedByRegistration = implementedByPattern.GetComponentRegistrations(registrationRootElement)
                         .Cast<ComponentRegistration>()
                         .FirstOrDefault();
 

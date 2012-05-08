@@ -1,5 +1,6 @@
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
@@ -26,8 +27,8 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             get { return serviceType; }
         }
 
-        public ComponentRegistration(DocumentRange documentRange, ITypeElement serviceType)
-            : base(documentRange)
+        public ComponentRegistration(ITreeNode registrationElement, ITypeElement serviceType)
+            : base(registrationElement)
         {
             this.serviceType = serviceType;
             

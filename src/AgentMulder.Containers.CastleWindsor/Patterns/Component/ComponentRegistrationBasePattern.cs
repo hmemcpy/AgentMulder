@@ -22,9 +22,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
             this.elementName = elementName;
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = Match(parentElement);
+            IStructuralMatchResult match = Match(registrationRootElement);
             
             if (match.Matched)
             {
@@ -34,7 +34,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
                     ITypeElement typeElement = matchedType.GetTypeElement();
                     if (typeElement != null) // can be null in case of broken reference (unresolved type)
                     {
-                        yield return new ComponentRegistration(match.GetDocumentRange(), typeElement);
+                        yield return new ComponentRegistration(registrationRootElement, typeElement);
                     }
                 }
             }

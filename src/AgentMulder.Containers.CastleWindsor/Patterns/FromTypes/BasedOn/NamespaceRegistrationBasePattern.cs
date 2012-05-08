@@ -15,9 +15,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         {
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            var match = Match(parentElement);
+            var match = Match(registrationRootElement);
 
             if (match.Matched)
             {
@@ -25,9 +25,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                 INamespace namespaceElement = GetNamespaceElement(match, out includeSubnamespaces);
                 if (namespaceElement != null)
                 {
-                    var withServiceRegistrations = base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>();
+                    var withServiceRegistrations = base.GetComponentRegistrations(registrationRootElement).OfType<WithServiceRegistration>();
 
-                    yield return new InNamespaceRegistration(parentElement.GetDocumentRange(), 
+                    yield return new InNamespaceRegistration(registrationRootElement, 
                         namespaceElement, includeSubnamespaces, withServiceRegistrations);
                 }
             }

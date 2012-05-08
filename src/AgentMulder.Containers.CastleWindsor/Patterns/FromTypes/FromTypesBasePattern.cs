@@ -21,15 +21,15 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             this.basedOnPatterns = basedOnPatterns;
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = Match(parentElement);
+            IStructuralMatchResult match = Match(registrationRootElement);
 
             if (match.Matched)
             {
                 foreach (var basedOnPattern in basedOnPatterns)
                 {
-                    foreach (var basedOnRegistration in basedOnPattern.GetComponentRegistrations(parentElement).OfType<BasedOnRegistration>())
+                    foreach (var basedOnRegistration in basedOnPattern.GetComponentRegistrations(registrationRootElement).OfType<BasedOnRegistration>())
                     {
                         IEnumerable<ICSharpArgument> matchedArguments = match.GetMatchedElementList("services").OfType<ICSharpArgument>();
                         IEnumerable<ITypeElement> typeElements = matchedArguments.SelectMany(argument => GetRegisteredTypes(match, argument.Value));

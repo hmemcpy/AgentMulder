@@ -1,20 +1,21 @@
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public abstract class ComponentRegistrationBase : IComponentRegistration
     {
-        private readonly DocumentRange documentRange;
+        private readonly ITreeNode registrationElement;
 
-        protected ComponentRegistrationBase(DocumentRange documentRange)
+        protected ComponentRegistrationBase(ITreeNode registrationElement)
         {
-            this.documentRange = documentRange;
+            this.registrationElement = registrationElement;
         }
 
-        public DocumentRange DocumentRange
+        public ITreeNode RegistrationElement
         {
-            get { return documentRange; }
+            get { return registrationElement; }
         }
 
         public abstract bool IsSatisfiedBy(ITypeElement typeElement);

@@ -1,6 +1,7 @@
 ﻿using System;
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
@@ -9,8 +10,8 @@ namespace AgentMulder.ReSharper.Domain.Registrations
         private readonly Predicate<ITypeElement> predicate;
         private readonly string description;
 
-        public WithServiceRegistration(DocumentRange documentRange, Predicate<ITypeElement> predicate, string description)
-            : base(documentRange)
+        public WithServiceRegistration(ITreeNode registrationElement, Predicate<ITypeElement> predicate, string description)
+            : base(registrationElement)
         {
             this.predicate = predicate;
             this.description = description;

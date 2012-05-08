@@ -26,9 +26,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
             this.argumentsPatterns = argumentsPatterns;
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = Match(parentElement);
+            IStructuralMatchResult match = Match(registrationRootElement);
 
             IEnumerable<IInvocationExpression> invocationExpressions =
                 match.GetMatchedElementList("arguments").Cast<ICSharpArgument>()

@@ -24,9 +24,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy
         {
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = Match(parentElement);
+            IStructuralMatchResult match = Match(registrationRootElement);
 
             if (match.Matched)
             {
@@ -42,7 +42,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy
                 {
                     var typeElement = (IDeclaredType)typeOfExpression.ArgumentType;
 
-                    yield return new ComponentRegistration(parentElement.GetDocumentRange(), typeElement.GetTypeElement());
+                    yield return new ComponentRegistration(registrationRootElement, typeElement.GetTypeElement());
                 }
             }
         }

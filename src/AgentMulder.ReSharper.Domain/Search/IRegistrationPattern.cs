@@ -8,7 +8,7 @@ namespace AgentMulder.ReSharper.Domain.Search
 {
     public interface IRegistrationPattern
     {
-        IStructuralMatcher CreateMatcher();
-        IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement);
+        IStructuralMatcher Matcher { get; }
+        IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement);
     }
 }

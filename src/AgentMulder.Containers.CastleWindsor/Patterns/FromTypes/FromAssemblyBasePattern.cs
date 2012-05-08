@@ -15,9 +15,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         {
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = Match(parentElement);
+            IStructuralMatchResult match = Match(registrationRootElement);
 
             if (match.Matched)
             {
@@ -25,7 +25,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
                 foreach (var basedOnPattern in basedOnPatterns)
                 {
-                    var basedOnRegistrations = basedOnPattern.GetComponentRegistrations(parentElement).Cast<BasedOnRegistrationBase>();
+                    var basedOnRegistrations = basedOnPattern.GetComponentRegistrations(registrationRootElement).Cast<BasedOnRegistrationBase>();
 
                     foreach (var registration in basedOnRegistrations)
                     {

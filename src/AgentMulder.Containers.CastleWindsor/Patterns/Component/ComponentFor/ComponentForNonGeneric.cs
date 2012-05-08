@@ -44,7 +44,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
                 {
                     var typeElement = (IDeclaredType)typeOfExpression.ArgumentType;
 
-                    yield return new ComponentRegistration(typeOfExpression.GetDocumentRange(), typeElement.GetTypeElement());
+                    yield return new ComponentRegistration(parentElement, typeElement.GetTypeElement());
                 }
             }
         }

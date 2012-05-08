@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.DocumentModel;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
@@ -8,8 +9,8 @@ namespace AgentMulder.ReSharper.Domain.Registrations
     {
         protected readonly IEnumerable<WithServiceRegistration> withServices;
 
-        protected BasedOnRegistrationBase(DocumentRange documentRange, IEnumerable<WithServiceRegistration> withServices)
-            : base(documentRange)
+        protected BasedOnRegistrationBase(ITreeNode registrationRootElement, IEnumerable<WithServiceRegistration> withServices)
+            : base(registrationRootElement)
         {
             this.withServices = withServices.ToArray();
         }

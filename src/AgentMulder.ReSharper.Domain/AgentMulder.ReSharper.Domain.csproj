@@ -64,8 +64,6 @@
     <Compile Include="Search\RegistrationBasePattern.cs" />
     <Compile Include="Search\IPatternSearcher.cs" />
     <Compile Include="Search\IRegistrationPattern.cs" />
-    <Compile Include="Search\PatternSearcher.cs" />
-    <Compile Include="SolutionAnalyzer.cs" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

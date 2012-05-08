@@ -11,23 +11,20 @@ namespace AgentMulder.ReSharper.Domain.Search
 {
     public abstract class RegistrationBasePattern : IRegistrationPattern
     {
-        private readonly IStructuralSearchPattern pattern;
+        private readonly IStructuralMatcher matcher;
+
+        public IStructuralMatcher Matcher
+        {
+            get { return matcher; }
+        }
 
         protected RegistrationBasePattern(IStructuralSearchPattern pattern)
         {
-            this.pattern = pattern;
-            Assertion.Assert(pattern.Check() == null, "Invalid pattern");
-        }
-
-        public virtual IStructuralMatcher CreateMatcher()
-        {
-            return pattern.CreateMatcher();
+            matcher = pattern.CreateMatcher();
         }
 
         private IInvocationExpression GetMatchedExpression(ITreeNode rootElement)
         {
-            IStructuralMatcher matcher = CreateMatcher();
-
             var invocationExpression = rootElement as IInvocationExpression;
             if (invocationExpression == null)
                 return null;
@@ -37,8 +34,6 @@ namespace AgentMulder.ReSharper.Domain.Search
 
         protected IStructuralMatchResult Match(ITreeNode treeNode)
         {
-            IStructuralMatcher matcher = CreateMatcher();
-
             IInvocationExpression expression = GetMatchedExpression(treeNode);
             if (expression == null)
             {
@@ -48,6 +43,6 @@ namespace AgentMulder.ReSharper.Domain.Search
             return matcher.Match(expression);
         }
 
-        public abstract IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement);
+        public abstract IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement);
     }
 }

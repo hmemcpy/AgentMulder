@@ -53,7 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentRegistrationsTestBase.cs" />
-    <Compile Include="PatternsTestBase.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
     <Compile Include="Windsor\ClassesTests.cs" />
     <Compile Include="Windsor\TypesTests.cs" />

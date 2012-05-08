@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using JetBrains.Application.PluginSupport;
 
 // General Information about an assembly is controlled through the following 
@@ -10,3 +11,5 @@ using JetBrains.Application.PluginSupport;
 [assembly: PluginTitle("Agent Mulder plugin for ReSharper")]
 [assembly: PluginDescription("Provides navigation to and finding usages of types, registered or resolved via DI Containers.")]
 [assembly: PluginVendor("Igal Tabachnik")]
+
+[assembly: InternalsVisibleTo("AgentMulder.ReSharper.Tests")]

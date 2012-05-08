@@ -6,6 +6,7 @@ using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
+using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application.Components;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
@@ -37,10 +38,11 @@ namespace AgentMulder.ReSharper.Tests
             WithSingleProject(fileSet, (lifetime, project) => RunGuarded(() =>
             {
                 var searchDomainFactory = ShellInstance.GetComponent<SearchDomainFactory>();
-                var patternSearcher = new PatternSearcher(Solution, searchDomainFactory);
-                var solutionnAnalyzer = new SolutionAnalyzer(patternSearcher, ContainerInfo);
+                var patternSearcher = new PatternSearcher(searchDomainFactory);
+                var solutionnAnalyzer = new SolutionAnalyzer(patternSearcher);
+                solutionnAnalyzer.AddContainer(ContainerInfo);
 
-                var componentRegistrations = solutionnAnalyzer.Analyze(Solution).ToList();
+                var componentRegistrations = solutionnAnalyzer.Analyze().ToList();
 
                 action(componentRegistrations);
             }));

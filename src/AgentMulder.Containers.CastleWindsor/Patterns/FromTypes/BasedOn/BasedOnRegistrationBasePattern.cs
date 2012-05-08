@@ -18,9 +18,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
             this.withServicePatterns = withServicePatterns;
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            return withServicePatterns.SelectMany(withServicePattern => withServicePattern.GetComponentRegistrations(parentElement));
+            return withServicePatterns.SelectMany(withServicePattern => withServicePattern.GetComponentRegistrations(registrationRootElement));
         }
     }
 }

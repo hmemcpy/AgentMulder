@@ -22,19 +22,19 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         {
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = Match(parentElement);
+            IStructuralMatchResult match = Match(registrationRootElement);
 
             if (match.Matched)
             {
                 var matchedType = match.GetMatchedType("type") as IDeclaredType;
                 if (matchedType != null)
                 {
-                    var withServiceRegistrations = base.GetComponentRegistrations(parentElement).OfType<WithServiceRegistration>();
+                    var withServiceRegistrations = base.GetComponentRegistrations(registrationRootElement).OfType<WithServiceRegistration>();
 
                     ITypeElement typeElement = matchedType.GetTypeElement();
-                    yield return new BasedOnRegistration(match.MatchedElement.GetDocumentRange(), typeElement, withServiceRegistrations);
+                    yield return new BasedOnRegistration(registrationRootElement, typeElement, withServiceRegistrations);
                 }
             }
         }

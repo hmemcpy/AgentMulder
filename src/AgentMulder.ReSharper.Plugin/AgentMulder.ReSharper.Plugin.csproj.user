@@ -3,7 +3,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.exe</StartProgram>
-    <StartArguments>/ReSharper.Plugin AgentMulder.ReSharper.Plugin.dll /ReSharper.Internal</StartArguments>
+    <StartArguments>/rootsuffix AGML /ReSharper.Plugin AgentMulder.ReSharper.Plugin.dll /ReSharper.Internal</StartArguments>
     <StartWorkingDirectory>D:\dev\AgentMulder\output\Debug\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>

@@ -10,7 +10,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
         private readonly IEnumerable<ITypeElement> types;
 
         public TypesBasedOnRegistration(IEnumerable<ITypeElement> types, BasedOnRegistrationBase basedOn)
-            : base(basedOn.DocumentRange)
+            : base(basedOn.RegistrationElement)
         {
             this.basedOn = basedOn;
             this.types = types.ToArray();

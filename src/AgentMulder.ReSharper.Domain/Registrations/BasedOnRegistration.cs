@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
@@ -21,8 +22,8 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             get { return withServices; }
         }
 
-        public BasedOnRegistration(DocumentRange documentRange, ITypeElement basedOnElement, IEnumerable<WithServiceRegistration> withServices)
-            : base(documentRange, withServices)
+        public BasedOnRegistration(ITreeNode registrationRootElement, ITypeElement basedOnElement, IEnumerable<WithServiceRegistration> withServices)
+            : base(registrationRootElement, withServices)
         {
             this.basedOnElement = basedOnElement;
             IDeclaredElement d;

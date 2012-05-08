@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
@@ -11,8 +12,8 @@ namespace AgentMulder.ReSharper.Domain.Registrations
         private readonly INamespace matchedNamespace;
         private readonly bool includeSubnamespaces;
 
-        public InNamespaceRegistration(DocumentRange documentRange, INamespace matchedNamespace, bool includeSubnamespaces, IEnumerable<WithServiceRegistration> withServices)
-            : base(documentRange, withServices)
+        public InNamespaceRegistration(ITreeNode registrationRootElement, INamespace matchedNamespace, bool includeSubnamespaces, IEnumerable<WithServiceRegistration> withServices)
+            : base(registrationRootElement, withServices)
         {
             this.matchedNamespace = matchedNamespace;
             this.includeSubnamespaces = includeSubnamespaces;

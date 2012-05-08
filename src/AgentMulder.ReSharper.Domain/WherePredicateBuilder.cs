@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
@@ -92,8 +93,9 @@ namespace AgentMulder.ReSharper.Domain
                 return base.VisitTypeofExpression(typeofExpressionParam, context);
             }
 
-            string fullyQualifiedTypeName = string.Format("{0}, {1}", declaredType.GetClrName().FullName,
-                                                          declaredType.Assembly.FullName);
+            string assemblyName = GetTypeAssemblyFullName(declaredType);
+
+            string fullyQualifiedTypeName = string.Format("{0}, {1}", declaredType.GetClrName().FullName, assemblyName);
 
             Type value = Type.GetType(fullyQualifiedTypeName);
             
@@ -111,6 +113,22 @@ namespace AgentMulder.ReSharper.Domain
             }
 
             return Expression.Constant(expression.ConstantValue.Value);
+        }
+
+        private string GetTypeAssemblyFullName(IDeclaredType declaredType)
+        {
+            if (declaredType.Assembly != null)
+            {
+                return declaredType.Assembly.FullName;
+            }
+
+            IAssembly assembly = declaredType.Module.ContainingProjectModule.GetModuleAssembly();
+            if (assembly == null)
+            {
+                return null;
+            }
+
+            return assembly.FullAssemblyName;
         }
     }
 }

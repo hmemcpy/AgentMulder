@@ -92,7 +92,7 @@ namespace AgentMulder.ReSharper.Domain.Utils
 
                 Type[] types = reflectionOnlyAssembly.GetTypes();
 
-                ExpressionSerialization.ExpressionSerializer ser = new ExpressionSerializer();
+                var ser = new ExpressionSerializer();
                 XElement element = XElement.Parse(predicateString);
                 Expression<Predicate<Type>> deserialize = ser.Deserialize<Predicate<Type>>(element);
                 Predicate<Type> p = deserialize.Compile();

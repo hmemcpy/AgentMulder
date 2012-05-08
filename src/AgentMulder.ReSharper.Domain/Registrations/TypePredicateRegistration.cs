@@ -27,7 +27,17 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
-            FileSystemPath assemblyFilePath = GetModuleAssembly();
+            IAssembly moduleAssembly = Module.GetModuleAssembly();
+            if (moduleAssembly == null)
+            {
+                return false;
+            }
+            var psiAssembly = moduleAssembly as IPsiAssembly;
+            if (psiAssembly == null)
+            {
+                return false;
+            }
+            var assemblyFilePath = psiAssembly.Location;
             if (assemblyFilePath == null)
             {
                 return false;
@@ -56,28 +66,6 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             return true;
         }
 
-        private FileSystemPath GetModuleAssembly()
-        {
-            var assemblyPsiModule = Module as IAssemblyPsiModule;
-            if (assemblyPsiModule != null)
-            {
-                return assemblyPsiModule.Assembly.Location;
-                
-            }
-            var project = Module as IProject;
-            if (project != null)
-            {
-                IAssemblyFile outputAssemblyFile = project.GetOutputAssemblyFile();
-                var data = outputAssemblyFile as IAssemblyFileData;
-                if (data != null)
-                {
-                    return data.Location;
-                }
-
-                return null;
-            }
-
-            return null;
-        }
+        
     }
 }

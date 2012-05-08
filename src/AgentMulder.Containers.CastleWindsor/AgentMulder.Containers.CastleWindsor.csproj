@@ -68,6 +68,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Patterns\FromTypes\AllTypesFromAssemblyNamed.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromAssembly.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromAssemblyNamed.cs" />

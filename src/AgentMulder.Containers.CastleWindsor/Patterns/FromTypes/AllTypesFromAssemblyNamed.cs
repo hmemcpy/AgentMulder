@@ -29,6 +29,13 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             {
                 return null;
             }
+            
+            if (argument.Value.ConstantValue == null ||
+                !argument.Value.ConstantValue.IsString())
+            {
+                // currently only direct string values are supported;
+                return null;
+            }
 
             string assemblyName = Convert.ToString(argument.Value.ConstantValue.Value);
 

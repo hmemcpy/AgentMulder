@@ -39,6 +39,10 @@
       <HintPath>C:\Program Files (x86)\JetBrains\ReSharper\v6.1\SDK\Bin\JetBrains.Platform.ReSharper.ProjectModel.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="JetBrains.Platform.ReSharper.Shell">
+      <HintPath>C:\Program Files (x86)\JetBrains\ReSharper\v6.1\SDK\Bin\JetBrains.Platform.ReSharper.Shell.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="JetBrains.Platform.ReSharper.Util">
       <HintPath>C:\Program Files (x86)\JetBrains\ReSharper\v6.1\SDK\Bin\JetBrains.Platform.ReSharper.Util.dll</HintPath>
       <Private>False</Private>
@@ -64,6 +68,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Patterns\FromTypes\AllTypesFromAssemblyNamed.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromAssembly.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromThisAssembly.cs" />
     <Compile Include="Patterns\FromTypes\TypesFrom.cs" />

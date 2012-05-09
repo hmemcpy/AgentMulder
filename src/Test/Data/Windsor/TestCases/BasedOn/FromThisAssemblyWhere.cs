@@ -11,7 +11,6 @@ namespace TestApplication.Windsor.TestCases.BasedOn
         {
             container.Register(
                 AllTypes.FromThisAssembly().Where(type => typeof(IFoo).IsAssignableFrom(type))
-                
                 );
         }
     }

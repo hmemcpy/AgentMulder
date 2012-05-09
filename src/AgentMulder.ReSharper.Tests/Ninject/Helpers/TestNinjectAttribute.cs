@@ -1,6 +1,4 @@
-﻿using Castle.Core;
-using Castle.Windsor;
-using JetBrains.ReSharper.TestFramework;
+﻿using JetBrains.ReSharper.TestFramework;
 using Ninject.Modules;
 
 namespace AgentMulder.ReSharper.Tests.Ninject.Helpers

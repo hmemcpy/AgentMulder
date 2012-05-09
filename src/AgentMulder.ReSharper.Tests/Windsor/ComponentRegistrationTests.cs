@@ -15,8 +15,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
     [TestWindsor]
     public class ComponentRegistrationTests : ComponentRegistrationsTestBase
     {
-        // The source files are located in the solution directory, under Test\Data and the path below, i.e. Test\Data\StructuralSearch\Windsor
-        // These files are loaded into the test solution that is being created by this test fixture
         protected override string RelativeTestDataPath
         {
             get { return @"Windsor\ComponentTestCases"; }

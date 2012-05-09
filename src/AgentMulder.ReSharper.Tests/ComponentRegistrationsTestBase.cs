@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Search;
 using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application.Components;
 using JetBrains.ProjectModel;
@@ -42,7 +40,7 @@ namespace AgentMulder.ReSharper.Tests
                 var solutionnAnalyzer = new SolutionAnalyzer(patternSearcher);
                 solutionnAnalyzer.AddContainer(ContainerInfo);
 
-                var componentRegistrations = solutionnAnalyzer.Analyze().ToList();
+                var componentRegistrations = solutionnAnalyzer.Analyze();
 
                 action(componentRegistrations);
             }));

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Linq;
+using System.Reflection;
 using AgentMulder.Containers.Ninject.Patterns;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
@@ -24,6 +26,18 @@ namespace AgentMulder.Containers.Ninject
         public string ContainerDisplayName
         {
             get { return "Ninject"; }
+        }
+
+        public NinjectContainerInfo()
+        {
+            var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+            var container = new CompositionContainer(catalog);
+            container.ComposeParts(this);
+
+            registrationPatterns = new List<IRegistrationPattern>
+            {
+                new NinjectModulePattern(PatternsProviders.SelectMany(provider => provider.GetRegistrationPatterns()).ToArray())
+            };
         }
 
         public NinjectContainerInfo(IEnumerable<IRegistrationPatternsProvider> patternsProviders)

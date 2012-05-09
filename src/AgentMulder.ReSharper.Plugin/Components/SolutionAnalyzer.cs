@@ -32,16 +32,15 @@ namespace AgentMulder.ReSharper.Plugin.Components
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             path = Path.Combine(path, "Containers");
 
-            try
+            if (!Directory.Exists(path))
             {
-                var catalog = new DirectoryCatalog(path, "*.dll");
-                var container = new CompositionContainer(catalog);
-                IEnumerable<IContainerInfo> values = container.GetExportedValues<IContainerInfo>();
-                knownContainers.AddRange(values);
+                return;
             }
-            catch
-            {
-            }
+
+            var catalog = new DirectoryCatalog(path, "*.dll");
+            var container = new CompositionContainer(catalog);
+            IEnumerable<IContainerInfo> values = container.GetExportedValues<IContainerInfo>();
+            knownContainers.AddRange(values);
         }
 
         public IEnumerable<IComponentRegistration> Analyze()

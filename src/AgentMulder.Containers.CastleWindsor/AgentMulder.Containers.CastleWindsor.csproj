@@ -84,9 +84,7 @@
     <Compile Include="Patterns\Component\ComponentFor\ComponentForBasePattern.cs" />
     <Compile Include="Patterns\Component\ComponentFor\ComponentForGeneric.cs" />
     <Compile Include="Patterns\Component\ComponentFor\ComponentForNonGeneric.cs" />
-    <Compile Include="Patterns\Component\ImplementedBy\ImplementedByBasePattern.cs" />
     <Compile Include="Patterns\Component\ImplementedBy\ImplementedByGeneric.cs" />
-    <Compile Include="Patterns\Component\ComponentRegistrationBasePattern.cs" />
     <Compile Include="Patterns\Component\ImplementedBy\ImplementedByNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\BasedOnNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\InNamespace.cs" />

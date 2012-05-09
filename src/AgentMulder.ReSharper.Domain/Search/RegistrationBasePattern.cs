@@ -29,7 +29,11 @@ namespace AgentMulder.ReSharper.Domain.Search
             if (invocationExpression == null)
                 return null;
 
-            return invocationExpression.GetAllExpressions().FirstOrDefault(expression => matcher.QuickMatch(expression));
+            return invocationExpression.GetAllExpressions().FirstOrDefault(expression =>
+            {
+                bool result = matcher.QuickMatch(expression);
+                return result;
+            });
         }
 
         protected IStructuralMatchResult Match(ITreeNode treeNode)

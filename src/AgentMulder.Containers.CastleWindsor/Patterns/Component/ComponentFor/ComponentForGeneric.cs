@@ -1,4 +1,5 @@
 using AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy;
+using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -12,7 +13,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
                                               new ExpressionPlaceholder("component", "Castle.MicroKernel.Registration.Component"),
                                               new TypePlaceholder("service"));
 
-        public ComponentForGeneric(params ImplementedByBasePattern[] implementedByPatterns)
+        public ComponentForGeneric(params ComponentImplementationBasePattern[] implementedByPatterns)
             : base(pattern, "service", implementedByPatterns)
         {
         }

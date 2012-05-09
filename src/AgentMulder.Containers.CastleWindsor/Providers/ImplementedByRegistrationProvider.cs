@@ -9,9 +9,9 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
     [Export]
     public class ImplementedByRegistrationProvider : IRegistrationPatternsProvider
     {
-        public IEnumerable<ImplementedByBasePattern> GetRegistrationPatterns()
+        public IEnumerable<ComponentImplementationBasePattern> GetRegistrationPatterns()
         {
-            return new ImplementedByBasePattern[]
+            return new ComponentImplementationBasePattern[]
             {
                 new ImplementedByGeneric(), 
                 new ImplementedByNonGeneric()

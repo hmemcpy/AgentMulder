@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using AgentMulder.ReSharper.Domain.Registrations;
+using System.Collections.Generic;
 using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.CastleWindsor.Patterns.Component
+namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public abstract class ComponentRegistrationBasePattern : RegistrationBasePattern
     {

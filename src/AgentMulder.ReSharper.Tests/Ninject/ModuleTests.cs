@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using AgentMulder.Containers.Ninject;
 using AgentMulder.Containers.Ninject.Providers;
 using AgentMulder.ReSharper.Domain.Containers;

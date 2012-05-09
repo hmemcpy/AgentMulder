@@ -30,15 +30,20 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
         {
             IStructuralMatchResult match = Match(registrationRootElement);
 
-            IEnumerable<IInvocationExpression> invocationExpressions =
-                match.GetMatchedElementList("arguments").Cast<ICSharpArgument>()
-                    .Select(argument => argument.Value)
-                    .OfType<IInvocationExpression>();
+            if (match.Matched)
+            {
+                IEnumerable<IInvocationExpression> invocationExpressions =
+                    match.GetMatchedElementList("arguments").Cast<ICSharpArgument>()
+                        .Select(argument => argument.Value)
+                        .OfType<IInvocationExpression>();
 
-            return from argumentPattern in argumentsPatterns
-                   from expression in invocationExpressions
-                   from registration in argumentPattern.GetComponentRegistrations(expression)
-                   select registration;
+                return from argumentPattern in argumentsPatterns
+                       from expression in invocationExpressions
+                       from registration in argumentPattern.GetComponentRegistrations(expression)
+                       select registration;
+            }
+
+            return Enumerable.Empty<IComponentRegistration>();
         }
     }
 }

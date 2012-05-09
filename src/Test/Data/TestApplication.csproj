@@ -70,7 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ninject\KernelTestCases\BindTo.cs" />
+    <Compile Include="Ninject\ModuleTestCases\BindTo.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />
     <Compile Include="Types\Baz.cs" />

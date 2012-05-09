@@ -31,14 +31,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Platform.ReSharper.Util">
+      <HintPath>C:\Program Files (x86)\JetBrains\ReSharper\v6.1\SDK\Bin\JetBrains.Platform.ReSharper.Util.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.Psi">
+      <HintPath>C:\Program Files (x86)\JetBrains\ReSharper\v6.1\SDK\Bin\JetBrains.ReSharper.Psi.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.Psi.CSharp">
+      <HintPath>C:\Program Files (x86)\JetBrains\ReSharper\v6.1\SDK\Bin\JetBrains.ReSharper.Psi.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.Psi.Services">
+      <HintPath>C:\Program Files (x86)\JetBrains\ReSharper\v6.1\SDK\Bin\JetBrains.ReSharper.Psi.Services.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.Psi.Services.CSharp">
+      <HintPath>C:\Program Files (x86)\JetBrains\ReSharper\v6.1\SDK\Bin\JetBrains.ReSharper.Psi.Services.CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="NinjectContainerInfo.cs" />
+    <Compile Include="Patterns\NinjectModulePattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">
+      <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
+      <Name>AgentMulder.ReSharper.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

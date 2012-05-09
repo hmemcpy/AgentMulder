@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using AgentMulder.Containers.Ninject;
+using AgentMulder.Containers.Ninject.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Tests.Ninject.Helpers;
@@ -25,10 +26,10 @@ namespace AgentMulder.ReSharper.Tests.Ninject
 
         protected override IContainerInfo ContainerInfo
         {
-            get { return new NinjectContainerInfo(new IRegistrationPatternsProvider[0]); }
+            get { return new NinjectContainerInfo(new[] { new BindRegistrationProvider(new ToRegistrationProvider()), }); }
         }
 
-        [TestCase("BindTo", "Foo.cs")]
+        [TestCase("BindGenericToGeneric", "Foo.cs")]
         public void DoTest(string testName, string fileName)
         {
             RunTest(testName, registrations =>

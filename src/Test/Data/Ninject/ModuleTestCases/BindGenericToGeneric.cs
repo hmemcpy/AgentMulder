@@ -1,9 +1,10 @@
 ﻿using Ninject.Modules;
+using Ninject.Syntax;
 using TestApplication.Types;
 
 namespace TestApplication.Ninject.ModuleTestCases
 {
-    public class BindTo : NinjectModule
+    public class BindGenericToGeneric : NinjectModule
     {
         public override void Load()
         {

@@ -32,12 +32,12 @@ namespace AgentMulder.Containers.Ninject.Patterns
 
             if (match.Matched)
             {
-                IEnumerable<ICSharpStatement> statements =
-                    match.GetMatchedElementList("statements").Cast<ICSharpStatement>();
+                IEnumerable<IInvocationExpression> invocationExpressions =
+                    match.GetMatchedElementList("statements").Cast<IExpressionStatement>().Select(statement => statement.Expression as IInvocationExpression);
 
                 return from bindPattern in bindPatterns
-                       from statement in statements
-                       from registration in bindPattern.GetComponentRegistrations(statement)
+                       from invocationExpression in invocationExpressions
+                       from registration in bindPattern.GetComponentRegistrations(invocationExpression)
                        select registration;
             }
 

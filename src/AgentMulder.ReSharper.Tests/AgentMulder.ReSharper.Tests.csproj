@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentRegistrationsTestBase.cs" />
+    <Compile Include="Ninject\Helpers\TestNinjectAttribute.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
     <Compile Include="Windsor\ClassesTests.cs" />

@@ -11,6 +11,7 @@ using JetBrains.DocumentModel;
 using JetBrains.ProjectModel;
 using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
@@ -19,8 +20,8 @@ namespace AgentMulder.ReSharper.Domain.Registrations
     {
         private readonly Expression predicateExpression;
 
-        public TypePredicateRegistration(DocumentRange documentRange, Expression<Predicate<Type>> predicateExpression, IEnumerable<WithServiceRegistration> withServices)
-            : base(documentRange, withServices)
+        public TypePredicateRegistration(ITreeNode registrationRootElement, Expression<Predicate<Type>> predicateExpression, IEnumerable<WithServiceRegistration> withServices)
+            : base(registrationRootElement, withServices)
         {
             this.predicateExpression = predicateExpression;
         }

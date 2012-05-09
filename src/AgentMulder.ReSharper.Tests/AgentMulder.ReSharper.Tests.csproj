@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="ComponentRegistrationsTestBase.cs" />
     <Compile Include="Ninject\Helpers\TestWindsorAttribute.cs" />
+    <Compile Include="Ninject\ModuleTests.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
     <Compile Include="Windsor\ClassesTests.cs" />
     <Compile Include="Windsor\TypesTests.cs" />
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.csproj">
       <Project>{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}</Project>
       <Name>AgentMulder.Containers.CastleWindsor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.csproj">
+      <Project>{E1798D1B-C0DC-4A17-8683-230E89960E49}</Project>
+      <Name>AgentMulder.Containers.Ninject</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">
       <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>

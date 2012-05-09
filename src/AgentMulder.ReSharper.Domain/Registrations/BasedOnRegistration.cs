@@ -26,7 +26,6 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             : base(registrationRootElement, withServices)
         {
             this.basedOnElement = basedOnElement;
-            IDeclaredElement d;
 
             name = basedOnElement.GetClrName().FullName;
         }

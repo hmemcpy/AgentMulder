@@ -13,6 +13,8 @@ namespace AgentMulder.Containers.Ninject.Patterns
 {
     public class NinjectModulePattern : RegistrationBasePattern
     {
+        private readonly RegistrationBasePattern[] bindPatterns;
+
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("class $module$ : NinjectModule { public override void Load() { $statements$ } }",
                 new IdentifierPlaceholder("module"),
@@ -21,7 +23,7 @@ namespace AgentMulder.Containers.Ninject.Patterns
         public NinjectModulePattern(RegistrationBasePattern[] bindPatterns)
             : base(pattern)
         {
-            
+            this.bindPatterns = bindPatterns;
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
@@ -30,11 +32,16 @@ namespace AgentMulder.Containers.Ninject.Patterns
 
             if (match.Matched)
             {
-                IEnumerable<ICSharpStatement> statements = match.GetMatchedElementList("statements").Cast<ICSharpStatement>();
+                IEnumerable<ICSharpStatement> statements =
+                    match.GetMatchedElementList("statements").Cast<ICSharpStatement>();
 
+                return from bindPattern in bindPatterns
+                       from statement in statements
+                       from registration in bindPattern.GetComponentRegistrations(statement)
+                       select registration;
             }
 
-            yield break;
+            return Enumerable.Empty<IComponentRegistration>();
         }
     }
 }

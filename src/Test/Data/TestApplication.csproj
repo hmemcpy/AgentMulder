@@ -70,11 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Expressions\Complex1.cs" />
-    <Compile Include="Expressions\Complex2.cs" />
-    <Compile Include="Expressions\ConstantExpression.cs" />
-    <Compile Include="Expressions\MemberReference.cs" />
-    <Compile Include="Ninject\KernelTestCases\BindTo.cs" />
+    <Compile Include="Ninject\ModuleTestCases\BindGenericToGeneric.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />
     <Compile Include="Types\Baz.cs" />

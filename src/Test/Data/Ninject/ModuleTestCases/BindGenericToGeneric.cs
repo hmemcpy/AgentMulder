@@ -1,4 +1,5 @@
 ﻿using Ninject.Modules;
+using Ninject.Syntax;
 using TestApplication.Types;
 
 namespace TestApplication.Ninject.ModuleTestCases
@@ -7,7 +8,7 @@ namespace TestApplication.Ninject.ModuleTestCases
     {
         public override void Load()
         {
-            Bind<ICommon>().To<CommonImpl1>();
+            Bind<IFoo>().To<Foo>();
         }
     }
 }

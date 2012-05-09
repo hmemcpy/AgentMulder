@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using AgentMulder.Containers.Ninject;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Registrations;
+using AgentMulder.ReSharper.Tests.Ninject.Helpers;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Tree;
+using NUnit.Framework;
 
 namespace AgentMulder.ReSharper.Tests.Ninject
 {
+    [TestNinject]
     public class ModuleTests : ComponentRegistrationsTestBase
     {
-        // The source files are located in the solution directory, under Test\Data and the path below, i.e. Test\Data\StructuralSearch\Windsor
-        // These files are loaded into the test solution that is being created by this test fixture
         protected override string RelativeTestDataPath
         {
             get { return @"Ninject\ModuleTestCases"; }
@@ -22,6 +26,19 @@ namespace AgentMulder.ReSharper.Tests.Ninject
         protected override IContainerInfo ContainerInfo
         {
             get { return new NinjectContainerInfo(new IRegistrationPatternsProvider[0]); }
+        }
+
+        [TestCase("BindTo", "Foo.cs")]
+        public void DoTest(string testName, string fileName)
+        {
+            RunTest(testName, registrations =>
+            {
+                ICSharpFile file = GetCodeFile(fileName);
+
+                Assert.AreEqual(1, registrations.Count());
+                file.ProcessChildren<ITypeDeclaration>(declaration =>
+                    Assert.That(registrations.First().IsSatisfiedBy(declaration.DeclaredElement)));
+            });
         }
     }
 }

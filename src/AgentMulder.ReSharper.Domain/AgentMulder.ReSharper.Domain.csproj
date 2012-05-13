@@ -57,6 +57,13 @@
     <Compile Include="Patterns\ComponentRegistrationBasePattern.cs" />
     <Compile Include="Patterns\IRegistrationPattern.cs" />
     <Compile Include="Patterns\RegistrationBasePattern.cs" />
+    <Compile Include="Expressions\EqualityExpressionBuilder.cs" />
+    <Compile Include="Expressions\ExpressionBuilder.cs" />
+    <Compile Include="Expressions\IExpressionBuilder.cs" />
+    <Compile Include="Expressions\ParameterExpressionBuilder.cs" />
+    <Compile Include="Expressions\ParenthesizedExpressionBuilder.cs" />
+    <Compile Include="Expressions\MemberExpressionBuilder.cs" />
+    <Compile Include="Expressions\UnaryOperatorExpressionBuilder.cs" />
     <Compile Include="PsiExtensions.cs" />
     <Compile Include="Modules\Impl\AssemblyNameExtractor.cs" />
     <Compile Include="Modules\ModuleExtractorDecorator.cs" />
@@ -67,8 +74,9 @@
     <Compile Include="Modules\Impl\TypeAssemblyPropertyExtractor.cs" />
     <Compile Include="Modules\Impl\TypeOfExtractor.cs" />
     <Compile Include="Registrations\TypePredicateRegistration.cs" />
+    <Compile Include="Utils\ReflectionExtensions.cs" />
     <Compile Include="Utils\SeperateAppDomainAssemblyLoader.cs" />
-    <Compile Include="WherePredicateBuilder.cs" />
+    <Compile Include="Expressions\WherePredicateBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrations\BasedOnRegistration.cs" />
     <Compile Include="Registrations\ComponentRegistrationBase.cs" />
@@ -81,7 +89,12 @@
     <Compile Include="Registrations\WithServiceRegistration.cs" />
     <Compile Include="Registrations\BasedOnRegistrationBase.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Scully\Scully.Metadata\Scully.Metadata.csproj">
+      <Project>{B9927BA4-296B-4B34-B812-EB542747E750}</Project>
+      <Name>Scully.Metadata</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

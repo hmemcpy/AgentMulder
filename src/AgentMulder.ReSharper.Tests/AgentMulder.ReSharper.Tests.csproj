@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentRegistrationsTestBase.cs" />
+    <Compile Include="LambdaExpressionsTestsBase.cs" />
+    <Compile Include="Expressions\WherePredicateBuilderTests.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
     <Compile Include="Windsor\ClassesTests.cs" />
     <Compile Include="Windsor\TypesTests.cs" />

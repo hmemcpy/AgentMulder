@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
 using AgentMulder.ReSharper.Domain;
+using AgentMulder.ReSharper.Domain.Expressions;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;

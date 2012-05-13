@@ -1,3 +1,6 @@
 [submodule "wiki"]
 	path = wiki
 	url = git@github.com:hmemcpy/AgentMulder.wiki.git
+[submodule "src/Scully"]
+	path = src/Scully
+	url = git@github.com:hmemcpy/Scully.git

@@ -1,7 +1,10 @@
 using System.Linq.Expressions;
 using System.Reflection;
+using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Resolve;
 using Scully.Metadata;
+using JetBrains.ReSharper.Psi.Resolve.ExtensionMethods;
 
 namespace AgentMulder.ReSharper.Domain.Expressions
 {
@@ -20,7 +23,19 @@ namespace AgentMulder.ReSharper.Domain.Expressions
 
         public override Expression Build()
         {
-            MemberInfo memberInfo = GetReferencedMember(expression.NameIdentifier.GetText(), context.Type);
+            IResolveResult resolve = expression.Reference.Resolve().Result;
+            ExtensionInstance<IDeclaredElement> element = resolve.ElementAsExtension();
+            
+            var property = element.Element as IProperty;
+            if (property != null)
+            {
+                if (property.XMLDocId == "P:System.Array.Length")
+                {
+                    return Expression.ArrayLength(context);
+                }
+            }
+            
+            MemberInfo memberInfo = GetReferencedMember(element.Element.ShortName, context.Type);
 
             return Expression.MakeMemberAccess(context, memberInfo);
         }

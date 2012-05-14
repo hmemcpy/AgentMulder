@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Expressions\Complex1.cs" />
+    <Compile Include="Expressions\Complex2.cs" />
     <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Expressions\MemberReference.cs" />
     <Compile Include="Expressions\MethodCallWithArguments.cs" />

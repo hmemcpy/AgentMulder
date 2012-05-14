@@ -7,9 +7,11 @@ using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
+using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 using Scully.Metadata;
+using JetBrains.ReSharper.Psi.Resolve.ExtensionMethods;
 
 namespace AgentMulder.ReSharper.Domain.Expressions
 {
@@ -50,21 +52,33 @@ namespace AgentMulder.ReSharper.Domain.Expressions
                 return new UnaryOperatorExpressionBuilder(unaryOperatorExpressionParam, operandExpression).Build();
             }
 
+            public override Expression VisitRelationalExpression(IRelationalExpression relationalExpressionParam, IMetadataResolver context)
+            {
+                Expression left = relationalExpressionParam.LeftOperand.Accept(this, context);
+                Expression right = relationalExpressionParam.RightOperand.Accept(this, context);
+
+                return new BinaryExpressionBuilder(relationalExpressionParam, left, right).Build();
+            }
+
             public override Expression VisitParenthesizedExpression(IParenthesizedExpression parenthesizedExpressionParam, IMetadataResolver context)
             {
-                var binaryExpression = parenthesizedExpressionParam.Expression as IBinaryExpression;
-                if (binaryExpression != null)
-                {
-                    Expression left = binaryExpression.LeftOperand.Accept(this, context);
-                    Expression right = binaryExpression.RightOperand.Accept(this, context);
-                    return new ConditionalExpressionBuilder(parenthesizedExpressionParam, left, right).Build();
-                }
+                return parenthesizedExpressionParam.Expression.Accept(this, context);
+            }
 
-                return base.VisitParenthesizedExpression(parenthesizedExpressionParam, context);
+            public override Expression VisitBinaryExpression(IBinaryExpression binaryExpressionParam, IMetadataResolver context)
+            {
+                Expression left = binaryExpressionParam.LeftOperand.Accept(this, context);
+                Expression right = binaryExpressionParam.RightOperand.Accept(this, context);
+                return new BinaryExpressionBuilder(binaryExpressionParam, left, right).Build();
             }
 
             public override Expression VisitInvocationExpression(IInvocationExpression invocationExpressionParam, IMetadataResolver context)
             {
+                var result = invocationExpressionParam.InvocationExpressionReference.Resolve().Result;
+                ExtensionInstance<IDeclaredElement> extension = result.ElementAsExtension();
+                
+
+
                 return invocationExpressionParam.InvokedExpression.Accept(this, context);
             }
 
@@ -72,7 +86,6 @@ namespace AgentMulder.ReSharper.Domain.Expressions
             {
                 if (referenceExpressionParam.QualifierExpression != null)
                 {
-                    // todo fix, I hate this
                     Expression qualifierExpression = referenceExpressionParam.QualifierExpression.Accept(this, context);
 
                     var invocationExpression = referenceExpressionParam.Parent as IInvocationExpression;

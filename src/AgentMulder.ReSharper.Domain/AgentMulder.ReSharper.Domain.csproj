@@ -62,7 +62,7 @@
     <Compile Include="Expressions\IExpressionBuilder.cs" />
     <Compile Include="Expressions\MemberReferenceExpressionBuilder.cs" />
     <Compile Include="Expressions\ParameterExpressionBuilder.cs" />
-    <Compile Include="Expressions\ConditionalExpressionBuilder.cs" />
+    <Compile Include="Expressions\BinaryExpressionBuilder.cs" />
     <Compile Include="Expressions\MethodCallExpressionBuilder.cs" />
     <Compile Include="Expressions\UnaryOperatorExpressionBuilder.cs" />
     <Compile Include="Extensions.cs" />

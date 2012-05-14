@@ -60,11 +60,12 @@
     <Compile Include="Expressions\EqualityExpressionBuilder.cs" />
     <Compile Include="Expressions\ExpressionBuilder.cs" />
     <Compile Include="Expressions\IExpressionBuilder.cs" />
+    <Compile Include="Expressions\MemberReferenceExpressionBuilder.cs" />
     <Compile Include="Expressions\ParameterExpressionBuilder.cs" />
-    <Compile Include="Expressions\ParenthesizedExpressionBuilder.cs" />
-    <Compile Include="Expressions\MemberExpressionBuilder.cs" />
+    <Compile Include="Expressions\ConditionalExpressionBuilder.cs" />
+    <Compile Include="Expressions\MethodCallExpressionBuilder.cs" />
     <Compile Include="Expressions\UnaryOperatorExpressionBuilder.cs" />
-    <Compile Include="PsiExtensions.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Modules\Impl\AssemblyNameExtractor.cs" />
     <Compile Include="Modules\ModuleExtractorDecorator.cs" />
     <Compile Include="Modules\Impl\TypeElementExtractor.cs" />

@@ -29,6 +29,10 @@ namespace AgentMulder.ReSharper.Tests
             WithSingleProject(fileName, (lifetime, project) => RunGuarded(() =>
             {
                 ICSharpFile file = GetCodeFile(fileName);
+                if (file == null || string.IsNullOrWhiteSpace(file.GetText()))
+                {
+                    Assert.Fail("The file '{0}' was not found or was empty.", fileName);
+                }
 
                 file.ProcessChildren(action);
             }));

@@ -2,6 +2,7 @@ using System;
 using System.Linq.Expressions;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
+using Scully.Metadata;
 
 namespace AgentMulder.ReSharper.Domain.Expressions
 {
@@ -19,7 +20,7 @@ namespace AgentMulder.ReSharper.Domain.Expressions
         public override Expression Build()
         {
             Type parameterType = GetParameterType(declaration.Type);
-
+            
             return Expression.Parameter(parameterType, declaration.DeclaredName);
         }
 

@@ -2,38 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
-using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
+using Scully.Metadata;
 
 namespace AgentMulder.ReSharper.Domain.Expressions
 {
-    public interface IMetadataResolver
-    {
-
-    }
-
     public static class WherePredicateBuilder
     {
         public static Expression<Predicate<TReturn>> FromLambda<TReturn>(ILambdaExpression lambdaExpression)
         {
-            var visitor = new ExpressionTreeBuilderVisitor();
-            Expression body = visitor.VisitLambdaExpression(lambdaExpression, null);
+            var visitor = new ExpressionTreeBuilderVisitor<Predicate<TReturn>>();
             
-            return Expression.Lambda<Predicate<TReturn>>(body, Expression.Parameter(typeof(TReturn)));
+            var result = lambdaExpression.Accept(visitor, null) as Expression<Predicate<TReturn>>;
+
+            return result;
         }
 
-        private class ExpressionTreeBuilderVisitor : TreeNodeVisitor<IMetadataResolver, Expression>
+        private class ExpressionTreeBuilderVisitor<TDelegate> : TreeNodeVisitor<IMetadataResolver, Expression>
         {
+            private readonly List<ParameterExpression> lambdaParameters = new List<ParameterExpression>(); 
+
             public override Expression VisitLambdaExpression(ILambdaExpression lambdaExpressionParam, IMetadataResolver context)
             {
-                return lambdaExpressionParam.BodyExpression.Accept(this, context);
+                lambdaParameters.AddRange(lambdaExpressionParam.ParameterDeclarations.Select(
+                       declaration => declaration.Accept(this, context) as ParameterExpression));
+
+                Expression body = lambdaExpressionParam.BodyExpression.Accept(this, context);
+                
+                return Expression.Lambda<TDelegate>(body, lambdaParameters);
+            }
+
+            public override Expression VisitLambdaParameterDeclaration(ILambdaParameterDeclaration lambdaParameterDeclarationParam, IMetadataResolver context)
+            {
+                return new ParameterExpressionBuilder(lambdaParameterDeclarationParam, context).Build();
             }
 
             public override Expression VisitUnaryOperatorExpression(IUnaryOperatorExpression unaryOperatorExpressionParam, IMetadataResolver context)
@@ -50,7 +57,7 @@ namespace AgentMulder.ReSharper.Domain.Expressions
                 {
                     Expression left = binaryExpression.LeftOperand.Accept(this, context);
                     Expression right = binaryExpression.RightOperand.Accept(this, context);
-                    return new ParenthesizedExpressionBuilder(parenthesizedExpressionParam, left, right).Build();
+                    return new ConditionalExpressionBuilder(parenthesizedExpressionParam, left, right).Build();
                 }
 
                 return base.VisitParenthesizedExpression(parenthesizedExpressionParam, context);
@@ -61,25 +68,45 @@ namespace AgentMulder.ReSharper.Domain.Expressions
                 return invocationExpressionParam.InvokedExpression.Accept(this, context);
             }
 
-            public override Expression VisitCSharpArgument(ICSharpArgument cSharpArgumentParam, IMetadataResolver context)
+            public override Expression VisitReferenceExpression(IReferenceExpression referenceExpressionParam, IMetadataResolver context)
             {
-                var referenceExpression = cSharpArgumentParam.Value as IReferenceExpression;
-
-                if (referenceExpression != null)
+                if (referenceExpressionParam.QualifierExpression != null)
                 {
-                    ResolveResultWithInfo resolve = referenceExpression.Reference.Resolve();
-                    var parameterDeclaration = resolve.DeclaredElement as IParameterDeclaration;
-                    if (parameterDeclaration != null)
-                    {
-                        string parameterName = parameterDeclaration.DeclaredElement.ShortName;
-                        IType type = parameterDeclaration.Type;
+                    // todo fix, I hate this
+                    Expression qualifierExpression = referenceExpressionParam.QualifierExpression.Accept(this, context);
 
-                        Type reflectionType = type.ToReflectionType();
+                    var invocationExpression = referenceExpressionParam.Parent as IInvocationExpression;
+                    if (invocationExpression != null)
+                    {
+                        IEnumerable<Expression> arguments = invocationExpression.ArgumentList.Arguments.Select(
+                                argument => argument.Accept(this, context));
+
+                        return new MethodCallExpressionBuilder(referenceExpressionParam, qualifierExpression, arguments, context).Build();
                     }
+
+                    return new MemberReferenceExpressionBuilder(referenceExpressionParam, qualifierExpression, context).Build();
                 }
 
+                ResolveResultWithInfo resolve = referenceExpressionParam.Reference.Resolve();
+                var lambdaParameterDeclaration = resolve.DeclaredElement as ILambdaParameterDeclaration;
+                if (lambdaParameterDeclaration != null)
+                {
+                    return lambdaParameters.First(
+                            parameter => parameter.Name.Equals(lambdaParameterDeclaration.NameIdentifier.GetText()));
+                }
 
-                return null;
+                var parameterDeclaration = resolve.DeclaredElement as IParameterDeclaration;
+                if (parameterDeclaration != null)
+                {
+                    return new ParameterExpressionBuilder(parameterDeclaration, context).Build();
+                }
+
+                return base.VisitReferenceExpression(referenceExpressionParam, context);
+            }
+
+            public override Expression VisitCSharpArgument(ICSharpArgument cSharpArgumentParam, IMetadataResolver context)
+            {
+                return cSharpArgumentParam.Value.Accept(this, context);
             }
 
             public override Expression VisitEqualityExpression(IEqualityExpression equalityExpressionParam, IMetadataResolver context)
@@ -90,23 +117,9 @@ namespace AgentMulder.ReSharper.Domain.Expressions
                 return new EqualityExpressionBuilder(equalityExpressionParam, left, right).Build();
             }
 
-            public override Expression VisitReferenceExpression(IReferenceExpression referenceExpressionParam, IMetadataResolver context)
+            public override Expression VisitPrimaryExpression(IPrimaryExpression primaryExpressionParam, IMetadataResolver context)
             {
-                if (referenceExpressionParam.QualifierExpression != null)
-                {
-                    Expression expression = referenceExpressionParam.QualifierExpression.Accept(this, context);
-                    
-                    return new MemberExpressionBuilder(referenceExpressionParam, expression, context).Build();
-                }
-
-                ResolveResultWithInfo resolve = referenceExpressionParam.Reference.Resolve(); //todo check resolve result, might not be ok
-                var parameterDeclaration = resolve.DeclaredElement as IParameterDeclaration;
-                if (parameterDeclaration != null)
-                {
-                    return new ParameterExpressionBuilder(parameterDeclaration, context).Build();
-                }
-                
-                return base.VisitReferenceExpression(referenceExpressionParam, context);
+                return null;
             }
 
             public override Expression VisitTypeofExpression(ITypeofExpression typeofExpressionParam, IMetadataResolver context)

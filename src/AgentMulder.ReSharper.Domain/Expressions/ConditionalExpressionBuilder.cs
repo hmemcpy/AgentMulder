@@ -3,13 +3,13 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Expressions
 {
-    internal class ParenthesizedExpressionBuilder : ExpressionBuilder<IParenthesizedExpression>
+    internal class ConditionalExpressionBuilder : ExpressionBuilder<IParenthesizedExpression>
     {
         private readonly IParenthesizedExpression expression;
         private readonly Expression left;
         private readonly Expression right;
 
-        public ParenthesizedExpressionBuilder(IParenthesizedExpression expression, Expression left, Expression right)
+        public ConditionalExpressionBuilder(IParenthesizedExpression expression, Expression left, Expression right)
         {
             this.expression = expression;
             this.left = left;

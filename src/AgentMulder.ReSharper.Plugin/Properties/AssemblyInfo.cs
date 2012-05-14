@@ -10,7 +10,7 @@ using JetBrains.UI;
 
 // The following information is displayed by ReSharper in the Plugins dialog
 [assembly: PluginTitle("Agent Mulder plugin for ReSharper")]
-[assembly: PluginDescription("Provides navigation to and finding usages of types, registered or resolved via DI Containers.")]
+[assembly: PluginDescription("Provides navigation to and finding usages of types registered or resolved via Dependency Injection (DI) containers.")]
 [assembly: PluginVendor("Igal Tabachnik")]
 
 [assembly: ImagesBase("AgentMulder.ReSharper.Plugin.Resources")]

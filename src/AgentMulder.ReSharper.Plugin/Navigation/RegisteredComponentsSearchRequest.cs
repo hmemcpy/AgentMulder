@@ -19,12 +19,12 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
     public class RegisteredComponentsSearchRequest : SearchRequest
     {
         private readonly ISolution solution;
-        private readonly SolutionAnalyzer solutionAnalyzer;
+        private readonly IComponentRegistration componentRegistration;
 
-        public RegisteredComponentsSearchRequest([NotNull] ISolution solution, SolutionAnalyzer solutionAnalyzer)
+        public RegisteredComponentsSearchRequest([NotNull] ISolution solution, IComponentRegistration componentRegistration)
         {
             this.solution = solution;
-            this.solutionAnalyzer = solutionAnalyzer;
+            this.componentRegistration = componentRegistration;
         }
 
         public override ICollection<IOccurence> Search(IProgressIndicator progressIndicator)
@@ -48,11 +48,11 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
                 }
             }
 
-            IEnumerable<IComponentRegistration> componentRegistrations = solutionAnalyzer.Analyze();
-            
-            return (typeElements.Where(declaration =>
-                        componentRegistrations.Any(registration => registration.IsSatisfiedBy(declaration.DeclaredElement)))
-                        .Select(declaration => new DeclaredElementOccurence(declaration.DeclaredElement))).Cast<IOccurence>().ToList();
+            return (from typeDeclaration in typeElements
+                    let element = typeDeclaration.DeclaredElement
+                    where element != null
+                    where componentRegistration.IsSatisfiedBy(element)
+                    select new DeclaredElementOccurence(element)).Cast<IOccurence>().ToList();
         }
 
         public override string Title

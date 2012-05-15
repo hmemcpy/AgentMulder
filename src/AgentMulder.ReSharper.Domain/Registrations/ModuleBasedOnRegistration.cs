@@ -19,7 +19,9 @@ namespace AgentMulder.ReSharper.Domain.Registrations
         {
             IModule targetModule = typeElement.Module.ContainingProjectModule;
             if (targetModule == null)
+            {
                 return false;
+            }
 
             return (targetModule.Equals(sourceModule) && basedOn.IsSatisfiedBy(typeElement));
         }

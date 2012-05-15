@@ -8,24 +8,28 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.ContextNavigation.Util;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Navigation
 {
     [FeaturePart]
     public class RegisteredComponentsContextSearch : IRegisteredComponentsContextSearch
     {
-        private readonly SolutionAnalyzer solutionAnalyzer;
-
+        // todo fixme needs a real cache
+        private readonly IEnumerable<IComponentRegistration> cachedRegistrations;
+        
         public RegisteredComponentsContextSearch(SolutionAnalyzer solutionAnalyzer)
         {
-            this.solutionAnalyzer = solutionAnalyzer;
+            cachedRegistrations = solutionAnalyzer.Analyze();
         }
 
         public bool IsAvailable(IDataContext dataContext)
         {
-            IEnumerable<IComponentRegistration> componentRegistrations = solutionAnalyzer.Analyze();
-            
-            return componentRegistrations.Any();
+            // todo make this resolvable also via the AllTypes... line
+            var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
+
+            return cachedRegistrations.Any(r => r.RegistrationElement.Children().Contains(invokedNode));
         }
 
         public bool IsApplicable(IDataContext dataContext)
@@ -41,7 +45,14 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
                 throw new InvalidOperationException("Unable to get the solution");
             }
 
-            return new RegisteredComponentsSearchRequest(solution, solutionAnalyzer);
+            var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
+            var registration = cachedRegistrations.FirstOrDefault(r => r.RegistrationElement.Children().Contains(invokedNode));
+            if (registration == null)
+            {
+                return null;
+            }
+
+            return new RegisteredComponentsSearchRequest(solution, registration);
         }
     }
 }

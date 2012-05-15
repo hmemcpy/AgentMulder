@@ -58,6 +58,8 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [TestCase("BasedOn\\FromAssemblyGetExecutingAssemblyBasedOn", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromAssemblyNamedBasedOnGeneric", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromAssemblyNamedBasedOnNonGeneric", new[] { "Foo.cs" })]
+        [TestCase("BasedOn\\FromAssemblyContainingBasedOnGeneric", new[] { "Foo.cs" })]
+        [TestCase("BasedOn\\FromAssemblyContainingBasedOnNonGeneric", new[] { "Foo.cs" })]
         public void TestWithRegistrations(string testName, params string[] fileNames)
         {
             RunTest(testName, registrations =>

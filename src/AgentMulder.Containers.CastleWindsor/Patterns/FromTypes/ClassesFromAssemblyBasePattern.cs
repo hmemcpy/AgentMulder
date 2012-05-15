@@ -1,10 +1,41 @@
 using System;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
+using AgentMulder.ReSharper.Domain.Modules;
+using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
+using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
+    internal class FromAssemblyPattern : FromAssemblyBasePattern
+    {
+        public FromAssemblyPattern(string qualiferType, params BasedOnRegistrationBasePattern[] basedOnPatterns)
+            : base(CreatePattern(qualiferType), basedOnPatterns)
+        {
+        }
+
+        private static IStructuralSearchPattern CreatePattern(string qualiferType)
+        {
+            return new CSharpStructuralSearchPattern("$qualifier$.FromAssembly($assembly$)",
+                new ExpressionPlaceholder("qualifier", qualiferType, true),
+                new ArgumentPlaceholder("assembly", 1, 1)); // matches exactly one argument
+        }
+
+        protected override IModule GetTargetModule(IStructuralMatchResult match)
+        {
+            var argument = (ICSharpArgument)match.GetMatchedElement("assembly");
+
+            return ModuleExtractor.Instance.GetTargetModule(argument.Value);
+        }
+    }
+
+
+
+
+
     internal abstract class ClassesFromAssemblyBasePattern : FromAssemblyBasePattern
     {
         protected ClassesFromAssemblyBasePattern(IStructuralSearchPattern pattern, params BasedOnRegistrationBasePattern[] basedOnPatterns)

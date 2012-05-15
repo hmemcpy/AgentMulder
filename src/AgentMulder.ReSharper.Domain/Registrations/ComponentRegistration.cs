@@ -53,6 +53,12 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
+            // todo don't know if this assumption is correct
+            if (typeElement is IInterface)
+            {
+                return false;
+            }
+
             if (implementation != null)
             {
                 if ((implementation is IInterface) &&

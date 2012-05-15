@@ -40,8 +40,6 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             {
                 throw new InvalidOperationException("Unable to get the solution");
             }
-            
-            
 
             return new RegisteredComponentsSearchRequest(solution, solutionAnalyzer);
         }

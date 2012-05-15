@@ -7,20 +7,11 @@ using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Annotations;
 using JetBrains.Application.Progress;
 using JetBrains.ProjectModel;
-using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
-using JetBrains.ProjectModel.Model2.References;
 using JetBrains.ReSharper.Feature.Services.Occurences;
-using JetBrains.ReSharper.Feature.Services.ReferencedCode;
 using JetBrains.ReSharper.Feature.Services.Search;
 using JetBrains.ReSharper.Feature.Services.Search.SearchRequests;
-using JetBrains.ReSharper.Features.Finding.FindDependentCode;
 using JetBrains.ReSharper.Psi.CSharp;
-using JetBrains.ReSharper.Psi.Caches;
-using JetBrains.ReSharper.Psi.ExtensionsAPI;
-using JetBrains.ReSharper.Psi.Impl.Caches2.SymbolCache;
-using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.Psi.Tree;
-using JetBrains.Util;
 using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.ReSharper.Plugin.Navigation
@@ -59,14 +50,14 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
 
             IEnumerable<IComponentRegistration> componentRegistrations = solutionAnalyzer.Analyze();
             
-            return (from declaration in typeElements
-                   where componentRegistrations.Any(registration => registration.IsSatisfiedBy(declaration.DeclaredElement))
-                   select new DeclaredElementOccurence(declaration.DeclaredElement)).Cast<IOccurence>().ToList();
+            return (typeElements.Where(declaration =>
+                        componentRegistrations.Any(registration => registration.IsSatisfiedBy(declaration.DeclaredElement)))
+                        .Select(declaration => new DeclaredElementOccurence(declaration.DeclaredElement))).Cast<IOccurence>().ToList();
         }
 
         public override string Title
         {
-            get { return "Foo!"; }
+            get { return "Components registered via this registration"; }
         }
 
         public override ISolution Solution

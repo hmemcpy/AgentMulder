@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 
@@ -32,6 +31,11 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
+            if (typeElement is IInterface)
+            {
+                return false;
+            }
+
             if (typeElement.IsDescendantOf(basedOnElement))
             {
                 return withServices.All(registration => registration.IsSatisfiedBy(typeElement));

@@ -4,13 +4,13 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.CSharp.Util;
 using JetBrains.ReSharper.Psi.Resolve.ExtensionMethods;
 
-namespace AgentMulder.ReSharper.Domain.Modules
+namespace AgentMulder.ReSharper.Domain.Modules.Impl
 {
     internal class GetExecutingAssemblyExtractor : IModuleExtractor
     {
-        public IModule GetTargetModule(ICSharpExpression expression)
+        public IModule GetTargetModule<T>(T element)
         {
-            var invocationExpression = expression as IInvocationExpression;
+            var invocationExpression = element as IInvocationExpression;
             if (invocationExpression != null)
             {
                 ExtensionInstance<IMethod> method = InvocationExpressionUtil.GetInvokedMethod(invocationExpression);
@@ -22,7 +22,7 @@ namespace AgentMulder.ReSharper.Domain.Modules
                 // todo horrible horrible hack, fix this later
                 if (method.Element.XMLDocId == "M:System.Reflection.Assembly.GetExecutingAssembly")
                 {
-                    return expression.GetPsiModule().ContainingProjectModule;
+                    return invocationExpression.GetPsiModule().ContainingProjectModule;
                 }
             }
             return null;

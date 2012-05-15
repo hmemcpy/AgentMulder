@@ -46,10 +46,14 @@
     </Compile>
     <Compile Include="Containers\IContainerInfo.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Modules\GetExecutingAssemblyExtractor.cs" />
+    <Compile Include="Modules\Impl\AssemblyNameExtractor.cs" />
+    <Compile Include="Modules\ModuleExtractorDecorator.cs" />
+    <Compile Include="Modules\Impl\TypeElementExtractor.cs" />
+    <Compile Include="Modules\Impl\GetExecutingAssemblyExtractor.cs" />
     <Compile Include="Modules\IModuleExtractor.cs" />
     <Compile Include="Modules\ModuleExtractor.cs" />
-    <Compile Include="Modules\TypeOfExtractor.cs" />
+    <Compile Include="Modules\Impl\TypeAssemblyPropertyExtractor.cs" />
+    <Compile Include="Modules\Impl\TypeOfExtractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrations\BasedOnRegistration.cs" />
     <Compile Include="Registrations\ComponentImplementationBasePattern.cs" />

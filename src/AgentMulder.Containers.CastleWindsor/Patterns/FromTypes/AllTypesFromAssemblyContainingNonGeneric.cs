@@ -1,4 +1,5 @@
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
+using AgentMulder.ReSharper.Domain.Modules;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -22,29 +23,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
         protected override IModule GetTargetModule(IStructuralMatchResult match)
         {
-            var argument = match.GetMatchedElement("argument") as ICSharpArgument;
-            if (argument == null)
-            {
-                return null;
-            }
-            
-            var typeofExpression = argument.Value as ITypeofExpression;
-            if (typeofExpression != null)
-            {
-                var declaredType = typeofExpression.ArgumentType as IDeclaredType;
-                if (declaredType == null)
-                {
-                    return null;
-                }
+            var argument = (ICSharpArgument)match.GetMatchedElement("argument");
 
-                var typeElement = declaredType.GetTypeElement();
-                if (typeElement != null)
-                {
-                    return typeElement.Module.ContainingProjectModule;
-                }
-            }
-
-            return null;
+            return ModuleExtractor.Instance.GetTargetModule(argument.Value);
         }
     }
 }

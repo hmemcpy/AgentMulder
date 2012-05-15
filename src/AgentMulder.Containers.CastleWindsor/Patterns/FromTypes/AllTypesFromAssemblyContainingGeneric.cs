@@ -1,10 +1,13 @@
 using System;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
+using AgentMulder.ReSharper.Domain.Modules;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
@@ -18,23 +21,12 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         public AllTypesFromAssemblyContainingGeneric(params BasedOnRegistrationBasePattern[] basedOnPatterns)
             : base(pattern, basedOnPatterns)
         {
+            
         }
 
         protected override IModule GetTargetModule(IStructuralMatchResult match)
         {
-            var declaredType = match.GetMatchedType("type") as IDeclaredType;
-            if (declaredType == null)
-            {
-                return null;
-            }
-
-            var typeElement = declaredType.GetTypeElement();
-            if (typeElement != null)
-            {
-                return typeElement.Module.ContainingProjectModule;
-            }
-
-            return null;
+            return ModuleExtractor.Instance.GetTargetModule(match.GetMatchedType("type"));
         }
     }
 }

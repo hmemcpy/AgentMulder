@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
-using AgentMulder.ReSharper.Domain;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;

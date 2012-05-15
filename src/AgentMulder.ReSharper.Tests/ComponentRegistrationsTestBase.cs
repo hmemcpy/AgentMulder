@@ -42,7 +42,7 @@ namespace AgentMulder.ReSharper.Tests
                 var solutionnAnalyzer = new SolutionAnalyzer(patternSearcher);
                 solutionnAnalyzer.AddContainer(ContainerInfo);
 
-                var componentRegistrations = solutionnAnalyzer.Analyze().ToList();
+                var componentRegistrations = solutionnAnalyzer.Analyze();
 
                 action(componentRegistrations);
             }));

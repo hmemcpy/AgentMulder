@@ -4,7 +4,6 @@ using JetBrains.Annotations;
 using JetBrains.Application;
 using JetBrains.ReSharper.Daemon.UsageChecking;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {
@@ -21,7 +20,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
         public bool SupressUsageInspectionsOnElement(IDeclaredElement element, out ImplicitUseKindFlags flags)
         {
             var typeElement = element as ITypeElement;
-            if (typeElement != null)
+            if (typeElement != null && typeElement.IsClassLike())
             {
                 var componentRegistrations = solutionAnalyzer.Analyze();
                 IComponentRegistration registration = componentRegistrations.FirstOrDefault(r => r.IsSatisfiedBy(typeElement));

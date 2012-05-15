@@ -68,6 +68,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Patterns\FromTypes\AllTypesFromAssemblyContainingGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\AllTypesFromAssemblyContainingNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\AllTypesFromAssemblyNamed.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromAssembly.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromAssemblyBasePattern.cs" />

@@ -7,7 +7,7 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    internal sealed class AllTypesFromThisAssembly : FromAssemblyBasePattern
+    internal sealed class AllTypesFromThisAssembly : ClassesFromAssemblyBasePattern
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$alltypes$.FromThisAssembly()",

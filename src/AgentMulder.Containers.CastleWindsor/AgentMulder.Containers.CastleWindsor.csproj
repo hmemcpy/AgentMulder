@@ -70,7 +70,9 @@
   <ItemGroup>
     <Compile Include="Patterns\FromTypes\AllTypesFromAssemblyNamed.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromAssembly.cs" />
+    <Compile Include="Patterns\FromTypes\ClassesFromAssemblyBasePattern.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromAssemblyNamed.cs" />
+    <Compile Include="Patterns\FromTypes\ClassesFromBase.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromThisAssembly.cs" />
     <Compile Include="Patterns\FromTypes\TypesFrom.cs" />
     <Compile Include="Patterns\FromTypes\TypesFromAssembly.cs" />

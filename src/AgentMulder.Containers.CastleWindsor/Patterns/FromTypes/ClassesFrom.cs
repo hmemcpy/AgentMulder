@@ -1,11 +1,12 @@
-﻿using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
+﻿using System;
+using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    internal sealed class ClassesFrom : FromTypesBasePattern
+    internal sealed class ClassesFrom : ClassesFromBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$classes$.From($services$)",

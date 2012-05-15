@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.ReSharper.Psi;
@@ -9,15 +10,10 @@ namespace AgentMulder.ReSharper.Domain.Registrations
     {
         private readonly IEnumerable<WithServiceRegistration> withServices;
 
-        protected BasedOnRegistrationBase(ITreeNode registrationRootElement, IEnumerable<WithServiceRegistration> withServices)
-            : base(registrationRootElement)
-        {
-            this.withServices = withServices.ToArray();
-        }
-
-        public override bool IsSatisfiedBy(ITypeElement typeElement)
+        private Predicate<ITypeElement> defaultFilter = typeElement =>
         {
             // todo not sure if this is correct
+
             if (typeElement is IInterface)
             {
                 return false;
@@ -25,6 +21,27 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
             var @class = typeElement as IClass;
             if (@class != null && @class.IsAbstract)
+            {
+                return false;
+            }
+
+            return true;
+        };
+
+        protected BasedOnRegistrationBase(ITreeNode registrationRootElement, IEnumerable<WithServiceRegistration> withServices)
+            : base(registrationRootElement)
+        {
+            this.withServices = withServices.ToArray();
+        }
+
+        public void AddFilter(Predicate<ITypeElement> condition)
+        {
+            defaultFilter += condition;
+        }
+
+        public override bool IsSatisfiedBy(ITypeElement typeElement)
+        {
+            if (!defaultFilter(typeElement))
             {
                 return false;
             }

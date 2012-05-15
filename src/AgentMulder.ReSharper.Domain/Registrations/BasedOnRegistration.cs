@@ -25,11 +25,6 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
-            if (typeElement is IInterface)
-            {
-                return false;
-            }
-
             if (!typeElement.IsDescendantOf(basedOnElement))
             {
                 return false;

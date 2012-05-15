@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Annotations;
+using JetBrains.Application;
 using JetBrains.Application.Progress;
+using JetBrains.Application.Threading;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.Occurences;
 using JetBrains.ReSharper.Feature.Services.Search;
 using JetBrains.ReSharper.Feature.Services.Search.SearchRequests;
+using JetBrains.ReSharper.Features.Finding.FindDependentCode;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.Psi;
@@ -19,32 +21,36 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
     public class RegisteredComponentsSearchRequest : SearchRequest
     {
         private readonly ISolution solution;
+        private readonly IShellLocks locks;
         private readonly IComponentRegistration componentRegistration;
 
-        public RegisteredComponentsSearchRequest([NotNull] ISolution solution, IComponentRegistration componentRegistration)
+        public RegisteredComponentsSearchRequest([NotNull] ISolution solution, [NotNull] IShellLocks locks, IComponentRegistration componentRegistration)
         {
             this.solution = solution;
+            this.locks = locks;
             this.componentRegistration = componentRegistration;
         }
 
         public override ICollection<IOccurence> Search(IProgressIndicator progressIndicator)
         {
-            ICollection<IProject> allProjects = solution.GetAllProjects();
-            progressIndicator.Start(allProjects.Count);
             var typeElements = new List<ITypeDeclaration>();
 
-            foreach (var project in allProjects)
+            var multiCoreFibersPool = new MultiCoreFibersPool("Search type declarations", locks);
+            using (IMultiCoreFibers multiCoreFibers = multiCoreFibersPool.Create())
             {
-                var sourceFiles = project.GetAllProjectFiles().SelectMany(projectFile => projectFile.ToSourceFiles());
-                foreach (var psiSourceFile in sourceFiles)
+                foreach (var project in solution.GetAllProjects())
                 {
-                    IFile file = psiSourceFile.GetPsiFile(CSharpLanguage.Instance);
-                    if (file == null)
+                    var sourceFiles = project.GetAllProjectFiles().SelectMany(projectFile => projectFile.ToSourceFiles());
+                    foreach (var psiSourceFile in sourceFiles)
                     {
-                        continue;
-                    }
+                        IFile file = psiSourceFile.GetPsiFile(CSharpLanguage.Instance);
+                        if (file == null)
+                        {
+                            continue;
+                        }
 
-                    file.ProcessChildren<ITypeDeclaration>(typeElements.Add);
+                        multiCoreFibers.EnqueueJob(() => file.ProcessChildren<ITypeDeclaration>(typeElements.Add));
+                    }
                 }
             }
 

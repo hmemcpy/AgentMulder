@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 
@@ -34,13 +33,13 @@ namespace AgentMulder.ReSharper.Domain.Registrations
                 isMatch = elementNamespace.QualifiedName == matchedNamespace.QualifiedName;
             }
 
-            return isMatch && withServices.All(registration => registration.IsSatisfiedBy(typeElement));
+            return isMatch && base.IsSatisfiedBy(typeElement);
         }
 
         public override string ToString()
         {
-            return string.Format("In namespace: {0}, {1}", matchedNamespace.QualifiedName,
-              string.Join(", ", withServices.Select(registration => registration.ToString())));
+            return string.Format("In namespace: {0}, {1}", matchedNamespace.QualifiedName, base.ToString());
+
         }
     }
 }

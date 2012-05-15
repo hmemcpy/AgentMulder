@@ -25,7 +25,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         }
 
         public FromAssembly(string qualiferType, Predicate<ITypeElement> filter, params BasedOnRegistrationBasePattern[] basedOnPatterns)
-            : base(CreatePattern(qualiferType), basedOnPatterns)
+            : base(CreatePattern(qualiferType), filter, basedOnPatterns)
         {
             this.filter = filter;
         }
@@ -33,8 +33,8 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         private static IStructuralSearchPattern CreatePattern(string qualiferType)
         {
             return new CSharpStructuralSearchPattern("$qualifier$.FromAssembly($assembly$)",
-                new ExpressionPlaceholder("qualifier", qualiferType, true),
-                new ArgumentPlaceholder("assembly", 1, 1)); // matches exactly one argument
+                                                     new ExpressionPlaceholder("qualifier", qualiferType, true),
+                                                     new ArgumentPlaceholder("assembly", 1, 1)); // matches exactly one argument
         }
 
         protected override IModule GetTargetModule(IStructuralMatchResult match)
@@ -42,35 +42,6 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             var argument = (ICSharpArgument)match.GetMatchedElement("assembly");
 
             return ModuleExtractor.Instance.GetTargetModule(argument.Value);
-        }
-    }
-
-
-
-
-
-    internal abstract class ClassesFromAssemblyBasePattern : FromAssemblyBasePattern
-    {
-        protected ClassesFromAssemblyBasePattern(IStructuralSearchPattern pattern, params BasedOnRegistrationBasePattern[] basedOnPatterns)
-            : base(pattern, basedOnPatterns)
-        {
-        }
-
-        protected override Predicate<ITypeElement> Filter
-        {
-            get
-            {
-                return typeElement =>
-                {
-                    var @class = typeElement as IClass;
-                    if (@class != null)
-                    {
-                        return !@class.IsAbstract;
-                    }
-
-                    return false;
-                };
-            }
         }
     }
 }

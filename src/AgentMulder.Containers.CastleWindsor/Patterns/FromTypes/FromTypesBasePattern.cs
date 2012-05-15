@@ -13,6 +13,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
     public abstract class FromTypesBasePattern : RegistrationBasePattern
     {
+        private readonly Predicate<ITypeElement> filter;
         private readonly IEnumerable<BasedOnRegistrationBasePattern> basedOnPatterns;
 
         protected IEnumerable<BasedOnRegistrationBasePattern> BasedOnPatterns
@@ -22,12 +23,13 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
         protected virtual Predicate<ITypeElement> Filter
         {
-            get { return typeElement => true; }
+            get { return filter; }
         }
 
-        protected FromTypesBasePattern(IStructuralSearchPattern pattern, IEnumerable<BasedOnRegistrationBasePattern> basedOnPatterns)
+        protected FromTypesBasePattern(IStructuralSearchPattern pattern, Predicate<ITypeElement> filter, IEnumerable<BasedOnRegistrationBasePattern> basedOnPatterns)
             : base(pattern)
         {
+            this.filter = filter;
             this.basedOnPatterns = basedOnPatterns;
         }
 

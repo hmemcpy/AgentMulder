@@ -4,6 +4,7 @@ using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ProjectModel;
+using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
@@ -11,8 +12,8 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
     public abstract class FromAssemblyBasePattern : FromTypesBasePattern
     {
-        protected FromAssemblyBasePattern(IStructuralSearchPattern pattern, params BasedOnRegistrationBasePattern[] basedOnPatterns)
-            : base(pattern, basedOnPatterns)
+        protected FromAssemblyBasePattern(IStructuralSearchPattern pattern, Predicate<ITypeElement> filter, params BasedOnRegistrationBasePattern[] basedOnPatterns)
+            : base(pattern, filter, basedOnPatterns)
         {
         }
 

@@ -27,10 +27,12 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
 
             return new FromTypesBasePattern[]
             {
-                new TypesFrom(basedOnPatterns),
-                new FromAssembly(TypesFullTypeName, basedOnPatterns), 
-                new TypesFromThisAssembly(basedOnPatterns),
-                new TypesFromAssemblyNamed(basedOnPatterns), 
+                new From(TypesFullTypeName, basedOnPatterns),
+                new FromAssembly(TypesFullTypeName, basedOnPatterns),
+                new FromThisAssembly(TypesFullTypeName, basedOnPatterns),
+                new FromAssemblyNamed(TypesFullTypeName, basedOnPatterns), 
+                new FromAssemblyContainingGeneric(TypesFullTypeName, basedOnPatterns),
+                new FromAssemblyContainingNonGeneric(TypesFullTypeName, basedOnPatterns)
             };
         }
     }

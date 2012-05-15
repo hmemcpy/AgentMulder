@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
+using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.Containers.CastleWindsor.Providers
 {
@@ -11,6 +13,19 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
     [Export(typeof(IRegistrationPatternsProvider))]
     public class ClassesRegistrationProvider : IRegistrationPatternsProvider
     {
+        public static readonly Predicate<ITypeElement> Filter = typeElement =>
+        {
+            var @class = typeElement as IClass;
+            if (@class != null)
+            {
+                return !@class.IsAbstract;
+            }
+
+            return false;
+        };
+
+        private const string ClassesFullTypeName = "Castle.MicroKernel.Registration.Classes";
+
         private readonly BasedOnRegistrationProvider basedOnProvider;
 
         [ImportingConstructor]
@@ -26,7 +41,7 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
             return new FromTypesBasePattern[]
             {
                 new ClassesFrom(basedOnPatterns),
-                new ClassesFromAssembly(basedOnPatterns),
+                new FromAssembly(ClassesFullTypeName, Filter, basedOnPatterns), 
                 new ClassesFromThisAssembly(basedOnPatterns),
                 new ClassesFromAssemblyNamed(basedOnPatterns),
                 new ClassesFromAssemblyContainingGeneric(basedOnPatterns), 

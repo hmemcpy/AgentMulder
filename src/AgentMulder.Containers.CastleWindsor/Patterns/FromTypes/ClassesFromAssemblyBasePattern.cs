@@ -10,11 +10,24 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    internal class FromAssemblyPattern : FromAssemblyBasePattern
+    internal class FromAssembly : FromAssemblyBasePattern
     {
-        public FromAssemblyPattern(string qualiferType, params BasedOnRegistrationBasePattern[] basedOnPatterns)
+        private readonly Predicate<ITypeElement> filter;
+
+        protected override Predicate<ITypeElement> Filter
+        {
+            get { return filter; }
+        }
+
+        public FromAssembly(string qualiferType, params BasedOnRegistrationBasePattern[] basedOnPatterns)
+            : this(qualiferType, element => true, basedOnPatterns)
+        {
+        }
+
+        public FromAssembly(string qualiferType, Predicate<ITypeElement> filter, params BasedOnRegistrationBasePattern[] basedOnPatterns)
             : base(CreatePattern(qualiferType), basedOnPatterns)
         {
+            this.filter = filter;
         }
 
         private static IStructuralSearchPattern CreatePattern(string qualiferType)

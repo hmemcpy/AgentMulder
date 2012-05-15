@@ -71,14 +71,12 @@
     <Compile Include="Patterns\FromTypes\AllTypesFromAssemblyContainingGeneric.cs" />
     <Compile Include="Patterns\FromTypes\AllTypesFromAssemblyContainingNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\AllTypesFromAssemblyNamed.cs" />
-    <Compile Include="Patterns\FromTypes\ClassesFromAssembly.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromAssemblyBasePattern.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromAssemblyContainingGeneric.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromAssemblyNamed.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromBase.cs" />
     <Compile Include="Patterns\FromTypes\ClassesFromThisAssembly.cs" />
     <Compile Include="Patterns\FromTypes\TypesFrom.cs" />
-    <Compile Include="Patterns\FromTypes\TypesFromAssembly.cs" />
     <Compile Include="Patterns\FromTypes\TypesFromAssemblyContainingGeneric.cs" />
     <Compile Include="Patterns\FromTypes\TypesFromAssemblyNamed.cs" />
     <Compile Include="Patterns\FromTypes\TypesFromThisAssembly.cs" />
@@ -101,7 +99,6 @@
     <Compile Include="Patterns\FromTypes\WithService\WithServiceBase.cs" />
     <Compile Include="Patterns\FromTypes\WithService\WithServiceRegistrationBasePattern.cs" />
     <Compile Include="Patterns\WindsorContainerRegisterPattern.cs" />
-    <Compile Include="Patterns\FromTypes\AllTypesFromAssembly.cs" />
     <Compile Include="Patterns\FromTypes\AllTypesFrom.cs" />
     <Compile Include="Patterns\FromTypes\AllTypesFromThisAssembly.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\BasedOnGeneric.cs" />

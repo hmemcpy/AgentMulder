@@ -11,6 +11,8 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
     [Export(typeof(IRegistrationPatternsProvider))]
     public class TypesRegistrationProvider : IRegistrationPatternsProvider
     {
+        private const string TypesFullTypeName = "Castle.MicroKernel.Registration.Types";
+
         private readonly BasedOnRegistrationProvider basedOnProvider;
 
         [ImportingConstructor]
@@ -26,7 +28,7 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
             return new FromTypesBasePattern[]
             {
                 new TypesFrom(basedOnPatterns),
-                new TypesFromAssembly(basedOnPatterns),
+                new FromAssembly(TypesFullTypeName, basedOnPatterns), 
                 new TypesFromThisAssembly(basedOnPatterns),
                 new TypesFromAssemblyNamed(basedOnPatterns), 
             };

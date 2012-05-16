@@ -1,3 +1,4 @@
+using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application;
 using JetBrains.Threading;
 using System.Reflection;
@@ -19,7 +20,7 @@ public class TestEnvironmentAssembly : ReSharperTestEnvironmentAssembly
     // Test assembly
     yield return Assembly.GetExecutingAssembly();
 
-    yield return typeof(AgentMulder.ReSharper.Plugin.Resources).Assembly;
+    yield return typeof(SolutionAnalyzer).Assembly;
   }
 
   public override void SetUp()

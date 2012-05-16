@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using JetBrains.Application.PluginSupport;
+using JetBrains.UI;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -12,4 +13,5 @@ using JetBrains.Application.PluginSupport;
 [assembly: PluginDescription("Provides navigation to and finding usages of types, registered or resolved via DI Containers.")]
 [assembly: PluginVendor("Igal Tabachnik")]
 
+[assembly: ImagesBase("AgentMulder.ReSharper.Plugin.Resources")]
 [assembly: InternalsVisibleTo("AgentMulder.ReSharper.Tests")]

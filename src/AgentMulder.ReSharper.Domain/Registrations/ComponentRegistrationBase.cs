@@ -10,7 +10,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
         protected ComponentRegistrationBase(ITreeNode registrationElement)
         {
             this.registrationElement = registrationElement;
-        }
+        }  
 
         public ITreeNode RegistrationElement
         {

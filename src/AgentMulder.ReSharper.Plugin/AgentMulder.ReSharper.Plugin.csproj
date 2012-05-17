@@ -52,7 +52,11 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Components\HighlightSuppressor.cs" />
+    <Compile Include="Components\ITypeUsageManager.cs" />
     <Compile Include="Components\PatternSearcher.cs" />
+    <Compile Include="Components\TypeUsageManager.cs" />
+    <Compile Include="Daemon\ContainerRegistrationAnalysisStage.cs" />
+    <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.cs" />
     <Compile Include="Highlighting\ContainerGutterMark.cs" />
     <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />
     <Compile Include="Components\RegistrationChecker.cs" />

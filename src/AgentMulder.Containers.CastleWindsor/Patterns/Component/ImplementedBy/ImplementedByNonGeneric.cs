@@ -40,9 +40,13 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy
                 var typeOfExpression = argument.Value as ITypeofExpression;
                 if (typeOfExpression != null)
                 {
-                    var typeElement = (IDeclaredType)typeOfExpression.ArgumentType;
+                    var typeElement = ((IDeclaredType)typeOfExpression.ArgumentType).GetTypeElement();
+                    if (typeElement == null) // can happen if the typeof() expression is empty
+                    {
+                        yield break; 
+                    }
 
-                    yield return new ComponentRegistration(registrationRootElement, typeElement.GetTypeElement());
+                    yield return new ComponentRegistration(registrationRootElement, typeElement);
                 }
             }
         }

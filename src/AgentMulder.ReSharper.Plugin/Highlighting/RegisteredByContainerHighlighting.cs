@@ -1,6 +1,4 @@
 ﻿using AgentMulder.ReSharper.Domain.Registrations;
-using JetBrains.Application;
-using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Feature.Services.Navigation;
 
@@ -39,13 +37,7 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
 
         public void OnClick()
         {
-            ISolution currentSolution = Shell.Instance.GetComponent<ISolutionManager>().CurrentSolution;
-            if (currentSolution == null)
-            {
-                return;
-            }
-
-            NavigationManager.Navigate(registration.RegistrationElement.GetNavigationRange(), currentSolution, true);
+            NavigationManager.Navigate(registration.RegistrationElement, true);
         }
     }
 }

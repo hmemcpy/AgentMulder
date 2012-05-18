@@ -4,7 +4,7 @@
 
 ## Download Agent Mulder v1.0.0 Beta [here](https://github.com/downloads/hmemcpy/AgentMulder/AgentMulderBeta1.0.0.0.msi)!
 
-### Check out a short demonstration video here: https://vimeo.com/41113265 ###
+### Check out a short demonstration video here: http://vimeo.com/hmemcpy/introducing-agent-mulder-plugin-for-resharper ###
 (GitHub does not allow embedding videos in the README page)
 
 ## The Problem ##

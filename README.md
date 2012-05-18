@@ -44,17 +44,32 @@ Agent Mulder plugin for ReSharper analyzes known DI container registrations in t
 
 ![Agent Mulder](http://i.imgur.com/xjYrT.png)
 
+Agent Mulder plugin also adds a new navigation feature, allowing you to navigate to all the types that are being registered via any particular registration. Simply position the caret on the registration expression, and press the **Navigate To** keyboard shortcut (**Ctrl-Shift-G** in IntelliJ IDEA bindings, **Alt-`** in Visual Studio bindings):
+
+![Navigate To](http://i.imgur.com/y7PFp.png)
+
+Select **Registered Components**, and you will be presented with a list of types matching that registration:
+
+![Results](http://i.imgur.com/XHjKZ.png)
+
+Pressing **+** on the numeric keypad (or clicking the little search icon in the caption) will open the results in a tool window:
+
+![Tool window](http://i.imgur.com/g6QV7.png)
+
+
 ## Building and installing Agent Mulder plugin ##
 
 To build the plugin you need to have the [ReSharper SDK](http://www.jetbrains.com/resharper/download/) (v6.1.x at the time of writing), installed on your machine. The project will add the references automatically.
 
 To build the plugin, run the file `src\build.cmd`. The files will be built and placed into the directories `output\Debug` and `output\Release`. In the directory will also be a batch file that copies the files into the ReSharper's plugin directory. You will need to restart Visual Studio to see the changes.
 
-## Frequently Asked Questions (April 25th, 2012)##
+## Frequently Asked Questions (last updated: May 18th, 2012)##
 
 **Q: Wow! How does it work?**
 
 **A:** Agent Mulder makes heavy use ReSharper's [Structural Search](http://www.jetbrains.com/resharper/webhelp/Navigation_and_Search__SSR__Searching_for_Code_with_Pattern.html) to look for registration patterns, such as `Component.For<$service$>()`. This makes searching very efficient and does not require any additional parsing. This also allows for adding new patterns easily, allowing adding support for additional DI containers.
+
+More information is available in the [wiki page](https://github.com/hmemcpy/AgentMulder/wiki).
 
 **Q: What DI containers are currently supported?**
 
@@ -71,6 +86,10 @@ To build the plugin, run the file `src\build.cmd`. The files will be built and p
 **Q: I found a bug/Agent Mulder highlights the wrong type (or doesn't)/It doesn't work!**
 
 **A:** Great! [Let me know](https://github.com/hmemcpy/AgentMulder/issues) about it, and I will try to fix it! Please note that I don't know all DI containers and their rules - if you think a mistake in analysis has been made, please note what should be the desired outcome in the issue.
+
+**Q: What font did you use for the logo?**
+
+**A:** It is called simply "The X-Files" by SpideRaY, and is available to download [here](http://www.dafont.com/the-x-files.font).
 
 Also please note that Agent Mulder plugin requires ReSharper 6.1 and only works in Visual Studio 2010. Other versions were not tested!
 

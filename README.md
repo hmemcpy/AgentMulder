@@ -27,8 +27,7 @@ This gets worse in convention-based registrations, such as:
 
 ```csharp
 container.Register(
-    Classes.FromThisAssembly().BasedOn<IMessageWriter>(),
-    Classes.FromAssemblyContaining<IRepository>().InNamespace("Acme.Repository", true)
+    Classes.FromThisAssembly().BasedOn<IMessageWriter>()
     );
 ```
 

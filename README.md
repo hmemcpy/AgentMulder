@@ -40,11 +40,11 @@ Where ReSharper will not even know that this type is being used:
 
 Agent Mulder plugin for ReSharper analyzes known DI container registrations in the entire solution, and adds the missing information to ReSharper, so it no longer flags concrete types as being unused. It even adds an visual icon to the type name, allowing you to navigate to the exact line, where the concrete type is being implicitly or explicitly registered:
 
-![Agent Mulder](http://i.imgur.com/fhq2q.png)
+![Agent Mulder](http://i.imgur.com/xjYrT.png)
 
 ## Building and installing Agent Mulder plugin ##
 
-To build the plugin you need to have the [ReSharper SDK](http://www.jetbrains.com/resharper/download/) (v6.1.x at the time of writing), installed on your machine. The project will add the references automatically. In addition, you'll need to modify the file `AgentMulder.ReSharper.Plugin.csproj.user`, located under `src\AgentMuler.ReSharper.Plugin`, in order to set the `StartWorkingDirectory` path to where the source code is located.
+To build the plugin you need to have the [ReSharper SDK](http://www.jetbrains.com/resharper/download/) (v6.1.x at the time of writing), installed on your machine. The project will add the references automatically.
 
 To build the plugin, run the file `src\build.cmd`. The files will be built and placed into the directories `output\Debug` and `output\Release`. In the directory will also be a batch file that copies the files into the ReSharper's plugin directory. You will need to restart Visual Studio to see the changes.
 

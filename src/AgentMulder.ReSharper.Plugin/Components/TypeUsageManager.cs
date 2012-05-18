@@ -1,36 +1,37 @@
 using System;
 using JetBrains.ReSharper.Daemon.UsageChecking;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {
     internal class TypeUsageManager : ITypeUsageManager
     {
-        private readonly CollectUsagesStageProcess usagesStageProcess;
+        private readonly CollectUsagesStageProcess collectUsagesStageProcess;
 
-        public TypeUsageManager(CollectUsagesStageProcess usagesStageProcess)
+        public TypeUsageManager(CollectUsagesStageProcess collectUsagesStageProcess)
         {
-            if (usagesStageProcess == null)
+            if (collectUsagesStageProcess == null)
             {
-                throw new InvalidOperationException("usagesStageProcess is null");
+                throw new InvalidOperationException("collectUsagesStageProcess is null");
             }
 
-            this.usagesStageProcess = usagesStageProcess;
+            this.collectUsagesStageProcess = collectUsagesStageProcess;
         }
 
-        public void MarkTypeAsUsed(ITypeElement typeElement)
+        public void MarkTypeAsUsed(ITypeDeclaration declaration)
         {
-            MarkConstructorsUsed(typeElement);
-            usagesStageProcess.SetElementState(typeElement, UsageState.ACCESSED);
+            SetConstructorsState(declaration.DeclaredElement, UsageState.USED_MASK | UsageState.CANNOT_BE_PRIVATE |
+                                                         UsageState.CANNOT_BE_INTERNAL | UsageState.CANNOT_BE_PROTECTED);
+
+            collectUsagesStageProcess.SetElementState(declaration.DeclaredElement, UsageState.ACCESSED);
         }
 
-        private void MarkConstructorsUsed(ITypeElement typeElement)
+        private void SetConstructorsState(ITypeElement typeElement, UsageState state)
         {
             foreach (IConstructor constructor in typeElement.Constructors)
             {
-                usagesStageProcess.SetElementState(constructor,
-                                                   UsageState.CANNOT_BE_PROTECTED | UsageState.CANNOT_BE_INTERNAL |
-                                                   UsageState.CANNOT_BE_PRIVATE | UsageState.USED_MASK);
+                collectUsagesStageProcess.SetElementState(constructor, state);
             }
         }
     }

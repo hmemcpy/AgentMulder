@@ -70,7 +70,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
-                        Assert.That(registrations.Any((registration => registration.IsSatisfiedBy(declaration.DeclaredElement)))));    
+                        Assert.That(registrations.Any((r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));    
                 }
             });
         }

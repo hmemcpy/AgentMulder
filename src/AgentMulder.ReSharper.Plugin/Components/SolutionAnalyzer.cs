@@ -43,18 +43,18 @@ namespace AgentMulder.ReSharper.Plugin.Components
             knownContainers.AddRange(values);
         }
 
-        public IEnumerable<IComponentRegistration> Analyze()
+        public IEnumerable<RegistrationInfo> Analyze()
         {
             return knownContainers.SelectMany(ScanRegistrations);
         }
 
-        private IEnumerable<IComponentRegistration> ScanRegistrations(IContainerInfo containerInfo)
+        private IEnumerable<RegistrationInfo> ScanRegistrations(IContainerInfo containerInfo)
         {
             return (from pattern in containerInfo.RegistrationPatterns
                    let matchResults = patternSearcher.Search(pattern)
                    from matchResult in matchResults.Where(result => result.Matched)
                    from registration in pattern.GetComponentRegistrations(matchResult.MatchedElement)
-                   select registration).ToList();
+                   select new RegistrationInfo(registration, containerInfo.ContainerDisplayName)).ToList();
         }
     }
 }

@@ -49,7 +49,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
                 Assert.AreEqual(1, registrations.Count());
                 file.ProcessChildren<ITypeDeclaration>(declaration =>
-                    Assert.That(registrations.First().IsSatisfiedBy(declaration.DeclaredElement)));
+                    Assert.That(registrations.First().Registration.IsSatisfiedBy(declaration.DeclaredElement)));
             });
         }
     }

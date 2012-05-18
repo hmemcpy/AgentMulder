@@ -19,7 +19,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
         private readonly IShellLocks locks;
 
         // todo fixme needs a real cache
-        private readonly IEnumerable<IComponentRegistration> cachedRegistrations;
+        private readonly IEnumerable<RegistrationInfo> cachedRegistrations;
         
         public RegisteredComponentsContextSearch(SolutionAnalyzer solutionAnalyzer, IShellLocks locks)
         {
@@ -32,7 +32,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             // todo make this resolvable also via the AllTypes... line
             var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
 
-            return cachedRegistrations.Any(r => r.RegistrationElement.Children().Contains(invokedNode));
+            return cachedRegistrations.Any(r => r.Registration.RegistrationElement.Children().Contains(invokedNode));
         }
 
         public bool IsApplicable(IDataContext dataContext)
@@ -49,13 +49,13 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             }
 
             var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
-            var registration = cachedRegistrations.FirstOrDefault(r => r.RegistrationElement.Children().Contains(invokedNode));
+            var registration = cachedRegistrations.FirstOrDefault(r => r.Registration.RegistrationElement.Children().Contains(invokedNode));
             if (registration == null)
             {
                 return null;
             }
 
-            return new RegisteredComponentsSearchRequest(solution, locks, registration);
+            return new RegisteredComponentsSearchRequest(solution, locks, registration.Registration);
         }
     }
 }

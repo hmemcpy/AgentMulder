@@ -1,4 +1,5 @@
 ﻿using AgentMulder.ReSharper.Domain.Registrations;
+using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Feature.Services.Navigation;
 
@@ -7,22 +8,26 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
     [StaticSeverityHighlighting(Severity.INFO, "GutterMarks", OverlapResolve = OverlapResolveKind.NONE, AttributeId = "Container Registration", ShowToolTipInStatusBar = false)]
     public sealed class RegisteredByContainerHighlighting : IClickableGutterHighlighting
     {
-        private readonly IComponentRegistration registration;
+        private readonly RegistrationInfo registrationInfo;
+        private readonly string containerName;
 
-        public RegisteredByContainerHighlighting(IComponentRegistration registration)
+        public RegisteredByContainerHighlighting(RegistrationInfo registrationInfo)
         {
-            this.registration = registration;
+            this.registrationInfo = registrationInfo;
+
+            containerName = string.IsNullOrWhiteSpace(registrationInfo.ContainerDisplayName)
+                                ? "a DI Container"
+                                : registrationInfo.ContainerDisplayName;
         }
 
         public bool IsValid()
         {
-            return registration.RegistrationElement.IsValid();
+            return registrationInfo.Registration.RegistrationElement.IsValid();
         }
 
         public string ToolTip
         {
-            // todo add container name
-            get { return "Registered by a DI Container (click to navigate)"; }
+            get { return string.Format("Registered by {0} (click to navigate)", containerName); }
         }
 
         public string ErrorStripeToolTip
@@ -37,7 +42,7 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
 
         public void OnClick()
         {
-            NavigationManager.Navigate(registration.RegistrationElement, true);
+            NavigationManager.Navigate(registrationInfo.Registration.RegistrationElement, true);
         }
     }
 }

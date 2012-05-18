@@ -17,14 +17,14 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
         private readonly IDaemonProcess process;
         private readonly IContextBoundSettingsStore settingsStore;
         private readonly ITypeUsageManager typeUsageManager;
-        private readonly IEnumerable<IComponentRegistration> cachedComponentRegistrations;
+        private readonly IEnumerable<RegistrationInfo> cachedComponentRegistrations;
 
-        public ContainerRegistrationAnalysisStageProcess(IDaemonProcess process, IContextBoundSettingsStore settingsStore, 
-                                                         ITypeUsageManager typeUsageManager, SolutionAnalyzer solutionAnalyzer)
+        public ContainerRegistrationAnalysisStageProcess(IDaemonProcess process, IContextBoundSettingsStore settingsStore, ITypeUsageManager typeUsageManager, SolutionAnalyzer solutionAnalyzer)
         {
             this.process = process;
             this.settingsStore = settingsStore;
             this.typeUsageManager = typeUsageManager;
+
             cachedComponentRegistrations = solutionAnalyzer.Analyze().ToList();
         }
 
@@ -36,14 +36,14 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
             {
                 psiFile.ProcessChildren<ITypeDeclaration>(declaration =>
                 {
-                    IComponentRegistration registration = cachedComponentRegistrations.FirstOrDefault(c => c.IsSatisfiedBy(declaration.DeclaredElement));
-                    if (registration != null)
+                    RegistrationInfo registrationInfo = cachedComponentRegistrations.FirstOrDefault(c => c.Registration.IsSatisfiedBy(declaration.DeclaredElement));
+                    if (registrationInfo != null)
                     {
-                        consumer.AddHighlighting(new RegisteredByContainerHighlighting(registration),
+                        consumer.AddHighlighting(new RegisteredByContainerHighlighting(registrationInfo),
                                                  declaration.GetNameDocumentRange(),
-                                                 registration.RegistrationElement.GetContainingFile());
-
-                        typeUsageManager.MarkTypeAsUsed(declaration.DeclaredElement);
+                                                 registrationInfo.GetRegistrationFile());
+                        
+                        typeUsageManager.MarkTypeAsUsed(declaration);
                     }
                 });
             }

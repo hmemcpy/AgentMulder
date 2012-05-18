@@ -51,7 +51,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Components\HighlightSuppressor.cs" />
+    <Compile Include="Components\IRegistrationInfo.cs" />
     <Compile Include="Components\ITypeUsageManager.cs" />
     <Compile Include="Components\PatternSearcher.cs" />
     <Compile Include="Components\TypeUsageManager.cs" />

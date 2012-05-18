@@ -29,7 +29,7 @@ namespace AgentMulder.ReSharper.Tests
             get { return "..\\Types"; }
         }
 
-        protected void RunTest(string testName, Action<IEnumerable<IComponentRegistration>> action)
+        protected void RunTest(string testName, Action<IEnumerable<RegistrationInfo>> action)
         {
             string fileName = testName + Extension;
             var dataPath = new DirectoryInfo(Path.Combine(SolutionItemsBasePath, RelativeTypesPath));

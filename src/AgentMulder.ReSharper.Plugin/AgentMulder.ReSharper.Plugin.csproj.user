@@ -4,14 +4,14 @@
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.exe</StartProgram>
     <StartArguments>/rootsuffix AGML /ReSharper.Plugin AgentMulder.ReSharper.Plugin.dll /ReSharper.Internal</StartArguments>
-    <StartWorkingDirectory>$(MSBuildProjectDirectory)..\..\output\Debug\</StartWorkingDirectory>
+    <StartWorkingDirectory>$(MSBuildProjectDirectory)\..\..\output\Debug\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <StartArguments>/rootsuffix AGML /ReSharper.Plugin AgentMulder.ReSharper.Plugin.dll /ReSharper.Internal</StartArguments>
-    <StartWorkingDirectory>$(MSBuildProjectDirectory)..\..\output\Release\</StartWorkingDirectory>
+    <StartWorkingDirectory>$(MSBuildProjectDirectory)\..\..\output\Release\</StartWorkingDirectory>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.exe</StartProgram>
   </PropertyGroup>

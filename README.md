@@ -27,7 +27,9 @@ This gets worse in convention-based registrations, such as:
 
 ```csharp
 container.Register(
-    AllTypes.FromThisAssembly().BasedOn<IMessageWriter>().WithServiceDefaultInterfaces()
+    Classes.FromThisAssembly().BasedOn<IMessageWriter>(),
+    Classes.FromAssemblyContaining<IRepository>().InNamespace("Acme.Repository", true)
+    );
 ```
 
 Where ReSharper will not even know that this type is being used:
@@ -38,7 +40,7 @@ Where ReSharper will not even know that this type is being used:
 
 ## The Solution ##
 
-Agent Mulder plugin for ReSharper analyzes known DI container registrations in the entire solution, and adds the missing information to ReSharper, so it no longer flags concrete types as being unused. It even adds an visual icon to the type name, allowing you to navigate to the exact line, where the concrete type is being implicitly or explicitly registered:
+Agent Mulder plugin for ReSharper analyzes known DI container registrations in the entire solution, and adds the missing information to ReSharper, so it no longer flags concrete types as being unused. It even adds an visual icon (![Black Magic Hat](http://i.imgur.com/QOZr1.png)) to the type name, allowing you to navigate to the exact line, where the concrete type is being implicitly or explicitly registered:
 
 ![Agent Mulder](http://i.imgur.com/xjYrT.png)
 

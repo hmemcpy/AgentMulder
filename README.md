@@ -2,7 +2,9 @@
 
 **Agent Mulder** plugin for ReSharper analyzes DI containers (Dependency Injection, sometimes called Inversion of Control, or IoC containers) in your solution, and provides navigation to and finding usages of types registered or resolved via DI containers.
 
-# Check out the sneak preview video here: https://vimeo.com/41113265 #
+## Download Agent Mulder v1.0.0 Beta [here](https://github.com/downloads/hmemcpy/AgentMulder/AgentMulderBeta1.0.0.0.msi)!
+
+### Check out a short demonstration video here: https://vimeo.com/41113265 ###
 (GitHub does not allow embedding videos in the README page)
 
 ## The Problem ##

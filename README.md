@@ -14,7 +14,8 @@ Consider the following example with [Castle Windsor](http://www.castleproject.or
 ```csharp
 var container = new WindsorContainer();
 container.Register(
-    Component.For<IMessageWriter>().ImplementedBy<ConsoleMessageWriter>());
+    Component.For<IMessageWriter>().ImplementedBy<ConsoleMessageWriter>()
+    );
     
 var messageWriter = container.Resolve<IMessageWriter>();
 ```    

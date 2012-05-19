@@ -25,11 +25,12 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
 
             return new ComponentForBasePattern[]
             {
-                new ComponentForGeneric(implementedByPatterns),
                 new ComponentForNonGeneric(implementedByPatterns),
-                new ComponentForGeneric(1, implementedByPatterns), 
-                new ComponentForGeneric(2, implementedByPatterns), 
-                new ComponentForGeneric(3, implementedByPatterns), 
+                new ComponentForGeneric(implementedByPatterns), // Component.For<>
+                new ComponentForGeneric(1, implementedByPatterns), // Component.For<,>
+                new ComponentForGeneric(2, implementedByPatterns), // Component.For<,,>
+                new ComponentForGeneric(3, implementedByPatterns), // Component.For<,,,>
+                new ComponentForGeneric(4, implementedByPatterns), // Component.For<,,,,>
             };
         }
     }

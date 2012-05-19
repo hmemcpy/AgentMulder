@@ -44,6 +44,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [TestCase("ComponentFor2GenericImplementedByGeneric", "CommonImpl12.cs")]
         [TestCase("ComponentFor3GenericImplementedByGeneric", "CommonImpl123.cs")]
         [TestCase("ComponentFor4GenericImplementedByGeneric", "CommonImpl1234.cs")]
+        [TestCase("ComponentFor5GenericImplementedByGeneric", "CommonImpl1234.cs")]
         public void DoTest(string testName, string fileName)
         {
             RunTest(testName, registrations =>

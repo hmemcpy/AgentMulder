@@ -97,6 +97,7 @@
     <Compile Include="Windsor\ComponentTestCases\ComponentFor2GenericImplementedbyGeneric.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentFor3GenericImplementedbyGeneric.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentFor4GenericImplementedByGeneric.cs" />
+    <Compile Include="Windsor\ComponentTestCases\ComponentFor5GenericImplementedByGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyContainingBasedOnNonGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyContainingBasedOnGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyNamedBasedOnGeneric.cs" />

@@ -28,8 +28,8 @@ namespace AgentMulder.ReSharper.Tests.Ninject
             get { return new NinjectContainerInfo(new[] { new BindRegistrationProvider(new ToRegistrationProvider()), }); }
         }
 
-        [TestCase("Bind1GenericToGeneric", "Foo.cs")]
-        [TestCase("Bind2GenericToGeneric", "CommonImpl12.cs")]
+        [TestCase("BindGenericToGeneric", "CommonImpl1.cs")]
+        [TestCase("BindGenericToNonGeneric", "CommonImpl1.cs")]
         public void DoTest(string testName, string fileName)
         {
             RunTest(testName, registrations =>

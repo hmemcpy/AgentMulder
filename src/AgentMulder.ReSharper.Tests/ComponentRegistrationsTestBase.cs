@@ -52,9 +52,16 @@ namespace AgentMulder.ReSharper.Tests
             IProjectFile projectFile = Project.GetAllProjectFiles(file => file.Name.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
             if (projectFile != null)
             {
-                return manager.GetPsiFile(projectFile.ToSourceFile(), CSharpLanguage.Instance) as ICSharpFile;
+                var cSharpFile = manager.GetPsiFile(projectFile.ToSourceFile(), CSharpLanguage.Instance) as ICSharpFile;
+                if (string.IsNullOrWhiteSpace(cSharpFile.GetText())) // no better idea for now, makes sure the file exists
+                {
+                    Assert.Fail(string.Format("The file '{0}' does not exist or is empty", fileName));
+                }
+
+                return cSharpFile;
             }
 
+            Assert.Fail(string.Format("The file '{0}' does not exist or is empty", fileName));
             return null;
         }
     }

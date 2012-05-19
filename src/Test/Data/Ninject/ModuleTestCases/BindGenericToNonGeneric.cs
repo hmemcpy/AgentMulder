@@ -1,13 +1,13 @@
-﻿using Ninject.Modules;
+using Ninject.Modules;
 using TestApplication.Types;
 
 namespace TestApplication.Ninject.ModuleTestCases
 {
-    public class Bind1GenericToGeneric : NinjectModule
+    public class BindGenericToNonGeneric : NinjectModule
     {
         public override void Load()
         {
-            Bind<IFoo>().To<Foo>();
+            Bind<ICommon>().To(typeof(CommonImpl1));
         }
     }
 }

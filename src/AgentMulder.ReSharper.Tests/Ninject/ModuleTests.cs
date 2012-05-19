@@ -2,7 +2,6 @@ using System.Linq;
 using AgentMulder.Containers.Ninject;
 using AgentMulder.Containers.Ninject.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
-using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Tests.Ninject.Helpers;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -29,7 +28,8 @@ namespace AgentMulder.ReSharper.Tests.Ninject
             get { return new NinjectContainerInfo(new[] { new BindRegistrationProvider(new ToRegistrationProvider()), }); }
         }
 
-        [TestCase("BindGenericToGeneric", "Foo.cs")]
+        [TestCase("Bind1GenericToGeneric", "Foo.cs")]
+        [TestCase("Bind2GenericToGeneric", "CommonImpl12.cs")]
         public void DoTest(string testName, string fileName)
         {
             RunTest(testName, registrations =>
@@ -38,7 +38,7 @@ namespace AgentMulder.ReSharper.Tests.Ninject
 
                 Assert.AreEqual(1, registrations.Count());
                 file.ProcessChildren<ITypeDeclaration>(declaration =>
-                    Assert.That(registrations.First().IsSatisfiedBy(declaration.DeclaredElement)));
+                    Assert.That(registrations.First().Registration.IsSatisfiedBy(declaration.DeclaredElement)));
             });
         }
     }

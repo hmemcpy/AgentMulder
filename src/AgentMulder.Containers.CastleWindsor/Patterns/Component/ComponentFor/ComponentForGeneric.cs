@@ -1,4 +1,3 @@
-using AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;

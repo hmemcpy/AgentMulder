@@ -32,6 +32,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             get { return new WindsorContainerInfo(new[] { new ComponentRegistrationProvider(new ImplementedByRegistrationProvider()) }); }
         }
 
+        [TestCase("GenericOpenType", "MyList.cs")]
         [TestCase("ComponentFor", "Foo.cs")]
         [TestCase("ComponentForImplementedBy", "Foo.cs")]
         [TestCase("ComponentForImplementedByWithAdditionalParams", "Foo.cs")]
@@ -40,7 +41,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [TestCase("ComponentForImplementedByNonGenericWithAdditionalParams", "Foo.cs")]
         [TestCase("ComponentForGenericImplementedByNonGeneric", "Foo.cs")]
         [TestCase("ComponentForNonGenericImplementedByGeneric", "Foo.cs")]
-        [TestCase("GenericOpenType", "MyList.cs")]
+        [TestCase("ComponentFor2GenericImplementedbyGeneric", "CommonImpl12.cs")]
         public void DoTest(string testName, string fileName)
         {
             RunTest(testName, registrations =>

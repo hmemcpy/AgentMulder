@@ -7,18 +7,14 @@ namespace AgentMulder.ReSharper.Domain.Registrations
     public class ComponentRegistration : ComponentRegistrationBase
     {
         private readonly ITypeElement serviceType;
-        private readonly string name;
-        
         private ITypeElement implementation;
-        private string implementationName;
-
+        
         public ITypeElement Implementation
         {
             get { return implementation; }
             set
             {
                 implementation = value;
-                implementationName = GetDisplayName(implementation);
             }
         }
 
@@ -31,10 +27,6 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             : base(registrationElement)
         {
             this.serviceType = serviceType;
-            
-            // for some reason, in tests this throws an exception
-            // copying the name to display later in ToString()
-            name = GetDisplayName(serviceType);
         }
 
         private static string GetDisplayName(ITypeElement element)
@@ -53,7 +45,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
-            // todo don't know if this assumption is correct
+            // todo for now assume that interfaces are not supported
             if (typeElement is IInterface)
             {
                 return false;
@@ -61,10 +53,9 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
             if (implementation != null)
             {
-                if ((implementation is IInterface) &&
-                    implementation.HasTypeParameters())
+                if (implementation.IsGenericInterface())
                 {
-                    return IsAssignableFrom(typeElement, implementation);
+                    return typeElement.IsDescendantOf(implementation);
                 }
 
                 return implementation.Equals(typeElement);
@@ -73,14 +64,10 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             return serviceType.Equals(typeElement);
         }
 
-        private bool IsAssignableFrom(ITypeElement typeElement, ITypeElement implementedBy)
-        {
-            return implementedBy.IsDescendantOf(implementedBy);
-        }
-
         public override string ToString()
         {
-            string displayName = implementationName ?? name;
+            string displayName = implementation != null ? implementation.GetClrName().FullName
+                                                        : serviceType.GetClrName().FullName;
 
             return string.Format("Implemented by: {0}", displayName);
         }

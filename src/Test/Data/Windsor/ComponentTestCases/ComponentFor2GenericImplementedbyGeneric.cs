@@ -5,11 +5,11 @@ using TestApplication.Types;
 
 namespace TestApplication.Windsor.ComponentTestCases
 {
-    public class ComponentFor : IWindsorInstaller
+    public class ComponentFor2GenericImplementedbyGeneric : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<Foo>());
+            container.Register(Component.For<ICommon, ICommon2>().ImplementedBy<CommonImpl12>());
         }
     }
 }

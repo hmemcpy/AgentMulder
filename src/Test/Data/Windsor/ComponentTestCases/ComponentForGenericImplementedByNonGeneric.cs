@@ -9,7 +9,7 @@ namespace TestApplication.Windsor.ComponentTestCases
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Castle.MicroKernel.Registration.Component.For<IFoo>().ImplementedBy(typeof(Foo)));
+            container.Register(Component.For<IFoo>().ImplementedBy(typeof(Foo)));
         }
     }
 }

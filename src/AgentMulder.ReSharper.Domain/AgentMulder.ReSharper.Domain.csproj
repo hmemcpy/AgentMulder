@@ -45,7 +45,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Containers\IContainerInfo.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="PsiExtensions.cs" />
     <Compile Include="Modules\Impl\AssemblyNameExtractor.cs" />
     <Compile Include="Modules\ModuleExtractorDecorator.cs" />
     <Compile Include="Modules\Impl\TypeElementExtractor.cs" />

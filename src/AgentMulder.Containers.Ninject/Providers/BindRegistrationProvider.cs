@@ -25,8 +25,7 @@ namespace AgentMulder.Containers.Ninject.Providers
 
             return new RegistrationBasePattern[]
             {
-                new Bind1Generic(toPatterns),
-
+                new BindGeneric(toPatterns),
             };
         }
     }

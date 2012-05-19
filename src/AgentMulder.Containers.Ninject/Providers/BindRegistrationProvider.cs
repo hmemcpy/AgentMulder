@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using AgentMulder.Containers.Ninject.Patterns.Module;
 using AgentMulder.Containers.Ninject.Patterns.Module.Bind;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Search;
@@ -26,7 +25,8 @@ namespace AgentMulder.Containers.Ninject.Providers
 
             return new RegistrationBasePattern[]
             {
-                new BindGeneric(toPatterns),
+                new Bind1Generic(toPatterns),
+
             };
         }
     }

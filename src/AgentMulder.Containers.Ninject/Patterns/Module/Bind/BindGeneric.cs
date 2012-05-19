@@ -6,13 +6,13 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.Ninject.Patterns.Module.Bind
 {
-    internal sealed class Bind1Generic : BindBasePattern
+    internal sealed class BindGeneric : BindBasePattern
     {
         private static readonly IStructuralSearchPattern pattern
             = new CSharpStructuralSearchPattern("Bind<$service$>()",
                 new TypePlaceholder("service"));
 
-        public Bind1Generic(IEnumerable<ComponentImplementationBasePattern> toPatterns)
+        public BindGeneric(IEnumerable<ComponentImplementationBasePattern> toPatterns)
             : base(pattern, "service", toPatterns)
         {
         }

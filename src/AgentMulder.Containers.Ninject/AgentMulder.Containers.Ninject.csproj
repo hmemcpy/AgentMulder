@@ -60,7 +60,7 @@
     </Compile>
     <Compile Include="NinjectContainerInfo.cs" />
     <Compile Include="Patterns\Module\Bind\BindBasePattern.cs" />
-    <Compile Include="Patterns\Module\Bind\BindGeneric.cs" />
+    <Compile Include="Patterns\Module\Bind\Bind1Generic.cs" />
     <Compile Include="Patterns\Module\To\ToGeneric.cs" />
     <Compile Include="Patterns\NinjectModulePattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

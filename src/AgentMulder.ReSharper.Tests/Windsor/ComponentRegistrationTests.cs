@@ -41,7 +41,9 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [TestCase("ComponentForImplementedByNonGenericWithAdditionalParams", "Foo.cs")]
         [TestCase("ComponentForGenericImplementedByNonGeneric", "Foo.cs")]
         [TestCase("ComponentForNonGenericImplementedByGeneric", "Foo.cs")]
-        [TestCase("ComponentFor2GenericImplementedbyGeneric", "CommonImpl12.cs")]
+        [TestCase("ComponentFor2GenericImplementedByGeneric", "CommonImpl12.cs")]
+        [TestCase("ComponentFor3GenericImplementedByGeneric", "CommonImpl123.cs")]
+        [TestCase("ComponentFor4GenericImplementedByGeneric", "CommonImpl1234.cs")]
         public void DoTest(string testName, string fileName)
         {
             RunTest(testName, registrations =>

@@ -27,7 +27,9 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
             {
                 new ComponentForGeneric(implementedByPatterns),
                 new ComponentForNonGeneric(implementedByPatterns),
-                new ComponentFor2Generic(implementedByPatterns), 
+                new ComponentForGeneric(1, implementedByPatterns), 
+                new ComponentForGeneric(2, implementedByPatterns), 
+                new ComponentForGeneric(3, implementedByPatterns), 
             };
         }
     }

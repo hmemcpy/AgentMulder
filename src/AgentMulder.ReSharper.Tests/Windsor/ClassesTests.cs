@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.Containers.CastleWindsor.Providers;
 using AgentMulder.ReSharper.Domain.Containers;

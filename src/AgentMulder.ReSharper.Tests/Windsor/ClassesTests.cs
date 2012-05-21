@@ -63,6 +63,11 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [TestCase("BasedOn\\FromTypesParamsPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs" })]
         [TestCase("BasedOn\\FromTypesNewListPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs" })]
         [TestCase("BasedOn\\FromTypesNewArrayPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs" })]
+        [TestCase("BasedOn\\FromAssemblyContainingPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "FooBar.cs" })]
+        [TestCase("BasedOn\\FromAssemblyGetExecutingAssemblyPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "FooBar.cs" })]
+        [TestCase("BasedOn\\FromAssemblyNamedPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "FooBar.cs" })]
+        [TestCase("BasedOn\\FromAssemblyTypeOfPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "FooBar.cs" })]
+        [TestCase("BasedOn\\FromThisAssemblyPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "FooBar.cs" })]
         public void TestWithRegistrations(string testName, params string[] fileNames)
         {
             RunTest(testName, registrations =>

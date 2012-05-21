@@ -16,6 +16,5 @@ namespace TestApplication.Windsor.TestCases.BasedOn
                 Castle.MicroKernel.Registration.Types.FromAssembly(Assembly.GetExecutingAssembly()).BasedOn<IFoo>()
                 );
         }
- 
     }
 }

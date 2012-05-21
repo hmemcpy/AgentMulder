@@ -105,8 +105,12 @@
     <Compile Include="Windsor\ComponentTestCases\ComponentFor5GenericImplementedByGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyContainingBasedOnNonGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyContainingBasedOnGeneric.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyContainingPick.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyGetExecutingAssemblyPick.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyNamedBasedOnGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyNamedBasedOnNonGeneric.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyNamedPick.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromAssemblyTypeOfPick.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyBasedOnNonGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInSameNamespaceAsNonGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInSameNamespaceAsNonGenericWithSubnamespaces.cs" />
@@ -116,6 +120,7 @@
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInNamespaceWithSubnamespaces.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInSameNamespaceAsGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInSameNamespaceAsGenericWithSubnamespaces.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyPick.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewArrayBasedOnGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewArrayPick.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewListBasedOnGeneric.cs" />

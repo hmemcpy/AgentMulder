@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Xml.Linq;
 using AgentMulder.ReSharper.Domain.Utils;
 using ExpressionSerialization;
+using JetBrains.ProjectModel;
 using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
@@ -15,17 +16,21 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public class TypePredicateRegistration : BasedOnRegistrationBase
     {
+        private readonly IModule targetModule;
         private readonly Expression predicateExpression;
 
         public TypePredicateRegistration(ITreeNode registrationRootElement, Expression<Predicate<Type>> predicateExpression, IEnumerable<WithServiceRegistration> withServices)
             : base(registrationRootElement, withServices)
         {
+            this.targetModule = targetModule;
             this.predicateExpression = predicateExpression;
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
-            IAssembly moduleAssembly = Module.GetModuleAssembly();
+            // todo fix me!
+            // find a way to add the module
+            IAssembly moduleAssembly = targetModule.GetModuleAssembly();
             if (moduleAssembly == null)
             {
                 return false;

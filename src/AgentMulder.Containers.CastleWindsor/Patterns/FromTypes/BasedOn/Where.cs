@@ -32,7 +32,6 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 
             if (match.Matched)
             {
-
                 var lambdaExpression = match.GetMatchedElement("predicate") as ILambdaExpression;
                 if (lambdaExpression != null)
                 {

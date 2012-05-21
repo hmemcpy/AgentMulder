@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Agent Mulder plugin for ReSharper by hmemcpy</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Agent Mulder plugin for ReSharper</h1>
+        <p>Agent Mulder plugin for ReSharper provides navigation to and finding usages of types registered or resolved via Dependency Injection (DI) containers.</p>
+        <p class="view"><a href="https://github.com/hmemcpy/AgentMulder">View the Project on GitHub <small>hmemcpy/AgentMulder</small></a></p>
+        <ul>
+          <li><a href="https://github.com/hmemcpy/AgentMulder/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/hmemcpy/AgentMulder/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/hmemcpy/AgentMulder">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><img src="http://i.imgur.com/7ZNxO.png" alt="Agent Mulder"></p>
+
+<p><strong>Agent Mulder</strong> plugin for ReSharper analyzes DI containers (Dependency Injection, sometimes called Inversion of Control, or IoC containers) in your solution, and provides navigation to and finding usages of types registered or resolved via DI containers.</p>
+
+<h2>Download Agent Mulder v1.0.0 Beta <a href="https://github.com/downloads/hmemcpy/AgentMulder/AgentMulderBeta1.0.0.0.msi">here</a>!</h2>
+
+<h3>Check out a short demonstration video here: <a href="http://vimeo.com/41113265">http://vimeo.com/41113265</a>
+</h3>
+
+<p>(GitHub does not allow embedding videos in the README page)</p>
+
+<h2>The Problem</h2>
+
+<p>With all the major benefits of using smart DI containers to wire up dependencies in code, it breaks automatic code-analysis tools like ReSharper, because DI containers will only create concrete types at run-time (typically using Reflection), and this information is not known during static code analysis.</p>
+
+<p>Consider the following example with <a href="http://www.castleproject.org/container/index.html">Castle Windsor</a>:</p>
+
+<div class="highlight">
+<pre><span class="kt">var</span> <span class="n">container</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WindsorContainer</span><span class="p">();</span>
+<span class="n">container</span><span class="p">.</span><span class="n">Register</span><span class="p">(</span>
+    <span class="n">Component</span><span class="p">.</span><span class="n">For</span><span class="p">&lt;</span><span class="n">IMessageWriter</span><span class="p">&gt;().</span><span class="n">ImplementedBy</span><span class="p">&lt;</span><span class="n">ConsoleMessageWriter</span><span class="p">&gt;()</span>
+    <span class="p">);</span>
+
+<span class="kt">var</span> <span class="n">messageWriter</span> <span class="p">=</span> <span class="n">container</span><span class="p">.</span><span class="n">Resolve</span><span class="p">&lt;</span><span class="n">IMessageWriter</span><span class="p">&gt;();</span>
+</pre>
+</div>
+
+
+<p>Using the configuration above, at runtime the container will resolve the concrete <code>ConsoleMessageWriter</code>, however, if you're using ReSharper with solution-wide analysis enabled, it will tell you that <code>ConsoleMessageWriter</code> is never instantiated:</p>
+
+<p><img src="http://i.imgur.com/YNWby.png" alt="Never instantiated"></p>
+
+<p>This gets worse in convention-based registrations, such as:</p>
+
+<div class="highlight">
+<pre><span class="n">container</span><span class="p">.</span><span class="n">Register</span><span class="p">(</span>
+    <span class="n">Classes</span><span class="p">.</span><span class="n">FromThisAssembly</span><span class="p">().</span><span class="n">BasedOn</span><span class="p">&lt;</span><span class="n">IMessageWriter</span><span class="p">&gt;()</span>
+    <span class="p">);</span>
+</pre>
+</div>
+
+
+<p>Where ReSharper will not even know that this type is being used:</p>
+
+<p><img src="http://i.imgur.com/pSezv.png" alt="Never used"></p>
+
+<p><strong>Agent Mulder</strong> aims to solve that problem!</p>
+
+<h2>The Solution</h2>
+
+<p>Agent Mulder plugin for ReSharper analyzes known DI container registrations in the entire solution, and adds the missing information to ReSharper, so it no longer flags concrete types as being unused. It even adds an visual icon (<img src="http://i.imgur.com/QOZr1.png" alt="Black Magic Hat">) to the type name, allowing you to navigate to the exact line, where the concrete type is being implicitly or explicitly registered:</p>
+
+<p><img src="http://i.imgur.com/xjYrT.png" alt="Agent Mulder"></p>
+
+<p>Agent Mulder plugin also adds a new navigation feature, allowing you to navigate to all the types that are being registered via any particular registration. Simply position the caret on the registration expression, and press the <strong>Navigate To</strong> keyboard shortcut (<strong>Ctrl-Shift-G</strong> in IntelliJ IDEA bindings, <strong>Alt-`</strong> in Visual Studio bindings):</p>
+
+<p><img src="http://i.imgur.com/y7PFp.png" alt="Navigate To"></p>
+
+<p>Select <strong>Registered Components</strong>, and you will be presented with a list of types matching that registration:</p>
+
+<p><img src="http://i.imgur.com/XHjKZ.png" alt="Results"></p>
+
+<p>Pressing <strong>+</strong> on the numeric keypad (or clicking the little search icon in the caption) will open the results in a tool window:</p>
+
+<p><img src="http://i.imgur.com/g6QV7.png" alt="Tool window"></p>
+
+<h2>Building and installing Agent Mulder plugin</h2>
+
+<p>To build the plugin you need to have the <a href="http://www.jetbrains.com/resharper/download/">ReSharper SDK</a> (v6.1.x at the time of writing), installed on your machine. The project will add the references automatically.</p>
+
+<p>To build the plugin, run the file <code>src\build.cmd</code>. The files will be built and placed into the directories <code>output\Debug</code> and <code>output\Release</code>. In the directory will also be a batch file that copies the files into the ReSharper's plugin directory. You will need to restart Visual Studio to see the changes.</p>
+
+<h2>Frequently Asked Questions (last updated: May 18th, 2012)</h2>
+
+<p><strong>Q: Wow! How does it work?</strong></p>
+
+<p><strong>A:</strong> Agent Mulder makes heavy use ReSharper's <a href="http://www.jetbrains.com/resharper/webhelp/Navigation_and_Search__SSR__Searching_for_Code_with_Pattern.html">Structural Search</a> to look for registration patterns, such as <code>Component.For&lt;$service$&gt;()</code>. This makes searching very efficient and does not require any additional parsing. This also allows for adding new patterns easily, allowing adding support for additional DI containers.</p>
+
+<p>More information is available in the <a href="https://github.com/hmemcpy/AgentMulder/wiki">wiki page</a>.</p>
+
+<p><strong>Q: What DI containers are currently supported?</strong></p>
+
+<p><strong>A:</strong> The list of the currently supported DI containers and their syntax can be found on the <a href="https://github.com/hmemcpy/AgentMulder/wiki">wiki page</a>.</p>
+
+<p><strong>Q: What about X (Ninject/StructureMap/Unity)? Can you add support for it?</strong></p>
+
+<p><strong>A:</strong> Great question! Suggest a feature on the <a href="https://github.com/hmemcpy/AgentMulder/issues">issue tracker</a>, or better yet, send me a pull request!</p>
+
+<p><strong>Q: Why the name Agent Mulder?</strong></p>
+
+<p><strong>A:</strong> There already exist a few great plugins for ReSharper called Agent Smith, Agent Johnson and Agent Ralph. I decided to continue the tradition, and after some consideration I decided on Agent Mulder - <em>The IoC Investigator</em> :)</p>
+
+<p><strong>Q: I found a bug/Agent Mulder highlights the wrong type (or doesn't)/It doesn't work!</strong></p>
+
+<p><strong>A:</strong> Great! <a href="https://github.com/hmemcpy/AgentMulder/issues">Let me know</a> about it, and I will try to fix it! Please note that I don't know all DI containers and their rules - if you think a mistake in analysis has been made, please note what should be the desired outcome in the issue.</p>
+
+<p><strong>Q: What font did you use for the logo?</strong></p>
+
+<p><strong>A:</strong> It is called simply "The X-Files" by SpideRaY, and is available to download <a href="http://www.dafont.com/the-x-files.font">here</a>.</p>
+
+<p>Also please note that Agent Mulder plugin requires ReSharper 6.1 and only works in Visual Studio 2010. Other versions were not tested!</p>
+
+<p>Happy Investigating!</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/hmemcpy">hmemcpy</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-31927867-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>

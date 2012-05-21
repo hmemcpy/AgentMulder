@@ -1,0 +1,11 @@
+What's new in Agent Mulder
+==========================
+
+v1.0.1
+======
++ Castle Windsor: Added support for .Pick()
+
+v1.0.0
+======
+ * First public release
+ + Support for Castle Windsor

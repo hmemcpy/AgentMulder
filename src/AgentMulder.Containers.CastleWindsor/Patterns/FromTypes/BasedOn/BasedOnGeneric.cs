@@ -31,10 +31,13 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                 var matchedType = match.GetMatchedType("type") as IDeclaredType;
                 if (matchedType != null)
                 {
-                    var withServiceRegistrations = base.GetComponentRegistrations(registrationRootElement).OfType<WithServiceRegistration>();
-
                     ITypeElement typeElement = matchedType.GetTypeElement();
-                    yield return new BasedOnRegistration(registrationRootElement, typeElement, withServiceRegistrations);
+                    if (typeElement != null)
+                    {
+                        var withServiceRegistrations = base.GetComponentRegistrations(registrationRootElement).OfType<WithServiceRegistration>();
+
+                        yield return new BasedOnRegistration(registrationRootElement, typeElement, withServiceRegistrations);
+                    }
                 }
             }
         }

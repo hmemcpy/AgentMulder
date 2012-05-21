@@ -50,19 +50,16 @@ namespace AgentMulder.ReSharper.Tests
         {
             PsiManager manager = PsiManager.GetInstance(Solution);
             IProjectFile projectFile = Project.GetAllProjectFiles(file => file.Name.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-            if (projectFile != null)
-            {
-                var cSharpFile = manager.GetPsiFile(projectFile.ToSourceFile(), CSharpLanguage.Instance) as ICSharpFile;
-                if (string.IsNullOrWhiteSpace(cSharpFile.GetText())) // no better idea for now, makes sure the file exists
-                {
-                    Assert.Fail(string.Format("The file '{0}' does not exist or is empty", fileName));
-                }
+            if (projectFile == null)
+                return null;
 
-                return cSharpFile;
+            var cSharpFile = manager.GetPsiFile(projectFile.ToSourceFile(), CSharpLanguage.Instance) as ICSharpFile;
+            if (cSharpFile == null || string.IsNullOrEmpty(cSharpFile.GetText()))
+            {
+                Assert.Fail("Unable to open the file '{0}', or the file is empty", fileName);
             }
 
-            Assert.Fail(string.Format("The file '{0}' does not exist or is empty", fileName));
-            return null;
+            return cSharpFile;
         }
     }
 }

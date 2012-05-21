@@ -52,12 +52,16 @@ namespace AgentMulder.ReSharper.Tests
         {
             PsiManager manager = PsiManager.GetInstance(Solution);
             IProjectFile projectFile = Project.GetAllProjectFiles(file => file.Name.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-            if (projectFile != null)
+            if (projectFile == null)
+                return null;
+
+            var cSharpFile = manager.GetPsiFile(projectFile.ToSourceFile(), CSharpLanguage.Instance) as ICSharpFile;
+            if (cSharpFile == null || string.IsNullOrEmpty(cSharpFile.GetText()))
             {
-                return manager.GetPsiFile(projectFile.ToSourceFile(), CSharpLanguage.Instance) as ICSharpFile;
+                Assert.Fail("Unable to open the file '{0}', or the file is empty", fileName);
             }
 
-            return null;
+            return cSharpFile;
         }
     }
 }

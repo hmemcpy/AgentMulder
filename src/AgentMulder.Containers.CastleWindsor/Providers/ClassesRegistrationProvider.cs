@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
+using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.Containers.CastleWindsor.Providers

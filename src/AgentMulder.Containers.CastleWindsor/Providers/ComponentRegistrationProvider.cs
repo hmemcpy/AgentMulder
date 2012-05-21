@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor;
+using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Search;
 
 namespace AgentMulder.Containers.CastleWindsor.Providers
 {

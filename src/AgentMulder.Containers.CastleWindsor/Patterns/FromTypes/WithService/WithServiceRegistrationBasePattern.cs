@@ -1,4 +1,4 @@
-﻿using AgentMulder.ReSharper.Domain.Search;
+﻿using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService

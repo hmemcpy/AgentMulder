@@ -8,8 +8,8 @@ using System.Reflection;
 using AgentMulder.Containers.CastleWindsor.Patterns;
 using AgentMulder.Containers.CastleWindsor.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
+using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Search;
 
 namespace AgentMulder.Containers.CastleWindsor
 {

@@ -1,4 +1,3 @@
-using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 
@@ -8,14 +7,11 @@ namespace AgentMulder.ReSharper.Domain.Registrations
     {
         private readonly ITypeElement serviceType;
         private ITypeElement implementation;
-        
+
         public ITypeElement Implementation
         {
             get { return implementation; }
-            set
-            {
-                implementation = value;
-            }
+            set { implementation = value; }
         }
 
         public ITypeElement ServiceType
@@ -27,20 +23,6 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             : base(registrationElement)
         {
             this.serviceType = serviceType;
-        }
-
-        private static string GetDisplayName(ITypeElement element)
-        {
-            IClrTypeName clrName = element.GetClrName();
-
-            string fullName = string.Format("{0}.{1}", clrName.GetNamespaceName(), clrName.ShortName);
-            
-            if (element.HasTypeParameters())
-            {
-                fullName = string.Format("{0}<>", fullName);
-            }
-
-            return fullName;
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)

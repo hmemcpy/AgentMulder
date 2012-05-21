@@ -1,6 +1,6 @@
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
-namespace AgentMulder.ReSharper.Domain.Registrations
+namespace AgentMulder.ReSharper.Domain.Patterns
 {
     public abstract class ComponentImplementationBasePattern : ComponentRegistrationBasePattern
     {

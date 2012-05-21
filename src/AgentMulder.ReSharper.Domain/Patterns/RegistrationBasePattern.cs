@@ -1,12 +1,11 @@
-using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.ReSharper.Domain.Search
+namespace AgentMulder.ReSharper.Domain.Patterns
 {
     public abstract class RegistrationBasePattern : IRegistrationPattern
     {

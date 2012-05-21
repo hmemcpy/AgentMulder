@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.ReSharper.Domain.Search;
+using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.Application;
 using JetBrains.Application.Progress;
 using JetBrains.DocumentManagers;

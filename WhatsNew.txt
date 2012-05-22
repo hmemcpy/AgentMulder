@@ -4,6 +4,11 @@ What's new in Agent Mulder
 v1.0.1
 ======
 + Castle Windsor: Added support for .Pick()
++ Castle Windsor: Added support for .Where() that takes in the following methods:
+  * Component.HasAttribute<T> (as a method group, not lambda expression)
+  * Component.IsInNamespace
+  * Component.IsInSameNamespaceAs (both generic and non-generic)
++ Added a new installer, based on the free edition of Advanced Installer (http://www.advancedinstaller.com)
 
 v1.0.0
 ======

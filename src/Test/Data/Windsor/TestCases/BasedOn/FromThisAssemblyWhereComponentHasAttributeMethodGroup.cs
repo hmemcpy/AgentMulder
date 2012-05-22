@@ -10,7 +10,9 @@ namespace TestApplication.Windsor.TestCases.BasedOn
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromThisAssembly().Where(Component.HasAttribute<MyAttribute>)
+                AllTypes.FromThisAssembly().Where(Component.HasAttribute<MyAttribute>),
+                Classes.FromThisAssembly().Where(Component.HasAttribute<MyAttribute>),
+                Castle.MicroKernel.Registration.Types.FromThisAssembly().Where(Component.HasAttribute<MyAttribute>)
                 );
         }
     }

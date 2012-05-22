@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Helpers;
 using JetBrains.ReSharper.Psi;
@@ -7,16 +6,16 @@ using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
-namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
+namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereArgument
 {
-    internal sealed class InSameNamespaceAsNonGeneric : NamespaceRegistrationPatternBase
+    internal class ComponentIsInSameNamespaceAsNonGeneric : NamespaceRegistrationPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$fromDescriptor$.InSameNamespaceAs($arguments$)",
-                new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
-                new ArgumentPlaceholder("arguments", 1, 2)); // at most two occurrences, for both overloads
+            new CSharpStructuralSearchPattern("$component$.IsInSameNamespaceAs($arguments$)",
+                new ExpressionPlaceholder("component", "Castle.MicroKernel.Registration.Component", true),
+                new ArgumentPlaceholder("arguments", 1, 2));
 
-        public InSameNamespaceAsNonGeneric()
+        public ComponentIsInSameNamespaceAsNonGeneric()
             : base(pattern)
         {
         }

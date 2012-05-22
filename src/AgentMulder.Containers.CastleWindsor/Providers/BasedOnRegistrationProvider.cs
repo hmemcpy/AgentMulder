@@ -15,7 +15,8 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
         {
             new ComponentIsInNamespace(),
             new ComponentHasAttributeMethodGroup(),
-            new ComponentIsInSameNamespaceAsGeneric()
+            new ComponentIsInSameNamespaceAsGeneric(),
+            new ComponentIsInSameNamespaceAsNonGeneric()
         };
 
         public IEnumerable<IBasedOnPattern> GetRegistrationPatterns()

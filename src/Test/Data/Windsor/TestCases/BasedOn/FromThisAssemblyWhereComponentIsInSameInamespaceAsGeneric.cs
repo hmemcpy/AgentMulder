@@ -10,7 +10,9 @@ namespace TestApplication.Windsor.TestCases.BasedOn
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromThisAssembly().Where(Component.IsInSameNamespaceAs<IInSomeNamespace>())
+                AllTypes.FromThisAssembly().Where(Component.IsInSameNamespaceAs<IInSomeNamespace>()),
+                Classes.FromThisAssembly().Where(Component.IsInSameNamespaceAs<IInSomeNamespace>()),
+                Castle.MicroKernel.Registration.Types.FromThisAssembly().Where(Component.IsInSameNamespaceAs<IInSomeNamespace>())
                 );
         }
     }

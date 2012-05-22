@@ -128,6 +128,8 @@
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhereComponentIsInInamespaceWithSubnamespaces.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhereComponentIsInSameInamespaceAsGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhereComponentIsInSameInamespaceAsGenericWithSubnamespaces.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhereComponentIsInSameInamespaceAsNonGeneric.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhereComponentIsInSameInamespaceAsNonGenericWithSubnamespaces.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewArrayBasedOnGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewArrayPick.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewListBasedOnGeneric.cs" />

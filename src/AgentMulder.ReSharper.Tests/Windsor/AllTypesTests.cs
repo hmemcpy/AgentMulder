@@ -71,6 +71,8 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [TestCase("BasedOn\\FromThisAssemblyWhereComponentHasAttributeMethodGroup", new[] { "HaveAttribute.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyWhereComponentIsInSameInamespaceAsGeneric", new[] { "InSomeNamespace.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyWhereComponentIsInSameInamespaceAsGenericWithSubnamespaces", new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
+        [TestCase("BasedOn\\FromThisAssemblyWhereComponentIsInSameInamespaceAsNonGeneric", new[] { "InSomeNamespace.cs" })]
+        [TestCase("BasedOn\\FromThisAssemblyWhereComponentIsInSameInamespaceAsNonGenericWithSubnamespaces", new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
         public void TestWithRegistrations(string testName, params string[] fileNames)
         {
             RunTest(testName, registrations =>

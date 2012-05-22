@@ -73,6 +73,7 @@
     <Compile Include="Ninject\ModuleTestCases\BindGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindGenericToNonGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindNonGenericToGeneric.cs" />
+    <Compile Include="Ninject\ModuleTestCases\BindNonGenericToNonGeneric.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />
     <Compile Include="Types\Baz.cs" />

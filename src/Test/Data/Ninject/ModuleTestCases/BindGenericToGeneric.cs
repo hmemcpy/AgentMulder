@@ -1,4 +1,4 @@
-﻿using Ninject.Modules;
+using Ninject.Modules;
 using TestApplication.Types;
 
 namespace TestApplication.Ninject.ModuleTestCases

@@ -26,6 +26,7 @@ namespace AgentMulder.Containers.Ninject.Providers
             return new IRegistrationPattern[]
             {
                 new BindGeneric(toPatterns),
+                new BindNonGeneric(toPatterns),
             };
         }
     }

@@ -42,6 +42,7 @@
     <Compile Include="NinjectContainerInfo.cs" />
     <Compile Include="Patterns\Module\Bind\BindBasePattern.cs" />
     <Compile Include="Patterns\Module\Bind\BindGeneric.cs" />
+    <Compile Include="Patterns\Module\Bind\BindNonGeneric.cs" />
     <Compile Include="Patterns\Module\To\ToGeneric.cs" />
     <Compile Include="Patterns\Module\To\ToNonGeneric.cs" />
     <Compile Include="Patterns\NinjectModulePattern.cs" />

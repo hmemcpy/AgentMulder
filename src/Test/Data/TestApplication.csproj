@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Ninject\ModuleTestCases\BindGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindGenericToNonGeneric.cs" />
+    <Compile Include="Ninject\ModuleTestCases\BindNonGenericToGeneric.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />
     <Compile Include="Types\Baz.cs" />

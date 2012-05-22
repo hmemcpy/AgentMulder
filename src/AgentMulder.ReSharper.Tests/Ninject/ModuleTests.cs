@@ -30,6 +30,7 @@ namespace AgentMulder.ReSharper.Tests.Ninject
 
         [TestCase("BindGenericToGeneric", "CommonImpl1.cs")]
         [TestCase("BindGenericToNonGeneric", "CommonImpl1.cs")]
+        [TestCase("BindNonGenericToGeneric", "CommonImpl1.cs")]
         public void DoTest(string testName, string fileName)
         {
             RunTest(testName, registrations =>

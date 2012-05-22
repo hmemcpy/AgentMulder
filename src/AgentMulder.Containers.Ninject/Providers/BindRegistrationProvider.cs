@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.Containers.Ninject.Patterns.Module.Bind;
+using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Search;
 
 namespace AgentMulder.Containers.Ninject.Providers
 {
@@ -19,11 +19,11 @@ namespace AgentMulder.Containers.Ninject.Providers
              this.toProvider = toProvider;
          }
 
-        public IEnumerable<RegistrationBasePattern> GetRegistrationPatterns()
+        public IEnumerable<IRegistrationPattern> GetRegistrationPatterns()
         {
             var toPatterns = toProvider.GetRegistrationPatterns().ToArray();
 
-            return new RegistrationBasePattern[]
+            return new IRegistrationPattern[]
             {
                 new BindGeneric(toPatterns),
             };

@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Ninject.Patterns.Module.Bind
 {
-    internal abstract class BindBasePattern : ComponentRegistrationBasePattern
+    internal abstract class BindBasePattern : ComponentRegistrationPatternBase
     {
-        private readonly IEnumerable<ComponentImplementationBasePattern> toPatterns;
+        private readonly IEnumerable<ComponentRegistrationPatternBase> toPatterns;
 
-        protected BindBasePattern(IStructuralSearchPattern pattern, string elementName, IEnumerable<ComponentImplementationBasePattern> toPatterns)
+        protected BindBasePattern(IStructuralSearchPattern pattern, string elementName, IEnumerable<ComponentRegistrationPatternBase> toPatterns)
             : base(pattern, elementName)
         {
             this.toPatterns = toPatterns;

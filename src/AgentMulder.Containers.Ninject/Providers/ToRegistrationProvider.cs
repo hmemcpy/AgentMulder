@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using AgentMulder.Containers.Ninject.Patterns.Module.To;
+using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Search;
 
 namespace AgentMulder.Containers.Ninject.Providers
 {
     [Export]
     public class ToRegistrationProvider : IRegistrationPatternsProvider
     {
-        public IEnumerable<ComponentImplementationBasePattern> GetRegistrationPatterns()
+        public IEnumerable<ComponentImplementationPatternBase> GetRegistrationPatterns()
         {
-            return new ComponentImplementationBasePattern[]
+            return new ComponentImplementationPatternBase[]
             {
                 new ToGeneric(),
+                new ToNonGeneric(), 
             };
         }
 
-        IEnumerable<RegistrationBasePattern> IRegistrationPatternsProvider.GetRegistrationPatterns()
+        IEnumerable<IRegistrationPattern> IRegistrationPatternsProvider.GetRegistrationPatterns()
         {
             return GetRegistrationPatterns();
         }

@@ -5,8 +5,8 @@ using System.Linq;
 using System.Reflection;
 using AgentMulder.Containers.Ninject.Patterns;
 using AgentMulder.ReSharper.Domain.Containers;
+using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Search;
 
 namespace AgentMulder.Containers.Ninject
 {

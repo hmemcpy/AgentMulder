@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Search;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
@@ -11,16 +11,16 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Ninject.Patterns
 {
-    public class NinjectModulePattern : RegistrationBasePattern
+    public class NinjectModulePattern : RegistrationPatternBase
     {
-        private readonly RegistrationBasePattern[] bindPatterns;
+        private readonly IRegistrationPattern[] bindPatterns;
 
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("class $module$ : NinjectModule { public override void Load() { $statements$ } }",
                 new IdentifierPlaceholder("module"),
                 new StatementPlaceholder("statements", -1, -1));
 
-        public NinjectModulePattern(RegistrationBasePattern[] bindPatterns)
+        public NinjectModulePattern(params IRegistrationPattern[] bindPatterns)
             : base(pattern)
         {
             this.bindPatterns = bindPatterns;

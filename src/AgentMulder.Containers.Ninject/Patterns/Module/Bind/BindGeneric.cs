@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AgentMulder.ReSharper.Domain.Registrations;
+﻿using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -12,7 +11,7 @@ namespace AgentMulder.Containers.Ninject.Patterns.Module.Bind
             = new CSharpStructuralSearchPattern("Bind<$service$>()",
                 new TypePlaceholder("service"));
 
-        public BindGeneric(IEnumerable<ComponentImplementationBasePattern> toPatterns)
+        public BindGeneric(params ComponentImplementationPatternBase[] toPatterns)
             : base(pattern, "service", toPatterns)
         {
         }

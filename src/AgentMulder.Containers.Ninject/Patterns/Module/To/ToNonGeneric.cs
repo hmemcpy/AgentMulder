@@ -8,20 +8,17 @@ using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy
+namespace AgentMulder.Containers.Ninject.Patterns.Module.To
 {
-    internal class ImplementedByNonGeneric : ComponentImplementationPatternBase
+    internal sealed class ToNonGeneric : ComponentImplementationPatternBase
     {
-        // there seems to be an issue in ReSharper matching open generic types (such as typeof(IEnumerable<>)).
-        // changing to match the argument instead, and extract the typeof expression manually
+        private static readonly IStructuralSearchPattern pattern
+            = new CSharpStructuralSearchPattern("$bind$.To($service$)",
+                                                new ExpressionPlaceholder("bind"),
+                                                new ArgumentPlaceholder("service"));
 
-        private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$componentFor$.ImplementedBy($impl$)",
-                                              new ExpressionPlaceholder("componentFor"),
-                                              new ArgumentPlaceholder("impl"));
-
-        public ImplementedByNonGeneric()
-            : base(pattern, "impl")
+        public ToNonGeneric()
+            : base(pattern, "service")
         {
         }
 
@@ -44,7 +41,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy
                     var typeElement = ((IDeclaredType)typeOfExpression.ArgumentType).GetTypeElement();
                     if (typeElement == null) // can happen if the typeof() expression is empty
                     {
-                        yield break; 
+                        yield break;
                     }
 
                     yield return new ComponentRegistration(registrationRootElement, typeElement);

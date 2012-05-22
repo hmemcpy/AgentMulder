@@ -1,11 +1,11 @@
-﻿using AgentMulder.ReSharper.Domain.Registrations;
+﻿using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.Ninject.Patterns.Module.To
 {
-    internal sealed class ToGeneric : ComponentImplementationBasePattern
+    internal sealed class ToGeneric : ComponentImplementationPatternBase
     {
         private static readonly IStructuralSearchPattern pattern
             = new CSharpStructuralSearchPattern("$bind$.To<$service$>()",

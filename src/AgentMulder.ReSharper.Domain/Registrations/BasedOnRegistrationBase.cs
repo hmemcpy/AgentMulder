@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 
@@ -12,8 +13,6 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         private Predicate<ITypeElement> defaultFilter = typeElement =>
         {
-            // todo not sure if this is correct
-
             if (typeElement is IInterface)
             {
                 return false;
@@ -27,6 +26,8 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
             return true;
         };
+
+        public IModule Module { get; set; }
 
         protected BasedOnRegistrationBase(ITreeNode registrationRootElement, IEnumerable<WithServiceRegistration> withServices)
             : base(registrationRootElement)

@@ -1,7 +1,7 @@
-﻿using JetBrains.ProjectModel;
+using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 
-namespace AgentMulder.ReSharper.Domain.Modules.Impl
+namespace AgentMulder.ReSharper.Domain.Elements.Modules.Impl
 {
     internal class TypeElementExtractor : IModuleExtractor
     {
@@ -24,6 +24,11 @@ namespace AgentMulder.ReSharper.Domain.Modules.Impl
             }
 
             return null;
+        }
+
+        IModule IElementExtractor<IModule>.ExtractElement<TElement>(TElement element)
+        {
+            return GetTargetModule(element);
         }
     }
 }

@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.ReSharper.Domain.Modules.Impl;
+using AgentMulder.ReSharper.Domain.Elements.Modules.Impl;
 using JetBrains.ProjectModel;
 
-namespace AgentMulder.ReSharper.Domain.Modules
+namespace AgentMulder.ReSharper.Domain.Elements.Modules
 {
-    public static class ModuleExtractorProvider
+    public static class ModuleExtractor
     {
         private static readonly List<IModuleExtractor> extractors = new List<IModuleExtractor>();
 
-        static ModuleExtractorProvider()
+        static ModuleExtractor()
         {
             var typeElementExtractor = new TypeElementExtractor();
             var typeOfExtractor = new TypeOfExtractor(typeElementExtractor);

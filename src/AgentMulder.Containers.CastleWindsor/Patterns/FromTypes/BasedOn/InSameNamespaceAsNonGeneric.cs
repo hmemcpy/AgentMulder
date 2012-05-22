@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using AgentMulder.Containers.CastleWindsor.Helpers;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
@@ -24,43 +25,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         {
             var arguments = match.GetMatchedElementList("arguments").Cast<ICSharpArgument>().ToArray();
 
-            INamespace namespaceElement = null;
-            if (arguments.Length > 0)
-            {
-                namespaceElement = GetNamespaceDeclaration(arguments[0].Value);
-            }
-            
-            includeSubnamespaces = false;
-            if (arguments.Length == 2)
-            {
-                ICSharpArgument boolArgument = arguments[1];
-                if (boolArgument.Value.ConstantValue != null &&
-                    boolArgument.Value.ConstantValue.IsBoolean())
-                {
-                    includeSubnamespaces = Convert.ToBoolean(boolArgument.Value.ConstantValue.Value);
-                }
-            }
-
-            return namespaceElement;
-        }
-
-        private INamespace GetNamespaceDeclaration(ICSharpExpression expression)
-        {
-            var typeofExpression = expression as ITypeofExpression;
-            if (typeofExpression != null)
-            {
-                var declaredType = typeofExpression.ArgumentType as IDeclaredType;
-                if (declaredType != null)
-                {
-                    ITypeElement typeElement = declaredType.GetTypeElement();
-                    if (typeElement != null)
-                    {
-                        return typeElement.GetContainingNamespace();
-                    }
-                }
-            }
-
-            return null;
+            return NamespaceExtractor.GetNamespace(arguments, out includeSubnamespaces);
         }
     }
 }

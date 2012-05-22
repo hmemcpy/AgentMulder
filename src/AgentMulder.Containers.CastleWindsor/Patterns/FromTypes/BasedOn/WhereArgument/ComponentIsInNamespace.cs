@@ -24,7 +24,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereA
         {
             var arguments = match.GetMatchedElementList("arguments").Cast<ICSharpArgument>().ToArray();
 
-            return NamespaceElementExtractor.ExtractNamespaceElement(arguments, out includeSubnamespaces);
+            return NamespaceExtractor.GetNamespace(arguments, out includeSubnamespaces);
         }
     }
 }

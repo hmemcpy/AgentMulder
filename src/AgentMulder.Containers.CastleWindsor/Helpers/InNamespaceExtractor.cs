@@ -1,20 +1,26 @@
-﻿using System;
+using System;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Helpers
 {
-    public static class NamespaceElementExtractor
+    internal class InNamespaceExtractor : INamespaceExtractor
     {
-        public static INamespace ExtractNamespaceElement(ICSharpArgument[] arguments, out bool includeSubnamespaces)
+        public INamespace GetNamespace<T>(T element, out bool includeSubnamespaces)
         {
+            var arguments = element as ICSharpArgument[];
             if (arguments == null)
             {
                 includeSubnamespaces = false;
                 return null;
             }
 
+            return ExtractNamespaceElement(arguments, out includeSubnamespaces);
+        }
+
+        private static INamespace ExtractNamespaceElement(ICSharpArgument[] arguments, out bool includeSubnamespaces)
+        {
             INamespace namespaceElement = null;
             if (arguments.Length > 0)
             {

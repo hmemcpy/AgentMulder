@@ -39,11 +39,15 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Helpers\NamespaceElementExtractor.cs" />
+    <Compile Include="Helpers\INamespaceExtractor.cs" />
+    <Compile Include="Helpers\InNamespaceExtractor.cs" />
+    <Compile Include="Helpers\InSameNamespaceAsGenericExtractor.cs" />
+    <Compile Include="Helpers\NamespaceExtractor.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\IBasedOnPattern.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\Pick.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentHasAttributeMethodGroup.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInNamespace.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsGeneric.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyContainingNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyNamed.cs" />
     <Compile Include="Patterns\FromTypes\FromAssembly.cs" />
@@ -81,6 +85,7 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>
   </PropertyGroup>

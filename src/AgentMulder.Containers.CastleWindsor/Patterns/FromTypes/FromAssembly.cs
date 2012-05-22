@@ -1,6 +1,6 @@
 using System;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
-using AgentMulder.ReSharper.Domain.Modules;
+using AgentMulder.ReSharper.Domain.Elements.Modules;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -41,7 +41,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         {
             var argument = (ICSharpArgument)match.GetMatchedElement("assembly");
 
-            return ModuleExtractorProvider.GetTargetModule(argument.Value);
+            return ModuleExtractor.GetTargetModule(argument.Value);
         }
     }
 }

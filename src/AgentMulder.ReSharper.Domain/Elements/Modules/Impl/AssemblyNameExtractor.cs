@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Linq;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.ReSharper.Domain.Modules.Impl
+namespace AgentMulder.ReSharper.Domain.Elements.Modules.Impl
 {
     internal class AssemblyNameExtractor : IModuleExtractor
     {
@@ -26,6 +26,11 @@ namespace AgentMulder.ReSharper.Domain.Modules.Impl
             IProject result = solution.GetAllProjects().FirstOrDefault(project => project.Name.Equals(assemblyName, StringComparison.OrdinalIgnoreCase));
 
             return result;
+        }
+
+        IModule IElementExtractor<IModule>.ExtractElement<TElement>(TElement element)
+        {
+            return GetTargetModule(element);
         }
     }
 }

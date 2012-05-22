@@ -4,7 +4,7 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.CSharp.Util;
 using JetBrains.ReSharper.Psi.Resolve.ExtensionMethods;
 
-namespace AgentMulder.ReSharper.Domain.Modules.Impl
+namespace AgentMulder.ReSharper.Domain.Elements.Modules.Impl
 {
     internal class GetExecutingAssemblyExtractor : IModuleExtractor
     {
@@ -26,6 +26,11 @@ namespace AgentMulder.ReSharper.Domain.Modules.Impl
                 }
             }
             return null;
+        }
+
+        IModule IElementExtractor<IModule>.ExtractElement<TElement>(TElement element)
+        {
+            return GetTargetModule(element);
         }
     }
 }

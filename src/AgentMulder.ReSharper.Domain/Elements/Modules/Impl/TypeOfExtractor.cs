@@ -1,7 +1,7 @@
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AgentMulder.ReSharper.Domain.Modules.Impl
+namespace AgentMulder.ReSharper.Domain.Elements.Modules.Impl
 {
     internal class TypeOfExtractor : ModuleExtractorDecorator
     {

@@ -50,6 +50,16 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Containers\IContainerInfo.cs" />
+    <Compile Include="Elements\ElementExtractorDecorator.cs" />
+    <Compile Include="Elements\IElementExtractor.cs" />
+    <Compile Include="Elements\Modules\IModuleExtractor.cs" />
+    <Compile Include="Elements\Modules\Impl\AssemblyNameExtractor.cs" />
+    <Compile Include="Elements\Modules\Impl\GetExecutingAssemblyExtractor.cs" />
+    <Compile Include="Elements\Modules\Impl\TypeAssemblyPropertyExtractor.cs" />
+    <Compile Include="Elements\Modules\Impl\TypeElementExtractor.cs" />
+    <Compile Include="Elements\Modules\Impl\TypeOfExtractor.cs" />
+    <Compile Include="Elements\Modules\ModuleExtractor.cs" />
+    <Compile Include="Elements\Modules\ModuleExtractorDecorator.cs" />
     <Compile Include="Expressions\BinaryExpressionBuilder.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -81,14 +91,6 @@
     <Compile Include="Patterns\ComponentRegistrationPatternBase.cs" />
     <Compile Include="Patterns\IRegistrationPattern.cs" />
     <Compile Include="Patterns\RegistrationPatternBase.cs" />
-    <Compile Include="Modules\Impl\AssemblyNameExtractor.cs" />
-    <Compile Include="Modules\ModuleExtractorDecorator.cs" />
-    <Compile Include="Modules\Impl\TypeElementExtractor.cs" />
-    <Compile Include="Modules\Impl\GetExecutingAssemblyExtractor.cs" />
-    <Compile Include="Modules\IModuleExtractor.cs" />
-    <Compile Include="Modules\ModuleExtractor.cs" />
-    <Compile Include="Modules\Impl\TypeAssemblyPropertyExtractor.cs" />
-    <Compile Include="Modules\Impl\TypeOfExtractor.cs" />
     <Compile Include="Registrations\HasAttributeRegistration.cs" />
     <Compile Include="Utils\PsiExtensions.cs" />
     <Compile Include="Registrations\TypePredicateRegistration.cs" />
@@ -105,6 +107,7 @@
     <Compile Include="Registrations\TypesBasedOnRegistration.cs" />
     <Compile Include="Registrations\BasedOnRegistrationBase.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>
   </PropertyGroup>

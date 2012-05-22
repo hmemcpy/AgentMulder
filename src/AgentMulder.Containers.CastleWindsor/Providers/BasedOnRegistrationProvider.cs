@@ -14,7 +14,8 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
         private readonly List<IRegistrationPattern> whereArgumentPatterns = new List<IRegistrationPattern> 
         {
             new ComponentIsInNamespace(),
-            new ComponentHasAttributeMethodGroup()
+            new ComponentHasAttributeMethodGroup(),
+            new ComponentIsInSameNamespaceAsGeneric()
         };
 
         public IEnumerable<IBasedOnPattern> GetRegistrationPatterns()

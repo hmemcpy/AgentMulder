@@ -26,19 +26,25 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
             this.whereArgumentPatterns = whereArgumentPatterns;
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode parentElement)
+        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = Match(parentElement);
+            IStructuralMatchResult match = Match(registrationRootElement);
 
             if (match.Matched)
             {
                 ITreeNode element = match.GetMatchedElement("argument");
                 if (element != null)
                 {
-                    var whereArgumentPattern = whereArgumentPatterns.FirstOrDefault(p => p.Matcher.QuickMatch(element));
-                    if (whereArgumentPattern != null)
+                    foreach (var whereArgumentPattern in whereArgumentPatterns)
                     {
-                        foreach (var registration in whereArgumentPattern.GetComponentRegistrations(element))
+                        var registrations = whereArgumentPattern.GetComponentRegistrations(element).ToArray();
+                        if (!registrations.Any())
+                        {
+                            // try with the root element.
+                            registrations = whereArgumentPattern.GetComponentRegistrations(registrationRootElement).ToArray();
+                        }
+
+                        foreach (var registration in registrations)
                         {
                             yield return registration;
                         }

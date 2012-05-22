@@ -42,6 +42,7 @@
     <Compile Include="Helpers\NamespaceElementExtractor.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\IBasedOnPattern.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\Pick.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentHasAttributeMethodGroup.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInNamespace.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyContainingNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyNamed.cs" />

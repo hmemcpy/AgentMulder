@@ -69,6 +69,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         //[TestCase("BasedOn\\FromThisAssemblyWherePredicate", new[] { "" })] // todo not supported
         [TestCase("BasedOn\\FromThisAssemblyWhereComponentIsInInamespace", new[] { "InSomeNamespace.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyWhereComponentIsInInamespaceWithSubnamespaces", new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
+        [TestCase("BasedOn\\FromThisAssemblyWhereComponentHasAttributeMethodGroup", new[] { "HaveAttribute.cs" })]
         public void TestWithRegistrations(string testName, params string[] fileNames)
         {
             RunTest(testName, registrations =>

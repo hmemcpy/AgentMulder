@@ -83,6 +83,7 @@
     <Compile Include="Types\CommonSub1Impl.cs" />
     <Compile Include="Types\Foo.cs" />
     <Compile Include="Types\FooBar.cs" />
+    <Compile Include="Types\HaveAttribute.cs" />
     <Compile Include="Types\IBar.cs" />
     <Compile Include="Types\ICommon.cs" />
     <Compile Include="Types\ICommon2.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInSameNamespaceAsGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInSameNamespaceAsGenericWithSubnamespaces.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyPick.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhereComponentHasAttributeMethodGroup.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhereComponentIsInInamespace.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhereComponentIsInInamespaceWithSubnamespaces.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewArrayBasedOnGeneric.cs" />

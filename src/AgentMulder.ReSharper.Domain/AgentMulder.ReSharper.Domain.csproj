@@ -89,6 +89,7 @@
     <Compile Include="Modules\ModuleExtractor.cs" />
     <Compile Include="Modules\Impl\TypeAssemblyPropertyExtractor.cs" />
     <Compile Include="Modules\Impl\TypeOfExtractor.cs" />
+    <Compile Include="Registrations\HasAttributeRegistration.cs" />
     <Compile Include="Utils\PsiExtensions.cs" />
     <Compile Include="Registrations\TypePredicateRegistration.cs" />
     <Compile Include="Utils\ReflectionExtensions.cs" />

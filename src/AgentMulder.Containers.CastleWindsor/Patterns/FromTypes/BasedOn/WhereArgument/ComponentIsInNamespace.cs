@@ -1,29 +1,27 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Helpers;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
-namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
+namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereArgument
 {
-    internal sealed class InNamespace : NamespaceRegistrationPatternBase
+    internal class ComponentIsInNamespace : NamespaceRegistrationPatternBase
     {
-        private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$fromDescriptor$.InNamespace($arguments$)",
-                new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
-                new ArgumentPlaceholder("arguments", 1, 2)); // at most two occurrences, for both overloads
+        private static readonly IStructuralSearchPattern pattern = 
+            new CSharpStructuralSearchPattern("$component$.IsInNamespace($arguments$)",
+                new ExpressionPlaceholder("component", "Castle.MicroKernel.Registration.Component", true),
+                new ArgumentPlaceholder("arguments", 1, 2));
 
-        public InNamespace()
+        public ComponentIsInNamespace()
             : base(pattern)
         {
         }
 
         protected override INamespace GetNamespaceElement(IStructuralMatchResult match, out bool includeSubnamespaces)
-        {           
+        {
             var arguments = match.GetMatchedElementList("arguments").Cast<ICSharpArgument>().ToArray();
 
             return NamespaceElementExtractor.ExtractNamespaceElement(arguments, out includeSubnamespaces);

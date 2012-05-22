@@ -35,10 +35,10 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                 ITreeNode element = match.GetMatchedElement("argument");
                 if (element != null)
                 {
-                    var whereArgumentPattern = whereArgumentPatterns.FirstOrDefault(p => p.Matcher.Match(parentElement) != StructuralMatchResult.NOT_MATCHED);
+                    var whereArgumentPattern = whereArgumentPatterns.FirstOrDefault(p => p.Matcher.QuickMatch(element));
                     if (whereArgumentPattern != null)
                     {
-                        foreach (var registration in whereArgumentPattern.GetComponentRegistrations(parentElement))
+                        foreach (var registration in whereArgumentPattern.GetComponentRegistrations(element))
                         {
                             yield return registration;
                         }

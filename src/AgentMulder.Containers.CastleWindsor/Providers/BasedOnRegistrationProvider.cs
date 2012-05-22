@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
+using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereArgument;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 
@@ -12,7 +13,7 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
     {
         private readonly List<IRegistrationPattern> whereArgumentPatterns = new List<IRegistrationPattern> 
         {
-            
+            new ComponentIsInNamespace()
         };
 
         public IEnumerable<IBasedOnPattern> GetRegistrationPatterns()

@@ -123,6 +123,7 @@
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInSameNamespaceAsGenericWithSubnamespaces.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyPick.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhereComponentIsInInamespace.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhereComponentIsInInamespaceWithSubnamespaces.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewArrayBasedOnGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewArrayPick.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewListBasedOnGeneric.cs" />

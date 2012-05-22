@@ -94,6 +94,7 @@
     <Compile Include="Types\IInSomeOtherNamespace.cs" />
     <Compile Include="Types\InSomeNamespace.cs" />
     <Compile Include="Types\InSomeOtherNamespace.cs" />
+    <Compile Include="Types\MyAttribute.cs" />
     <Compile Include="Types\MyList.cs" />
     <Compile Include="Types\MyStruct.cs" />
     <Compile Include="Types\TwoInterfacesImpl.cs" />
@@ -121,13 +122,14 @@
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInSameNamespaceAsGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyInSameNamespaceAsGenericWithSubnamespaces.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyPick.cs" />
+    <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhereComponentIsInInamespace.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewArrayBasedOnGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewArrayPick.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewListBasedOnGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesNewListPick.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesParamsBasedOnGeneric.cs" />
     <Compile Include="Windsor\TestCases\BasedOn\FromTypesParamsPick.cs" />
-    <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhere.cs" />    
+    <Compile Include="Windsor\TestCases\BasedOn\FromThisAssemblyWhere.cs" />
     <Compile Include="Windsor\TestCases\FromAssemblyGetExecutingAssembly.cs" />
     <Compile Include="Windsor\TestCases\FromThisAssembly.cs" />
     <Compile Include="Windsor\TestCases\FromAssemblyTypeOf.cs" />

@@ -74,10 +74,6 @@
       <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
       <Name>AgentMulder.ReSharper.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Scully\Scully.Metadata\Scully.Metadata.csproj">
-      <Project>{B9927BA4-296B-4B34-B812-EB542747E750}</Project>
-      <Name>Scully.Metadata</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Install-ReSharper61-VS2010.bat">

@@ -30,7 +30,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
         protected override IModule GetTargetModule(IStructuralMatchResult match)
         {
-            return ModuleExtractor.Instance.GetTargetModule(match.GetMatchedType("type"));
+            return ModuleExtractorProvider.GetTargetModule(match.GetMatchedType("type"));
         }
     }
 }

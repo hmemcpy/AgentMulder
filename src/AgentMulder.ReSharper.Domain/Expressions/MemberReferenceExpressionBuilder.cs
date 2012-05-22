@@ -3,8 +3,18 @@ using System.Reflection;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Resolve;
-using Scully.Metadata;
 using JetBrains.ReSharper.Psi.Resolve.ExtensionMethods;
+using Scully.Metadata;
+
+namespace Scully.Metadata
+{
+    // todo fixme temp! This belongs to another spike branch, but I don't want to go thru merging hell.
+
+    internal interface IMetadataResolver
+    {
+
+    }
+}
 
 namespace AgentMulder.ReSharper.Domain.Expressions
 {

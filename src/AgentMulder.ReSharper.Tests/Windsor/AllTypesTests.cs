@@ -56,7 +56,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [TestCase("BasedOn\\FromThisAssemblyInSameNamespaceAsNonGenericWithSubnamespaces", new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
         [TestCase("BasedOn\\FromAssemblyTypeOfBasedOn", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromAssemblyGetExecutingAssemblyBasedOn", new[] { "Foo.cs" })]
-        [TestCase("BasedOn\\FromThisAssemblyWhere", new[] { "FromThisAssemblyWhere.cs" })]
         [TestCase("BasedOn\\FromAssemblyContainingBasedOnGeneric", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromAssemblyContainingBasedOnNonGeneric", new[] { "Foo.cs" })]
         [TestCase("BasedOn\\FromTypesParamsPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs" })]
@@ -67,6 +66,8 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [TestCase("BasedOn\\FromAssemblyNamedPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "FooBar.cs" })]
         [TestCase("BasedOn\\FromAssemblyTypeOfPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "FooBar.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "FooBar.cs" })]
+        [TestCase("BasedOn\\FromThisAssemblyWhere", new[] { "FromThisAssemblyWhere.cs" })]
+        [TestCase("BasedOn\\FromThisAssemblyWhereComponentIsInInamespace", new[] { "InSomeNamespace.cs" })]
         public void TestWithRegistrations(string testName, params string[] fileNames)
         {
             RunTest(testName, registrations =>

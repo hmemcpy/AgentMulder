@@ -41,7 +41,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
         {
             var argument = (ICSharpArgument)match.GetMatchedElement("assembly");
 
-            return ModuleExtractor.Instance.GetTargetModule(argument.Value);
+            return ModuleExtractorProvider.GetTargetModule(argument.Value);
         }
     }
 }

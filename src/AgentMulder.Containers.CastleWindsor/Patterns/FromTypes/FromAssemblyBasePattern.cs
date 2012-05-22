@@ -10,9 +10,9 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    public abstract class FromAssemblyBasePattern : FromTypesBasePattern
+    public abstract class FromAssemblyBasePattern : FromTypesPatternBase
     {
-        protected FromAssemblyBasePattern(IStructuralSearchPattern pattern, Predicate<ITypeElement> filter, params BasedOnRegistrationBasePattern[] basedOnPatterns)
+        protected FromAssemblyBasePattern(IStructuralSearchPattern pattern, Predicate<ITypeElement> filter, params IBasedOnPattern[] basedOnPatterns)
             : base(pattern, filter, basedOnPatterns)
         {
         }

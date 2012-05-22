@@ -6,7 +6,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Patterns
 {
-    public abstract class ComponentRegistrationBasePattern : RegistrationBasePattern
+    public abstract class ComponentRegistrationPatternBase : RegistrationPatternBase
     {
         private readonly string elementName;
 
@@ -15,7 +15,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             get { return elementName; }
         }
 
-        protected ComponentRegistrationBasePattern(IStructuralSearchPattern pattern, string elementName)
+        protected ComponentRegistrationPatternBase(IStructuralSearchPattern pattern, string elementName)
             : base(pattern)
         {
             this.elementName = elementName;

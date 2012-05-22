@@ -11,16 +11,16 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns
 {
-    internal sealed class WindsorContainerRegisterPattern : RegistrationBasePattern
+    internal sealed class WindsorContainerRegisterPattern : RegistrationPatternBase
     {
-        private readonly RegistrationBasePattern[] argumentsPatterns;
+        private readonly IRegistrationPattern[] argumentsPatterns;
 
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$container$.Register($arguments$)",
                                               new ExpressionPlaceholder("container", "Castle.Windsor.IWindsorContainer", false),
                                               new ArgumentPlaceholder("arguments", -1, -1)); // any number of arguments
 
-        public WindsorContainerRegisterPattern(params RegistrationBasePattern[] argumentsPatterns)
+        public WindsorContainerRegisterPattern(params IRegistrationPattern[] argumentsPatterns)
             : base(pattern)
         {
             this.argumentsPatterns = argumentsPatterns;

@@ -39,6 +39,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Patterns\FromTypes\BasedOn\IBasedOnPattern.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\Pick.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyContainingNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyNamed.cs" />
@@ -59,20 +60,17 @@
     <Compile Include="Patterns\FromTypes\BasedOn\Where.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\BasedOnNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\InNamespace.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\NamespaceRegistrationBasePattern.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\NamespaceRegistrationPatternBase.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\InSameNamespaceAsGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\InSameNamespaceAsNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyBasePattern.cs" />
     <Compile Include="Patterns\FromTypes\WithService\WithServiceBase.cs" />
-    <Compile Include="Patterns\FromTypes\WithService\WithServiceRegistrationBasePattern.cs" />
     <Compile Include="Patterns\WindsorContainerRegisterPattern.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\BasedOnGeneric.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\BasedOnRegistrationBasePattern.cs" />
-    <Compile Include="Patterns\FromTypes\FromTypesBasePattern.cs" />
+    <Compile Include="Patterns\FromTypes\FromTypesPatternBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\TypesRegistrationProvider.cs" />
     <Compile Include="WindsorContainerInfo.cs" />
-    <Compile Include="Providers\WithServicesRegistrationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">

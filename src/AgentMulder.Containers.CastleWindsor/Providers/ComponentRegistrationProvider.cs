@@ -19,14 +19,14 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
             this.implementedByProvider = implementedByProvider;
         }
 
-        public IEnumerable<RegistrationBasePattern> GetRegistrationPatterns()
+        public IEnumerable<IRegistrationPattern> GetRegistrationPatterns()
         {
             var implementedByPatterns = implementedByProvider.GetRegistrationPatterns().ToArray();
 
             return new ComponentForBasePattern[]
             {
                 new ComponentForNonGeneric(implementedByPatterns),
-                new ComponentForGeneric(implementedByPatterns), // Component.For<>
+                new ComponentForGeneric(implementedByPatterns),    // Component.For<>
                 new ComponentForGeneric(1, implementedByPatterns), // Component.For<,>
                 new ComponentForGeneric(2, implementedByPatterns), // Component.For<,,>
                 new ComponentForGeneric(3, implementedByPatterns), // Component.For<,,,>

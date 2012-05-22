@@ -5,6 +5,6 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public interface IRegistrationPatternsProvider
     {
-        IEnumerable<RegistrationBasePattern> GetRegistrationPatterns();
+        IEnumerable<IRegistrationPattern> GetRegistrationPatterns();
     }
 }

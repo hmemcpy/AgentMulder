@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
 using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
@@ -12,7 +11,7 @@ using JetBrains.Util.Special;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal sealed class InSameNamespaceAsGeneric : NamespaceRegistrationBasePattern
+    internal sealed class InSameNamespaceAsGeneric : NamespaceRegistrationPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.InSameNamespaceAs<$type$>($subnamespace$)",
@@ -20,8 +19,8 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                 new TypePlaceholder("type"),
                 new ArgumentPlaceholder("subnamespace", 0, 1));
 
-        public InSameNamespaceAsGeneric(params WithServiceRegistrationBasePattern[] withServicePatterns)
-            : base(pattern, withServicePatterns)
+        public InSameNamespaceAsGeneric()
+            : base(pattern)
         {
         }
 

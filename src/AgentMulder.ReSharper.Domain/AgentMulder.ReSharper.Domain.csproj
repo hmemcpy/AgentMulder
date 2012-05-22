@@ -36,9 +36,6 @@
     <Reference Include="ExpressionSerialization">
       <HintPath>..\..\..\..\code\ExpressionTreesSerializer\ExpressionSerialization\bin\Debug\ExpressionSerialization.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Linq.Expressions">
-      <HintPath>..\packages\Mono.Linq.Expressions.1.2.0.0\lib\Mono.Linq.Expressions.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -80,10 +77,10 @@
     <Compile Include="Expressions\WherePredicateBuilder.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Patterns\ComponentImplementationBasePattern.cs" />
-    <Compile Include="Patterns\ComponentRegistrationBasePattern.cs" />
+    <Compile Include="Patterns\ComponentImplementationPatternBase.cs" />
+    <Compile Include="Patterns\ComponentRegistrationPatternBase.cs" />
     <Compile Include="Patterns\IRegistrationPattern.cs" />
-    <Compile Include="Patterns\RegistrationBasePattern.cs" />
+    <Compile Include="Patterns\RegistrationPatternBase.cs" />
     <Compile Include="Modules\Impl\AssemblyNameExtractor.cs" />
     <Compile Include="Modules\ModuleExtractorDecorator.cs" />
     <Compile Include="Modules\Impl\TypeElementExtractor.cs" />
@@ -105,11 +102,7 @@
     <Compile Include="Registrations\IRegistrationPatternsProvider.cs" />
     <Compile Include="Registrations\ModuleBasedOnRegistration.cs" />
     <Compile Include="Registrations\TypesBasedOnRegistration.cs" />
-    <Compile Include="Registrations\WithServiceRegistration.cs" />
     <Compile Include="Registrations\BasedOnRegistrationBase.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>

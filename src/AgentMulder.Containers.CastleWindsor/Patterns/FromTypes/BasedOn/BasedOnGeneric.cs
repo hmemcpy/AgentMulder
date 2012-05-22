@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
+using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
@@ -10,15 +10,15 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal sealed class BasedOnGeneric : BasedOnRegistrationBasePattern
+    internal sealed class BasedOnGeneric : RegistrationPatternBase, IBasedOnPattern
     {
         private static readonly IStructuralSearchPattern pattern = 
             new CSharpStructuralSearchPattern("$fromDescriptor$.BasedOn<$type$>()",
                 new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
                 new TypePlaceholder("type"));
 
-        public BasedOnGeneric(params WithServiceRegistrationBasePattern[] withServicePatterns)
-            : base(pattern, withServicePatterns)
+        public BasedOnGeneric()
+            : base(pattern)
         {
         }
 
@@ -34,9 +34,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                     ITypeElement typeElement = matchedType.GetTypeElement();
                     if (typeElement != null)
                     {
-                        var withServiceRegistrations = base.GetComponentRegistrations(registrationRootElement).OfType<WithServiceRegistration>();
-
-                        yield return new BasedOnRegistration(registrationRootElement, typeElement, withServiceRegistrations);
+                        yield return new BasedOnRegistration(registrationRootElement, typeElement);
                     }
                 }
             }

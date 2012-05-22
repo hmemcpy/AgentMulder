@@ -11,12 +11,12 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    public abstract class FromTypesBasePattern : RegistrationBasePattern
+    public abstract class FromTypesPatternBase : RegistrationPatternBase
     {
         private readonly Predicate<ITypeElement> filter;
-        private readonly IEnumerable<BasedOnRegistrationBasePattern> basedOnPatterns;
+        private readonly IEnumerable<IBasedOnPattern> basedOnPatterns;
 
-        protected IEnumerable<BasedOnRegistrationBasePattern> BasedOnPatterns
+        protected IEnumerable<IBasedOnPattern> BasedOnPatterns
         {
             get { return basedOnPatterns; }
         }
@@ -26,7 +26,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             get { return filter; }
         }
 
-        protected FromTypesBasePattern(IStructuralSearchPattern pattern, Predicate<ITypeElement> filter, IEnumerable<BasedOnRegistrationBasePattern> basedOnPatterns)
+        protected FromTypesPatternBase(IStructuralSearchPattern pattern, Predicate<ITypeElement> filter, IEnumerable<IBasedOnPattern> basedOnPatterns)
             : base(pattern)
         {
             this.filter = filter;

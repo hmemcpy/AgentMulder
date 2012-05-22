@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.WithService;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -10,15 +9,15 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal sealed class InNamespace : NamespaceRegistrationBasePattern
+    internal sealed class InNamespace : NamespaceRegistrationPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.InNamespace($arguments$)",
                 new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
                 new ArgumentPlaceholder("arguments", 1, 2)); // at most two occurrences, for both overloads
 
-        public InNamespace(params WithServiceRegistrationBasePattern[] withServicePatterns)
-            : base(pattern, withServicePatterns)
+        public InNamespace()
+            : base(pattern)
         {
         }
 

@@ -19,12 +19,12 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             get { return filter; }
         }
 
-        public FromAssembly(string qualiferType, params BasedOnRegistrationBasePattern[] basedOnPatterns)
+        public FromAssembly(string qualiferType, params IBasedOnPattern[] basedOnPatterns)
             : this(qualiferType, element => true, basedOnPatterns)
         {
         }
 
-        public FromAssembly(string qualiferType, Predicate<ITypeElement> filter, params BasedOnRegistrationBasePattern[] basedOnPatterns)
+        public FromAssembly(string qualiferType, Predicate<ITypeElement> filter, params IBasedOnPattern[] basedOnPatterns)
             : base(CreatePattern(qualiferType), filter, basedOnPatterns)
         {
             this.filter = filter;

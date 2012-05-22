@@ -16,8 +16,8 @@ namespace AgentMulder.ReSharper.Domain.Registrations
     {
         private readonly Expression predicateExpression;
 
-        public TypePredicateRegistration(ITreeNode registrationRootElement, Expression<Predicate<Type>> predicateExpression, IEnumerable<WithServiceRegistration> withServices)
-            : base(registrationRootElement, withServices)
+        public TypePredicateRegistration(ITreeNode registrationRootElement, Expression<Predicate<Type>> predicateExpression)
+            : base(registrationRootElement)
         {
             this.predicateExpression = predicateExpression;
         }

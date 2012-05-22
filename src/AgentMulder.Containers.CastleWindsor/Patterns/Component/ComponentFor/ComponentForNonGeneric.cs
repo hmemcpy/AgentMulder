@@ -21,7 +21,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
                                               new ExpressionPlaceholder("component", "Castle.MicroKernel.Registration.Component"),
                                               new ArgumentPlaceholder("service"));
 
-        public ComponentForNonGeneric(params ComponentImplementationBasePattern[] implementedByPatterns)
+        public ComponentForNonGeneric(params ComponentImplementationPatternBase[] implementedByPatterns)
             : base(pattern, "service", implementedByPatterns)
         {
 

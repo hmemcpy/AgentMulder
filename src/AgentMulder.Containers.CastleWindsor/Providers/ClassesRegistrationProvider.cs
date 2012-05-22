@@ -34,11 +34,11 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
             this.basedOnProvider = basedOnProvider;
         }
 
-        public IEnumerable<RegistrationBasePattern> GetRegistrationPatterns()
+        public IEnumerable<IRegistrationPattern> GetRegistrationPatterns()
         {
             var basedOnPatterns = basedOnProvider.GetRegistrationPatterns().ToArray();
 
-            return new FromTypesBasePattern[]
+            return new FromTypesPatternBase[]
             {
                 new From(ClassesFullTypeName, Filter, basedOnPatterns),
                 new FromAssembly(ClassesFullTypeName, Filter, basedOnPatterns), 

@@ -7,14 +7,14 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    internal sealed class From : FromTypesBasePattern
+    internal sealed class From : FromTypesPatternBase
     {
-        public From(string qualiferType, params BasedOnRegistrationBasePattern[] basedOnPatterns)
+        public From(string qualiferType, params IBasedOnPattern[] basedOnPatterns)
             : this(qualiferType, element => true, basedOnPatterns)
         {
         }
 
-        public From(string qualiferType, Predicate<ITypeElement> filter, params BasedOnRegistrationBasePattern[] basedOnPatterns)
+        public From(string qualiferType, Predicate<ITypeElement> filter, params IBasedOnPattern[] basedOnPatterns)
             : base(CreatePattern(qualiferType), filter, basedOnPatterns)
         {
         }

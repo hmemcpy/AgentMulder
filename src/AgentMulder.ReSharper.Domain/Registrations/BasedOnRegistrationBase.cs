@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
@@ -9,8 +7,6 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public abstract class BasedOnRegistrationBase : ComponentRegistrationBase
     {
-        private readonly IEnumerable<WithServiceRegistration> withServices;
-
         private Predicate<ITypeElement> defaultFilter = typeElement =>
         {
             if (typeElement is IInterface)
@@ -29,10 +25,9 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public IModule Module { get; set; }
 
-        protected BasedOnRegistrationBase(ITreeNode registrationRootElement, IEnumerable<WithServiceRegistration> withServices)
+        protected BasedOnRegistrationBase(ITreeNode registrationRootElement)
             : base(registrationRootElement)
         {
-            this.withServices = withServices.ToArray();
         }
 
         public void AddFilter(Predicate<ITypeElement> condition)
@@ -42,17 +37,12 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
-            if (!defaultFilter(typeElement))
+            if (defaultFilter(typeElement))
             {
-                return false;
+                return true;
             }
 
-            return withServices.All(registration => registration.IsSatisfiedBy(typeElement));
-        }
-
-        public override string ToString()
-        {
-            return string.Join(", ", withServices.Select(registration => registration.ToString()));
+            return false;
         }
     }
 }

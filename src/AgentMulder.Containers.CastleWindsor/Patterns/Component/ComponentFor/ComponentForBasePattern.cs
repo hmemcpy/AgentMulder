@@ -7,11 +7,11 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
 {
-    internal abstract class ComponentForBasePattern : ComponentRegistrationBasePattern
+    internal abstract class ComponentForBasePattern : ComponentRegistrationPatternBase
     {
-        private readonly IEnumerable<ComponentImplementationBasePattern> implementedByPatterns;
+        private readonly IEnumerable<ComponentImplementationPatternBase> implementedByPatterns;
 
-        protected ComponentForBasePattern(IStructuralSearchPattern pattern, string elementName, IEnumerable<ComponentImplementationBasePattern> implementedByPatterns) 
+        protected ComponentForBasePattern(IStructuralSearchPattern pattern, string elementName, IEnumerable<ComponentImplementationPatternBase> implementedByPatterns) 
             : base(pattern, elementName)
         {
             this.implementedByPatterns = implementedByPatterns;

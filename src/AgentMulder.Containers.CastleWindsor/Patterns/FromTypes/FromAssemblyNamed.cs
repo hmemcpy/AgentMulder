@@ -12,12 +12,12 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
     internal sealed class FromAssemblyNamed : FromAssemblyBasePattern
     {
-        public FromAssemblyNamed(string qualiferType, params BasedOnRegistrationBasePattern[] basedOnPatterns)
+        public FromAssemblyNamed(string qualiferType, params IBasedOnPattern[] basedOnPatterns)
             : this(qualiferType, element => true, basedOnPatterns)
         {
         }
 
-        public FromAssemblyNamed(string qualiferType, Predicate<ITypeElement> filter, params BasedOnRegistrationBasePattern[] basedOnPatterns)
+        public FromAssemblyNamed(string qualiferType, Predicate<ITypeElement> filter, params IBasedOnPattern[] basedOnPatterns)
             : base(CreatePattern(qualiferType), filter, basedOnPatterns)
         {
         }

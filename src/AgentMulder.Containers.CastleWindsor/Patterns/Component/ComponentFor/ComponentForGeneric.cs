@@ -10,12 +10,12 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
 {
     internal sealed class ComponentForGeneric : ComponentForBasePattern
     {
-        public ComponentForGeneric(int forwardersCount, params ComponentImplementationBasePattern[] implementedByPatterns)
+        public ComponentForGeneric(int forwardersCount, params ComponentImplementationPatternBase[] implementedByPatterns)
             : base(CreatePattern(forwardersCount), "service", implementedByPatterns)
         {
         }
 
-        public ComponentForGeneric(params ComponentImplementationBasePattern[] implementedByPatterns)
+        public ComponentForGeneric(params ComponentImplementationPatternBase[] implementedByPatterns)
             : base(CreatePattern(0), "service", implementedByPatterns)
         {
         }

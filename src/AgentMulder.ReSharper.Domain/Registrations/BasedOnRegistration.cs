@@ -15,8 +15,8 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             get { return basedOnElement; }
         }
 
-        public BasedOnRegistration(ITreeNode registrationRootElement, ITypeElement basedOnElement, IEnumerable<WithServiceRegistration> withServices)
-            : base(registrationRootElement, withServices)
+        public BasedOnRegistration(ITreeNode registrationRootElement, ITypeElement basedOnElement)
+            : base(registrationRootElement)
         {
             this.basedOnElement = basedOnElement;
 

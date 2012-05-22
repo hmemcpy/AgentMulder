@@ -24,7 +24,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
         protected override IContainerInfo ContainerInfo
         {
-            get { return new WindsorContainerInfo(new[] { new AllTypesRegistrationProvider(new BasedOnRegistrationProvider(new WithServicesRegistrationProvider())) }); }
+            get { return new WindsorContainerInfo(new[] { new AllTypesRegistrationProvider(new BasedOnRegistrationProvider()) }); }
         }
 
         protected override string RelativeTypesPath
@@ -66,8 +66,8 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         [TestCase("BasedOn\\FromAssemblyNamedPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "FooBar.cs" })]
         [TestCase("BasedOn\\FromAssemblyTypeOfPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "FooBar.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyPick", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "FooBar.cs" })]
-        [TestCase("BasedOn\\FromThisAssemblyWhere", new[] { "FromThisAssemblyWhere.cs" })]
-        [TestCase("BasedOn\\FromThisAssemblyWhereComponentIsInInamespace", new[] { "InSomeNamespace.cs" })]
+        //[TestCase("BasedOn\\FromThisAssemblyWherePredicate", new[] { "" })]
+        //[TestCase("BasedOn\\FromThisAssemblyWhereComponentIsInInamespace", new[] { "InSomeNamespace.cs" })]
         public void TestWithRegistrations(string testName, params string[] fileNames)
         {
             RunTest(testName, registrations =>

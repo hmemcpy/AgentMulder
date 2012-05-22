@@ -59,7 +59,6 @@
     <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.cs" />
     <Compile Include="Highlighting\ContainerGutterMark.cs" />
     <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />
-    <Compile Include="Components\RegistrationChecker.cs" />
     <Compile Include="Navigation\IRegisteredComponentsContextSearch.cs" />
     <Compile Include="Navigation\RegisteredComponentsContextSearch.cs" />
     <Compile Include="Navigation\RegisteredComponentsNavigationProvider.cs" />

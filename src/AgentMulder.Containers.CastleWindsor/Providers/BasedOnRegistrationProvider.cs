@@ -10,32 +10,27 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
     [Export]
     public class BasedOnRegistrationProvider : IRegistrationPatternsProvider
     {
-        private readonly WithServicesRegistrationProvider withServicesProvider;
-
-        [ImportingConstructor]
-        public BasedOnRegistrationProvider(WithServicesRegistrationProvider withServicesProvider)
+        private readonly List<IRegistrationPattern> whereArgumentPatterns = new List<IRegistrationPattern> 
         {
-            this.withServicesProvider = withServicesProvider;
-        }
+            
+        };
 
-        public IEnumerable<BasedOnRegistrationBasePattern> GetRegistrationPatterns()
+        public IEnumerable<IBasedOnPattern> GetRegistrationPatterns()
         {
-            var withServices = withServicesProvider.GetRegistrationPatterns().ToArray();
-
-            return new BasedOnRegistrationBasePattern[]
+            return new IBasedOnPattern[]
             {
-                new BasedOnGeneric(withServices),
-                new BasedOnNonGeneric(withServices),
-                new InNamespace(withServices),
-                new InSameNamespaceAsGeneric(withServices),
-                new InSameNamespaceAsNonGeneric(withServices),
-                new Pick(withServices),
-                new Where(withServices),
+                new BasedOnGeneric(),
+                new BasedOnNonGeneric(),
+                new InNamespace(),
+                new InSameNamespaceAsGeneric(),
+                new InSameNamespaceAsNonGeneric(),
+                new Pick(),
+                new Where(whereArgumentPatterns),
             };
         }
 
 
-        IEnumerable<RegistrationBasePattern> IRegistrationPatternsProvider.GetRegistrationPatterns()
+        IEnumerable<IRegistrationPattern> IRegistrationPatternsProvider.GetRegistrationPatterns()
         {
             return GetRegistrationPatterns();
         }

@@ -5,7 +5,7 @@ using Castle.Windsor;
 
 namespace TestApplication.Windsor.TestCases.BasedOn
 {
-    public class FromThisAssemblyWhere : IWindsorInstaller
+    public class FromThisAssemblyWherePredicate : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {

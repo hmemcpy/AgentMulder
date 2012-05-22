@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Patterns
 {
-    public abstract class RegistrationBasePattern : IRegistrationPattern
+    public abstract class RegistrationPatternBase : IRegistrationPattern
     {
         private readonly IStructuralMatcher matcher;
 
@@ -17,7 +16,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             get { return matcher; }
         }
 
-        protected RegistrationBasePattern(IStructuralSearchPattern pattern)
+        protected RegistrationPatternBase(IStructuralSearchPattern pattern)
         {
             matcher = pattern.CreateMatcher();
         }

@@ -13,7 +13,8 @@ namespace AgentMulder.Containers.Ninject.Providers
         {
             return new ComponentImplementationPatternBase[]
             {
-                new ToGeneric(),
+                new ToGeneric(true),
+                new ToGeneric(false),
                 new ToNonGeneric(), 
             };
         }

@@ -16,8 +16,9 @@ namespace AgentMulder.Containers.Ninject.Patterns
         private readonly IRegistrationPattern[] bindPatterns;
 
         private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("class $module$ : NinjectModule { public override void Load() { $statements$ } }",
+            new CSharpStructuralSearchPattern("class $module$ : $NinjectModule$ { public override void Load() { $statements$ } }",
                 new IdentifierPlaceholder("module"),
+                new ExpressionPlaceholder("NinjectModule", "global::Ninject.Modules.NinjectModule", false),
                 new StatementPlaceholder("statements", -1, -1));
 
         public NinjectModulePattern(params IRegistrationPattern[] bindPatterns)

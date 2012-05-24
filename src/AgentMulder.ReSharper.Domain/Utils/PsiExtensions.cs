@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-﻿using System.Reflection;
-﻿using JetBrains.ProjectModel;
-﻿using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
-﻿using JetBrains.ReSharper.Psi;
-﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
-﻿using JetBrains.Util;
+using JetBrains.ProjectModel;
+using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.Util;
 
-namespace AgentMulder.ReSharper.Domain
+namespace AgentMulder.ReSharper.Domain.Utils
 {
     public static class PsiExtensions
     {
         public static IEnumerable<IInvocationExpression> GetAllExpressions(this IInvocationExpression expression)
         {
-            for (var e = expression; e != null; e = ((IReferenceExpression)e.InvokedExpression).QualifierExpression as IInvocationExpression)
-                yield return e;
+            var invocationExpressions = new List<IInvocationExpression>();
+
+            expression.ProcessChildren<IInvocationExpression>(invocationExpressions.Add);
+
+            return invocationExpressions;
         }
 
         public static bool IsGenericInterface(this ITypeElement typeElement)

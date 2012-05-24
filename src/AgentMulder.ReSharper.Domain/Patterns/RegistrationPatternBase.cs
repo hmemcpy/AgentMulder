@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Registrations;
+using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi.Services.StructuralSearch.Impl;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Patterns
@@ -27,11 +29,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             if (invocationExpression == null)
                 return null;
 
-            return invocationExpression.GetAllExpressions().FirstOrDefault(expression =>
-            {
-                bool result = matcher.QuickMatch(expression);
-                return result;
-            });
+            return invocationExpression.GetAllExpressions().FirstOrDefault(expression => matcher.Match(expression) != StructuralMatchResult.NOT_MATCHED);
         }
 
         protected IStructuralMatchResult Match(ITreeNode treeNode)

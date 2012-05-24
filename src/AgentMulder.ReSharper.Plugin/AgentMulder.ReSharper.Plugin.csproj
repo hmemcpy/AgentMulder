@@ -75,9 +75,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Install-ReSharper61-VS2010.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <EmbeddedResource Include="Resources\DI.png" />
   </ItemGroup>
   <ItemGroup>

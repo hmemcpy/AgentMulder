@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="ComponentRegistrationsTestBase.cs" />
     <Compile Include="Ninject\Helpers\TestNinjectAttribute.cs" />
+    <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
     <Compile Include="Windsor\ClassesTests.cs" />

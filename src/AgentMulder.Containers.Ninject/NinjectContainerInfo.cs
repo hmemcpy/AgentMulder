@@ -34,20 +34,26 @@ namespace AgentMulder.Containers.Ninject
             var container = new CompositionContainer(catalog);
             container.ComposeParts(this);
 
+            var bindPatterns = PatternsProviders.SelectMany(provider => provider.GetRegistrationPatterns()).ToArray();
             registrationPatterns = new List<IRegistrationPattern>
             {
-                new NinjectModulePattern(PatternsProviders.SelectMany(provider => provider.GetRegistrationPatterns()).ToArray())
+                new NinjectModulePattern(bindPatterns),
             };
+
+            registrationPatterns = new List<IRegistrationPattern>(bindPatterns);
         }
 
         public NinjectContainerInfo(IEnumerable<IRegistrationPatternsProvider> patternsProviders)
         {
             PatternsProviders = patternsProviders;
 
+            var bindPatterns = PatternsProviders.SelectMany(provider => provider.GetRegistrationPatterns()).ToArray();
             registrationPatterns = new List<IRegistrationPattern>
             {
-                new NinjectModulePattern(PatternsProviders.SelectMany(provider => provider.GetRegistrationPatterns()).ToArray())
+                new NinjectModulePattern(bindPatterns),
             };
+
+            registrationPatterns = new List<IRegistrationPattern>(bindPatterns);
         }
     }
 }

@@ -70,6 +70,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ninject\KernelTestCases\BindGenericToGeneric.cs" />
+    <Compile Include="Ninject\KernelTestCases\BindGenericToNonGeneric.cs" />
+    <Compile Include="Ninject\KernelTestCases\BindNonGenericToGeneric.cs" />
+    <Compile Include="Ninject\KernelTestCases\BindNonGenericToNonGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindGenericToNonGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindNonGenericToGeneric.cs" />

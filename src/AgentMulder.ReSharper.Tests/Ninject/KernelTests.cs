@@ -29,7 +29,7 @@ namespace AgentMulder.ReSharper.Tests.Ninject
             {
                 return new NinjectContainerInfo(new[]
                 {
-                    new BindRegistrationProvider(new ToRegistrationProvider()),
+                    new BindRegistrationProvider(new ToRegistrationProvider())
                 });
             }
         }

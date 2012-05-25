@@ -74,10 +74,13 @@
     <Compile Include="Ninject\KernelTestCases\BindGenericToNonGeneric.cs" />
     <Compile Include="Ninject\KernelTestCases\BindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\KernelTestCases\BindNonGenericToNonGeneric.cs" />
+    <Compile Include="Ninject\MethodNamedBindInThisClass.cs" />
+    <Compile Include="Ninject\MethodNamedBindOnSomeClass.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindGenericToNonGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindNonGenericToNonGeneric.cs" />
+    <None Include="Ninject\_DoesNotCompile-BrokenReference.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />
     <Compile Include="Types\Baz.cs" />
@@ -104,6 +107,7 @@
     <Compile Include="Types\MyAttribute.cs" />
     <Compile Include="Types\MyList.cs" />
     <Compile Include="Types\MyStruct.cs" />
+    <Compile Include="Types\SomeClass.cs" />
     <Compile Include="Types\TwoInterfacesImpl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

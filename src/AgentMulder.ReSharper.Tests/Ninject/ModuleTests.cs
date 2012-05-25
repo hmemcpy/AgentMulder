@@ -25,7 +25,13 @@ namespace AgentMulder.ReSharper.Tests.Ninject
 
         protected override IContainerInfo ContainerInfo
         {
-            get { return new NinjectContainerInfo(new[] { new BindRegistrationProvider(new ToRegistrationProvider()), }); }
+            get
+            {
+                return new NinjectContainerInfo(new[]
+                {
+                    new BindRegistrationProvider(new ToRegistrationProvider())
+                });
+            }
         }
 
         [TestCase("BindGenericToGeneric", "CommonImpl1.cs")]

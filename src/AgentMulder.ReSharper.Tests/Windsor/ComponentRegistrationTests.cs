@@ -27,7 +27,13 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
         protected override IContainerInfo ContainerInfo
         {
-            get { return new WindsorContainerInfo(new[] { new ComponentRegistrationProvider(new ImplementedByRegistrationProvider()) }); }
+            get
+            {
+                return new WindsorContainerInfo(new[]
+                {
+                    new ComponentRegistrationProvider(new ImplementedByRegistrationProvider())
+                });
+            }
         }
 
         [TestCase("GenericOpenType", "MyList.cs")]

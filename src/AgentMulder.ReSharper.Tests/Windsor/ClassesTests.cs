@@ -22,7 +22,13 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 
         protected override IContainerInfo ContainerInfo
         {
-            get { return new WindsorContainerInfo(new[] { new ClassesRegistrationProvider(new BasedOnRegistrationProvider()) }); }
+            get
+            {
+                return new WindsorContainerInfo(new[]
+                {
+                    new ClassesRegistrationProvider(new BasedOnRegistrationProvider())
+                });
+            }
         }
 
         protected override string RelativeTypesPath

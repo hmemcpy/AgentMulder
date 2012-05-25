@@ -1,25 +1,25 @@
 ﻿using System.Linq;
-using AgentMulder.Containers.CastleWindsor;
-using AgentMulder.Containers.CastleWindsor.Providers;
+using AgentMulder.Containers.Ninject;
+using AgentMulder.Containers.Ninject.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
 using NUnit.Framework;
 
-namespace AgentMulder.ReSharper.Tests.Windsor
+namespace AgentMulder.ReSharper.Tests.Ninject
 {
     public class SanityTests : ComponentRegistrationsTestBase
     {
         protected override string RelativeTestDataPath
         {
-            get { return @"Windsor"; }
+            get { return @"Ninject"; }
         }
 
         protected override IContainerInfo ContainerInfo
         {
             get
             {
-                return new WindsorContainerInfo(new[]
+                return new NinjectContainerInfo(new[]
                 {
-                    new ClassesRegistrationProvider(new BasedOnRegistrationProvider())
+                    new BindRegistrationProvider(new ToRegistrationProvider())
                 });
             }
         }
@@ -28,6 +28,14 @@ namespace AgentMulder.ReSharper.Tests.Windsor
         public void BrokenReference_DoesNotCreateARegistration()
         {
             RunTest("_DoesNotCompile-BrokenReference", registrations =>
+                Assert.AreEqual(0, registrations.Count()));
+        }
+
+        [TestCase("MethodNamedBindOnSomeClass")]
+        [TestCase("MethodNamedBindInThisClass")]
+        public void MethodNamedBind_DoesNotBelongToNinject_DoesNotCreateARegistration(string testName)
+        {
+            RunTest(testName, registrations =>
                 Assert.AreEqual(0, registrations.Count()));
         }
     }

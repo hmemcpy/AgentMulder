@@ -1,6 +1,10 @@
 What's new in Agent Mulder
 ==========================
 
+v1.0.2
+======
++ Initial support for Ninject (https://github.com/hmemcpy/AgentMulder/wiki/Ninject)
+
 v1.0.1
 ======
 + Castle Windsor: Added support for .Pick()

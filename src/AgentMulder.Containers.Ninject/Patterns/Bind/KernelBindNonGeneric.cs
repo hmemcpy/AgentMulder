@@ -22,11 +22,6 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
         {
         }
 
-        protected override string GetXmlDocIdName(IMethod method)
-        {
-            return "M:Ninject.Syntax.BindingRoot.Bind(System.Type[])";
-        }
-
         protected override IEnumerable<IComponentRegistration> DoCreateRegistrations(ITreeNode parentElement)
         {
             IStructuralMatchResult match = Match(parentElement);

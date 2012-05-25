@@ -4,6 +4,7 @@ using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
@@ -12,6 +13,7 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
     internal abstract class BindBasePattern : ComponentRegistrationPatternBase
     {
         private readonly IEnumerable<ComponentRegistrationPatternBase> toPatterns;
+        private IDeclaredType bindingRootType;
 
         protected BindBasePattern(IStructuralSearchPattern pattern, string elementName, IEnumerable<ComponentRegistrationPatternBase> toPatterns)
             : base(pattern, elementName)
@@ -79,11 +81,19 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
             {
                 return false;
             }
+            ITypeElement containingType = method.GetContainingType();
+            if (containingType == null)
+            {
+                return false;
+            }
 
-            return method.XMLDocId == GetXmlDocIdName(method);
+            if (bindingRootType == null)
+            {
+                bindingRootType = TypeFactory.CreateTypeByCLRName("Ninject.Syntax.BindingRoot", element.GetPsiModule());
+            }
+
+            return containingType.Equals(bindingRootType.GetTypeElement());
         }
-
-        protected abstract string GetXmlDocIdName(IMethod method);
 
         protected virtual IEnumerable<IComponentRegistration> DoCreateRegistrations(ITreeNode parentElement)
         {

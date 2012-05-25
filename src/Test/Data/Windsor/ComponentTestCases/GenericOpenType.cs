@@ -10,7 +10,7 @@ namespace TestApplication.Windsor.ComponentTestCases
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Castle.MicroKernel.Registration.Component.For(typeof(IEnumerable<>)).ImplementedBy(typeof(MyList<>)));
+            container.Register(Component.For(typeof(IEnumerable<>)).ImplementedBy(typeof(MyList<>)));
         }
     }
 }

@@ -34,13 +34,7 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind.To
                     yield break;
                 }
 
-                var type = invocationExpression.TypeArguments.FirstOrDefault();
-                if (type == null)
-                {
-                    yield break;
-                }
-                
-                IDeclaredType declaredType = type.GetScalarType();
+                IDeclaredType declaredType = GetDeclaredType(invocationExpression);
                 if (declaredType != null)
                 {
                     ITypeElement typeElement = declaredType.GetTypeElement();
@@ -50,6 +44,27 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind.To
                     }
                 }
             }
+        }
+
+        private IDeclaredType GetDeclaredType(IInvocationExpression invocationExpression)
+        {
+            if (invocationExpression.TypeArguments.Count > 0)
+            {
+                return invocationExpression.TypeArguments[0].GetScalarType();
+            }
+
+            if (invocationExpression.ArgumentList.Arguments.Count > 0)
+            {
+                var typeOfExpression = invocationExpression.ArgumentList.Arguments[0].Value as ITypeofExpression;
+                if (typeOfExpression == null)
+                {
+                    return null;
+                }
+
+                return typeOfExpression.ArgumentType.GetScalarType();
+            }
+
+            return null;
         }
     }
 }

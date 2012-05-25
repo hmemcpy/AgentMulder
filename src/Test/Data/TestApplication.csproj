@@ -79,6 +79,7 @@
     <Compile Include="Ninject\MethodNamedBindOnSomeClass.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindGenericToNonGeneric.cs" />
+    <Compile Include="Ninject\ModuleTestCases\BindGenericToSelf.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\BindNonGenericToNonGeneric.cs" />
     <None Include="Ninject\_DoesNotCompile-BrokenReference.cs" />

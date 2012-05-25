@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using AgentMulder.ReSharper.Domain.Containers;
+using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.Application;
+using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {
@@ -51,10 +53,10 @@ namespace AgentMulder.ReSharper.Plugin.Components
         private IEnumerable<RegistrationInfo> ScanRegistrations(IContainerInfo containerInfo)
         {
             return (from pattern in containerInfo.RegistrationPatterns
-                   let matchResults = patternSearcher.Search(pattern)
-                   from matchResult in matchResults.Where(result => result.Matched)
-                   from registration in pattern.GetComponentRegistrations(matchResult.MatchedElement)
-                   select new RegistrationInfo(registration, containerInfo.ContainerDisplayName)).ToList();
+                    let matchResults = patternSearcher.Search(pattern)
+                    from matchResult in matchResults.Where(result => result.Matched)
+                    from registration in pattern.GetComponentRegistrations(matchResult.MatchedElement)
+                    select new RegistrationInfo(registration, containerInfo.ContainerDisplayName)).ToList();
         }
     }
 }

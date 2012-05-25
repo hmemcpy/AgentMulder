@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using AgentMulder.Containers.Ninject.Patterns.Module.To;
+using AgentMulder.Containers.Ninject.Patterns.Bind.To;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 
@@ -13,8 +13,7 @@ namespace AgentMulder.Containers.Ninject.Providers
         {
             return new ComponentImplementationPatternBase[]
             {
-                new ToGeneric(true),
-                new ToGeneric(false),
+                new ToGeneric(),
                 new ToNonGeneric(), 
             };
         }

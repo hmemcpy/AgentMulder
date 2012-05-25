@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using AgentMulder.Containers.Ninject.Patterns.Module.Bind;
+using AgentMulder.Containers.Ninject.Patterns.Bind;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 
@@ -25,9 +25,10 @@ namespace AgentMulder.Containers.Ninject.Providers
 
             return new IRegistrationPattern[]
             {
-                new BindGeneric(true, toPatterns),
-                new BindGeneric(false, toPatterns),
-                new BindNonGeneric(toPatterns),
+                new ModuleBindGeneric(toPatterns),
+                new ModuleBindNonGeneric(toPatterns),
+                new KernelBindGeneric(toPatterns),
+                new KernelBindNonGeneric(toPatterns),
             };
         }
     }

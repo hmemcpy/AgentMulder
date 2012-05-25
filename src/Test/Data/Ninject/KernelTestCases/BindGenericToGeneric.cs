@@ -1,5 +1,4 @@
 using Ninject;
-using Ninject.Modules;
 using TestApplication.Types;
 
 namespace TestApplication.Ninject.KernelTestCases

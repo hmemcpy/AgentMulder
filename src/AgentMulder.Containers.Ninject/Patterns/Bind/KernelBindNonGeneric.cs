@@ -8,15 +8,16 @@ using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.Ninject.Patterns.Module.Bind
+namespace AgentMulder.Containers.Ninject.Patterns.Bind
 {
-    internal sealed class BindNonGeneric : BindBasePattern
+    internal sealed class KernelBindNonGeneric : BindBasePattern
     {
-        private static readonly IStructuralSearchPattern pattern 
-            = new CSharpStructuralSearchPattern("Bind($service$)",
+        private static readonly IStructuralSearchPattern pattern = 
+            new CSharpStructuralSearchPattern("$kernel$.Bind($service$)",
+                new ExpressionPlaceholder("kernel", "global::Ninject.Syntax.BindingRoot", false),
                 new ArgumentPlaceholder("service"));
 
-        public BindNonGeneric(params ComponentImplementationPatternBase[] toPatterns)
+        public KernelBindNonGeneric(params ComponentImplementationPatternBase[] toPatterns)
             : base(pattern, "service", toPatterns)
         {
         }

@@ -8,14 +8,14 @@ using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.Ninject.Patterns.Module.To
+namespace AgentMulder.Containers.Ninject.Patterns.Bind.To
 {
     internal sealed class ToNonGeneric : ComponentImplementationPatternBase
     {
-        private static readonly IStructuralSearchPattern pattern
-            = new CSharpStructuralSearchPattern("$bind$.To($service$)",
-                                                new ExpressionPlaceholder("bind"),
-                                                new ArgumentPlaceholder("service"));
+        private static readonly IStructuralSearchPattern pattern = 
+            new CSharpStructuralSearchPattern("$bind$.To($service$)",
+                new ExpressionPlaceholder("bind", "global::Ninject.Syntax.IBindingSyntax", false),
+                new ArgumentPlaceholder("service"));
 
         public ToNonGeneric()
             : base(pattern, "service")

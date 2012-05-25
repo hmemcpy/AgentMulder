@@ -12,11 +12,8 @@ namespace AgentMulder.ReSharper.Domain.Utils
     {
         public static IEnumerable<IInvocationExpression> GetAllExpressions(this IInvocationExpression expression)
         {
-            var invocationExpressions = new List<IInvocationExpression>();
-
-            expression.ProcessChildren<IInvocationExpression>(invocationExpressions.Add);
-
-            return invocationExpressions;
+            for (var e = expression; e != null; e = ((IReferenceExpression)e.InvokedExpression).QualifierExpression as IInvocationExpression)
+                yield return e;
         }
 
         public static bool IsGenericInterface(this ITypeElement typeElement)

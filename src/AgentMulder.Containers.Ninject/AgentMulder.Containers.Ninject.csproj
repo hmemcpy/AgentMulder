@@ -40,12 +40,13 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="NinjectContainerInfo.cs" />
-    <Compile Include="Patterns\Module\Bind\BindBasePattern.cs" />
-    <Compile Include="Patterns\Module\Bind\BindGeneric.cs" />
-    <Compile Include="Patterns\Module\Bind\BindNonGeneric.cs" />
-    <Compile Include="Patterns\Module\To\ToGeneric.cs" />
-    <Compile Include="Patterns\Module\To\ToNonGeneric.cs" />
-    <Compile Include="Patterns\NinjectModulePattern.cs" />
+    <Compile Include="Patterns\Bind\BindBasePattern.cs" />
+    <Compile Include="Patterns\Bind\KernelBindGeneric.cs" />
+    <Compile Include="Patterns\Bind\KernelBindNonGeneric.cs" />
+    <Compile Include="Patterns\Bind\ModuleBindGeneric.cs" />
+    <Compile Include="Patterns\Bind\ModuleBindNonGeneric.cs" />
+    <Compile Include="Patterns\Bind\To\ToGeneric.cs" />
+    <Compile Include="Patterns\Bind\To\ToNonGeneric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BindRegistrationProvider.cs" />
     <Compile Include="Providers\ToRegistrationProvider.cs" />

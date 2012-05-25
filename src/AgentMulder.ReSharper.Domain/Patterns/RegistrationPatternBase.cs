@@ -23,13 +23,13 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             matcher = pattern.CreateMatcher();
         }
 
-        private IInvocationExpression GetMatchedExpression(ITreeNode rootElement)
+        private IInvocationExpression GetMatchedExpression(ITreeNode element)
         {
-            var invocationExpression = rootElement as IInvocationExpression;
+            var invocationExpression = element as IInvocationExpression;
             if (invocationExpression == null)
                 return null;
 
-            return invocationExpression.GetAllExpressions().FirstOrDefault(expression => matcher.Match(expression) != StructuralMatchResult.NOT_MATCHED);
+            return invocationExpression.GetAllExpressions().FirstOrDefault(expression => matcher.QuickMatch(expression));
         }
 
         protected IStructuralMatchResult Match(ITreeNode treeNode)

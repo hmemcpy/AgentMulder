@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Ninject\KernelTestCases\BindGenericToGeneric.cs" />
     <Compile Include="Ninject\KernelTestCases\BindGenericToNonGeneric.cs" />
+    <Compile Include="Ninject\KernelTestCases\BindGenericToSelf.cs" />
     <Compile Include="Ninject\KernelTestCases\BindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\KernelTestCases\BindNonGenericToNonGeneric.cs" />
     <Compile Include="Ninject\MethodNamedBindInThisClass.cs" />

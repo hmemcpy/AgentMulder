@@ -47,6 +47,7 @@
     <Compile Include="Patterns\Bind\ModuleBindNonGeneric.cs" />
     <Compile Include="Patterns\Bind\To\ToGeneric.cs" />
     <Compile Include="Patterns\Bind\To\ToNonGeneric.cs" />
+    <Compile Include="Patterns\Bind\To\ToSelf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BindRegistrationProvider.cs" />
     <Compile Include="Providers\ToRegistrationProvider.cs" />

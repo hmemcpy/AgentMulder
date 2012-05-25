@@ -36,23 +36,20 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
             {
                 yield break;
             }
-
-            foreach (var registration in DoCreateRegistrations(statement.Expression).OfType<ComponentRegistration>())
+            foreach (var toPattern in toPatterns)
             {
-                foreach (var toPattern in toPatterns)
-                {
-                    var implementedByRegistration = toPattern.GetComponentRegistrations(statement.Expression)
-                        .Cast<ComponentRegistration>()
-                        .FirstOrDefault();
+                var implementedByRegistration = toPattern.GetComponentRegistrations(statement.Expression)
+                    .Cast<ComponentRegistration>()
+                    .FirstOrDefault();
 
-                    if (implementedByRegistration != null)
+                if (implementedByRegistration != null)
+                {
+                    foreach (var registration in DoCreateRegistrations(statement.Expression).OfType<ComponentRegistration>())
                     {
                         registration.Implementation = implementedByRegistration.ServiceType;
-                        break;
+                        yield return registration;
                     }
                 }
-
-                yield return registration;
             }
         }
 

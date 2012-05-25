@@ -80,13 +80,10 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
                 return false;
             }
 
-            if (method.TypeParameters.Count > 0)
-            {
-                return method.XMLDocId == string.Format("M:Ninject.Syntax.BindingRoot.Bind``{0}", method.TypeParameters.Count);
-            }
-
-            return method.XMLDocId == "M:Ninject.Syntax.BindingRoot.Bind(System.Type[])";
+            return method.XMLDocId == GetXmlDocIdName(method);
         }
+
+        protected abstract string GetXmlDocIdName(IMethod method);
 
         protected virtual IEnumerable<IComponentRegistration> DoCreateRegistrations(ITreeNode parentElement)
         {

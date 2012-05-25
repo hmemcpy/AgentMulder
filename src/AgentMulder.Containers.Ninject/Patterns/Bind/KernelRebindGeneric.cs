@@ -6,21 +6,21 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.Ninject.Patterns.Bind
 {
-    internal sealed class KernelBindGeneric : BindBasePattern
+    internal sealed class KernelRebindGeneric : BindBasePattern
     {
         private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$kernel$.Bind<$service$>()",
-                new ExpressionPlaceholder("kernel", "global::Ninject.Syntax.BindingRoot", false),
-                new TypePlaceholder("service"));
+            new CSharpStructuralSearchPattern("$kernel$.Rebind<$service$>()",
+                                              new ExpressionPlaceholder("kernel", "global::Ninject.Syntax.BindingRoot", false),
+                                              new TypePlaceholder("service"));
 
-        public KernelBindGeneric(params ComponentImplementationPatternBase[] toPatterns)
+        public KernelRebindGeneric(params ComponentImplementationPatternBase[] toPatterns)
             : base(pattern, "service", toPatterns)
         {
         }
 
         protected override string GetXmlDocIdName(IMethod method)
         {
-            return string.Format("M:Ninject.Syntax.BindingRoot.Bind``{0}", method.TypeParameters.Count);
+            return string.Format("M:Ninject.Syntax.BindingRoot.Rebind``{0}", method.TypeParameters.Count);
         }
     }
 }

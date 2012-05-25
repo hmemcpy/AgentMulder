@@ -27,8 +27,13 @@ namespace AgentMulder.Containers.Ninject.Providers
             {
                 new ModuleBindGeneric(toPatterns),
                 new ModuleBindNonGeneric(toPatterns),
+                new ModuleRebindGeneric(toPatterns),
+                new ModuleRebindNonGeneric(toPatterns), 
+
                 new KernelBindGeneric(toPatterns),
                 new KernelBindNonGeneric(toPatterns),
+                new KernelRebindGeneric(toPatterns),
+                new KernelRebindNonGeneric(toPatterns), 
             };
         }
     }

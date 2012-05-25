@@ -10,20 +10,21 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Ninject.Patterns.Bind
 {
-    internal sealed class ModuleBindNonGeneric : BindBasePattern
+    internal sealed class KernelRebindNonGeneric : BindBasePattern
     {
-        private static readonly IStructuralSearchPattern pattern 
-            = new CSharpStructuralSearchPattern("Bind($service$)",
-                new ArgumentPlaceholder("service"));
+        private static readonly IStructuralSearchPattern pattern =
+            new CSharpStructuralSearchPattern("$kernel$.Rebind($service$)",
+                                              new ExpressionPlaceholder("kernel", "global::Ninject.Syntax.BindingRoot", false),
+                                              new ArgumentPlaceholder("service"));
 
-        public ModuleBindNonGeneric(params ComponentImplementationPatternBase[] toPatterns)
+        public KernelRebindNonGeneric(params ComponentImplementationPatternBase[] toPatterns)
             : base(pattern, "service", toPatterns)
         {
         }
 
         protected override string GetXmlDocIdName(IMethod method)
         {
-            return "M:Ninject.Syntax.BindingRoot.Bind(System.Type[])";
+            return "M:Ninject.Syntax.BindingRoot.Rebind(System.Type[])";
         }
 
         protected override IEnumerable<IComponentRegistration> DoCreateRegistrations(ITreeNode parentElement)

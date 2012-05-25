@@ -43,8 +43,12 @@
     <Compile Include="Patterns\Bind\BindBasePattern.cs" />
     <Compile Include="Patterns\Bind\KernelBindGeneric.cs" />
     <Compile Include="Patterns\Bind\KernelBindNonGeneric.cs" />
+    <Compile Include="Patterns\Bind\KernelRebindGeneric.cs" />
+    <Compile Include="Patterns\Bind\KernelRebindNonGeneric.cs" />
     <Compile Include="Patterns\Bind\ModuleBindGeneric.cs" />
     <Compile Include="Patterns\Bind\ModuleBindNonGeneric.cs" />
+    <Compile Include="Patterns\Bind\ModuleRebindGeneric.cs" />
+    <Compile Include="Patterns\Bind\ModuleRebindNonGeneric.cs" />
     <Compile Include="Patterns\Bind\To\ToGeneric.cs" />
     <Compile Include="Patterns\Bind\To\ToNonGeneric.cs" />
     <Compile Include="Patterns\Bind\To\ToSelf.cs" />

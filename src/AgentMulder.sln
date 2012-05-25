@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "Test\Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Ninject", "AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.csproj", "{E1798D1B-C0DC-4A17-8683-230E89960E49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Unity", "AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.csproj", "{4EF1B908-98A3-4D6F-A243-78CA102BE445}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{E1798D1B-C0DC-4A17-8683-230E89960E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1798D1B-C0DC-4A17-8683-230E89960E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1798D1B-C0DC-4A17-8683-230E89960E49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EF1B908-98A3-4D6F-A243-78CA102BE445}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EF1B908-98A3-4D6F-A243-78CA102BE445}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EF1B908-98A3-4D6F-A243-78CA102BE445}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EF1B908-98A3-4D6F-A243-78CA102BE445}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +65,6 @@ Global
 		{2A40748D-310D-4193-A2E8-079A53040A93} = {F0AF21D8-9FFB-4641-AA4A-404A86F9029D}
 		{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60} = {0AFEAB16-D259-49ED-A30C-08B4D9997E48}
 		{E1798D1B-C0DC-4A17-8683-230E89960E49} = {0AFEAB16-D259-49ED-A30C-08B4D9997E48}
+		{4EF1B908-98A3-4D6F-A243-78CA102BE445} = {0AFEAB16-D259-49ED-A30C-08B4D9997E48}
 	EndGlobalSection
 EndGlobal

@@ -22,16 +22,21 @@ namespace AgentMulder.ReSharper.Tests.Unity
             get { return new UnityContainerInfo(); }
         }
 
-        [TestCase("RegisterTypeGenericFromTo", "CommonImpl1.cs")]
-        public void DoTest(string testName, string fileName)
+        [TestCase("RegisterTypeGenericFromTo", new[]{ "CommonImpl1.cs" })]
+        [TestCase("RegisterTypeGenericFromToChained", new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
+        [TestCase("RegisterTypeGenericFromTo3TimesIsTheCharm", new[] { "CommonImpl1.cs", "CommonImpl12.cs", "Foo.cs" })]
+        public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>
             {
-                ICSharpFile file = GetCodeFile(fileName);
+                ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
-                Assert.AreEqual(1, registrations.Count());
-                file.ProcessChildren<ITypeDeclaration>(declaration =>
-                    Assert.That(registrations.First().Registration.IsSatisfiedBy(declaration.DeclaredElement)));
+                Assert.AreEqual(codeFiles.Length, registrations.Count());
+                foreach (var codeFile in codeFiles)
+                {
+                    codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
+                        Assert.That(registrations.Any((r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
+                }
             });
         }
     }

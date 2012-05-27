@@ -114,10 +114,6 @@
       <Project>{FEE31D27-EE22-4849-990C-DCAAE623E724}</Project>
       <Name>AgentMulder.Containers.StructureMap</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.csproj">
-      <Project>{FEE31D27-EE22-4849-990C-DCAAE623E724}</Project>
-      <Name>AgentMulder.Containers.StructureMap</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">
       <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
       <Name>AgentMulder.ReSharper.Domain</Name>

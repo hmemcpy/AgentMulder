@@ -3,9 +3,9 @@ using TestApplication.Types;
 
 namespace TestApplication.Unity
 {
-    public class RegisterTypeGenericFromToChained
+    public class RegisterTypeGenericFromTo2Times
     {
-        public RegisterTypeGenericFromToChained()
+        public RegisterTypeGenericFromTo2Times()
         {
             var container = new UnityContainer();
             container.RegisterType<ICommon, CommonImpl1>()

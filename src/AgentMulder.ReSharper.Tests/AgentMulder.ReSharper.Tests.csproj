@@ -70,7 +70,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-	<Reference Include="PresentationCore" />
+    <Reference Include="PresentationCore" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autofac\ContainerBuilderTests.cs" />
@@ -106,10 +106,14 @@
       <Project>{E1798D1B-C0DC-4A17-8683-230E89960E49}</Project>
       <Name>AgentMulder.Containers.Ninject</Name>
     </ProjectReference>
-	<ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.csproj">
-		<Project>{4EF1B908-98A3-4D6F-A243-78CA102BE445}</Project>
-		<Name>AgentMulder.Containers.Unity</Name>
-	</ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.csproj">
+      <Project>{4EF1B908-98A3-4D6F-A243-78CA102BE445}</Project>
+      <Name>AgentMulder.Containers.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.csproj">
+      <Project>{FEE31D27-EE22-4849-990C-DCAAE623E724}</Project>
+      <Name>AgentMulder.Containers.StructureMap</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.csproj">
       <Project>{FEE31D27-EE22-4849-990C-DCAAE623E724}</Project>
       <Name>AgentMulder.Containers.StructureMap</Name>

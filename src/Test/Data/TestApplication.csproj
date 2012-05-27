@@ -70,6 +70,9 @@
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -113,6 +116,7 @@
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToNonGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToSelf.cs" />
+    <Compile Include="StructureMap\ConfigurationExpression\HelloStructureMap.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />
     <Compile Include="Types\Baz.cs" />

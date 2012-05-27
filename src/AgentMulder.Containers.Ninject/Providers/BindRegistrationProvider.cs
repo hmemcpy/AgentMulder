@@ -15,9 +15,9 @@ namespace AgentMulder.Containers.Ninject.Providers
 
         [ImportingConstructor]
         public BindRegistrationProvider(ToRegistrationProvider toProvider)
-         {
-             this.toProvider = toProvider;
-         }
+        {
+            this.toProvider = toProvider;
+        }
 
         public IEnumerable<IRegistrationPattern> GetRegistrationPatterns()
         {

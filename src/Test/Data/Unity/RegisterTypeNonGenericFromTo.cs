@@ -3,9 +3,9 @@ using TestApplication.Types;
 
 namespace TestApplication.Unity
 {
-    public class RegisterTypeNonGeneric
+    public class RegisterTypeNonGenericFromTo
     {
-        public RegisterTypeNonGeneric()
+        public RegisterTypeNonGenericFromTo()
         {
             var container = new UnityContainer();
             container.RegisterType(typeof(ICommon), typeof(CommonImpl1));

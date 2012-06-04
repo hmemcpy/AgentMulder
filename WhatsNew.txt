@@ -3,7 +3,7 @@ What's new in Agent Mulder
 
 v1.0.3
 ======
-+ Initial support for Unity (https://github.com/hmemcpy/AgentMulder/wiki/Ninject)
++ Initial support for Unity (https://github.com/hmemcpy/AgentMulder/wiki/Unity)
 
 v1.0.2
 ======

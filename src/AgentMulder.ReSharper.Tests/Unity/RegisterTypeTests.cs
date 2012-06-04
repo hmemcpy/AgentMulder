@@ -28,6 +28,7 @@ namespace AgentMulder.ReSharper.Tests.Unity
         [TestCase("RegisterTypeNonGenericFromTo", new[] { "CommonImpl1.cs" })]
         [TestCase("RegisterTypeNonGenericFromToExtraArguments", new[] { "CommonImpl1.cs" })]
         [TestCase("RegisterTypeSingleGeneric", new[] { "CommonImpl1.cs" })]
+        [TestCase("RegisterTypeSingleNonGeneric", new[] { "CommonImpl1.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>

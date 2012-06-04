@@ -137,6 +137,7 @@
     <Compile Include="Unity\RegisterTypeGenericFromTo2Times.cs" />
     <Compile Include="Unity\RegisterTypeNonGenericFromTo.cs" />
     <Compile Include="Unity\RegisterTypeNonGenericFromToExtraArguments.cs" />
+    <Compile Include="Unity\RegisterTypeSingleGeneric.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentFor2GenericImplementedbyGeneric.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentFor3GenericImplementedbyGeneric.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentFor4GenericImplementedByGeneric.cs" />

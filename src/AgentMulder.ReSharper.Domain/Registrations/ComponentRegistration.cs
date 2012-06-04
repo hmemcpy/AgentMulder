@@ -7,23 +7,19 @@ namespace AgentMulder.ReSharper.Domain.Registrations
     public class ComponentRegistration : ComponentRegistrationBase
     {
         private readonly ITypeElement serviceType;
-        private ITypeElement implementation;
 
-        public ITypeElement Implementation
-        {
-            get { return implementation; }
-            set { implementation = value; }
-        }
+        public ITypeElement Implementation { get; set; }
 
         public ITypeElement ServiceType
         {
             get { return serviceType; }
         }
 
-        public ComponentRegistration(ITreeNode registrationElement, ITypeElement serviceType)
+        public ComponentRegistration(ITreeNode registrationElement, ITypeElement serviceType, ITypeElement implementationType = null)
             : base(registrationElement)
         {
             this.serviceType = serviceType;
+            Implementation = implementationType;
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
@@ -34,14 +30,14 @@ namespace AgentMulder.ReSharper.Domain.Registrations
                 return false;
             }
 
-            if (implementation != null)
+            if (Implementation != null)
             {
-                if (implementation.IsGenericInterface())
+                if (Implementation.IsGenericInterface())
                 {
-                    return typeElement.IsDescendantOf(implementation);
+                    return typeElement.IsDescendantOf(Implementation);
                 }
 
-                return implementation.Equals(typeElement);
+                return Implementation.Equals(typeElement);
             }
 
             return serviceType.Equals(typeElement);
@@ -49,7 +45,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 
         public override string ToString()
         {
-            string displayName = implementation != null ? implementation.GetClrName().FullName
+            string displayName = Implementation != null ? Implementation.GetClrName().FullName
                                                         : serviceType.GetClrName().FullName;
 
             return string.Format("Implemented by: {0}", displayName);

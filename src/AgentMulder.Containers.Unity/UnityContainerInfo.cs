@@ -37,8 +37,7 @@ namespace AgentMulder.Containers.Unity
 
             registrationPatterns = new List<IRegistrationPattern>
             {
-                new RegisterTypeGeneric(),
-                new RegisterTypeNonGeneric()
+                new RegisterType(),
             };
         }
 
@@ -48,8 +47,7 @@ namespace AgentMulder.Containers.Unity
 
             registrationPatterns = new List<IRegistrationPattern> 
             {
-                new RegisterTypeGeneric(),
-                new RegisterTypeNonGeneric()
+                new RegisterType(),
             };
         }
     }

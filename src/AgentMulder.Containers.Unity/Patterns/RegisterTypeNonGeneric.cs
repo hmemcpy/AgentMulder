@@ -60,7 +60,6 @@ namespace AgentMulder.Containers.Unity.Patterns
                 return null;
             }
 
-
             // todo support non-typeof arguments too
             var typeOfExpression = argument.Value as ITypeofExpression;
             if (typeOfExpression == null)

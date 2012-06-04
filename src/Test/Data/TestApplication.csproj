@@ -135,6 +135,7 @@
     <Compile Include="Unity\RegisterTypeGenericFromTo.cs" />
     <Compile Include="Unity\RegisterTypeGenericFromTo3TimesIsTheCharm.cs" />
     <Compile Include="Unity\RegisterTypeGenericFromTo2Times.cs" />
+    <Compile Include="Unity\RegisterTypeNonGeneric.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentFor2GenericImplementedbyGeneric.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentFor3GenericImplementedbyGeneric.cs" />
     <Compile Include="Windsor\ComponentTestCases\ComponentFor4GenericImplementedByGeneric.cs" />

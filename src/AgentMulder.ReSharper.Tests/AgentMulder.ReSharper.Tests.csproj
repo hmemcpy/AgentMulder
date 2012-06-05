@@ -70,6 +70,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autofac\ContainerBuilderTests.cs" />
+    <Compile Include="Autofac\Helpers\TestNinjectAttribute.cs" />
     <Compile Include="ComponentRegistrationsTestBase.cs" />
     <Compile Include="Ninject\Helpers\TestNinjectAttribute.cs" />
     <Compile Include="Ninject\KernelTests.cs" />
@@ -86,6 +88,10 @@
     <Compile Include="Windsor\SanityTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.csproj">
+      <Project>{2AF8CA35-EA61-46F6-8604-BF1E48009EE2}</Project>
+      <Name>AgentMulder.Containers.Autofac</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.csproj">
       <Project>{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}</Project>
       <Name>AgentMulder.Containers.CastleWindsor</Name>

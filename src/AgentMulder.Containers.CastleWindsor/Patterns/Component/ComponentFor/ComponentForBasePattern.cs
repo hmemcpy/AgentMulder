@@ -19,6 +19,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.Component.ComponentFor
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
+            // todo remove cast
             foreach (var registration in DoCreateRegistrations(registrationRootElement).OfType<ComponentRegistration>())
             {
                 foreach (var implementedByPattern in implementedByPatterns)

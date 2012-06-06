@@ -26,6 +26,11 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
+            return ((IBasedOnPattern)this).GetComponentRegistrations(registrationRootElement);
+        }
+
+        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetComponentRegistrations(ITreeNode registrationRootElement)
+        {
             IStructuralMatchResult match = Match(registrationRootElement);
 
             if (match.Matched)
@@ -35,7 +40,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                 {
                     yield break;
                 }
-                
+
                 var typeofExpression = argument.Value as ITypeofExpression;
                 if (typeofExpression != null)
                 {

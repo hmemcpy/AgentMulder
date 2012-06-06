@@ -10,7 +10,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereArgument
 {
-    internal class ComponentHasAttributeMethodGroup : RegistrationPatternBase
+    internal class ComponentHasAttributeMethodGroup : RegistrationPatternBase, IBasedOnPattern
     {
         // note: there seems to be an issue with ReSharper SSR matching partial expessions (method groups)
         // so a fuller pattern can be matched by the root element
@@ -26,6 +26,11 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereA
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
+        {
+            return ((IBasedOnPattern)this).GetComponentRegistrations(registrationRootElement);
+        }
+
+        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetComponentRegistrations(ITreeNode registrationRootElement)
         {
             IStructuralMatchResult match = Match(registrationRootElement);
 

@@ -17,6 +17,11 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
+            return ((IBasedOnPattern)this).GetComponentRegistrations(registrationRootElement);
+        }
+
+        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetComponentRegistrations(ITreeNode registrationRootElement)
+        {
             var match = Match(registrationRootElement);
 
             if (match.Matched)

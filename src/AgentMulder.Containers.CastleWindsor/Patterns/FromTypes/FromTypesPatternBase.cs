@@ -39,9 +39,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
             if (match.Matched)
             {
-                foreach (var basedOnPattern in basedOnPatterns)
+                foreach (IBasedOnPattern basedOnPattern in basedOnPatterns)
                 {
-                    foreach (var basedOnRegistration in basedOnPattern.GetComponentRegistrations(registrationRootElement).OfType<BasedOnRegistration>())
+                    foreach (BasedOnRegistrationBase basedOnRegistration in basedOnPattern.GetComponentRegistrations(registrationRootElement))
                     {
                         IEnumerable<ICSharpArgument> matchedArguments = match.GetMatchedElementList("services").OfType<ICSharpArgument>();
                         IEnumerable<ITypeElement> typeElements = matchedArguments.SelectMany(argument => GetRegisteredTypes(match, argument.Value));

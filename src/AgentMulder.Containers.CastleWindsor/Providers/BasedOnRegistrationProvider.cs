@@ -11,7 +11,7 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
     [Export]
     public class BasedOnRegistrationProvider : IRegistrationPatternsProvider
     {
-        private readonly List<IRegistrationPattern> whereArgumentPatterns = new List<IRegistrationPattern> 
+        private readonly List<IBasedOnPattern> whereArgumentPatterns = new List<IBasedOnPattern> 
         {
             new ComponentIsInNamespace(),
             new ComponentHasAttributeMethodGroup(),

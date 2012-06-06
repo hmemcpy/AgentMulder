@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Reflection;
 using AgentMulder.Containers.Unity.Patterns;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Patterns;
@@ -21,7 +20,6 @@ namespace AgentMulder.Containers.Unity
         {
             get { return registrationPatterns; }
         }
-
         
         public UnityContainerInfo()
         {

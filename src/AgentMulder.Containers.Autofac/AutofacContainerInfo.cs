@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Reflection;
+using AgentMulder.Containers.Autofac.Patterns;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
@@ -24,23 +25,13 @@ namespace AgentMulder.Containers.Autofac
             get { return registrationPatterns; }
         }
 
-        [ImportMany]
-        private IEnumerable<IRegistrationPatternsProvider> PatternsProviders { get; set; }
-
         public AutofacContainerInfo()
         {
-            var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            var container = new CompositionContainer(catalog);
-            container.ComposeParts(this);
-
-            registrationPatterns = PatternsProviders.SelectMany(provider => provider.GetRegistrationPatterns()).ToList();
-        }
-
-        public AutofacContainerInfo(IEnumerable<IRegistrationPatternsProvider> patternsProviders)
-        {
-            PatternsProviders = patternsProviders;
-
-            registrationPatterns = PatternsProviders.SelectMany(provider => provider.GetRegistrationPatterns()).ToList();
+            registrationPatterns = new List<IRegistrationPattern> 
+            {
+                new RegisterTypeGeneric(),
+                new RegisterTypeNonGeneric(),
+            };
         }
     }
 }

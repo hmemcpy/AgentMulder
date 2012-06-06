@@ -1,4 +1,4 @@
-﻿using Autofac;
+using Autofac;
 using TestApplication.Types;
 
 namespace TestApplication.Autofac

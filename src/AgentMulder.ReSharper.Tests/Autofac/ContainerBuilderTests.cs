@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using AgentMulder.Containers.Autofac;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Tests.Autofac.Helpers;

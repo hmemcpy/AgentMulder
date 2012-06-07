@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using AgentMulder.ReSharper.Domain.Patterns;
+using System.Collections.Generic;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
+namespace AgentMulder.ReSharper.Domain.Patterns
 {
     public interface IBasedOnPattern : IRegistrationPattern
     {

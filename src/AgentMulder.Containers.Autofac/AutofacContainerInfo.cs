@@ -27,10 +27,13 @@ namespace AgentMulder.Containers.Autofac
 
         public AutofacContainerInfo()
         {
+            var basedOnPatterns = new IBasedOnPattern[0];
+
             registrationPatterns = new List<IRegistrationPattern> 
             {
                 new RegisterTypeGeneric(),
                 new RegisterTypeNonGeneric(),
+                new RegisterAssemblyTypes(basedOnPatterns)
             };
         }
     }

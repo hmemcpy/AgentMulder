@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Containers;
-using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application.Components;
 using JetBrains.ProjectModel;

@@ -1,6 +1,7 @@
 using System;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.ReSharper.Domain.Elements.Modules;
+using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;

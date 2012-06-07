@@ -1,10 +1,8 @@
-﻿using System.Reflection;
-using Autofac;
-using Module = Autofac.Module;
+﻿using Autofac;
 
-namespace TestApplication.Autofac
+namespace TestApplication.Autofac.RegisterAssemblyTypesTests
 {
-    public class RegisterAssemblyTypes : Module
+    public class FromThisAssemblyModuleProperty : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

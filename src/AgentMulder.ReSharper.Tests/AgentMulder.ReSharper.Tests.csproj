@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autofac\ContainerBuilderTests.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests.cs" />
     <Compile Include="Autofac\Helpers\TestNinjectAttribute.cs" />
     <Compile Include="ComponentRegistrationsTestBase.cs" />
     <Compile Include="Ninject\Helpers\TestNinjectAttribute.cs" />

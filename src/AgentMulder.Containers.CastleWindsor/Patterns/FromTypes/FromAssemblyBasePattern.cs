@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
+using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
@@ -10,7 +9,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    public abstract class FromAssemblyBasePattern : FromTypesPatternBase
+    public abstract class FromAssemblyBasePattern : FromDescriptorPatternBase
     {
         protected FromAssemblyBasePattern(IStructuralSearchPattern pattern, Predicate<ITypeElement> filter, params IBasedOnPattern[] basedOnPatterns)
             : base(pattern, filter, basedOnPatterns)
@@ -27,7 +26,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
                 foreach (var basedOnPattern in BasedOnPatterns)
                 {
-                    var basedOnRegistrations = basedOnPattern.GetComponentRegistrations(registrationRootElement).Cast<BasedOnRegistrationBase>();
+                    var basedOnRegistrations = basedOnPattern.GetComponentRegistrations(registrationRootElement);
 
                     foreach (BasedOnRegistrationBase registration in basedOnRegistrations)
                     {

@@ -25,7 +25,7 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
         {
             var basedOnPatterns = basedOnProvider.GetRegistrationPatterns().ToArray();
 
-            return new FromTypesPatternBase[]
+            return new FromDescriptorPatternBase[]
             {
                 new From(TypesFullTypeName, basedOnPatterns),
                 new FromAssembly(TypesFullTypeName, basedOnPatterns),

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
@@ -11,26 +10,11 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    public abstract class FromTypesPatternBase : RegistrationPatternBase
+    public abstract class FromTypesPatternBase : FromDescriptorPatternBase
     {
-        private readonly Predicate<ITypeElement> filter;
-        private readonly IEnumerable<IBasedOnPattern> basedOnPatterns;
-
-        protected IEnumerable<IBasedOnPattern> BasedOnPatterns
-        {
-            get { return basedOnPatterns; }
-        }
-
-        protected virtual Predicate<ITypeElement> Filter
-        {
-            get { return filter; }
-        }
-
         protected FromTypesPatternBase(IStructuralSearchPattern pattern, Predicate<ITypeElement> filter, IEnumerable<IBasedOnPattern> basedOnPatterns)
-            : base(pattern)
+            : base(pattern, filter, basedOnPatterns)
         {
-            this.filter = filter;
-            this.basedOnPatterns = basedOnPatterns;
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
@@ -39,7 +23,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
             if (match.Matched)
             {
-                foreach (IBasedOnPattern basedOnPattern in basedOnPatterns)
+                foreach (IBasedOnPattern basedOnPattern in BasedOnPatterns)
                 {
                     foreach (BasedOnRegistrationBase basedOnRegistration in basedOnPattern.GetComponentRegistrations(registrationRootElement))
                     {

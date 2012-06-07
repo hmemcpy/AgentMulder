@@ -7,18 +7,13 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public class ModuleBasedOnRegistration : ComponentRegistrationBase
     {
-        private readonly IEnumerable<IModule> sourceModules;
+        private readonly IModule sourceModule;
         private readonly BasedOnRegistrationBase basedOn;
 
         public ModuleBasedOnRegistration(IModule sourceModule, BasedOnRegistrationBase basedOn)
-            : this(new[] { sourceModule }, basedOn)
-        {
-        }
-
-        public ModuleBasedOnRegistration(IEnumerable<IModule> sourceModules, BasedOnRegistrationBase basedOn)
             : base(basedOn.RegistrationElement)
         {
-            this.sourceModules = sourceModules;
+            this.sourceModule = sourceModule;
             this.basedOn = basedOn;
         }
 
@@ -30,14 +25,20 @@ namespace AgentMulder.ReSharper.Domain.Registrations
                 return false;
             }
 
-            return sourceModules.Any(targetModule.Equals) && basedOn.IsSatisfiedBy(typeElement);
+            if (sourceModule.Equals(targetModule))
+            {
+                if (basedOn != null)
+                {
+                    return basedOn.IsSatisfiedBy(typeElement);
+                }
+            }
+
+            return false;
         }
 
         public override string ToString()
         {
-            return string.Format("In module(s): {0}, {1}", 
-                string.Join(", ", sourceModules.Select(module => module.Name)), 
-                base.ToString());
+            return string.Format("In module(s): {0}, {1}", sourceModule.Name, base.ToString());
         }
     }
 }

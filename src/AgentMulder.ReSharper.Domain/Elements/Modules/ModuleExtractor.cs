@@ -7,7 +7,7 @@ namespace AgentMulder.ReSharper.Domain.Elements.Modules
 {
     public static class ModuleExtractor
     {
-        private static readonly List<IModuleExtractor> extractors = new List<IModuleExtractor>();
+        private static readonly HashSet<IModuleExtractor> extractors = new HashSet<IModuleExtractor>();
 
         static ModuleExtractor()
         {
@@ -20,6 +20,11 @@ namespace AgentMulder.ReSharper.Domain.Elements.Modules
             extractors.Add(typeAssemblyPropertyExtractor);
             extractors.Add(new AssemblyNameExtractor());
             extractors.Add(new GetExecutingAssemblyExtractor());
+        }
+
+        internal static void AddExtractor(IModuleExtractor extractor)
+        {
+            extractors.Add(extractor);
         }
 
         public static IModule GetTargetModule<T>(T element)

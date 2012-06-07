@@ -13,12 +13,18 @@ namespace AgentMulder.ReSharper.Domain.Elements.Modules.Impl
         public override IModule GetTargetModule<T>(T element)
         {
             var referenceExpression = element as IReferenceExpression;
-            if (referenceExpression != null && referenceExpression.Reference.GetName() == "Assembly")
+            if (referenceExpression == null)
             {
-                return base.GetTargetModule(referenceExpression.QualifierExpression);
+                return null;
             }
 
-            return null;
+            switch (referenceExpression.Reference.GetName())
+            {
+                case "Assembly":
+                    return base.GetTargetModule(referenceExpression.QualifierExpression);
+                default:
+                    return null;
+            }
         }
     }
 }

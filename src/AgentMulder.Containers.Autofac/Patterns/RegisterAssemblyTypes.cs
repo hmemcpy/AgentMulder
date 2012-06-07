@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AgentMulder.Containers.Autofac.Patterns.Helpers;
 using AgentMulder.ReSharper.Domain.Elements.Modules;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
@@ -23,6 +24,7 @@ namespace AgentMulder.Containers.Autofac.Patterns
         public RegisterAssemblyTypes(params IBasedOnPattern[] basedOnPatterns)
             : base(pattern, basedOnPatterns)
         {
+            ModuleExtractor.AddExtractor(new ThisAssemblyExtractor());
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
@@ -31,18 +33,13 @@ namespace AgentMulder.Containers.Autofac.Patterns
 
             if (match.Matched)
             {
-                var arguments = match.GetMatchedElementList("arguments").Cast<ICSharpArgument>();
+                var arguments = match.GetMatchedElementList("assemblies").Cast<ICSharpArgument>();
 
-                IEnumerable<IModule> modules = arguments.Select(ModuleExtractor.GetTargetModule).ToList();
+                IEnumerable<IModule> modules = arguments.Select(argument => ModuleExtractor.GetTargetModule(argument.Value)).ToList();
 
-                foreach (var basedOnPattern in BasedOnPatterns)
+                foreach (IModule module in modules)
                 {
-                    var basedOnRegistrations = basedOnPattern.GetBasedOnRegistrations(registrationRootElement);
-
-                    foreach (BasedOnRegistrationBase registration in basedOnRegistrations)
-                    {
-                        yield return new ModuleBasedOnRegistration(modules, registration);
-                    }
+                    yield return new ModuleBasedOnRegistration(module, new NullRegistration(registrationRootElement));
                 }
             }
         }

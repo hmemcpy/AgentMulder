@@ -11,23 +11,23 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal class Pick : RegistrationPatternBase, IBasedOnPattern
+    internal sealed class Pick : BasedOnPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.Pick()",
                 new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false));
 
-        public Pick()
-            : base(pattern)
+        public Pick(IBasedOnRegistrationCreator registrationCreator)
+            : base(pattern, registrationCreator)
         {
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            return ((IBasedOnPattern)this).GetComponentRegistrations(registrationRootElement);
+            return GetBasedOnRegistrations(registrationRootElement);
         }
 
-        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetComponentRegistrations(ITreeNode registrationRootElement)
+        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
             IStructuralMatchResult match = Match(registrationRootElement);
 
@@ -38,10 +38,9 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                 ITypeElement objectTypeElement = declarationsCache.GetTypeElementByCLRName("System.Object");
                 if (objectTypeElement != null)
                 {
-                    yield return new BasedOnRegistration(registrationRootElement, objectTypeElement);
+                    yield return registrationCreator.Create(registrationRootElement, objectTypeElement);
                 }
             }
-
         }
     }
 }

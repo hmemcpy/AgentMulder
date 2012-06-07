@@ -2,7 +2,6 @@ using System;
 using AgentMulder.ReSharper.Domain.Elements.Modules;
 using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -12,12 +11,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
     internal sealed class FromAssemblyContainingGeneric : FromAssemblyBasePattern
     {
         public FromAssemblyContainingGeneric(string qualiferType, params IBasedOnPattern[] basedOnPatterns)
-            : this(qualiferType, element => true, basedOnPatterns)
-        {
-        }
-
-        public FromAssemblyContainingGeneric(string qualiferType, Predicate<ITypeElement> filter, params IBasedOnPattern[] basedOnPatterns)
-            : base(CreatePattern(qualiferType), filter, basedOnPatterns)
+            : base(CreatePattern(qualiferType), basedOnPatterns)
         {
         }
 

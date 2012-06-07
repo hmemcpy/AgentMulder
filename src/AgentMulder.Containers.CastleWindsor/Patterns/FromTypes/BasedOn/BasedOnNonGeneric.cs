@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using AgentMulder.ReSharper.Domain;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
@@ -12,24 +10,24 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal sealed class BasedOnNonGeneric : RegistrationPatternBase, IBasedOnPattern
+    internal sealed class BasedOnNonGeneric : BasedOnPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.BasedOn($argument$)",
-                                              new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
-                                              new ArgumentPlaceholder("argument", 1, 1));
+                new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
+                new ArgumentPlaceholder("argument", 1, 1));
 
-        public BasedOnNonGeneric()
-            : base(pattern)
+        public BasedOnNonGeneric(IBasedOnRegistrationCreator registrationCreator)
+            : base(pattern, registrationCreator)
         {
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            return ((IBasedOnPattern)this).GetComponentRegistrations(registrationRootElement);
+            return GetBasedOnRegistrations(registrationRootElement);
         }
 
-        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetComponentRegistrations(ITreeNode registrationRootElement)
+        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
             IStructuralMatchResult match = Match(registrationRootElement);
 
@@ -50,7 +48,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                         ITypeElement typeElement = declaredType.GetTypeElement();
                         if (typeElement != null)
                         {
-                            yield return new BasedOnRegistration(registrationRootElement, typeElement);
+                            yield return registrationCreator.Create(registrationRootElement, typeElement);
                         }
                     }
                 }

@@ -33,7 +33,7 @@ namespace AgentMulder.ReSharper.Tests.Autofac
             RunTest(testName, registrations => Assert.AreEqual(0, registrations.Count()));
         }
 
-        [TestCase("FromThisAssemblyModuleProperty", 1, new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
+        //[TestCase("FromThisAssemblyModuleProperty", 1, new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
         public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {
             RunTest(testName, registrations =>

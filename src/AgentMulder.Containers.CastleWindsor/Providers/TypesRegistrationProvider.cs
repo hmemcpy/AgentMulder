@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
+using AgentMulder.Containers.CastleWindsor.Registrations;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 
@@ -23,7 +24,7 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
 
         public IEnumerable<IRegistrationPattern> GetRegistrationPatterns()
         {
-            var basedOnPatterns = basedOnProvider.GetRegistrationPatterns().ToArray();
+            var basedOnPatterns = basedOnProvider.GetRegistrationPatterns(new TypesRegistrationCreator()).ToArray();
 
             return new FromDescriptorPatternBase[]
             {

@@ -6,6 +6,6 @@ namespace AgentMulder.ReSharper.Domain.Patterns
 {
     public interface IBasedOnPattern : IRegistrationPattern
     {
-        new IEnumerable<BasedOnRegistrationBase> GetComponentRegistrations(ITreeNode registrationRootElement);
+        IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement);
     }
 }

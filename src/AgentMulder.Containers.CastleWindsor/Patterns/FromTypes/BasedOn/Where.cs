@@ -27,10 +27,10 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            return ((IBasedOnPattern)this).GetComponentRegistrations(registrationRootElement);
+            return ((IBasedOnPattern)this).GetBasedOnRegistrations(registrationRootElement);
         }
 
-        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetComponentRegistrations(ITreeNode registrationRootElement)
+        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
             IStructuralMatchResult match = Match(registrationRootElement);
 
@@ -41,11 +41,11 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                 {
                     foreach (var whereArgumentPattern in whereArgumentPatterns)
                     {
-                        var registrations = whereArgumentPattern.GetComponentRegistrations(element).ToArray();
+                        var registrations = whereArgumentPattern.GetBasedOnRegistrations(element).ToArray();
                         if (!registrations.Any())
                         {
                             // try with the root element.
-                            registrations = whereArgumentPattern.GetComponentRegistrations(registrationRootElement).ToArray();
+                            registrations = whereArgumentPattern.GetBasedOnRegistrations(registrationRootElement).ToArray();
                         }
 
                         foreach (var registration in registrations)

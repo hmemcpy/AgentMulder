@@ -7,7 +7,6 @@ namespace AgentMulder.ReSharper.Domain.Patterns
 {
     public abstract class FromDescriptorPatternBase : RegistrationPatternBase
     {
-        private readonly Predicate<ITypeElement> filter;
         private readonly IEnumerable<IBasedOnPattern> basedOnPatterns;
 
         protected IEnumerable<IBasedOnPattern> BasedOnPatterns
@@ -15,15 +14,9 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             get { return basedOnPatterns; }
         }
 
-        protected virtual Predicate<ITypeElement> Filter
-        {
-            get { return filter; }
-        }
-
-        protected FromDescriptorPatternBase(IStructuralSearchPattern pattern, Predicate<ITypeElement> filter, IEnumerable<IBasedOnPattern> basedOnPatterns)
+        protected FromDescriptorPatternBase(IStructuralSearchPattern pattern, IEnumerable<IBasedOnPattern> basedOnPatterns)
             : base(pattern)
         {
-            this.filter = filter;
             this.basedOnPatterns = basedOnPatterns;
         }
     }

@@ -12,8 +12,8 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
     public abstract class FromTypesPatternBase : FromDescriptorPatternBase
     {
-        protected FromTypesPatternBase(IStructuralSearchPattern pattern, Predicate<ITypeElement> filter, IEnumerable<IBasedOnPattern> basedOnPatterns)
-            : base(pattern, filter, basedOnPatterns)
+        protected FromTypesPatternBase(IStructuralSearchPattern pattern, IEnumerable<IBasedOnPattern> basedOnPatterns)
+            : base(pattern, basedOnPatterns)
         {
         }
 
@@ -25,12 +25,10 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             {
                 foreach (IBasedOnPattern basedOnPattern in BasedOnPatterns)
                 {
-                    foreach (BasedOnRegistrationBase basedOnRegistration in basedOnPattern.GetComponentRegistrations(registrationRootElement))
+                    foreach (BasedOnRegistrationBase basedOnRegistration in basedOnPattern.GetBasedOnRegistrations(registrationRootElement))
                     {
                         IEnumerable<ICSharpArgument> matchedArguments = match.GetMatchedElementList("services").OfType<ICSharpArgument>();
                         IEnumerable<ITypeElement> typeElements = matchedArguments.SelectMany(argument => GetRegisteredTypes(match, argument.Value));
-
-                        basedOnRegistration.AddFilter(Filter);
 
                         yield return new TypesBasedOnRegistration(typeElements, basedOnRegistration);
                     }

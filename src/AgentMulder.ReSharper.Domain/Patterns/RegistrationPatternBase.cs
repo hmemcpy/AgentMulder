@@ -4,7 +4,6 @@ using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
-using JetBrains.ReSharper.Psi.Services.StructuralSearch.Impl;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Patterns

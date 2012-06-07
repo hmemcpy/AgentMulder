@@ -27,10 +27,10 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereA
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            return ((IBasedOnPattern)this).GetComponentRegistrations(registrationRootElement);
+            return ((IBasedOnPattern)this).GetBasedOnRegistrations(registrationRootElement);
         }
 
-        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetComponentRegistrations(ITreeNode registrationRootElement)
+        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
             IStructuralMatchResult match = Match(registrationRootElement);
 

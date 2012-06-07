@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
+using AgentMulder.Containers.CastleWindsor.Registrations;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 
@@ -24,16 +25,16 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
 
         public IEnumerable<IRegistrationPattern> GetRegistrationPatterns()
         {
-            var basedOnPatterns = basedOnProvider.GetRegistrationPatterns().ToArray();
+            var basedOnPatterns = basedOnProvider.GetRegistrationPatterns(new ClassesRegistrationCreator()).ToArray();
 
             return new IRegistrationPattern[]
             {
-                new From(AllTypesFullTypeName, ClassesRegistrationProvider.Filter, basedOnPatterns),
-                new FromAssembly(AllTypesFullTypeName, ClassesRegistrationProvider.Filter, basedOnPatterns), 
-                new FromThisAssembly(AllTypesFullTypeName, ClassesRegistrationProvider.Filter, basedOnPatterns),
-                new FromAssemblyNamed(AllTypesFullTypeName, ClassesRegistrationProvider.Filter, basedOnPatterns), 
-                new FromAssemblyContainingGeneric(AllTypesFullTypeName, ClassesRegistrationProvider.Filter, basedOnPatterns),
-                new FromAssemblyContainingNonGeneric(AllTypesFullTypeName, ClassesRegistrationProvider.Filter, basedOnPatterns)
+                new From(AllTypesFullTypeName, basedOnPatterns),
+                new FromAssembly(AllTypesFullTypeName, basedOnPatterns), 
+                new FromThisAssembly(AllTypesFullTypeName, basedOnPatterns),
+                new FromAssemblyNamed(AllTypesFullTypeName, basedOnPatterns), 
+                new FromAssemblyContainingGeneric(AllTypesFullTypeName, basedOnPatterns),
+                new FromAssemblyContainingNonGeneric(AllTypesFullTypeName, basedOnPatterns)
             };
         }
     }

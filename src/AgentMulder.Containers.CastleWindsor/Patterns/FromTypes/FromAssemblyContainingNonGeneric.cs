@@ -1,8 +1,7 @@
 using System;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn;
 using AgentMulder.ReSharper.Domain.Elements.Modules;
+using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
@@ -13,12 +12,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
     internal sealed class FromAssemblyContainingNonGeneric : FromAssemblyBasePattern
     {
         public FromAssemblyContainingNonGeneric(string qualiferType, params IBasedOnPattern[] basedOnPatterns)
-            : this(qualiferType, element => true, basedOnPatterns)
-        {
-        }
-
-        public FromAssemblyContainingNonGeneric(string qualiferType, Predicate<ITypeElement> filter, params IBasedOnPattern[] basedOnPatterns)
-            : base(CreatePattern(qualiferType), filter, basedOnPatterns)
+            : base(CreatePattern(qualiferType), basedOnPatterns)
         {
         }
 

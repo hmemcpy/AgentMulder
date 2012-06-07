@@ -1,5 +1,7 @@
+using System.Linq;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
+using System.Collections.Generic;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
@@ -13,7 +15,6 @@ namespace AgentMulder.ReSharper.Domain.Registrations
         {
             this.sourceModule = sourceModule;
             this.basedOn = basedOn;
-            basedOn.Module = sourceModule;
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
@@ -24,12 +25,20 @@ namespace AgentMulder.ReSharper.Domain.Registrations
                 return false;
             }
 
-            return (targetModule.Equals(sourceModule) && basedOn.IsSatisfiedBy(typeElement));
+            if (sourceModule.Equals(targetModule))
+            {
+                if (basedOn != null)
+                {
+                    return basedOn.IsSatisfiedBy(typeElement);
+                }
+            }
+
+            return false;
         }
 
         public override string ToString()
         {
-            return string.Format("In module: {0}, {1}", sourceModule.Name, base.ToString());
+            return string.Format("In module(s): {0}, {1}", sourceModule.Name, base.ToString());
         }
     }
 }

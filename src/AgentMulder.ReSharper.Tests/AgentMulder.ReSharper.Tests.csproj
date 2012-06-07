@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.2.6.1.841\lib\NET40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\packages\Autofac.2.6.1.841\lib\NET40\Autofac.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
@@ -49,8 +55,8 @@
     <Reference Include="Microsoft.Practices.Unity.Configuration">
       <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.0.0.15\lib\net40\Ninject.dll</HintPath>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -64,6 +70,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autofac\ContainerBuilderTests.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests.cs" />
+    <Compile Include="Autofac\Helpers\TestAutofacAttribute.cs" />
     <Compile Include="ComponentRegistrationsTestBase.cs" />
     <Compile Include="Ninject\Helpers\TestNinjectAttribute.cs" />
     <Compile Include="Ninject\KernelTests.cs" />
@@ -80,6 +89,10 @@
     <Compile Include="Windsor\SanityTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.csproj">
+      <Project>{2AF8CA35-EA61-46F6-8604-BF1E48009EE2}</Project>
+      <Name>AgentMulder.Containers.Autofac</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.csproj">
       <Project>{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}</Project>
       <Name>AgentMulder.Containers.CastleWindsor</Name>

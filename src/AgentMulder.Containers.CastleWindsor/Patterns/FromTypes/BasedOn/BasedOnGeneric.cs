@@ -9,24 +9,24 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    internal sealed class BasedOnGeneric : RegistrationPatternBase, IBasedOnPattern
+    internal sealed class BasedOnGeneric : BasedOnPatternBase
     {
         private static readonly IStructuralSearchPattern pattern = 
             new CSharpStructuralSearchPattern("$fromDescriptor$.BasedOn<$type$>()",
                 new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
                 new TypePlaceholder("type"));
 
-        public BasedOnGeneric()
-            : base(pattern)
+        public BasedOnGeneric(IBasedOnRegistrationCreator registrationCreator)
+            : base(pattern, registrationCreator)
         {
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            return ((IBasedOnPattern)this).GetComponentRegistrations(registrationRootElement);
+            return GetBasedOnRegistrations(registrationRootElement);
         }
 
-        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetComponentRegistrations(ITreeNode registrationRootElement)
+        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
             IStructuralMatchResult match = Match(registrationRootElement);
 
@@ -38,7 +38,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
                     ITypeElement typeElement = matchedType.GetTypeElement();
                     if (typeElement != null)
                     {
-                        yield return new BasedOnRegistration(registrationRootElement, typeElement);
+                        yield return registrationCreator.Create(registrationRootElement, typeElement);
                     }
                 }
             }

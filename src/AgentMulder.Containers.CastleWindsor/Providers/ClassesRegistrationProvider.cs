@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes;
+using AgentMulder.Containers.CastleWindsor.Registrations;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.Containers.CastleWindsor.Providers
 {
@@ -13,17 +13,6 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
     [Export(typeof(IRegistrationPatternsProvider))]
     public class ClassesRegistrationProvider : IRegistrationPatternsProvider
     {
-        public static readonly Predicate<ITypeElement> Filter = typeElement =>
-        {
-            var @class = typeElement as IClass;
-            if (@class != null)
-            {
-                return !@class.IsAbstract;
-            }
-
-            return false;
-        };
-
         private const string ClassesFullTypeName = "Castle.MicroKernel.Registration.Classes";
 
         private readonly BasedOnRegistrationProvider basedOnProvider;
@@ -36,16 +25,16 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
 
         public IEnumerable<IRegistrationPattern> GetRegistrationPatterns()
         {
-            var basedOnPatterns = basedOnProvider.GetRegistrationPatterns().ToArray();
+            var basedOnPatterns = basedOnProvider.GetRegistrationPatterns(new ClassesRegistrationCreator()).ToArray();
 
-            return new FromTypesPatternBase[]
+            return new FromDescriptorPatternBase[]
             {
-                new From(ClassesFullTypeName, Filter, basedOnPatterns),
-                new FromAssembly(ClassesFullTypeName, Filter, basedOnPatterns), 
-                new FromThisAssembly(ClassesFullTypeName, Filter, basedOnPatterns),
-                new FromAssemblyNamed(ClassesFullTypeName, Filter, basedOnPatterns), 
-                new FromAssemblyContainingGeneric(ClassesFullTypeName, Filter, basedOnPatterns),
-                new FromAssemblyContainingNonGeneric(ClassesFullTypeName, Filter, basedOnPatterns)
+                new From(ClassesFullTypeName, basedOnPatterns),
+                new FromAssembly(ClassesFullTypeName, basedOnPatterns), 
+                new FromThisAssembly(ClassesFullTypeName, basedOnPatterns),
+                new FromAssemblyNamed(ClassesFullTypeName, basedOnPatterns), 
+                new FromAssemblyContainingGeneric(ClassesFullTypeName, basedOnPatterns),
+                new FromAssemblyContainingNonGeneric(ClassesFullTypeName, basedOnPatterns)
             };
         }
     }

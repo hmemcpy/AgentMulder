@@ -93,7 +93,6 @@
     <Compile Include="Patterns\RegistrationPatternBase.cs" />
     <Compile Include="Registrations\HasAttributeRegistration.cs" />
     <Compile Include="Registrations\IBasedOnRegistrationCreator.cs" />
-    <Compile Include="Registrations\NullRegistration.cs" />
     <Compile Include="Utils\MaybeMonadExtensions.cs" />
     <Compile Include="Utils\PsiExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

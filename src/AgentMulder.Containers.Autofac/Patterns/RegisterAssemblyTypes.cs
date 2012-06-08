@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.Containers.Autofac.Patterns.Helpers;
+using AgentMulder.Containers.Autofac.Registrations;
 using AgentMulder.ReSharper.Domain.Elements.Modules;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
@@ -39,7 +40,7 @@ namespace AgentMulder.Containers.Autofac.Patterns
 
                 foreach (IModule module in modules)
                 {
-                    yield return new ModuleBasedOnRegistration(module, new NullRegistration(registrationRootElement));
+                    yield return new ModuleBasedOnRegistration(module, new DefaultScanAssemblyRegistration(registrationRootElement));
                 }
             }
         }

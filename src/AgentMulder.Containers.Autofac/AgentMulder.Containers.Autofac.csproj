@@ -50,6 +50,7 @@
     <Compile Include="Patterns\RegisterTypeGeneric.cs" />
     <Compile Include="Patterns\RegisterTypeNonGeneric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registrations\DefaultScanAssemblyRegistration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">

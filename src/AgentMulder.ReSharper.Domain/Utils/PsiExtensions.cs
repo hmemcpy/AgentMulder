@@ -67,5 +67,17 @@ namespace AgentMulder.ReSharper.Domain.Utils
 
             return null;
         }
+
+        public static bool IsGenericTypeDefinition(this ITypeElement element)
+        {
+            // todo check if this is enoguh
+            return element.TypeParameters.Count > 0;
+        }
+
+        public static bool IsDelegate(this ITypeElement element)
+        {
+            // todo check if true;
+            return element is IDelegate;
+        }
     }
 }

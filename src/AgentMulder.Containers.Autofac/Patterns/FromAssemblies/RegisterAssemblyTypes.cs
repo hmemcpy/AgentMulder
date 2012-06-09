@@ -51,28 +51,30 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
                 {
                     var registration = new ModuleBasedOnRegistration(module, new DefaultScanAssemblyRegistration(registrationRootElement));
 
-                    foreach (var basedOnRegistration in BasedOnPatterns.SelectMany(
-                        basedOnPattern => basedOnPattern.GetBasedOnRegistrations(parentExpression.Expression)))
-                    {
-                        yield return new CompositeRegistration(registrationRootElement, registration, basedOnRegistration);
-                    }
+                    var basedOnRegistrations = BasedOnPatterns.SelectMany(
+                            basedOnPattern => basedOnPattern.GetBasedOnRegistrations(parentExpression.Expression));
+
+                    yield return new CompositeRegistration(registrationRootElement, registration, basedOnRegistrations.ToArray());
                 }
             }
         }
 
         private class CompositeRegistration : ComponentRegistrationBase
         {
-            private readonly IComponentRegistration[] registrations;
+            private readonly ModuleBasedOnRegistration moduleBasedOnRegistration;
+            private readonly BasedOnRegistrationBase[] basedOnRegistrations;
 
-            public CompositeRegistration(ITreeNode registrationElement, params IComponentRegistration[] registrations)
+            public CompositeRegistration(ITreeNode registrationElement, ModuleBasedOnRegistration moduleBasedOnRegistration, params BasedOnRegistrationBase[] basedOnRegistrations)
                 : base(registrationElement)
             {
-                this.registrations = registrations;
+                this.moduleBasedOnRegistration = moduleBasedOnRegistration;
+                this.basedOnRegistrations = basedOnRegistrations;
             }
 
             public override bool IsSatisfiedBy(ITypeElement typeElement)
             {
-                return registrations.All(registration => registration.IsSatisfiedBy(typeElement));
+                return moduleBasedOnRegistration.IsSatisfiedBy(typeElement) && 
+                       basedOnRegistrations.All(registration => registration.IsSatisfiedBy(typeElement));
             }
         }
 

@@ -49,6 +49,7 @@
     <Compile Include="Patterns\FromAssemblies\AsNonGeneric.cs" />
     <Compile Include="Patterns\Helpers\ThisAssemblyExtractor.cs" />
     <Compile Include="Patterns\FromAssemblies\RegisterAssemblyTypes.cs" />
+    <Compile Include="Patterns\RegisterLambdaExpression.cs" />
     <Compile Include="Patterns\RegisterTypeGeneric.cs" />
     <Compile Include="Patterns\RegisterTypeNonGeneric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

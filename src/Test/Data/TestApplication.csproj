@@ -91,6 +91,7 @@
     <Compile Include="Autofac\RegisterTypeGeneric.cs" />
     <Compile Include="Autofac\RegisterTypeNonGeneric.cs" />
     <Compile Include="Autofac\RegisterWithLambda.cs" />
+    <Compile Include="Autofac\RegisterWithLambdaInitializer.cs" />
     <Compile Include="Autofac\RegisterWithLambdaTakesDependency.cs" />
     <Compile Include="Ninject\KernelTestCases\BindGenericToGeneric.cs" />
     <Compile Include="Ninject\KernelTestCases\BindGenericToNonGeneric.cs" />

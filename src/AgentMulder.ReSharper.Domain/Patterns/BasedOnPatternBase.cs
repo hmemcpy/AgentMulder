@@ -7,12 +7,9 @@ namespace AgentMulder.ReSharper.Domain.Patterns
 {
     public abstract class BasedOnPatternBase : RegistrationPatternBase, IBasedOnPattern
     {
-        protected readonly IBasedOnRegistrationCreator registrationCreator;
-
-        protected BasedOnPatternBase(IStructuralSearchPattern pattern, IBasedOnRegistrationCreator registrationCreator)
+        protected BasedOnPatternBase(IStructuralSearchPattern pattern)
             :base(pattern)
         {
-            this.registrationCreator = registrationCreator;
         }
 
         IEnumerable<IComponentRegistration> IRegistrationPattern.GetComponentRegistrations(ITreeNode registrationRootElement)

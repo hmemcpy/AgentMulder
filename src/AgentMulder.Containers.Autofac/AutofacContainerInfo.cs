@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using AgentMulder.Containers.Autofac.Patterns;
+using AgentMulder.Containers.Autofac.Patterns.FromAssemblies;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Patterns;
 
@@ -23,7 +24,10 @@ namespace AgentMulder.Containers.Autofac
 
         public AutofacContainerInfo()
         {
-            var basedOnPatterns = new IBasedOnPattern[0];
+            var basedOnPatterns = new IBasedOnPattern[]
+            {
+                new AsGeneric(),
+            };
 
             registrationPatterns = new List<IRegistrationPattern> 
             {

@@ -91,6 +91,7 @@
     <Compile Include="Patterns\IBasedOnPattern.cs" />
     <Compile Include="Patterns\IRegistrationPattern.cs" />
     <Compile Include="Patterns\RegistrationPatternBase.cs" />
+    <Compile Include="Registrations\ElementBasedOnRegistration.cs" />
     <Compile Include="Registrations\HasAttributeRegistration.cs" />
     <Compile Include="Registrations\IBasedOnRegistrationCreator.cs" />
     <Compile Include="Utils\MaybeMonadExtensions.cs" />

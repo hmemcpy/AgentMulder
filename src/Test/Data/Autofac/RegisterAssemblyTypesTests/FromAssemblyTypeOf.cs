@@ -1,14 +1,15 @@
 using System.Reflection;
 using Autofac;
+using TestApplication.Types;
 using Module = Autofac.Module;
 
 namespace TestApplication.Autofac.RegisterAssemblyTypesTests
 {
-    public class FromThisAssemblyGetExecutingAssembly : Module
+    public class FromAssemblyTypeOf : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly());
+            builder.RegisterAssemblyTypes(typeof(IFoo).Assembly);
         }
     }
 }

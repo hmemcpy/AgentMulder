@@ -13,13 +13,16 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
     internal sealed class Pick : BasedOnPatternBase
     {
+        private readonly IBasedOnRegistrationCreator registrationCreator;
+
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.Pick()",
                 new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false));
 
         public Pick(IBasedOnRegistrationCreator registrationCreator)
-            : base(pattern, registrationCreator)
+            : base(pattern)
         {
+            this.registrationCreator = registrationCreator;
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)

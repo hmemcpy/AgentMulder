@@ -46,6 +46,7 @@
     </Compile>
     <Compile Include="AutofacContainerInfo.cs" />
     <Compile Include="Patterns\FromAssemblies\AsGeneric.cs" />
+    <Compile Include="Patterns\FromAssemblies\AsNonGeneric.cs" />
     <Compile Include="Patterns\Helpers\ThisAssemblyExtractor.cs" />
     <Compile Include="Patterns\FromAssemblies\RegisterAssemblyTypes.cs" />
     <Compile Include="Patterns\RegisterTypeGeneric.cs" />

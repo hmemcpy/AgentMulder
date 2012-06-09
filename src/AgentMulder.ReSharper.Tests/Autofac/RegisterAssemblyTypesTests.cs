@@ -39,6 +39,8 @@ namespace AgentMulder.ReSharper.Tests.Autofac
         [TestCase("AllThreeTogether", 3, new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
         [TestCase("AsGeneric1", 1, new[] { "CommonImpl1.cs" })]
         [TestCase("AsGeneric2", 1, new[] { "CommonImpl12.cs" })]
+        [TestCase("AsNonGeneric1", 1, new[] { "CommonImpl1.cs" })]
+        [TestCase("AsNonGeneric2", 1, new[] { "CommonImpl12.cs" })]
         public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {
             RunTest(testName, registrations =>
@@ -56,6 +58,8 @@ namespace AgentMulder.ReSharper.Tests.Autofac
 
         [TestCase("AsGeneric1", new[] { "Foo.cs" })]
         [TestCase("AsGeneric2", new[] { "CommonImpl1.cs" })]
+        [TestCase("AsNonGeneric1", new[] { "Foo.cs" })]
+        [TestCase("AsNonGeneric2", new[] { "CommonImpl1.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>

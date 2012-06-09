@@ -27,6 +27,7 @@ namespace AgentMulder.Containers.Autofac
             var basedOnPatterns = new IBasedOnPattern[]
             {
                 new AsGeneric(),
+                new AsNonGeneric(), 
             };
 
             registrationPatterns = new List<IRegistrationPattern> 

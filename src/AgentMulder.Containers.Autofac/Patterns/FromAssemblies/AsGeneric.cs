@@ -13,7 +13,8 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.As<$service$>()",
-                new ExpressionPlaceholder("builder", "Autofac.Builder.IRegistrationBuilder<object,ScanningActivatorData,DynamicRegistrationStyle>", false),
+                new ExpressionPlaceholder("builder", 
+                    "global::Autofac.Builder.IRegistrationBuilder<object,global::Autofac.Features.Scanning.ScanningActivatorData,global::Autofac.Builder.DynamicRegistrationStyle>", false),
                 new TypePlaceholder("service"));
 
         public AsGeneric()

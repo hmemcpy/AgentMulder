@@ -80,7 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autofac\RegisterAssemblyTypesTests\AllThreeTogether.cs" />
-    <Compile Include="Autofac\RegisterAssemblyTypesTests\AsGeneric.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AsGeneric1.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AsGeneric2.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AsNonGeneric1.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromGetExecutingAssembly.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromThisAssemblyModuleProperty.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromAssemblyTypeOf.cs" />

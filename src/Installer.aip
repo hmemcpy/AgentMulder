@@ -15,7 +15,7 @@
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Agent Mulder plugin for ReSharper" ValueLocId="*"/>
     <ROW Property="ProductShortName" Value="AgentMulder"/>
-    <ROW Property="ProductVersion" Value="1.0.3" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.0.3.1" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{F9637657-9637-4700-9455-375306DC5D47}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

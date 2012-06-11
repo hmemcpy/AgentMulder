@@ -33,21 +33,22 @@ namespace AgentMulder.ReSharper.Tests.Autofac
             RunTest(testName, registrations => Assert.AreEqual(0, registrations.Count()));
         }
 
-        [TestCase("FromThisAssemblyModuleProperty", 1, new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
-        [TestCase("FromGetExecutingAssembly", 1, new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
-        [TestCase("FromAssemblyTypeOf", 1, new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
-        [TestCase("AllThreeTogether", 3, new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
-        [TestCase("AsGeneric1", 1, new[] { "CommonImpl1.cs" })]
-        [TestCase("AsGeneric2", 1, new[] { "CommonImpl12.cs" })]
-        [TestCase("AsNonGeneric1", 1, new[] { "CommonImpl1.cs" })]
-        [TestCase("AsNonGeneric2", 1, new[] { "CommonImpl12.cs" })]
-        public void DoTest(string testName, int registrationsCount, string[] fileNames)
+        [TestCase("FromThisAssemblyModuleProperty", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
+        [TestCase("FromGetExecutingAssembly", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
+        [TestCase("FromAssemblyTypeOf", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
+        [TestCase("AllThreeTogether", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
+        [TestCase("AsGeneric1", new[] { "CommonImpl1.cs" })]
+        [TestCase("AsGeneric2", new[] { "CommonImpl12.cs" })]
+        [TestCase("AsNonGeneric1", new[] { "CommonImpl1.cs" })]
+        [TestCase("AsNonGeneric2", new[] { "CommonImpl12.cs" })]
+        [TestCase("AsImplementedInterfaces", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
+        public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>
             {
                 ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
-                Assert.AreEqual(registrationsCount, registrations.Count());
+                CollectionAssert.IsNotEmpty(registrations);
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
@@ -60,6 +61,7 @@ namespace AgentMulder.ReSharper.Tests.Autofac
         [TestCase("AsGeneric2", new[] { "CommonImpl1.cs" })]
         [TestCase("AsNonGeneric1", new[] { "Foo.cs" })]
         [TestCase("AsNonGeneric2", new[] { "CommonImpl1.cs" })]
+        [TestCase("AsImplementedInterfaces", new[] { "GoldCard.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>

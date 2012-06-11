@@ -47,6 +47,7 @@ namespace AgentMulder.ReSharper.Tests.Ninject
         [TestCase("RebindNonGenericToNonGeneric", "CommonImpl1.cs")]
         [TestCase("RebindGenericToSelf", "CommonImpl1.cs")]
         [TestCase("RebindNonGenericToSelf", "CommonImpl1.cs")]
+        [TestCase("BindFromKernel", "PageRepository.cs")]
         public void DoTest(string testName, string fileName)
         {
             RunTest(testName, registrations =>

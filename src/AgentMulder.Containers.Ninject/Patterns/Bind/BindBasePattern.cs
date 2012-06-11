@@ -26,7 +26,7 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
             // This entire thing is one big hack. Need to come back to it one day :)
             // There is (currently) no way to create a pattern that would match the Bind() call with implicit this in ReSharper SSR.
             // Therefore I'm only matching by the method name only, and later verifying that the method invocation's qualifier 
-            // is indeed derived from global::Ninject.Syntax.BindingRoot
+            // is indeed derived from global::Ninject.Syntax.IBindingRoot
 
             if (!IsNinjectBindCall(registrationRootElement))
             {
@@ -89,10 +89,10 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
 
             if (bindingRootType == null)
             {
-                bindingRootType = TypeFactory.CreateTypeByCLRName("Ninject.Syntax.BindingRoot", element.GetPsiModule());
+                bindingRootType = TypeFactory.CreateTypeByCLRName("Ninject.Syntax.IBindingRoot", element.GetPsiModule());
             }
 
-            return containingType.Equals(bindingRootType.GetTypeElement());
+            return containingType.IsDescendantOf(bindingRootType.GetTypeElement());
         }
 
         protected virtual IEnumerable<IComponentRegistration> DoCreateRegistrations(ITreeNode parentElement)

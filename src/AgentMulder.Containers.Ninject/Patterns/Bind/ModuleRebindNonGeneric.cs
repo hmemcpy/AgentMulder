@@ -12,9 +12,9 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
 {
     internal sealed class ModuleRebindNonGeneric : BindBasePattern
     {
-        private static readonly IStructuralSearchPattern pattern
-            = new CSharpStructuralSearchPattern("Rebind($service$)",
-                                                new ArgumentPlaceholder("service"));
+        private static readonly IStructuralSearchPattern pattern = 
+            new CSharpStructuralSearchPattern("Rebind($service$)",
+                new ArgumentPlaceholder("service"));
 
         public ModuleRebindNonGeneric(params ComponentImplementationPatternBase[] toPatterns)
             : base(pattern, "service", toPatterns)

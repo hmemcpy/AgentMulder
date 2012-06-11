@@ -14,8 +14,8 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$kernel$.Rebind($service$)",
-                                              new ExpressionPlaceholder("kernel", "global::Ninject.Syntax.BindingRoot", false),
-                                              new ArgumentPlaceholder("service"));
+                new ExpressionPlaceholder("kernel", "global::Ninject.Syntax.IBindingRoot", false),
+                new ArgumentPlaceholder("service"));
 
         public KernelRebindNonGeneric(params ComponentImplementationPatternBase[] toPatterns)
             : base(pattern, "service", toPatterns)

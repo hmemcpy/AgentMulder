@@ -89,6 +89,7 @@
     <Compile Include="Ninject\KernelTestCases\BindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\KernelTestCases\BindNonGenericToNonGeneric.cs" />
     <Compile Include="Ninject\KernelTestCases\BindNonGenericToSelf.cs" />
+    <Compile Include="Ninject\KernelTestCases\BindFromKernel.cs" />
     <Compile Include="Ninject\KernelTestCases\GenericOpenType.cs" />
     <Compile Include="Ninject\KernelTestCases\RebindGenericToGeneric.cs" />
     <Compile Include="Ninject\KernelTestCases\RebindGenericToNonGeneric.cs" />
@@ -121,6 +122,8 @@
     <Compile Include="Types\CommonImpl1234.cs" />
     <Compile Include="Types\CommonImpl2.cs" />
     <Compile Include="Types\CommonSub1Impl.cs" />
+    <Compile Include="Types\Context.cs" />
+    <Compile Include="Types\CreditCard.cs" />
     <Compile Include="Types\Foo.cs" />
     <Compile Include="Types\FooBar.cs" />
     <Compile Include="Types\HaveAttribute.cs" />
@@ -135,9 +138,14 @@
     <Compile Include="Types\IInSomeOtherNamespace.cs" />
     <Compile Include="Types\InSomeNamespace.cs" />
     <Compile Include="Types\InSomeOtherNamespace.cs" />
+    <Compile Include="Types\IPageRepository.cs" />
+    <Compile Include="Types\IRepository.cs" />
     <Compile Include="Types\MyAttribute.cs" />
     <Compile Include="Types\MyList.cs" />
     <Compile Include="Types\MyStruct.cs" />
+    <Compile Include="Types\Page.cs" />
+    <Compile Include="Types\PageRepository.cs" />
+    <Compile Include="Types\Repository.cs" />
     <Compile Include="Types\SomeClass.cs" />
     <Compile Include="Types\TwoInterfacesImpl.cs" />
     <Compile Include="Program.cs" />

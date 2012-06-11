@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.Containers.Autofac.Patterns.Helpers;
 using AgentMulder.ReSharper.Domain.Patterns;

@@ -35,6 +35,7 @@ namespace AgentMulder.Containers.Autofac
                 new RegisterTypeGeneric(),
                 new RegisterTypeNonGeneric(),
                 new RegisterLambdaExpression(),
+                new RegisterLambdaStatements(),
                 new RegisterAssemblyTypes(basedOnPatterns)
             };
         }

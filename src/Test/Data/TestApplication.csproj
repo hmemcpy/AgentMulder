@@ -88,6 +88,7 @@
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromThisAssemblyModuleProperty.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromAssemblyTypeOf.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\NoAssembly.cs" />
+    <Compile Include="Autofac\RegisterComplex.cs" />
     <Compile Include="Autofac\RegisterTypeGeneric.cs" />
     <Compile Include="Autofac\RegisterTypeNonGeneric.cs" />
     <Compile Include="Autofac\RegisterWithLambda.cs" />
@@ -133,8 +134,10 @@
     <Compile Include="Types\CommonImpl2.cs" />
     <Compile Include="Types\CommonSub1Impl.cs" />
     <Compile Include="Types\Context.cs" />
+    <Compile Include="Types\CreditCard.cs" />
     <Compile Include="Types\Foo.cs" />
     <Compile Include="Types\FooBar.cs" />
+    <Compile Include="Types\GoldCard.cs" />
     <Compile Include="Types\HaveAttribute.cs" />
     <Compile Include="Types\IBar.cs" />
     <Compile Include="Types\ICommon.cs" />
@@ -156,6 +159,7 @@
     <Compile Include="Types\PageRepository.cs" />
     <Compile Include="Types\Repository.cs" />
     <Compile Include="Types\SomeClass.cs" />
+    <Compile Include="Types\StandardCard.cs" />
     <Compile Include="Types\TakesDependency.cs" />
     <Compile Include="Types\TwoInterfacesImpl.cs" />
     <Compile Include="Program.cs" />

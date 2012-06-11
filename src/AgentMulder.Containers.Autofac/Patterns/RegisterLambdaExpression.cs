@@ -3,7 +3,6 @@ using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
 using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
@@ -12,16 +11,16 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Autofac.Patterns
 {
-    internal sealed class RegisterLambdaExpression : ComponentImplementationPatternBase
+    internal sealed class RegisterLambdaExpression : RegistrationPatternBase
     {
         private static readonly IStructuralSearchPattern pattern = 
             new CSharpStructuralSearchPattern("$builder$.Register($args$ => $expression$)",
                 new ExpressionPlaceholder("builder", "global::Autofac.ContainerBuilder", true),
-                new ArgumentPlaceholder("args"),
+                new ArgumentPlaceholder("args", -1, -1),
                 new ExpressionPlaceholder("expression"));
 
         public RegisterLambdaExpression()
-            : base(pattern, "")
+            : base(pattern)
         {
         }
 

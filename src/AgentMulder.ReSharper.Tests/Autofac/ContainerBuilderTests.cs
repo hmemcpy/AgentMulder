@@ -27,6 +27,7 @@ namespace AgentMulder.ReSharper.Tests.Autofac
         [TestCase("RegisterWithLambda", new[] { "Foo.cs" })]
         [TestCase("RegisterWithLambdaTakesDependency", new[] { "TakesDependency.cs" })]
         [TestCase("RegisterWithLambdaInitializer", new[] { "FooBar.cs" })]
+        [TestCase("RegisterComplex", new[] { "GoldCard.cs", "StandardCard.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>

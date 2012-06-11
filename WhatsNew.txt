@@ -1,6 +1,10 @@
 What's new in Agent Mulder
 ==========================
 
+v1.0.3.1 - Hotfix
+=================
+* Fixed a bug where Ninject registration wasn't picked up by Agent Mulder (issue #10)
+
 v1.0.3
 ======
 + Initial support for Unity (https://github.com/hmemcpy/AgentMulder/wiki/Unity)

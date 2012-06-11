@@ -40,7 +40,7 @@ namespace AgentMulder.Containers.Autofac.Patterns
                 var collectedTypes = statements.SelectMany(statement =>
                 {
                     var returnTypeCollector = new ReturnTypeCollector(new UniversalContext(statement.GetPsiModule()));
-                    statement.ProcessDescendants(returnTypeCollector);
+                    statement.ProcessThisAndDescendants(returnTypeCollector);
                     return returnTypeCollector.CollectedTypes;
                 });
 

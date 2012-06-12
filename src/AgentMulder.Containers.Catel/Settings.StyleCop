@@ -1,0 +1,10 @@
+<StyleCopSettings Version="105">
+  <Analyzers>
+    <Analyzer AnalyzerId="StyleCop.CSharp.DocumentationRules">
+      <AnalyzerSettings>
+        <StringProperty Name="CompanyName">Catel &amp; Agent Mulder development teams</StringProperty>
+        <StringProperty Name="Copyright">Copyright (c) 2008 - $CURRENT_YEAR$ Catel &amp; Agent Mulder development teams. All rights reserved.</StringProperty>
+      </AnalyzerSettings>
+    </Analyzer>
+  </Analyzers>
+</StyleCopSettings>

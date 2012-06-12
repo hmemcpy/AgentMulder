@@ -29,9 +29,8 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
         public RegisterAssemblyTypes([ImportMany] params IBasedOnPattern[] basedOnPatterns)
             : base(pattern, basedOnPatterns)
         {
-            ModuleExtractor.AddExtractor(new ThisAssemblyExtractor());
+            ModuleExtractor.AddExtractor(new AutofacModuleThisAssemblyExtractor());
         }
-
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {

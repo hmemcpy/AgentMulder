@@ -11,7 +11,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.Helpers
         private readonly List<IExpressionType> expressionTypes = new List<IExpressionType>();
         private readonly IResolveContext resolveContext;
 
-        public IList<IExpressionType> CollectedTypes
+        public IEnumerable<IExpressionType> CollectedTypes
         {
             get { return expressionTypes; }
         }

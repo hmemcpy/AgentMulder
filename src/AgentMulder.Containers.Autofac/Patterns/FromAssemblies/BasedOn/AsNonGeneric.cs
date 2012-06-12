@@ -9,7 +9,7 @@ using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
+namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 {
     internal sealed class AsNonGeneric : BasedOnPatternBase
     {

@@ -7,17 +7,17 @@ using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
+namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 {
-    internal sealed class AsGeneric : BasedOnPatternBase
+    internal sealed class AssignableToGeneric : BasedOnPatternBase
     {
-        private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$builder$.As<$service$>()",
-                new ExpressionPlaceholder("builder", 
+        private static readonly IStructuralSearchPattern pattern = 
+            new CSharpStructuralSearchPattern("$builder$.AssignableTo<$service$>()",
+                new ExpressionPlaceholder("builder",
                     "global::Autofac.Builder.IRegistrationBuilder<object,global::Autofac.Features.Scanning.ScanningActivatorData,global::Autofac.Builder.DynamicRegistrationStyle>", false),
                 new TypePlaceholder("service"));
 
-        public AsGeneric()
+        public AssignableToGeneric()
             : base(pattern)
         {
         }
@@ -39,6 +39,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
                     ITypeElement typeElement = matchedType.GetTypeElement();
                     if (typeElement != null)
                     {
+                        // todo possible bug here. Investigate wheather As and AssignableTo differ somehow in the result.
                         yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
                     }
                 }

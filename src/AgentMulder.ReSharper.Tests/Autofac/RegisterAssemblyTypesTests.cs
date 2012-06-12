@@ -43,6 +43,7 @@ namespace AgentMulder.ReSharper.Tests.Autofac
         [TestCase("AsNonGeneric2", new[] { "CommonImpl12.cs" })]
         [TestCase("AsImplementedInterfaces", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
         [TestCase("AssignableToGeneric", new[] { "StandardCard.cs", "GoldCard.cs" })]
+        [TestCase("AssignableToNonGeneric", new[] { "StandardCard.cs", "GoldCard.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>
@@ -64,6 +65,7 @@ namespace AgentMulder.ReSharper.Tests.Autofac
         [TestCase("AsNonGeneric2", new[] { "CommonImpl1.cs" })]
         [TestCase("AsImplementedInterfaces", new[] { "GoldCard.cs" })]
         [TestCase("AssignableToGeneric", new[] { "Foo.cs" })]
+        [TestCase("AssignableToNonGeneric", new[] { "Foo.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>

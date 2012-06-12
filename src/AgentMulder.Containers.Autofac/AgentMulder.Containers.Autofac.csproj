@@ -50,6 +50,7 @@
     <Compile Include="Patterns\FromAssemblies\BasedOn\AsNonGeneric.cs" />
     <Compile Include="Patterns\FromAssemblies\BasedOn\AssignableToGeneric.cs" />
     <Compile Include="Patterns\FromAssemblies\BasedOn\AssignableToNonGeneric.cs" />
+    <Compile Include="Patterns\FromAssemblies\BasedOn\ExceptGeneric.cs" />
     <Compile Include="Patterns\Helpers\ReturnTypeCollector.cs" />
     <Compile Include="Patterns\Helpers\AutofacModuleThisAssemblyExtractor.cs" />
     <Compile Include="Patterns\FromAssemblies\RegisterAssemblyTypes.cs" />

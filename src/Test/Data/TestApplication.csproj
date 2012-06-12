@@ -85,8 +85,12 @@
     <Compile Include="Autofac\RegisterAssemblyTypesTests\AsImplementedInterfaces.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\AsNonGeneric1.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\AsNonGeneric2.cs" />
-    <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToGeneric.cs" />
-    <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToNonGeneric.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToGeneric1.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToGeneric2.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToNonGeneric1.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToNonGeneric2.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\ExceptGeneric1.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\ExceptGeneric2.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromGetExecutingAssembly.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromThisAssemblyModuleProperty.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromAssemblyTypeOf.cs" />

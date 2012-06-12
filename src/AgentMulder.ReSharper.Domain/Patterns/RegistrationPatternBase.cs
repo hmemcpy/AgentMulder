@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Utils;

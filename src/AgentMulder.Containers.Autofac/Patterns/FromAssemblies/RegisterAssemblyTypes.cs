@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.Containers.Autofac.Patterns.Helpers;
 using AgentMulder.Containers.Autofac.Registrations;
@@ -17,14 +18,15 @@ using JetBrains.Util;
 
 namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
 {
-    public class RegisterAssemblyTypes : FromDescriptorPatternBase
+    public sealed class RegisterAssemblyTypes : FromDescriptorPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.RegisterAssemblyTypes($assemblies$)",
                 new ExpressionPlaceholder("builder", "global::Autofac.ContainerBuilder", true),
                 new ArgumentPlaceholder("assemblies", -1, -1));
 
-        public RegisterAssemblyTypes(params IBasedOnPattern[] basedOnPatterns)
+        [ImportingConstructor]
+        public RegisterAssemblyTypes([ImportMany] params IBasedOnPattern[] basedOnPatterns)
             : base(pattern, basedOnPatterns)
         {
             ModuleExtractor.AddExtractor(new ThisAssemblyExtractor());

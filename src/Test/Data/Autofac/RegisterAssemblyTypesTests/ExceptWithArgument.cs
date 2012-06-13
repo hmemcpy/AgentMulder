@@ -3,11 +3,11 @@ using TestApplication.Types;
 
 namespace TestApplication.Autofac.RegisterAssemblyTypesTests
 {
-    public class ExceptGeneric2 : Module
+    public class ExceptWithArgument : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(ThisAssembly).Except<GoldCard>().Except<StandardCard>();
+            builder.RegisterAssemblyTypes(ThisAssembly).Except<GoldCard>(registrationBuilder => { });
         }
     }
 }

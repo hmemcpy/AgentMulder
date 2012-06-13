@@ -89,8 +89,9 @@
     <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToGeneric2.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToNonGeneric1.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToNonGeneric2.cs" />
-    <Compile Include="Autofac\RegisterAssemblyTypesTests\ExceptGeneric1.cs" />
-    <Compile Include="Autofac\RegisterAssemblyTypesTests\ExceptGeneric2.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\Except1.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\Except2.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\ExceptWithArgument.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromGetExecutingAssembly.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromThisAssemblyModuleProperty.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromAssemblyTypeOf.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Types\MyStruct.cs" />
     <Compile Include="Types\Page.cs" />
     <Compile Include="Types\PageRepository.cs" />
+    <Compile Include="Types\PlatinumCard.cs" />
     <Compile Include="Types\Repository.cs" />
     <Compile Include="Types\SomeClass.cs" />
     <Compile Include="Types\StandardCard.cs" />

@@ -1,7 +1,5 @@
-using System.Linq;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
-using System.Collections.Generic;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {

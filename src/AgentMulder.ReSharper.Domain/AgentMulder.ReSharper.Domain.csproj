@@ -46,6 +46,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Containers\ContainerInfoBase.cs" />
     <Compile Include="Containers\IContainerInfo.cs" />
     <Compile Include="Elements\ElementExtractorDecorator.cs" />
     <Compile Include="Elements\IElementExtractor.cs" />
@@ -90,10 +91,11 @@
     <Compile Include="Patterns\FromDescriptorPatternBase.cs" />
     <Compile Include="Patterns\IBasedOnPattern.cs" />
     <Compile Include="Patterns\IRegistrationPattern.cs" />
+    <Compile Include="Patterns\MultipleMatchBasedOnPatternBase.cs" />
     <Compile Include="Patterns\RegistrationPatternBase.cs" />
+    <Compile Include="Registrations\ElementBasedOnRegistration.cs" />
     <Compile Include="Registrations\HasAttributeRegistration.cs" />
     <Compile Include="Registrations\IBasedOnRegistrationCreator.cs" />
-    <Compile Include="Registrations\NullRegistration.cs" />
     <Compile Include="Utils\MaybeMonadExtensions.cs" />
     <Compile Include="Utils\PsiExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

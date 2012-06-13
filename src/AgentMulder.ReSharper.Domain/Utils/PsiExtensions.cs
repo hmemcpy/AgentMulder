@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.ProjectModel;
 using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.Util;
 
@@ -63,6 +64,33 @@ namespace AgentMulder.ReSharper.Domain.Utils
                     return outputAssemblyFile.Assembly;
                 }
                 return null;
+            }
+
+            return null;
+        }
+
+        public static bool IsGenericTypeDefinition(this ITypeElement element)
+        {
+            // todo check if this is enoguh
+            return element.TypeParameters.Count > 0;
+        }
+
+        public static bool IsDelegate(this ITypeElement element)
+        {
+            // todo check if true;
+            return element is IDelegate;
+        }
+
+        public static INamespace GetNamespaceDeclaration(ICSharpExpression expression)
+        {
+            CSharpElementFactory elementFactory = CSharpElementFactory.GetInstance(expression.GetPsiModule());
+
+            if (expression.ConstantValue != null &&
+                expression.ConstantValue.IsString())
+            {
+                string namespaceName = Convert.ToString(expression.ConstantValue.Value);
+
+                return elementFactory.CreateNamespaceDeclaration(namespaceName).DeclaredElement;
             }
 
             return null;

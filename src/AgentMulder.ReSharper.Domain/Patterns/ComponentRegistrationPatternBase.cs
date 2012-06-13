@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -6,6 +7,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Patterns
 {
+    [InheritedExport("ComponentRegistration", typeof(IRegistrationPattern))]
     public abstract class ComponentRegistrationPatternBase : RegistrationPatternBase
     {
         private readonly string elementName;

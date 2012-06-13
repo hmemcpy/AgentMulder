@@ -1,18 +1,17 @@
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Patterns
 {
+    [InheritedExport(typeof(IBasedOnPattern))]
     public abstract class BasedOnPatternBase : RegistrationPatternBase, IBasedOnPattern
     {
-        protected readonly IBasedOnRegistrationCreator registrationCreator;
-
-        protected BasedOnPatternBase(IStructuralSearchPattern pattern, IBasedOnRegistrationCreator registrationCreator)
+        protected BasedOnPatternBase(IStructuralSearchPattern pattern)
             :base(pattern)
         {
-            this.registrationCreator = registrationCreator;
         }
 
         IEnumerable<IComponentRegistration> IRegistrationPattern.GetComponentRegistrations(ITreeNode registrationRootElement)

@@ -34,17 +34,63 @@ namespace AgentMulder.ReSharper.Tests.Autofac
         }
 
         [TestCase("FromThisAssemblyModuleProperty", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
+        [TestCase("FromGetExecutingAssembly", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
+        [TestCase("FromAssemblyTypeOf", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
+        [TestCase("AllThreeTogether", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
+        [TestCase("AsGeneric1", new[] { "CommonImpl1.cs" })]
+        [TestCase("AsGeneric2", new[] { "CommonImpl12.cs" })]
+        [TestCase("AsNonGeneric1", new[] { "CommonImpl1.cs" })]
+        [TestCase("AsNonGeneric2", new[] { "CommonImpl12.cs" })]
+        [TestCase("AsImplementedInterfaces", new[] { "Foo.cs", "Bar.cs", "Baz.cs", "CommonImpl1.cs" })]
+        [TestCase("AssignableToGeneric1", new[] { "StandardCard.cs", "GoldCard.cs" })]
+        [TestCase("AssignableToGeneric2", new[] { "CommonImpl12.cs" })]
+        [TestCase("AssignableToNonGeneric1", new[] { "StandardCard.cs", "GoldCard.cs" })]
+        [TestCase("AssignableToNonGeneric2", new[] { "CommonImpl12.cs" })]
+        [TestCase("Except1", new[] { "StandardCard.cs" })]
+        [TestCase("Except2", new[] { "PlatinumCard.cs" })]
+        [TestCase("ExceptWithArgument", new[] { "StandardCard.cs" })]
+        [TestCase("InNamespaceOfType", new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
+        [TestCase("InNamespaceString", new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>
             {
                 ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
-                Assert.AreEqual(1, registrations.Count());
+                CollectionAssert.IsNotEmpty(registrations);
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
                         Assert.That(registrations.Any((r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
+                }
+            });
+        }
+
+        [TestCase("AsGeneric1", new[] { "Foo.cs" })]
+        [TestCase("AsGeneric2", new[] { "CommonImpl1.cs" })]
+        [TestCase("AsNonGeneric1", new[] { "Foo.cs" })]
+        [TestCase("AsNonGeneric2", new[] { "CommonImpl1.cs" })]
+        [TestCase("AsImplementedInterfaces", new[] { "GoldCard.cs" })]
+        [TestCase("AssignableToGeneric1", new[] { "Foo.cs" })]
+        [TestCase("AssignableToGeneric1", new[] { "CommonImpl.cs" })]
+        [TestCase("AssignableToNonGeneric1", new[] { "Foo.cs" })]
+        [TestCase("AssignableToNonGeneric2", new[] { "CommonImpl.cs" })]
+        [TestCase("Except1", new[] { "GoldCard.cs" })]
+        [TestCase("Except2", new[] { "GoldCard.cs", "StandardCard.cs" })]
+        [TestCase("ExceptWithArgument", new[] { "GoldCard.cs" })]
+        [TestCase("InNamespaceOfType", new[] { "Foo.cs" })]
+        [TestCase("InNamespaceString", new[] { "Foo.cs" })]
+        public void ExcludeTest(string testName, string[] fileNamesToExclude)
+        {
+            RunTest(testName, registrations =>
+            {
+                ICSharpFile[] codeFiles = fileNamesToExclude.Select(GetCodeFile).ToArray();
+
+                CollectionAssert.IsNotEmpty(registrations);
+                foreach (var codeFile in codeFiles)
+                {
+                    codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
+                        Assert.That(registrations.All((r => !r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
                 }
             });
         }

@@ -12,14 +12,17 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
     internal sealed class BasedOnNonGeneric : BasedOnPatternBase
     {
+        private readonly IBasedOnRegistrationCreator registrationCreator;
+
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.BasedOn($argument$)",
                 new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
                 new ArgumentPlaceholder("argument", 1, 1));
 
         public BasedOnNonGeneric(IBasedOnRegistrationCreator registrationCreator)
-            : base(pattern, registrationCreator)
+            : base(pattern)
         {
+            this.registrationCreator = registrationCreator;
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)

@@ -45,11 +45,24 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AutofacContainerInfo.cs" />
-    <Compile Include="Patterns\Helpers\ThisAssemblyExtractor.cs" />
-    <Compile Include="Patterns\RegisterAssemblyTypes.cs" />
+    <Compile Include="Patterns\FromAssemblies\BasedOn\AsGeneric.cs" />
+    <Compile Include="Patterns\FromAssemblies\BasedOn\AsImplementedInterfaces.cs" />
+    <Compile Include="Patterns\FromAssemblies\BasedOn\AsNonGeneric.cs" />
+    <Compile Include="Patterns\FromAssemblies\BasedOn\AssignableToGeneric.cs" />
+    <Compile Include="Patterns\FromAssemblies\BasedOn\AssignableToNonGeneric.cs" />
+    <Compile Include="Patterns\FromAssemblies\BasedOn\Except.cs" />
+    <Compile Include="Patterns\FromAssemblies\BasedOn\InNamespaceOf.cs" />
+    <Compile Include="Patterns\FromAssemblies\BasedOn\InNamespaceString.cs" />
+    <Compile Include="Patterns\Helpers\ReturnTypeCollector.cs" />
+    <Compile Include="Patterns\Helpers\AutofacModuleThisAssemblyExtractor.cs" />
+    <Compile Include="Patterns\FromAssemblies\RegisterAssemblyTypes.cs" />
+    <Compile Include="Patterns\RegisterLambdaExpression.cs" />
+    <Compile Include="Patterns\RegisterLambdaStatements.cs" />
     <Compile Include="Patterns\RegisterTypeGeneric.cs" />
     <Compile Include="Patterns\RegisterTypeNonGeneric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registrations\DefaultScanAssemblyRegistration.cs" />
+    <Compile Include="Registrations\ExceptRegistration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">

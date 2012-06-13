@@ -31,7 +31,6 @@ namespace AgentMulder.Containers.CastleWindsor
             var container = new CompositionContainer(catalog);
             container.ComposeParts(this);
             
-
             registrationPatterns = new List<IRegistrationPattern>
             {
                 new WindsorContainerRegisterPattern(PatternsProviders.SelectMany(provider => provider.GetRegistrationPatterns()).ToArray())

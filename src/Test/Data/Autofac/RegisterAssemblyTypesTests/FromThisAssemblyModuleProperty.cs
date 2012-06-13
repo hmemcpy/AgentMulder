@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Module = Autofac.Module;
 
 namespace TestApplication.Autofac.RegisterAssemblyTypesTests
 {

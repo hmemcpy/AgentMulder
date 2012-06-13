@@ -13,7 +13,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Unity.Patterns
 {
-    internal sealed class RegisterType : ComponentRegistrationPatternBase
+    internal sealed class RegisterType : RegistrationPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$container$.RegisterType($arguments$)",
@@ -23,7 +23,7 @@ namespace AgentMulder.Containers.Unity.Patterns
         private static readonly ClrTypeName clrTypeName = new ClrTypeName("System.Type");
 
         public RegisterType()
-            : base(pattern, "")
+            : base(pattern)
         {
         }
 

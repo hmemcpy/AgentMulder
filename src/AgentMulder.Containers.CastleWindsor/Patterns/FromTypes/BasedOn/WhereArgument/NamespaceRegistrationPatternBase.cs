@@ -1,14 +1,13 @@
 using System.Collections.Generic;
-using System.Linq;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
+namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereArgument
 {
-    public abstract class NamespaceRegistrationPatternBase : RegistrationPatternBase, IBasedOnPattern
+    public abstract class NamespaceRegistrationPatternBase : BasedOnPatternBase
     {
         protected NamespaceRegistrationPatternBase(IStructuralSearchPattern pattern)
             : base(pattern)
@@ -17,10 +16,10 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            return ((IBasedOnPattern)this).GetBasedOnRegistrations(registrationRootElement);
+            return GetBasedOnRegistrations(registrationRootElement);
         }
 
-        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetBasedOnRegistrations(ITreeNode registrationRootElement)
+        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
             var match = Match(registrationRootElement);
 

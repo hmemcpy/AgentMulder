@@ -4,12 +4,10 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Resolve;
-using JetBrains.ReSharper.Psi.Tree;
-using JetBrains.ReSharper.Psi.Xaml.Impl.Util;
 
 namespace AgentMulder.Containers.Autofac.Patterns.Helpers
 {
-    public class ThisAssemblyExtractor : IModuleExtractor
+    public class AutofacModuleThisAssemblyExtractor : IModuleExtractor
     {
         private static readonly IClrTypeName autofacModuleName = new ClrTypeName("Autofac.Module");
 

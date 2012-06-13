@@ -24,6 +24,11 @@ namespace AgentMulder.ReSharper.Tests.Autofac
 
         [TestCase("RegisterTypeGeneric", new[] { "CommonImpl1.cs" })]
         [TestCase("RegisterTypeNonGeneric", new[] { "CommonImpl1.cs" })]
+        [TestCase("RegisterWithLambda", new[] { "Foo.cs" })]
+        [TestCase("RegisterWithLambdaTakesDependency", new[] { "TakesDependency.cs" })]
+        [TestCase("RegisterWithLambdaInitializer", new[] { "FooBar.cs" })]
+        [TestCase("RegisterComplex", new[] { "GoldCard.cs", "StandardCard.cs" })]
+        [TestCase("RegisterComplexWithVariable", new[] { "GoldCard.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>

@@ -1,5 +1,7 @@
 using System;
 using AgentMulder.Containers.CastleWindsor.Helpers;
+using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereArgument;
+using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;

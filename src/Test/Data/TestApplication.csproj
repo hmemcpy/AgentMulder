@@ -79,10 +79,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AllThreeTogether.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AsGeneric1.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AsGeneric2.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AsImplementedInterfaces.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AsNonGeneric1.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AsNonGeneric2.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToGeneric1.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToGeneric2.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToNonGeneric1.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AssignableToNonGeneric2.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\Except1.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\Except2.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\ExceptWithArgument.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\FromGetExecutingAssembly.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromThisAssemblyModuleProperty.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\FromAssemblyTypeOf.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\InNamespaceString.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\InNamespaceOfType.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\NoAssembly.cs" />
+    <Compile Include="Autofac\RegisterComplex.cs" />
+    <Compile Include="Autofac\RegisterComplexWithVariable.cs" />
     <Compile Include="Autofac\RegisterTypeGeneric.cs" />
     <Compile Include="Autofac\RegisterTypeNonGeneric.cs" />
+    <Compile Include="Autofac\RegisterWithLambda.cs" />
+    <Compile Include="Autofac\RegisterWithLambdaInitializer.cs" />
+    <Compile Include="Autofac\RegisterWithLambdaTakesDependency.cs" />
     <Compile Include="Ninject\KernelTestCases\BindGenericToGeneric.cs" />
     <Compile Include="Ninject\KernelTestCases\BindGenericToNonGeneric.cs" />
     <Compile Include="Ninject\KernelTestCases\BindGenericToSelf.cs" />
@@ -123,8 +145,10 @@
     <Compile Include="Types\CommonImpl2.cs" />
     <Compile Include="Types\CommonSub1Impl.cs" />
     <Compile Include="Types\Context.cs" />
+    <Compile Include="Types\CreditCard.cs" />
     <Compile Include="Types\Foo.cs" />
     <Compile Include="Types\FooBar.cs" />
+    <Compile Include="Types\GoldCard.cs" />
     <Compile Include="Types\HaveAttribute.cs" />
     <Compile Include="Types\IBar.cs" />
     <Compile Include="Types\ICommon.cs" />
@@ -144,8 +168,11 @@
     <Compile Include="Types\MyStruct.cs" />
     <Compile Include="Types\Page.cs" />
     <Compile Include="Types\PageRepository.cs" />
+    <Compile Include="Types\PlatinumCard.cs" />
     <Compile Include="Types\Repository.cs" />
     <Compile Include="Types\SomeClass.cs" />
+    <Compile Include="Types\StandardCard.cs" />
+    <Compile Include="Types\TakesDependency.cs" />
     <Compile Include="Types\TwoInterfacesImpl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

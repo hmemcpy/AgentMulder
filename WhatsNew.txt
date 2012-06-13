@@ -1,6 +1,11 @@
 What's new in Agent Mulder
 ==========================
 
+v1.0.4
+======
++ Initial support for Autofac (https://github.com/hmemcpy/AgentMulder/wiki/Autofac)
+* Miscellaneous bug fixes
+
 v1.0.3.1 - Hotfix
 =================
 * Fixed a bug where Ninject registration wasn't picked up by Agent Mulder (issue #10)

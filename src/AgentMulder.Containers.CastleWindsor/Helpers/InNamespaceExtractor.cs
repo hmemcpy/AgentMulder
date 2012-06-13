@@ -1,7 +1,7 @@
 using System;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using PsiExtensions = AgentMulder.ReSharper.Domain.Utils.PsiExtensions;
 
 namespace AgentMulder.Containers.CastleWindsor.Helpers
 {
@@ -24,7 +24,7 @@ namespace AgentMulder.Containers.CastleWindsor.Helpers
             INamespace namespaceElement = null;
             if (arguments.Length > 0)
             {
-                namespaceElement = GetNamespaceDeclaration(arguments[0].Value);
+                namespaceElement = PsiExtensions.GetNamespaceDeclaration(arguments[0].Value);
             }
 
             includeSubnamespaces = false;
@@ -40,21 +40,5 @@ namespace AgentMulder.Containers.CastleWindsor.Helpers
 
             return namespaceElement;
         }
-
-        private static INamespace GetNamespaceDeclaration(ICSharpExpression expression)
-        {
-            CSharpElementFactory elementFactory = CSharpElementFactory.GetInstance(expression.GetPsiModule());
-
-            if (expression.ConstantValue != null &&
-                expression.ConstantValue.IsString())
-            {
-                string namespaceName = Convert.ToString(expression.ConstantValue.Value);
-
-                return elementFactory.CreateNamespaceDeclaration(namespaceName).DeclaredElement;
-            }
-
-            return null;
-        }
-
     }
 }

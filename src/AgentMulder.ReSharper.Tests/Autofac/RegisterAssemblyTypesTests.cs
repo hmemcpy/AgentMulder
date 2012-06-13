@@ -49,6 +49,8 @@ namespace AgentMulder.ReSharper.Tests.Autofac
         [TestCase("Except1", new[] { "StandardCard.cs" })]
         [TestCase("Except2", new[] { "PlatinumCard.cs" })]
         [TestCase("ExceptWithArgument", new[] { "StandardCard.cs" })]
+        [TestCase("InNamespaceOfType", new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
+        [TestCase("InNamespaceString", new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>
@@ -76,6 +78,8 @@ namespace AgentMulder.ReSharper.Tests.Autofac
         [TestCase("Except1", new[] { "GoldCard.cs" })]
         [TestCase("Except2", new[] { "GoldCard.cs", "StandardCard.cs" })]
         [TestCase("ExceptWithArgument", new[] { "GoldCard.cs" })]
+        [TestCase("InNamespaceOfType", new[] { "Foo.cs" })]
+        [TestCase("InNamespaceString", new[] { "Foo.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>

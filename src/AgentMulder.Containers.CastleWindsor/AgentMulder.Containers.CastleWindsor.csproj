@@ -48,6 +48,7 @@
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInNamespace.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsNonGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\NamespaceRegistrationPatternBase.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyBasePattern.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyContainingNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyNamed.cs" />
@@ -69,7 +70,6 @@
     <Compile Include="Patterns\FromTypes\BasedOn\Where.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\BasedOnNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\InNamespace.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\NamespaceRegistrationPatternBase.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\InSameNamespaceAsGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\InSameNamespaceAsNonGeneric.cs" />
     <Compile Include="Patterns\WindsorContainerRegisterPattern.cs" />

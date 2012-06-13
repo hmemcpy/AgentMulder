@@ -95,6 +95,8 @@
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromGetExecutingAssembly.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromThisAssemblyModuleProperty.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\FromAssemblyTypeOf.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\InNamespaceString.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\InNamespaceOfType.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\NoAssembly.cs" />
     <Compile Include="Autofac\RegisterComplex.cs" />
     <Compile Include="Autofac\RegisterComplexWithVariable.cs" />

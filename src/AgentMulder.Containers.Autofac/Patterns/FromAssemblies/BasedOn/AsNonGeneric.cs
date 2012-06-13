@@ -11,7 +11,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 {
-    internal sealed class AsNonGeneric : BasedOnPatternBase
+    internal sealed class AsNonGeneric : MultipleMatchBasedOnPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.As($arguments$)",
@@ -24,38 +24,27 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
+        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
-            return GetBasedOnRegistrations(registrationRootElement);
-        }
+            var arguments = match.GetMatchedElementList("arguments").Cast<ICSharpArgument>();
 
-        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
-        {
-            IStructuralMatchResult match = Match(registrationRootElement);
-
-            if (match.Matched)
+            foreach (var argument in arguments)
             {
-                var arguments = match.GetMatchedElementList("arguments").Cast<ICSharpArgument>();
-
-                foreach (var argument in arguments)
+                // match typeof() expressions
+                var typeOfExpression = argument.Value as ITypeofExpression;
+                if (typeOfExpression != null)
                 {
-                    // match typeof() expressions
-                    var typeOfExpression = argument.Value as ITypeofExpression;
-                    if (typeOfExpression != null)
+                    var argumentType = typeOfExpression.ArgumentType as IDeclaredType;
+                    if (argumentType != null)
                     {
-                        var argumentType = typeOfExpression.ArgumentType as IDeclaredType;
-                        if (argumentType != null)
+                        var typeElement = argumentType.GetTypeElement();
+                        if (typeElement == null) // can happen if the typeof() expression is empty
                         {
-                            var typeElement = argumentType.GetTypeElement();
-                            if (typeElement == null) // can happen if the typeof() expression is empty
-                            {
-                                yield break;
-                            }
-
-                            yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
-
+                            yield break;
                         }
-                    }   
+
+                        yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
+                    }
                 }
             }
         }

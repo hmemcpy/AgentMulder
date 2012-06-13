@@ -10,7 +10,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 {
-    internal sealed class ExceptGeneric : BasedOnPatternBase
+    internal sealed class ExceptGeneric : MultipleMatchBasedOnPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.Except<$type$>()",
@@ -23,23 +23,15 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
+        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
-            return GetBasedOnRegistrations(registrationRootElement);
-        }
-
-        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
-        {
-            foreach (IStructuralMatchResult match in MatchMany(registrationRootElement).Where(match => match.Matched))
+            var matchedType = match.GetMatchedType("type") as IDeclaredType;
+            if (matchedType != null)
             {
-                var matchedType = match.GetMatchedType("type") as IDeclaredType;
-                if (matchedType != null)
+                ITypeElement typeElement = matchedType.GetTypeElement();
+                if (typeElement != null)
                 {
-                    ITypeElement typeElement = matchedType.GetTypeElement();
-                    if (typeElement != null)
-                    {
-                        yield return new ExceptRegistration(registrationRootElement, typeElement);
-                    }
+                    yield return new ExceptRegistration(registrationRootElement, typeElement);
                 }
             }
         }

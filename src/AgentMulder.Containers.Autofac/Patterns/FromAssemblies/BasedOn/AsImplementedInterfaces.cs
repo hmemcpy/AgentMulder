@@ -11,7 +11,7 @@ using JetBrains.Util;
 
 namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 {
-    public class AsImplementedInterfaces : BasedOnPatternBase
+    public class AsImplementedInterfaces : MultipleMatchBasedOnPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.AsImplementedInterfaces()",
@@ -23,19 +23,9 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
+        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
-            return GetBasedOnRegistrations(registrationRootElement);
-        }
-
-        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
-        {
-            IStructuralMatchResult match = Match(registrationRootElement);
-
-            if (match.Matched)
-            {
-                yield return new ImplementedInterfacesRegistration(registrationRootElement);
-            }
+            yield return new ImplementedInterfacesRegistration(registrationRootElement);
         }
 
         private class ImplementedInterfacesRegistration : BasedOnRegistrationBase

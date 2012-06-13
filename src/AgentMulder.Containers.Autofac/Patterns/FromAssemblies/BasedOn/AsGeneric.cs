@@ -9,7 +9,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 {
-    internal sealed class AsGeneric : BasedOnPatternBase
+    internal sealed class AsGeneric : MultipleMatchBasedOnPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.As<$service$>()",
@@ -22,25 +22,15 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
+        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
-            return GetBasedOnRegistrations(registrationRootElement);
-        }
-
-        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
-        {
-            IStructuralMatchResult match = Match(registrationRootElement);
-
-            if (match.Matched)
+            var matchedType = match.GetMatchedType("service") as IDeclaredType;
+            if (matchedType != null)
             {
-                var matchedType = match.GetMatchedType("service") as IDeclaredType;
-                if (matchedType != null)
+                ITypeElement typeElement = matchedType.GetTypeElement();
+                if (typeElement != null)
                 {
-                    ITypeElement typeElement = matchedType.GetTypeElement();
-                    if (typeElement != null)
-                    {
-                        yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
-                    }
+                    yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
                 }
             }
         }

@@ -11,7 +11,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 {
-    internal sealed class AssignableToNonGeneric : BasedOnPatternBase
+    internal sealed class AssignableToNonGeneric : MultipleMatchBasedOnPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.AssignableTo($argument$)",
@@ -24,35 +24,25 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
+        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
-            return GetBasedOnRegistrations(registrationRootElement);
-        }
-
-        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
-        {
-            IStructuralMatchResult match = Match(registrationRootElement);
-
-            if (match.Matched)
+            var argument = match.GetMatchedElement("argument") as ICSharpArgument;
+            if (argument == null)
             {
-                var argument = match.GetMatchedElement("argument") as ICSharpArgument;
-                if (argument == null)
-                {
-                    yield break;
-                }
+                yield break;
+            }
 
-                var typeofExpression = argument.Value as ITypeofExpression;
-                if (typeofExpression != null)
+            var typeofExpression = argument.Value as ITypeofExpression;
+            if (typeofExpression != null)
+            {
+                var declaredType = typeofExpression.ArgumentType as IDeclaredType;
+                if (declaredType != null)
                 {
-                    var declaredType = typeofExpression.ArgumentType as IDeclaredType;
-                    if (declaredType != null)
+                    ITypeElement typeElement = declaredType.GetTypeElement();
+                    if (typeElement != null)
                     {
-                        ITypeElement typeElement = declaredType.GetTypeElement();
-                        if (typeElement != null)
-                        {
-                            // todo possible bug: same as in the generic variant. Currently works the same as As<T>.
-                            yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
-                        }
+                        // todo possible bug: same as in the generic variant. Currently works the same as As<T>.
+                        yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
                     }
                 }
             }

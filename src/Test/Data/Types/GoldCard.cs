@@ -4,6 +4,11 @@ namespace TestApplication.Types
     {
         public string SomeProperty { get; set; }
 
+        public GoldCard()
+        {
+            
+        }
+
         public GoldCard(string accountId)
         {
             

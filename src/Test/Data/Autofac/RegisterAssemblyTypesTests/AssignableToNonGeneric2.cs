@@ -7,7 +7,7 @@ namespace TestApplication.Autofac.RegisterAssemblyTypesTests
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(ThisAssembly).AssignableTo(typeof(ICommon)).AssignableTo(typeof(ICommon2));
+            builder.RegisterAssemblyTypes(ThisAssembly).AssignableTo(typeof(ICommon2)).AssignableTo(typeof(ICommon));
         }
     }
 }

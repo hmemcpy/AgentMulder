@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
@@ -29,9 +30,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 
         public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = Match(registrationRootElement);
-
-            if (match.Matched)
+            foreach (IStructuralMatchResult match in MatchMany(registrationRootElement).Where(match => match.Matched))
             {
                 var matchedType = match.GetMatchedType("type") as IDeclaredType;
                 if (matchedType != null)
@@ -47,10 +46,10 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 
         private sealed class ExceptRegistration : BasedOnRegistrationBase
         {
-            public ExceptRegistration(ITreeNode registrationRootElement, ITypeElement typeElement)
+            public ExceptRegistration(ITreeNode registrationRootElement, ITypeElement exceptElement)
                 : base(registrationRootElement)
             {
-                AddFilter(element => !typeElement.Equals(element));
+                AddFilter(typeElement => !typeElement.Equals(exceptElement));
             }
         }
     }

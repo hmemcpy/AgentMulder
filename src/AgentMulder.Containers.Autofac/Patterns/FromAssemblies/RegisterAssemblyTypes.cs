@@ -41,7 +41,6 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
             }
 
             IStructuralMatchResult match = Match(registrationRootElement);
-
             if (match.Matched)
             {
                 var arguments = match.GetMatchedElementList("assemblies").Cast<ICSharpArgument>();
@@ -53,7 +52,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
                     var registration = new ModuleBasedOnRegistration(module, new DefaultScanAssemblyRegistration(registrationRootElement));
 
                     var basedOnRegistrations = BasedOnPatterns.SelectMany(
-                            basedOnPattern => basedOnPattern.GetBasedOnRegistrations(parentExpression.Expression));
+                        basedOnPattern => basedOnPattern.GetBasedOnRegistrations(parentExpression.Expression));
 
                     yield return new CompositeRegistration(registrationRootElement, registration, basedOnRegistrations.ToArray());
                 }
@@ -63,9 +62,9 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
         private class CompositeRegistration : ComponentRegistrationBase
         {
             private readonly ModuleBasedOnRegistration moduleBasedOnRegistration;
-            private readonly BasedOnRegistrationBase[] basedOnRegistrations;
+            private readonly IEnumerable<BasedOnRegistrationBase> basedOnRegistrations;
 
-            public CompositeRegistration(ITreeNode registrationElement, ModuleBasedOnRegistration moduleBasedOnRegistration, params BasedOnRegistrationBase[] basedOnRegistrations)
+            public CompositeRegistration(ITreeNode registrationElement, ModuleBasedOnRegistration moduleBasedOnRegistration, IEnumerable<BasedOnRegistrationBase> basedOnRegistrations)
                 : base(registrationElement)
             {
                 this.moduleBasedOnRegistration = moduleBasedOnRegistration;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
@@ -10,6 +11,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Autofac.Patterns
 {
+    [Export("ComponentRegistration", typeof(IRegistrationPattern))]
     public class RegisterTypeNonGeneric : ComponentImplementationPatternBase
     {
         private static readonly IStructuralSearchPattern pattern = 

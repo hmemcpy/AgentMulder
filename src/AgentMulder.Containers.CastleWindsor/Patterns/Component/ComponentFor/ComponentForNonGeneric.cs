@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using AgentMulder.Containers.CastleWindsor.Patterns.Component.ImplementedBy;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;

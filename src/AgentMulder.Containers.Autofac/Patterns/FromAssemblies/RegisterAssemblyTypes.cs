@@ -18,6 +18,7 @@ using JetBrains.Util;
 
 namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
 {
+    [Export("ComponentRegistration", typeof(IRegistrationPattern))]
     public sealed class RegisterAssemblyTypes : FromDescriptorPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =

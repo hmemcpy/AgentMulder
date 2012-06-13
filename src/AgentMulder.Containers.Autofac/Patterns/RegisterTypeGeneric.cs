@@ -10,6 +10,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Autofac.Patterns
 {
+    [Export("ComponentRegistration", typeof(IRegistrationPattern))]
     internal sealed class RegisterTypeGeneric : ComponentImplementationPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =

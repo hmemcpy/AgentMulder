@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -9,6 +10,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
     /// <summary>
     /// A base class for a pattern that can be applied to several elements in the expression
     /// </summary>
+    [InheritedExport(typeof(IBasedOnPattern))]
     public abstract class MultipleMatchBasedOnPatternBase : BasedOnPatternBase
     {
         protected MultipleMatchBasedOnPatternBase(IStructuralSearchPattern pattern)

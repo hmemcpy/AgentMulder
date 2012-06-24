@@ -1,10 +1,15 @@
+using System.Reflection;
 using AgentMulder.ReSharper.Plugin.Highlighting;
 using JetBrains.Application;
 using JetBrains.ProjectModel;
 using JetBrains.ProjectModel.Impl;
-using JetBrains.ReSharper.Features.Altering.Resources;
 using JetBrains.TextControl.Markup;
+using JetBrains.UI;
+
+#if SDK70
+using JetBrains.ReSharper.Features.Altering.Resources;
 using JetBrains.UI.Icons;
+#endif
 
 [assembly: RegisterHighlighter("Container Registration", "{B57372C1-16C3-4CB5-8B68-A0FBEFB487AD}", EffectType = EffectType.GUTTER_MARK, GutterMarkType = typeof(ContainerGutterMark), Layer = 2001)]
 

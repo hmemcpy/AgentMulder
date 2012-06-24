@@ -2,6 +2,7 @@
 
    <Target Name="QuickBuild">
      <MSBuild Projects="AgentMulder.sln" Targets="Rebuild" Properties="Configuration=Release;Platform=Any CPU" />
+     <MSBuild Projects="AgentMulder70.sln" Targets="Rebuild" Properties="Configuration=Release;Platform=Any CPU" />
    </Target>
    
    <Target Name="Build" DependsOnTargets="QuickBuild" />

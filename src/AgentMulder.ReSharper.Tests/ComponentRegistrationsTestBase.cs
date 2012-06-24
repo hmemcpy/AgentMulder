@@ -5,6 +5,7 @@ using System.Linq;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application.Components;
+using JetBrains.DocumentModel;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
@@ -52,7 +53,16 @@ namespace AgentMulder.ReSharper.Tests
             if (projectFile == null)
                 return null;
 
-            var cSharpFile = manager.GetPsiFile(projectFile.ToSourceFile(), CSharpLanguage.Instance) as ICSharpFile;
+            IPsiSourceFile psiSourceFile = projectFile.ToSourceFile();
+            if (psiSourceFile == null)
+                return null;
+
+#if SDK70
+            var cSharpFile = manager.GetPsiFile(psiSourceFile, CSharpLanguage.Instance, 
+                new DocumentRange(psiSourceFile.Document, psiSourceFile.Document.DocumentRange)) as ICSharpFile;
+#else
+            var cSharpFile = manager.GetPsiFile(psiSourceFile, CSharpLanguage.Instance) as ICSharpFile;
+#endif
             if (cSharpFile == null || string.IsNullOrEmpty(cSharpFile.GetText()))
             {
                 Assert.Fail("Unable to open the file '{0}', or the file is empty", fileName);

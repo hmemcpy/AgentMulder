@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Plugin", "AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.csproj", "{8FED260D-8CDB-45A1-B927-116DE2FECD8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Plugin", "AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin70.csproj", "{8FED260D-8CDB-45A1-B927-116DE2FECD8F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F0AF21D8-9FFB-4641-AA4A-404A86F9029D}"
 EndProject
@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5EE72A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.CastleWindsor", "AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.csproj", "{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Domain", "AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj", "{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Domain", "AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain70.csproj", "{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Tests", "AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.csproj", "{C6154279-CFEE-47FC-8F17-F901A5636B0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Tests", "AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests70.csproj", "{C6154279-CFEE-47FC-8F17-F901A5636B0A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containers", "Containers", "{0AFEAB16-D259-49ED-A30C-08B4D9997E48}"
 EndProject

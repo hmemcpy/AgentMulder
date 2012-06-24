@@ -7,6 +7,7 @@ using JetBrains.Annotations;
 using JetBrains.Application;
 using JetBrains.Application.Progress;
 using JetBrains.Application.Threading;
+using JetBrains.DocumentModel;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.Occurences;
 using JetBrains.ReSharper.Feature.Services.Search;
@@ -24,7 +25,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
         private readonly IShellLocks locks;
         private readonly IComponentRegistration componentRegistration;
 
-        public RegisteredComponentsSearchRequest([NotNull] ISolution solution, [NotNull] IShellLocks locks, IComponentRegistration componentRegistration)
+        public RegisteredComponentsSearchRequest(ISolution solution, IShellLocks locks, IComponentRegistration componentRegistration)
         {
             this.solution = solution;
             this.locks = locks;
@@ -43,7 +44,11 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
                     var sourceFiles = project.GetAllProjectFiles().SelectMany(projectFile => projectFile.ToSourceFiles());
                     foreach (var psiSourceFile in sourceFiles)
                     {
+#if SDK70
+                        IFile file = psiSourceFile.GetPsiFile(CSharpLanguage.Instance, new DocumentRange(psiSourceFile.Document, psiSourceFile.Document.DocumentRange));
+#else
                         IFile file = psiSourceFile.GetPsiFile(CSharpLanguage.Instance);
+#endif
                         if (file == null)
                         {
                             continue;

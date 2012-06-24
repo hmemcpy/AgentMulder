@@ -13,5 +13,7 @@ using JetBrains.UI;
 [assembly: PluginDescription("Provides navigation to and finding usages of types registered or resolved via Dependency Injection (DI) containers.")]
 [assembly: PluginVendor("Igal Tabachnik")]
 
+#if !SDK70
 [assembly: ImagesBase("AgentMulder.ReSharper.Plugin.Resources")]
+#endif
 [assembly: InternalsVisibleTo("AgentMulder.ReSharper.Tests")]

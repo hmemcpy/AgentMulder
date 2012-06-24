@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5EE72A
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.CastleWindsor", "AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.csproj", "{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.CastleWindsor", "AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor70.csproj", "{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Domain", "AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain70.csproj", "{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}"
 EndProject
@@ -20,11 +20,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containers", "Containers", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "Test\Data\TestApplication.csproj", "{2A40748D-310D-4193-A2E8-079A53040A93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Ninject", "AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.csproj", "{E1798D1B-C0DC-4A17-8683-230E89960E49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Ninject", "AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject70.csproj", "{E1798D1B-C0DC-4A17-8683-230E89960E49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Unity", "AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.csproj", "{4EF1B908-98A3-4D6F-A243-78CA102BE445}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Unity", "AgentMulder.Containers.Unity\AgentMulder.Containers.Unity70.csproj", "{4EF1B908-98A3-4D6F-A243-78CA102BE445}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Autofac", "AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.csproj", "{2AF8CA35-EA61-46F6-8604-BF1E48009EE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Autofac", "AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac70.csproj", "{2AF8CA35-EA61-46F6-8604-BF1E48009EE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

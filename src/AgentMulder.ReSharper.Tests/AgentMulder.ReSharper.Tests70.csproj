@@ -89,27 +89,27 @@
     <Compile Include="Windsor\SanityTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.csproj">
+    <ProjectReference Include="..\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac70.csproj">
       <Project>{2AF8CA35-EA61-46F6-8604-BF1E48009EE2}</Project>
       <Name>AgentMulder.Containers.Autofac</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.csproj">
+    <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor70.csproj">
       <Project>{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}</Project>
       <Name>AgentMulder.Containers.CastleWindsor</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.csproj">
+    <ProjectReference Include="..\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject70.csproj">
       <Project>{E1798D1B-C0DC-4A17-8683-230E89960E49}</Project>
       <Name>AgentMulder.Containers.Ninject</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.csproj">
+    <ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity70.csproj">
       <Project>{4EF1B908-98A3-4D6F-A243-78CA102BE445}</Project>
       <Name>AgentMulder.Containers.Unity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain70.csproj">
       <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
       <Name>AgentMulder.ReSharper.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.csproj">
+    <ProjectReference Include="..\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin70.csproj">
       <Project>{8FED260D-8CDB-45A1-B927-116DE2FECD8F}</Project>
       <Name>AgentMulder.ReSharper.Plugin</Name>
     </ProjectReference>

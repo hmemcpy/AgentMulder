@@ -1,6 +1,11 @@
 What's new in Agent Mulder
 ==========================
 
+v1.0.4.1
+========
++ Adding support for ReSharper 7 (known issue: icon is different)
+
+
 v1.0.4
 ======
 + Initial support for Autofac (https://github.com/hmemcpy/AgentMulder/wiki/Autofac)

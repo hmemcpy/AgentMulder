@@ -85,6 +85,7 @@
   <ItemGroup>
     <Content Include="..\..\lib\SDK70\x64\libleveldb.dll">
       <Link>x64\libleveldb.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\lib\SDK70\x86\libleveldb.dll">
       <Link>x86\libleveldb.dll</Link>

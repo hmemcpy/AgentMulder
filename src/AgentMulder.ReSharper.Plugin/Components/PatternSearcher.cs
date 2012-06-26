@@ -55,7 +55,11 @@ namespace AgentMulder.ReSharper.Plugin.Components
 
         private void DoSearch(IStructuralMatcher matcher, FindResultConsumer<IStructuralMatchResult> consumer)
         {
-            ISolution solution = Shell.Instance.GetComponent<SolutionManagerBase>().CurrentSolution;
+#if SDK70
+            ISolution solution = Shell.Instance.GetComponent<SolutionsManager>().Solution;
+#else
+            ISolution solution = Shell.Instance.GetComponent<ISolutionManager>().CurrentSolution;
+#endif
 
             var searchDomain = searchDomainFactory.CreateSearchDomain(solution, false);
             var documentManager = solution.GetComponent<DocumentManager>();

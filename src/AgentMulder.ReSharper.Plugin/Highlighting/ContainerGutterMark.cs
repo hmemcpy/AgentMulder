@@ -31,7 +31,11 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
 
         public override void OnClick(IHighlighter highlighter)
         {
-            ISolution currentSolution = Shell.Instance.GetComponent<SolutionManagerBase>().CurrentSolution;
+#if SDK70
+            ISolution currentSolution = Shell.Instance.GetComponent<SolutionsManager>().Solution;
+#else
+            ISolution currentSolution = Shell.Instance.GetComponent<ISolutionManager>().CurrentSolution;
+#endif
             if (currentSolution == null)
             {
                 return;

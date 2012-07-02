@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 
@@ -6,21 +8,23 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public abstract class BasedOnRegistrationBase : ComponentRegistrationBase
     {
-        private Predicate<ITypeElement> filter = typeElement => !(typeElement is IInterface);
-
+        // todo bug
+        private readonly List<Predicate<ITypeElement>> filters = new List<Predicate<ITypeElement>>(); 
+        
         protected BasedOnRegistrationBase(ITreeNode registrationRootElement)
             : base(registrationRootElement)
         {
+            filters.Add(typeElement => !(typeElement is IInterface));
         }
 
         protected void AddFilter(Predicate<ITypeElement> condition)
         {
-            filter += condition;
+            filters.Add(condition);
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
-            return filter(typeElement);
+            return filters.All(predicate => predicate(typeElement));
         }
     }
 }

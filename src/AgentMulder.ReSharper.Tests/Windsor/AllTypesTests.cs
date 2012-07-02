@@ -91,5 +91,21 @@ namespace AgentMulder.ReSharper.Tests.Windsor
                 }
             });
         }
+
+        [TestCase("BasedOn\\FromAssemblyContainingBasedOnGeneric", new[] { "IFoo.cs" })]
+        public void ExcludeTest(string testName, string[] fileNamesToExclude)
+        {
+            RunTest(testName, registrations =>
+            {
+                ICSharpFile[] codeFiles = fileNamesToExclude.Select(GetCodeFile).ToArray();
+
+                CollectionAssert.IsNotEmpty(registrations);
+                foreach (var codeFile in codeFiles)
+                {
+                    codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
+                        Assert.That(registrations.All((r => !r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
+                }
+            });
+        }
     }
 }

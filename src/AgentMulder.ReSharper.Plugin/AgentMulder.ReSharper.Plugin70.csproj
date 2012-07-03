@@ -21,8 +21,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\output\Debug\</OutputPath>
-    <DefineConstants>JET_MODE_ASSERT;DEBUG;TRACE</DefineConstants>
+    <OutputPath>..\..\output\Debug\7.0\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SDK70;JET_MODE_ASSERT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
@@ -31,8 +31,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\output\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>..\..\output\Release\7.0\</OutputPath>
+    <DefineConstants>TRACE;SDK70</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <StartWorkingDirectory>$(MSBuildProjectDirectory)\$(OutputPath)</StartWorkingDirectory>
@@ -74,7 +74,7 @@
     <Compile Include="Components\SolutionAnalyzer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain70.csproj">
       <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
       <Name>AgentMulder.ReSharper.Domain</Name>
     </ProjectReference>
@@ -82,8 +82,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Hat.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\lib\SDK70\x64\libleveldb.dll">
+      <Link>x64\libleveldb.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\lib\SDK70\x86\libleveldb.dll">
+      <Link>x86\libleveldb.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <PropertyGroup>
-    <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>
+    <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v7.0</ReSharperSdkTargets>
   </PropertyGroup>
   <Import Project="$(ReSharperSdkTargets)\Plugin.Targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,5 @@
-﻿using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Plugin.Components;
+﻿using AgentMulder.ReSharper.Plugin.Components;
+using JetBrains.Application;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Feature.Services.Navigation;
 
@@ -42,7 +42,14 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
 
         public void OnClick()
         {
-            NavigationManager.Navigate(registrationInfo.Registration.RegistrationElement, true);
+            using (ReadLockCookie.Create())
+            {
+#if SDK70
+                NavigationManager.NavigateToTreeNode(registrationInfo.Registration.RegistrationElement, true);
+#else
+                NavigationManager.Navigate(registrationInfo.Registration.RegistrationElement, true);
+#endif
+            }
         }
     }
 }

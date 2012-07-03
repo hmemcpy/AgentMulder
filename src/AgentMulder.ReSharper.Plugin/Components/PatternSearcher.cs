@@ -5,6 +5,7 @@ using JetBrains.Application;
 using JetBrains.Application.Progress;
 using JetBrains.DocumentManagers;
 using JetBrains.ProjectModel;
+using JetBrains.ProjectModel.Impl;
 using JetBrains.ReSharper.Features.StructuralSearch.Finding;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
@@ -54,7 +55,11 @@ namespace AgentMulder.ReSharper.Plugin.Components
 
         private void DoSearch(IStructuralMatcher matcher, FindResultConsumer<IStructuralMatchResult> consumer)
         {
+#if SDK70
+            ISolution solution = Shell.Instance.GetComponent<SolutionsManager>().Solution;
+#else
             ISolution solution = Shell.Instance.GetComponent<ISolutionManager>().CurrentSolution;
+#endif
 
             var searchDomain = searchDomainFactory.CreateSearchDomain(solution, false);
             var documentManager = solution.GetComponent<DocumentManager>();

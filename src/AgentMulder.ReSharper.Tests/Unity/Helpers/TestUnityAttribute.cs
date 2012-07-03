@@ -1,11 +1,16 @@
-﻿using JetBrains.ReSharper.TestFramework;
+﻿using System.Collections.Generic;
+using JetBrains.ReSharper.TestFramework;
 using Microsoft.Practices.Unity;
 
 namespace AgentMulder.ReSharper.Tests.Unity.Helpers
 {
     public class TestUnityAttribute : TestReferencesAttribute
     {
+#if SDK70
+        public override IEnumerable<string> GetReferences()
+#else
         public override string[] GetReferences()
+#endif
         {
             return new[]
             {

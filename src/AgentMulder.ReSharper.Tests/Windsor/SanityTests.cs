@@ -2,6 +2,9 @@
 using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.Containers.CastleWindsor.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Tree;
 using NUnit.Framework;
 
 namespace AgentMulder.ReSharper.Tests.Windsor

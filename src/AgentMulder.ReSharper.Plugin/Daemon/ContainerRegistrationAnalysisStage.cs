@@ -4,6 +4,7 @@ using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.CSharp.Stages;
 using JetBrains.ReSharper.Daemon.UsageChecking;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {
@@ -17,7 +18,12 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
             this.solutionAnalyzer = solutionAnalyzer;
         }
 
+#if SDK70
+        protected override IDaemonStageProcess CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind, ICSharpFile file)
+#else
         public override IDaemonStageProcess CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
+#endif
+        
         {
             if (!IsSupported(process.SourceFile))
                 return null;

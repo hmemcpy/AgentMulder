@@ -11,11 +11,11 @@
     <ROW Property="ARPURLINFOABOUT" Value="http://hmemcpy.github.com/AgentMulder/"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="Manufacturer" Value="Igal Tabachnik" ValueLocId="*"/>
-    <ROW Property="ProductCode" Value="1033:{66933692-8604-4D77-867E-757B50D70A56} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{83EEC403-A5C5-488D-91C7-3282336604C3} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Agent Mulder plugin for ReSharper" ValueLocId="*"/>
     <ROW Property="ProductShortName" Value="AgentMulder"/>
-    <ROW Property="ProductVersion" Value="1.0.4.1" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.0.4.2" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{F9637657-9637-4700-9455-375306DC5D47}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

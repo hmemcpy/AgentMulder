@@ -1,6 +1,12 @@
 What's new in Agent Mulder
 ==========================
 
+v1.0.4.2
+======
+* Fixed a navigation issue caused by ReSharper 7 API change in build 80 (RSRP-321616)
+  Note: you should update ReSharper 7 to the latest version (7.0.80.93 at the time of writing)
+
+
 v1.0.4.1
 ========
 + Adding support for ReSharper 7 (known issue: icon is different)

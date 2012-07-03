@@ -14,7 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <StartAction>Program</StartAction>
-    <StartProgram>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.exe</StartProgram>
+    <StartProgram>$(DevEnvDir)\Common7\IDE\devenv.exe</StartProgram>
     <StartArguments>/rootsuffix AGML /ReSharper.Plugin AgentMulder.ReSharper.Plugin.dll /ReSharper.Internal</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

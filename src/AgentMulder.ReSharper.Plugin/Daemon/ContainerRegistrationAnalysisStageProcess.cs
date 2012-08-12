@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Plugin.Components;
 using AgentMulder.ReSharper.Plugin.Highlighting;
 using JetBrains.Application.Progress;

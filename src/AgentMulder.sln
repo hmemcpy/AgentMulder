@@ -25,6 +25,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Unity", "AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.csproj", "{4EF1B908-98A3-4D6F-A243-78CA102BE445}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Autofac", "AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.csproj", "{2AF8CA35-EA61-46F6-8604-BF1E48009EE2}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Catel", "AgentMulder.Containers.Catel\AgentMulder.Containers.Catel.csproj", "{BF115DF4-E6F9-4205-BE25-CA7F665A7BA6}"
 EndProject
 Global

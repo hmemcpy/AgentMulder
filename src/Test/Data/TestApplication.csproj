@@ -238,9 +238,9 @@
     <None Include="Windsor\_DoesNotCompile-BrokenReference.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.csproj">
+    <ProjectReference Include="..\..\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests70.csproj">
       <Project>{C6154279-CFEE-47FC-8F17-F901A5636B0A}</Project>
-      <Name>AgentMulder.ReSharper.Tests</Name>
+      <Name>AgentMulder.ReSharper.Tests70</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

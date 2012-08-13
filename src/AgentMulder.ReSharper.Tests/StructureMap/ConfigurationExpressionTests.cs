@@ -35,16 +35,20 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         }
 
         [TestCase("HelloStructureMap", "Foo.cs")] // << todo make me pass :)
-        public void DoTest(string testName, string fileName)
+        public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>
             {
-                ICSharpFile file = GetCodeFile(fileName);
+                ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
-                Assert.AreEqual(1, registrations.Count());
-                file.ProcessChildren<ITypeDeclaration>(declaration =>
-                    Assert.That(registrations.First().Registration.IsSatisfiedBy(declaration.DeclaredElement)));
+                CollectionAssert.IsNotEmpty(registrations);
+                foreach (var codeFile in codeFiles)
+                {
+                    codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
+                        Assert.That(registrations.Any((r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
+                }
             });
+            ;
         }
     }
 }

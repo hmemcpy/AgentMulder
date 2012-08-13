@@ -10,6 +10,6 @@ namespace TestApplication.StructureMap.ConfigurationExpression
             var container = new Container(x => {
                 x.For<IFoo>().Use<Foo>();
             });
-        } 
+        }
     }
 }

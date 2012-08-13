@@ -45,9 +45,7 @@
     <Compile Include="Patterns\ServiceLocatorMethodRegistrationPatternBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Patterns\RegisterTypeIfNotYetRegisteredPattern.cs" />
-    <Compile Include="Providers\RegisterTypeIfNotYetRegisteredRegistrationProvider.cs" />
     <Compile Include="Patterns\RegisterTypePattern.cs" />
-    <Compile Include="Providers\RegisterTypeRegistrationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain70.csproj">

@@ -4,84 +4,28 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.ComponentModel.Composition.Primitives;
+
 namespace AgentMulder.Containers.Catel
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.ComponentModel.Composition.Hosting;
-    using System.Linq;
     using System.Reflection;
 
-    using AgentMulder.ReSharper.Domain.Containers;
-    using AgentMulder.ReSharper.Domain.Patterns;
-    using AgentMulder.ReSharper.Domain.Registrations;
+    using ReSharper.Domain.Containers;
 
-    /// <summary>
-    /// The catel container info.
-    /// </summary>
     [Export(typeof(IContainerInfo))]
-    public class CatelContainerInfo : IContainerInfo
+    public class CatelContainerInfo : ContainerInfoBase
     {
-        #region Constants and Fields
-
-        /// <summary>
-        /// The registration patterns.
-        /// </summary>
-        private readonly List<IRegistrationPattern> registrationPatterns;
-
-        #endregion
-
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CatelContainerInfo"/> class. 
-        /// </summary>
-        public CatelContainerInfo()
+        public override string ContainerDisplayName
         {
-            var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            var container = new CompositionContainer(catalog);
-            container.ComposeParts(this);
-            this.registrationPatterns =
-                this.PatternsProviders.SelectMany(provider => provider.GetRegistrationPatterns()).ToList();
+            get { return "Catel"; }
         }
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets the Container display name.
-        /// </summary>
-        public string ContainerDisplayName
+        protected override ComposablePartCatalog GetComponentCatalog()
         {
-            get
-            {
-                return "Catel";
-            }
+            return new AssemblyCatalog(Assembly.GetExecutingAssembly());
         }
-
-        /// <summary>
-        /// Gets RegistrationPatterns.
-        /// </summary>
-        public IEnumerable<IRegistrationPattern> RegistrationPatterns
-        {
-            get
-            {
-                return this.registrationPatterns;
-            }
-        }
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets or sets PatternsProviders.
-        /// </summary>
-        [ImportMany]
-        private IEnumerable<IRegistrationPatternsProvider> PatternsProviders { get; set; }
-
-        #endregion
     }
 }

@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.ComponentModel.Composition;
+
 namespace AgentMulder.Containers.Catel.Patterns
 {
     using System;
@@ -23,6 +25,7 @@ namespace AgentMulder.Containers.Catel.Patterns
     /// <summary>
     /// The service locator registration pattern base.
     /// </summary>
+    [InheritedExport("ComponentRegistration", typeof(IRegistrationPattern))]
     public class ServiceLocatorRegistrationPatternBase : ComponentRegistrationPatternBase
     {
         #region Constants and Fields

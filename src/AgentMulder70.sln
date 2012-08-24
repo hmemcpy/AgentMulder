@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Plugin70", "AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin70.csproj", "{8FED260D-8CDB-45A1-B927-116DE2FECD8F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F0AF21D8-9FFB-4641-AA4A-404A86F9029D}"
@@ -65,7 +65,9 @@ Global
 		{2AF8CA35-EA61-46F6-8604-BF1E48009EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AF8CA35-EA61-46F6-8604-BF1E48009EE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BF115DF4-E6F9-4205-BE25-CA7F665A7BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF115DF4-E6F9-4205-BE25-CA7F665A7BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF115DF4-E6F9-4205-BE25-CA7F665A7BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF115DF4-E6F9-4205-BE25-CA7F665A7BA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +82,6 @@ Global
 		{BF115DF4-E6F9-4205-BE25-CA7F665A7BA6} = {0AFEAB16-D259-49ED-A30C-08B4D9997E48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35
 	EndGlobalSection
 EndGlobal

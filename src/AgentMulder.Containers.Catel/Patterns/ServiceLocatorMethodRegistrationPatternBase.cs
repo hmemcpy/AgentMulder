@@ -26,7 +26,7 @@ namespace AgentMulder.Containers.Catel.Patterns
     /// The service locator registration pattern base.
     /// </summary>
     [InheritedExport("ComponentRegistration", typeof(IRegistrationPattern))]
-    public class ServiceLocatorRegistrationPatternBase : ComponentRegistrationPatternBase
+    public abstract class ServiceLocatorRegistrationPatternBase : ComponentRegistrationPatternBase
     {
         #region Constants and Fields
 
@@ -49,7 +49,7 @@ namespace AgentMulder.Containers.Catel.Patterns
             : base(
                 new CSharpStructuralSearchPattern(
                     string.Format("$container$.{0}($arguments$)", methodName), 
-                    new ExpressionPlaceholder("container", "Catel.IoC.IServiceLocator", false), 
+                    new ExpressionPlaceholder("container", "global::Catel.IoC.IServiceLocator", false), 
                     new ArgumentPlaceholder("arguments", -1, -1)), 
                 string.Empty)
         {
@@ -69,7 +69,7 @@ namespace AgentMulder.Containers.Catel.Patterns
         /// </returns>
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = this.Match(registrationRootElement);
+            IStructuralMatchResult match = Match(registrationRootElement);
 
             if (match.Matched)
             {
@@ -88,7 +88,7 @@ namespace AgentMulder.Containers.Catel.Patterns
                 }
                 else
                 {
-                    foreach (IComponentRegistration registration in this.FromArguments(invocationExpression))
+                    foreach (IComponentRegistration registration in FromArguments(invocationExpression))
                     {
                         yield return registration;
                     }

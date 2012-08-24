@@ -23,7 +23,9 @@ namespace AgentMulder.ReSharper.Tests.Catel
         }
 
         [TestCase("RegisterTypeGeneric", new[] { "CommonImpl1.cs" })]
+        [TestCase("RegisterTypeGenericWithArgument", new[] { "CommonImpl1.cs" })]
         [TestCase("RegisterTypeNonGeneric", new[] { "CommonImpl1.cs" })]
+        [TestCase("RegisterTypeNonGenericWithArgument", new[] { "CommonImpl1.cs" })]
         [TestCase("RegisterTypeIfNotYetRegisteredGeneric", new[] { "CommonImpl1.cs" })]
         [TestCase("RegisterTypeIfNotYetRegisteredNonGeneric", new[] { "CommonImpl1.cs" })]
         public void DoTest(string testName, string[] fileNames)

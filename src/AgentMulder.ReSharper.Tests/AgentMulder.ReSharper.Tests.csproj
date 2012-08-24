@@ -138,7 +138,7 @@
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>
   </PropertyGroup>
-  <Import Project="$(ReSharperSdkTargets)\Plugin.Tests.Targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ReSharperSdkTargets)\Plugin.Tests.Targets" />  
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
 </Project>

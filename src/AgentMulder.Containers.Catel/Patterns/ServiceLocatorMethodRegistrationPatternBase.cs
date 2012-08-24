@@ -69,7 +69,7 @@ namespace AgentMulder.Containers.Catel.Patterns
         /// </returns>
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = this.Match(registrationRootElement);
+            IStructuralMatchResult match = Match(registrationRootElement);
 
             if (match.Matched)
             {
@@ -88,7 +88,7 @@ namespace AgentMulder.Containers.Catel.Patterns
                 }
                 else
                 {
-                    foreach (IComponentRegistration registration in this.FromArguments(invocationExpression))
+                    foreach (IComponentRegistration registration in FromArguments(invocationExpression))
                     {
                         yield return registration;
                     }

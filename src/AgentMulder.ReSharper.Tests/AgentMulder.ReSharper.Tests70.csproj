@@ -46,6 +46,9 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="Catel.Core">
+      <HintPath>..\packages\Catel.Core.3.2\lib\NET40\Catel.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -73,6 +76,8 @@
     <Compile Include="Autofac\ContainerBuilderTests.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests.cs" />
     <Compile Include="Autofac\Helpers\TestAutofacAttribute.cs" />
+    <Compile Include="Catel\Helpers\TestCatelAttribute.cs" />
+    <Compile Include="Catel\ServiceLocatorTests.cs" />
     <Compile Include="ComponentRegistrationsTestBase.cs" />
     <Compile Include="Ninject\Helpers\TestNinjectAttribute.cs" />
     <Compile Include="Ninject\KernelTests.cs" />
@@ -97,6 +102,10 @@
       <Project>{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}</Project>
       <Name>AgentMulder.Containers.CastleWindsor70</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.Catel\AgentMulder.Containers.Catel70.csproj">
+      <Project>{BF115DF4-E6F9-4205-BE25-CA7F665A7BA6}</Project>
+      <Name>AgentMulder.Containers.Catel70</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject70.csproj">
       <Project>{E1798D1B-C0DC-4A17-8683-230E89960E49}</Project>
       <Name>AgentMulder.Containers.Ninject70</Name>
@@ -117,9 +126,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Catel\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v7.0</ReSharperSdkTargets>
   </PropertyGroup>

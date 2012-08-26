@@ -83,6 +83,7 @@
     <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />
     <Compile Include="Ninject\SanityTests.cs" />
+    <Compile Include="TestEnvironmentAssembly.cs" />
     <Compile Include="Unity\Helpers\TestUnityAttribute.cs" />
     <Compile Include="Unity\RegisterTypeTests.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
@@ -90,7 +91,6 @@
     <Compile Include="Windsor\TypesTests.cs" />
     <Compile Include="Windsor\Helpers\TestWindsorAttribute.cs" />
     <Compile Include="Windsor\ComponentRegistrationTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Windsor\SanityTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -126,7 +126,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>
   </PropertyGroup>

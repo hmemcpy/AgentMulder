@@ -1,6 +1,12 @@
 What's new in Agent Mulder
 ==========================
 
+v1.0.5
+======
+
++ Initial support for Catel IoC (part of Catel framework) (https://github.com/hmemcpy/AgentMulder/wiki/Catel-IoC)
+ 
+
 v1.0.4.2
 ======
 * Fixed a navigation issue caused by ReSharper 7 API change in build 80 (RSRP-321616)

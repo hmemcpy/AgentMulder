@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Plugin.Components;
 using AgentMulder.ReSharper.Plugin.Highlighting;
 using JetBrains.Application.Progress;
@@ -35,18 +34,12 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
 
             foreach (IFile psiFile in DaemonProcess.SourceFile.EnumeratePsiFiles())
             {
-                if (process.InterruptFlag)
-                    throw new ProcessCancelledException();
-
                 psiFile.ProcessChildren<ITypeDeclaration>(declaration =>
                 {
                     if (declaration.DeclaredElement == null) // type is not (yet) declared
                     {
                         return;
                     }
-
-                    if (process.InterruptFlag)
-                        throw new ProcessCancelledException();
                     
                     RegistrationInfo registrationInfo = cachedComponentRegistrations.FirstOrDefault(c => c.Registration.IsSatisfiedBy(declaration.DeclaredElement));
                     if (registrationInfo != null)

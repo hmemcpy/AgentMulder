@@ -11,7 +11,11 @@ using JetBrains.ReSharper.Features.Altering.Resources;
 using JetBrains.UI.Icons;
 #endif
 
+#if SDK70
+[assembly: RegisterHighlighter("Container Registration", EffectType = EffectType.GUTTER_MARK, GutterMarkType = typeof(ContainerGutterMark), Layer = 2001)]
+#else
 [assembly: RegisterHighlighter("Container Registration", "{B57372C1-16C3-4CB5-8B68-A0FBEFB487AD}", EffectType = EffectType.GUTTER_MARK, GutterMarkType = typeof(ContainerGutterMark), Layer = 2001)]
+#endif
 
 namespace AgentMulder.ReSharper.Plugin.Highlighting
 {

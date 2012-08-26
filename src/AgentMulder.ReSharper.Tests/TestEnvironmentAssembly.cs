@@ -9,7 +9,9 @@ using NUnit.Framework;
 /// Test environment. Must be in the global namespace.
 /// </summary>
 [SetUpFixture]
+// ReSharper disable CheckNamespace
 public class TestEnvironmentAssembly : ReSharperTestEnvironmentAssembly
+// ReSharper restore CheckNamespace
 {
   /// <summary>
   /// Gets the assemblies to load into test environment.

@@ -34,18 +34,12 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
 
             foreach (IFile psiFile in DaemonProcess.SourceFile.EnumeratePsiFiles())
             {
-                if (process.InterruptFlag)
-                    throw new ProcessCancelledException();
-
                 psiFile.ProcessChildren<ITypeDeclaration>(declaration =>
                 {
                     if (declaration.DeclaredElement == null) // type is not (yet) declared
                     {
                         return;
                     }
-
-                    if (process.InterruptFlag)
-                        throw new ProcessCancelledException();
                     
                     RegistrationInfo registrationInfo = cachedComponentRegistrations.FirstOrDefault(c => c.Registration.IsSatisfiedBy(declaration.DeclaredElement));
                     if (registrationInfo != null)

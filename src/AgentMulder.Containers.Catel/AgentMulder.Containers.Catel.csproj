@@ -45,14 +45,13 @@
     <Compile Include="Patterns\ServiceLocatorMethodRegistrationPatternBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Patterns\RegisterTypeIfNotYetRegisteredPattern.cs" />
-    <Compile Include="Providers\RegisterTypeIfNotYetRegisteredRegistrationProvider.cs" />
     <Compile Include="Patterns\RegisterTypePattern.cs" />
-    <Compile Include="Providers\RegisterTypeRegistrationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">
       <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
       <Name>AgentMulder.ReSharper.Domain</Name>
+      <Private>False</Private>      
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

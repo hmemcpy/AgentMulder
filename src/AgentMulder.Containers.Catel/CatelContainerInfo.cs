@@ -20,7 +20,7 @@ namespace AgentMulder.Containers.Catel
     {
         public override string ContainerDisplayName
         {
-            get { return "Catel"; }
+            get { return "Catel IoC"; }
         }
 
         protected override ComposablePartCatalog GetComponentCatalog()

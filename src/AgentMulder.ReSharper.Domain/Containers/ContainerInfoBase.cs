@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
+using System.Linq;
 using AgentMulder.ReSharper.Domain.Patterns;
 
 namespace AgentMulder.ReSharper.Domain.Containers
@@ -11,7 +12,6 @@ namespace AgentMulder.ReSharper.Domain.Containers
     {
         public abstract string ContainerDisplayName { get; }
 
-        [ImportMany("ComponentRegistration", typeof(IRegistrationPattern))]
         public IEnumerable<IRegistrationPattern> RegistrationPatterns { get; private set; }
 
         protected ContainerInfoBase()
@@ -23,7 +23,7 @@ namespace AgentMulder.ReSharper.Domain.Containers
         {
             var catalog = GetComponentCatalog();
             var container = new CompositionContainer(catalog);
-            container.ComposeParts(this);
+            RegistrationPatterns = container.GetExportedValues<IRegistrationPattern>("ComponentRegistration");
         }
 
         protected abstract ComposablePartCatalog GetComponentCatalog();

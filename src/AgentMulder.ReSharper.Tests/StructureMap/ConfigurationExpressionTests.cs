@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using AgentMulder.Containers.StructureMap;
-using AgentMulder.Containers.StructureMap.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Tests.StructureMap.Helpers;
 using JetBrains.ReSharper.Psi;
@@ -25,25 +24,38 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
 
         protected override IContainerInfo ContainerInfo
         {
-            get
-            {
-                return new StructureMapContainerInfo(new[]
-                {
-                    new ForPatternsProvider(new UsePatternsProvider())
-                });
-            }
+            get { return new StructureMapContainerInfo(); }
         }
 
-        [TestCase("HelloStructureMap", "Foo.cs")] // << todo make me pass :)
-        public void DoTest(string testName, string fileName)
+        [TestCase("ForGenericUseGeneric", new[] { "Foo.cs" })]
+        public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>
             {
-                ICSharpFile file = GetCodeFile(fileName);
+                ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
-                Assert.AreEqual(1, registrations.Count());
-                file.ProcessChildren<ITypeDeclaration>(declaration =>
-                    Assert.That(registrations.First().Registration.IsSatisfiedBy(declaration.DeclaredElement)));
+                Assert.AreEqual(codeFiles.Length, registrations.Count());
+                foreach (var codeFile in codeFiles)
+                {
+                    codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
+                        Assert.That(registrations.Any((r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
+                }
+            });
+        }
+
+        [TestCase("ForGenericUseGeneric", new[] { "Bar.cs" })]
+        public void ExcludeTest(string testName, string[] fileNamesToExclude)
+        {
+            RunTest(testName, registrations =>
+            {
+                ICSharpFile[] codeFiles = fileNamesToExclude.Select(GetCodeFile).ToArray();
+
+                CollectionAssert.IsNotEmpty(registrations);
+                foreach (var codeFile in codeFiles)
+                {
+                    codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
+                        Assert.That(registrations.All((r => !r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
+                }
             });
         }
     }

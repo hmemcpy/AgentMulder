@@ -44,8 +44,9 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Patterns\ForGeneric.cs" />
-    <Compile Include="Patterns\UseGeneric.cs" />
+    <Compile Include="Patterns\For\ForBasePattern.cs" />
+    <Compile Include="Patterns\For\ForGeneric.cs" />
+    <Compile Include="Patterns\For\Use\UseGeneric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>
       </SubType>

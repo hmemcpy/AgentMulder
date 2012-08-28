@@ -6,31 +6,21 @@ using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
-using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.StructureMap.Patterns
+namespace AgentMulder.Containers.StructureMap.Patterns.For
 {
     [Export("ComponentRegistration", typeof(IRegistrationPattern))]
-    internal sealed class ForGeneric : ComponentRegistrationPatternBase
+    internal sealed class ForGeneric : ForBasePattern
     {
-        private readonly ComponentImplementationPatternBase[] implementationPatterns;
-
         private static readonly IStructuralSearchPattern pattern = 
             new CSharpStructuralSearchPattern("$container$.For<$service$>()",
                 new ExpressionPlaceholder("container", "global::StructureMap.ConfigurationExpression"),
                 new TypePlaceholder("service"));
 
         [ImportingConstructor]
-        public ForGeneric([ImportMany] params ComponentImplementationPatternBase[] implementationPatterns)
-            : base(pattern, "service")
+        public ForGeneric([ImportMany] params ComponentImplementationPatternBase[] usePatterns)
+            : base(pattern, "service", usePatterns)
         {
-            this.implementationPatterns = implementationPatterns;
-        }
-
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
-        {
-            // todo
-            throw new NotImplementedException();
         }
     }
 }

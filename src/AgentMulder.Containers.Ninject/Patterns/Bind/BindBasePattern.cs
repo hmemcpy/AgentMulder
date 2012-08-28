@@ -2,6 +2,7 @@
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
+using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -32,7 +33,7 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
                 yield break;
             }
 
-            IExpressionStatement statement = GetParentExpressionStatemenmt(registrationRootElement);
+            IExpressionStatement statement = registrationRootElement.GetParentExpressionStatement();
             if (statement == null)
             {
                 yield break;
@@ -52,18 +53,6 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
                     }
                 }
             }
-        }
-
-        private IExpressionStatement GetParentExpressionStatemenmt(ITreeNode node)
-        {
-            for (var n = node; n != null; n = n.Parent)
-            {
-                var expressionStatement = n as IExpressionStatement;
-                if (expressionStatement != null)
-                    return expressionStatement;
-            }
-
-            return null;
         }
 
         private bool IsNinjectBindCall(ITreeNode element)

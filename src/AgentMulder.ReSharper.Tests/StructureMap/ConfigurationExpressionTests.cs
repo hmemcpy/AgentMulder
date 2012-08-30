@@ -25,6 +25,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ObjectFactoryContainerConfigure", new[] { "Foo.cs" })]
         [TestCase("ForGenericUseGenericExpresssion", new[] { "Foo.cs" })]
         [TestCase("ForGenericUseGenericStatement", new[] { "Foo.cs" })]
+        [TestCase("ForGenericUseGenericWithAdditionalParams", new[] { "Foo.cs" })]
         [TestCase("ForGenericUseGenericMultipleStatements", new[] { "Foo.cs", "Bar.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {

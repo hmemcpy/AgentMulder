@@ -14,12 +14,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
     {
         protected override string RelativeTestDataPath
         {
-            get { return @"StructureMap\ConfigurationExpression"; }
-        }
-
-        protected override string RelativeTypesPath
-        {
-            get { return @"..\..\Types"; }
+            get { return @"StructureMap"; }
         }
 
         protected override IContainerInfo ContainerInfo
@@ -27,7 +22,10 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             get { return new StructureMapContainerInfo(); }
         }
 
-        [TestCase("ForGenericUseGeneric", new[] { "Foo.cs" })]
+        [TestCase("ObjectFactoryContainerConfigure", new[] { "Foo.cs" })]
+        [TestCase("ForGenericUseGenericExpresssion", new[] { "Foo.cs" })]
+        [TestCase("ForGenericUseGenericStatement", new[] { "Foo.cs" })]
+        [TestCase("ForGenericUseGenericMultipleStatements", new[] { "Foo.cs", "Bar.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>
@@ -43,7 +41,10 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             });
         }
 
-        [TestCase("ForGenericUseGeneric", new[] { "Bar.cs" })]
+        [TestCase("ObjectFactoryContainerConfigure", new[] { "Bar.cs" })]
+        [TestCase("ForGenericUseGenericStatement", new[] { "Bar.cs" })]
+        [TestCase("ForGenericUseGenericExpresssion", new[] { "Bar.cs" })]
+        [TestCase("ForGenericUseGenericMultipleStatements", new[] { "Baz.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>

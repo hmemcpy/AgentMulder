@@ -24,20 +24,21 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
             // This entire thing is one big hack. Need to come back to it one day :)
-            // There is (currently) no way to create a pattern that would match the Bind() call with implicit this in ReSharper SSR.
-            // Therefore I'm only matching by the method name only, and later verifying that the method invocation's qualifier 
-            // is indeed derived from global::Ninject.Syntax.IBindingRoot
+            // There is (currently) no way to create a pattern that would match the Bind() call with implicit 'this' in ReSharper SSR.
+            // Therefore I'm only matching by the method name only, and later verifying that the method indeed belongs to Ninject, by
+            // making sure the invocation's qualifier derived from global::Ninject.Syntax.IBindingRoot
 
             if (!IsNinjectBindCall(registrationRootElement))
             {
                 yield break;
             }
 
-            IExpressionStatement statement = registrationRootElement.GetParentExpressionStatement();
+            var statement = registrationRootElement.GetParentExpression<IExpressionStatement>();
             if (statement == null)
             {
                 yield break;
             }
+
             foreach (var toPattern in toPatterns)
             {
                 var implementedByRegistration = toPattern.GetComponentRegistrations(statement.Expression)

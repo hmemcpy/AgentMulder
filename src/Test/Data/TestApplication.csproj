@@ -157,7 +157,10 @@
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToNonGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToSelf.cs" />
-    <Compile Include="StructureMap\ConfigurationExpression\ForGenericUseGeneric.cs" />
+    <Compile Include="StructureMap\ForGenericUseGenericExpresssion.cs" />
+    <Compile Include="StructureMap\ForGenericUseGenericMultipleStatements.cs" />
+    <Compile Include="StructureMap\ForGenericUseGenericStatement.cs" />
+    <Compile Include="StructureMap\ObjectFactoryContainerConfigure.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />
     <Compile Include="Types\Baz.cs" />

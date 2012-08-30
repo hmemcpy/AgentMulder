@@ -1,12 +1,11 @@
 ﻿using StructureMap;
-using StructureMap.Configuration.DSL.Expressions;
 using TestApplication.Types;
 
-namespace TestApplication.StructureMap.ConfigurationExpression
+namespace TestApplication.StructureMap
 {
-    public class ForGenericUseGeneric
+    public class ForGenericUseGenericStatement
     {
-        public ForGenericUseGeneric()
+        public ForGenericUseGenericStatement()
         {
             var container = new Container(x =>
             {

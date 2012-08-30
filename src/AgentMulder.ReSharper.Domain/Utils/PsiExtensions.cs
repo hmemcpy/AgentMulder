@@ -97,11 +97,12 @@ namespace AgentMulder.ReSharper.Domain.Utils
             return null;
         }
 
-        public static IExpressionStatement GetParentExpressionStatement(this ITreeNode node)
+        public static TExpression GetParentExpression<TExpression>(this ITreeNode node)
+            where TExpression : class, ITreeNode
         {
             for (var n = node; n != null; n = n.Parent)
             {
-                var expressionStatement = n as IExpressionStatement;
+                var expressionStatement = n as TExpression;
                 if (expressionStatement != null)
                     return expressionStatement;
             }

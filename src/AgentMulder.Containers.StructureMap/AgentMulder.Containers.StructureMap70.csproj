@@ -46,7 +46,9 @@
     </Compile>
     <Compile Include="Patterns\For\ForBasePattern.cs" />
     <Compile Include="Patterns\For\ForGeneric.cs" />
+    <Compile Include="Patterns\For\ForNonGeneric.cs" />
     <Compile Include="Patterns\For\Use\UseGeneric.cs" />
+    <Compile Include="Patterns\For\Use\UseNonGeneric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>
       </SubType>

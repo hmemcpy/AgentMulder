@@ -23,9 +23,10 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         }
 
         [TestCase("ObjectFactoryContainerConfigure", new[] { "Foo.cs" })]
-        [TestCase("ForGenericUseGenericExpresssion", new[] { "Foo.cs" })]
+        [TestCase("ForGenericUseGenericExpression", new[] { "Foo.cs" })]
         [TestCase("ForGenericUseGenericStatement", new[] { "Foo.cs" })]
         [TestCase("ForGenericUseGenericWithAdditionalParams", new[] { "Foo.cs" })]
+        [TestCase("ForNonGenericUseNonGenericType", new[] { "Foo.cs" })]
         [TestCase("ForGenericUseGenericMultipleStatements", new[] { "Foo.cs", "Bar.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
@@ -44,7 +45,8 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
 
         [TestCase("ObjectFactoryContainerConfigure", new[] { "Bar.cs" })]
         [TestCase("ForGenericUseGenericStatement", new[] { "Bar.cs" })]
-        [TestCase("ForGenericUseGenericExpresssion", new[] { "Bar.cs" })]
+        [TestCase("ForGenericUseGenericExpression", new[] { "Bar.cs" })]
+        [TestCase("ForNonGenericUseNonGenericType", new[] { "Bar.cs" })]
         [TestCase("ForGenericUseGenericMultipleStatements", new[] { "Baz.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {

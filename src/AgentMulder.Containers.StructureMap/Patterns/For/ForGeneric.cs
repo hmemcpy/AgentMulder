@@ -7,7 +7,6 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.StructureMap.Patterns.For
 {
-    [Export("ComponentRegistration", typeof(IRegistrationPattern))]
     internal sealed class ForGeneric : ForBasePattern
     {
         private static readonly IStructuralSearchPattern pattern = 

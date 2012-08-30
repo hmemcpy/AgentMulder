@@ -3,9 +3,9 @@ using TestApplication.Types;
 
 namespace TestApplication.StructureMap
 {
-    public class ForGenericUseGenericExpresssion
+    public class ForGenericUseGenericExpression
     {
-        public ForGenericUseGenericExpresssion()
+        public ForGenericUseGenericExpression()
         {
             var container = new Container(x => x.For<IFoo>().Use<Foo>());
         } 

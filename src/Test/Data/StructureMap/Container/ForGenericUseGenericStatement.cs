@@ -1,13 +1,12 @@
-﻿using StructureMap;
-using TestApplication.Types;
+﻿using TestApplication.Types;
 
-namespace TestApplication.StructureMap
+namespace TestApplication.StructureMap.Container
 {
     public class ForGenericUseGenericStatement
     {
         public ForGenericUseGenericStatement()
         {
-            var container = new Container(x =>
+            var container = new global::StructureMap.Container(x =>
             {
                 x.For<IFoo>().Use<Foo>();
             });

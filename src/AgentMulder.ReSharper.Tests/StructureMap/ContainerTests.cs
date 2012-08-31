@@ -10,16 +10,21 @@ using NUnit.Framework;
 namespace AgentMulder.ReSharper.Tests.StructureMap
 {
     [TestStructureMap]
-    public class ConfigurationExpressionTests : ComponentRegistrationsTestBase
+    public class ContainerTests : ComponentRegistrationsTestBase
     {
         protected override string RelativeTestDataPath
         {
-            get { return @"StructureMap"; }
+            get { return @"StructureMap\Container"; }
         }
 
         protected override IContainerInfo ContainerInfo
         {
             get { return new StructureMapContainerInfo(); }
+        }
+
+        protected override string RelativeTypesPath
+        {
+            get { return @"..\..\Types"; }
         }
 
         [TestCase("ObjectFactoryContainerConfigure", new[] { "Foo.cs" })]

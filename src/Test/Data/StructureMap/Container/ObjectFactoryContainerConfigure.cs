@@ -1,7 +1,7 @@
 using StructureMap;
 using TestApplication.Types;
 
-namespace TestApplication.StructureMap
+namespace TestApplication.StructureMap.Container
 {
     public class ObjectFactoryContainerConfigure
     {

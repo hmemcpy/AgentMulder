@@ -1,10 +1,10 @@
 ﻿using TestApplication.Types;
 
-namespace TestApplication.StructureMap.Registry
+namespace TestApplication.StructureMap.RegistryTests
 {
-    public class RegistryConfigure
+    public class RegistryInstanceConfigure
     {
-        public RegistryConfigure()
+        public RegistryInstanceConfigure()
         {
             var registry = new global::StructureMap.Configuration.DSL.Registry();
             registry.For<IFoo>().Use<Foo>();

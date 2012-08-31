@@ -1,6 +1,6 @@
 using TestApplication.Types;
 
-namespace TestApplication.StructureMap.Container
+namespace TestApplication.StructureMap.ContainerTests
 {
     public class ForGenericUseGenericExpression
     {

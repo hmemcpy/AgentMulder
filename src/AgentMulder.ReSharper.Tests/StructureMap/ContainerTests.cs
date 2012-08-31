@@ -14,7 +14,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
     {
         protected override string RelativeTestDataPath
         {
-            get { return @"StructureMap\Container"; }
+            get { return @"StructureMap\ContainerTests"; }
         }
 
         protected override IContainerInfo ContainerInfo

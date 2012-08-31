@@ -14,7 +14,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
     {
         protected override string RelativeTestDataPath
         {
-            get { return @"StructureMap\Registry"; }
+            get { return @"StructureMap\RegistryTests"; }
         }
 
         protected override string RelativeTypesPath
@@ -27,7 +27,8 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             get { return new StructureMapContainerInfo(); }
         }
 
-        [TestCase("RegistryConfigure", new[] { "Foo.cs" })]
+        [TestCase("RegistryInstanceConfigure", new[] { "Foo.cs" })]
+        [TestCase("ForGenericUseGeneric", new[] { "Foo.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>
@@ -38,12 +39,13 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
-                                                               Assert.That(registrations.Any((r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
+                        Assert.That(registrations.Any((r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
                 }
             });
         }
 
-        [TestCase("RegistryConfigure", new[] { "Bar.cs" })]
+        [TestCase("RegistryInstanceConfigure", new[] { "Bar.cs" })]
+        [TestCase("ForGenericUseGeneric", new[] { "Bar.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>
@@ -54,7 +56,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
-                                                               Assert.That(registrations.All((r => !r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
+                        Assert.That(registrations.All((r => !r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
                 }
             });
         }

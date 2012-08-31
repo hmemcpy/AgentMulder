@@ -165,6 +165,8 @@
     <Compile Include="StructureMap\ContainerTests\ObjectFactoryContainerConfigure.cs" />
     <Compile Include="StructureMap\RegistryTests\ForGenericUseGeneric.cs" />
     <Compile Include="StructureMap\RegistryTests\ForGenericUseGenericMultipleStatements.cs" />
+    <Compile Include="StructureMap\RegistryTests\ForGenericUseGenericWithAdditionalParams.cs" />
+    <Compile Include="StructureMap\RegistryTests\ForNonGenericUseNonGenericType.cs" />
     <Compile Include="StructureMap\RegistryTests\RegistryInstanceConfigure.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />

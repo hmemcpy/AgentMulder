@@ -1,11 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Utils;
-using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
@@ -15,9 +13,10 @@ namespace AgentMulder.Containers.StructureMap.Patterns.For
     [InheritedExport("ComponentRegistration", typeof(IRegistrationPattern))]
     internal abstract class ForBasePattern : ComponentRegistrationPatternBase
     {
-        private readonly IEnumerable<ComponentImplementationPatternBase> usePatterns;
-        private IDeclaredType bindingRootType;
+        private const string StructureMapRegistryTypeName = "StructureMap.Configuration.DSL.IRegistry";
 
+        private readonly IEnumerable<ComponentImplementationPatternBase> usePatterns;
+        
         protected ForBasePattern(IStructuralSearchPattern pattern, string elementName, IEnumerable<ComponentImplementationPatternBase> usePatterns)
             : base(pattern, elementName)
         {
@@ -28,11 +27,12 @@ namespace AgentMulder.Containers.StructureMap.Patterns.For
         {
             // todo this is duplicated from Ninject!
             // This entire thing is one big hack. Need to come back to it one day :)
-            // There is (currently) no way to create a pattern that would match the For() call with implicit 'this' in ReSharper SSR.
+            // There is (currently) no way to create a pattern that would match the For() call with implicit 'this' in ReSharper SSR
+            // (i.e. a call to Foo being made withing a method, located in the Registry class)
             // Therefore I'm only matching by the method name only, and later verifying that the method indeed belongs to StructureMap, by
             // making sure the invocation's qualifier derived from global::StructureMap.Configuration.DSL.IRegistry
 
-            if (!IsStructureMapCall(registrationRootElement))
+            if (!registrationRootElement.IsContainerCall(StructureMapRegistryTypeName))
             {
                 yield break;
             }
@@ -59,35 +59,6 @@ namespace AgentMulder.Containers.StructureMap.Patterns.For
                     }
                 }
             }
-        }
-
-        private bool IsStructureMapCall(ITreeNode element)
-        {
-            var invocationExpression = element as IInvocationExpression;
-            if (invocationExpression == null)
-            {
-                return false;
-            }
-
-            var resolve = invocationExpression.InvocationExpressionReference.Resolve().Result;
-            var method = resolve.DeclaredElement as IMethod;
-            if (method == null)
-            {
-                return false;
-            }
-            ITypeElement containingType = method.GetContainingType();
-            if (containingType == null)
-            {
-                return false;
-            }
-
-            if (bindingRootType == null)
-            {
-                bindingRootType = TypeFactory.CreateTypeByCLRName("StructureMap.Configuration.DSL.IRegistry", element.GetPsiModule());
-            }
-
-            return containingType.IsDescendantOf(bindingRootType.GetTypeElement());
-
         }
 
         private IInvocationExpression GetInvocationExpression(ITreeNode node)

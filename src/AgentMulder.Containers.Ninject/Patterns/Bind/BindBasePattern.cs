@@ -3,7 +3,6 @@ using System.Linq;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Utils;
-using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
@@ -12,8 +11,8 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
 {
     internal abstract class BindBasePattern : ComponentRegistrationPatternBase
     {
+        private const string NinjectBindingRootClrTypeName = "Ninject.Syntax.IBindingRoot";
         private readonly IEnumerable<ComponentRegistrationPatternBase> toPatterns;
-        private IDeclaredType bindingRootType;
 
         protected BindBasePattern(IStructuralSearchPattern pattern, string elementName, IEnumerable<ComponentRegistrationPatternBase> toPatterns)
             : base(pattern, elementName)
@@ -28,7 +27,7 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
             // Therefore I'm only matching by the method name only, and later verifying that the method indeed belongs to Ninject, by
             // making sure the invocation's qualifier derived from global::Ninject.Syntax.IBindingRoot
 
-            if (!IsNinjectBindCall(registrationRootElement))
+            if (!registrationRootElement.IsContainerCall(NinjectBindingRootClrTypeName))
             {
                 yield break;
             }
@@ -54,34 +53,6 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
                     }
                 }
             }
-        }
-
-        private bool IsNinjectBindCall(ITreeNode element)
-        {
-            var invocationExpression = element as IInvocationExpression;
-            if (invocationExpression == null)
-            {
-                return false;
-            }
-
-            var resolve = invocationExpression.InvocationExpressionReference.Resolve().Result;
-            var method = resolve.DeclaredElement as IMethod;
-            if (method == null)
-            {
-                return false;
-            }
-            ITypeElement containingType = method.GetContainingType();
-            if (containingType == null)
-            {
-                return false;
-            }
-
-            if (bindingRootType == null)
-            {
-                bindingRootType = TypeFactory.CreateTypeByCLRName("Ninject.Syntax.IBindingRoot", element.GetPsiModule());
-            }
-
-            return containingType.IsDescendantOf(bindingRootType.GetTypeElement());
         }
 
         protected virtual IEnumerable<IComponentRegistration> DoCreateRegistrations(ITreeNode parentElement)

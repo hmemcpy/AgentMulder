@@ -7,10 +7,12 @@ namespace TestApplication.StructureMap.ContainerTests
     {
         public ObjectFactoryContainerConfigure()
         {
+            // ReSharper disable ConvertToLambdaExpression
             ObjectFactory.Container.Configure(x =>
             {
                 x.For<IFoo>().Use<Foo>();
             });
+            // ReSharper restore ConvertToLambdaExpression
         } 
     }
 }

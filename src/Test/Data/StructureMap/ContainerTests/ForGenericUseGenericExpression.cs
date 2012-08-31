@@ -1,3 +1,4 @@
+using StructureMap;
 using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ContainerTests
@@ -6,7 +7,7 @@ namespace TestApplication.StructureMap.ContainerTests
     {
         public ForGenericUseGenericExpression()
         {
-            var container = new global::StructureMap.Container(x => x.For<IFoo>().Use<Foo>());
+            var container = new Container(x => x.For<IFoo>().Use<Foo>());
         } 
     }
 }

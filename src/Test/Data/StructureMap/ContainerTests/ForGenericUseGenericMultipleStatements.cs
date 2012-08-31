@@ -1,3 +1,4 @@
+using StructureMap;
 using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ContainerTests
@@ -6,7 +7,7 @@ namespace TestApplication.StructureMap.ContainerTests
     {
         public ForGenericUseGenericMultipleStatements()
         {
-            var container = new global::StructureMap.Container(x =>
+            var container = new Container(x =>
             {
                 x.For<IFoo>().Use<Foo>();
                 x.For<IBar>().Use<Bar>();

@@ -1,4 +1,5 @@
-﻿using TestApplication.Types;
+﻿using StructureMap;
+using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ContainerTests
 {
@@ -6,10 +7,12 @@ namespace TestApplication.StructureMap.ContainerTests
     {
         public ForGenericUseGenericStatement()
         {
-            var container = new global::StructureMap.Container(x =>
+            // ReSharper disable ConvertToLambdaExpression
+            var container = new Container(x =>
             {
                 x.For<IFoo>().Use<Foo>();
             });
+            // ReSharper restore ConvertToLambdaExpression
         } 
     }
 }

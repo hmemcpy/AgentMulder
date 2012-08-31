@@ -1,4 +1,5 @@
-﻿using TestApplication.Types;
+﻿using StructureMap;
+using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ContainerTests
 {
@@ -6,7 +7,7 @@ namespace TestApplication.StructureMap.ContainerTests
     {
         public ForGenericUseGenericWithAdditionalParams()
         {
-            var container = new global::StructureMap.Container(x => 
+            var container = new Container(x => 
                 x.For<IFoo>().Singleton().InterceptWith(null).Use<Foo>()
                 );
         }

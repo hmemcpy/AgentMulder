@@ -16,7 +16,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.For.Use
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$expr$.Use($service$)",
-                new ExpressionPlaceholder("expr", "global::StructureMap.Configuration.DSL.Expressions.GenericFamilyExpression"),
+                new ExpressionPlaceholder("expr", "global::StructureMap.Configuration.DSL.Expressions.GenericFamilyExpression", true),
                 new ArgumentPlaceholder("service"));
 
         public UseNonGeneric()

@@ -7,7 +7,7 @@ namespace TestApplication.StructureMap
     {
         public ForNonGenericUseNonGenericType()
         {
-            var container = new Container(x => x.For(typeof(IFoo)).Use(typeof(IFoo)));
+            var container = new Container(x => x.For(typeof(IFoo)).Use(typeof(Foo)));
         } 
     }
 }

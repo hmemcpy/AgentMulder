@@ -6,8 +6,6 @@ namespace AgentMulder.ReSharper.Domain.Utils
 {
     public static class ContainerExtensions
     {
-        private static IDeclaredType containerClrType;
-
         public static bool IsContainerCall(this ITreeNode node, string containerClrTypeName)
         {
             var invocationExpression = node as IInvocationExpression;
@@ -27,11 +25,8 @@ namespace AgentMulder.ReSharper.Domain.Utils
             {
                 return false;
             }
-
-            if (containerClrType == null)
-            {
-                containerClrType = TypeFactory.CreateTypeByCLRName(containerClrTypeName, node.GetPsiModule());
-            }
+            
+            var containerClrType = TypeFactory.CreateTypeByCLRName(containerClrTypeName, node.GetPsiModule());
 
             return containingType.IsDescendantOf(containerClrType.GetTypeElement());
         }

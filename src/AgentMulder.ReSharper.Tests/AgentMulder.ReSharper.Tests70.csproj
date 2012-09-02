@@ -86,8 +86,9 @@
     <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />
     <Compile Include="Ninject\SanityTests.cs" />
-    <Compile Include="StructureMap\ConfigurationExpressionTests.cs" />
+    <Compile Include="StructureMap\ContainerTests.cs" />
     <Compile Include="StructureMap\Helpers\TestStructureMapAttribute.cs" />
+    <Compile Include="StructureMap\RegistryTests.cs" />
     <Compile Include="Unity\Helpers\TestUnityAttribute.cs" />
     <Compile Include="Unity\RegisterTypeTests.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />

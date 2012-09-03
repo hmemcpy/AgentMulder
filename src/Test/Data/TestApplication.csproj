@@ -157,6 +157,8 @@
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToNonGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToSelf.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericAddGenericExpression.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericAddGenericStatement.cs" />
     <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericExpression.cs" />
     <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericMultipleStatements.cs" />
     <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericStatement.cs" />

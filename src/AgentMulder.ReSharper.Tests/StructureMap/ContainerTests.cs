@@ -33,6 +33,8 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ForGenericUseGenericWithAdditionalParams", new[] { "Foo.cs" })]
         [TestCase("ForNonGenericUseNonGenericType", new[] { "Foo.cs" })]
         [TestCase("ForGenericUseGenericMultipleStatements", new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ForGenericAddGenericExpression", new[] { "Foo.cs" })]
+        [TestCase("ForGenericAddGenericStatement", new[] { "Foo.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>
@@ -53,6 +55,8 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ForGenericUseGenericExpression", new[] { "Bar.cs" })]
         [TestCase("ForNonGenericUseNonGenericType", new[] { "Bar.cs" })]
         [TestCase("ForGenericUseGenericMultipleStatements", new[] { "Baz.cs" })]
+        [TestCase("ForGenericAddGenericExpression", new[] { "Bar.cs" })]
+        [TestCase("ForGenericAddGenericStatement", new[] { "Bar.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>

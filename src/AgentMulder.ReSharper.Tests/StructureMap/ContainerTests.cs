@@ -55,11 +55,12 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ObjectFactoryContainerConfigure", new[] { "Bar.cs" })]
         [TestCase("ForGenericUseGenericStatement", new[] { "Bar.cs" })]
         [TestCase("ForGenericUseGenericExpression", new[] { "Bar.cs" })]
-        [TestCase("ForNonGenericUseNonGenericType", new[] { "Bar.cs" })]
+        [TestCase("ForNonGenericUseNonGenericTypeOf", new[] { "Bar.cs" })]
         [TestCase("ForGenericUseGenericMultipleStatements", new[] { "Baz.cs" })]
         [TestCase("ForGenericAddGenericExpression", new[] { "Bar.cs" })]
         [TestCase("ForGenericAddGenericStatement", new[] { "Bar.cs" })]
         [TestCase("ForGenericAddGenericMultipleStatements", new[] { "Baz.cs" })]
+        [TestCase("ForNonGenericAddNonGenericTypeOf", new[] { "Bar.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>

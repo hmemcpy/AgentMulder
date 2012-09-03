@@ -164,7 +164,8 @@
     <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericMultipleStatements.cs" />
     <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericStatement.cs" />
     <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericWithAdditionalParams.cs" />
-    <Compile Include="StructureMap\ContainerTests\ForNonGenericUseNonGenericType.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForNonGenericAddNonGenericTypeOf.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForNonGenericUseNonGenericTypeof.cs" />
     <Compile Include="StructureMap\ContainerTests\ObjectFactoryContainerConfigure.cs" />
     <Compile Include="StructureMap\MethodNamedBindInThisClass.cs" />
     <Compile Include="StructureMap\MethodNamedForOnSomeClass.cs" />

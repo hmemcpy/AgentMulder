@@ -45,6 +45,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Patterns\For\Add\AddGeneric.cs" />
+    <Compile Include="Patterns\For\Add\AddNonGeneric.cs" />
     <Compile Include="Patterns\For\ForBasePattern.cs" />
     <Compile Include="Patterns\For\ForGeneric.cs" />
     <Compile Include="Patterns\For\ForNonGeneric.cs" />

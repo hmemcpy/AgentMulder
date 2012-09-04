@@ -8,7 +8,7 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    internal sealed class FromAssemblyContainingGeneric : FromAssemblyBasePattern
+    internal sealed class FromAssemblyContainingGeneric : FromAssemblyPatternBase
     {
         public FromAssemblyContainingGeneric(string qualiferType, params IBasedOnPattern[] basedOnPatterns)
             : base(CreatePattern(qualiferType), basedOnPatterns)

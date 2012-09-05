@@ -53,7 +53,7 @@
     <Compile Include="Patterns\For\RegistryForNonGeneric.cs" />
     <Compile Include="Patterns\For\Use\UseGeneric.cs" />
     <Compile Include="Patterns\For\Use\UseNonGeneric.cs" />
-    <Compile Include="Patterns\ScanStatements.cs" />
+    <Compile Include="Patterns\Scan\ScanStatements.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>
       </SubType>

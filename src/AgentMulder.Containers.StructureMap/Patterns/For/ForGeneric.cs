@@ -10,8 +10,8 @@ namespace AgentMulder.Containers.StructureMap.Patterns.For
     internal sealed class ForGeneric : ForBasePattern
     {
         private static readonly IStructuralSearchPattern pattern = 
-            new CSharpStructuralSearchPattern("$container$.For<$service$>()",
-                new ExpressionPlaceholder("container", "global::StructureMap.Configuration.DSL.IRegistry"),
+            new CSharpStructuralSearchPattern("$registry$.For<$service$>()",
+                new ExpressionPlaceholder("registry", "global::StructureMap.Configuration.DSL.IRegistry"),
                 new TypePlaceholder("service"));
 
         [ImportingConstructor]

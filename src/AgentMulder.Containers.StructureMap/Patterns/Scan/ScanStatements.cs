@@ -26,6 +26,8 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
+            // todo extract statements, and use the based on patterns against them
+
             return BasedOnPatterns.SelectMany(basedOnPattern => basedOnPattern.GetBasedOnRegistrations(registrationRootElement));
         }
     }

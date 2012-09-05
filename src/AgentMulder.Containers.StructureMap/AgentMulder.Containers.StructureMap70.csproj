@@ -54,6 +54,7 @@
     <Compile Include="Patterns\For\Use\UseGeneric.cs" />
     <Compile Include="Patterns\For\Use\UseNonGeneric.cs" />
     <Compile Include="Patterns\Scan\ScanStatements.cs" />
+    <Compile Include="Patterns\Scan\TheCallingAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>
       </SubType>

@@ -94,40 +94,40 @@
     <Compile Include="Windsor\SanityTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.7.1.csproj">
-      <Project>{2AF8CA35-EA61-46F6-8604-BF1E48009EE2}</Project>
-      <Name>AgentMulder.Containers.Autofac.7.1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.7.1.csproj">
-      <Project>{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}</Project>
-      <Name>AgentMulder.Containers.CastleWindsor.7.1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.Catel\AgentMulder.Containers.Catel.7.1.csproj">
-      <Project>{BF115DF4-E6F9-4205-BE25-CA7F665A7BA6}</Project>
-      <Name>AgentMulder.Containers.Catel.7.1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.7.1.csproj">
-      <Project>{E1798D1B-C0DC-4A17-8683-230E89960E49}</Project>
-      <Name>AgentMulder.Containers.Ninject.7.1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.7.1.csproj">
-      <Project>{4EF1B908-98A3-4D6F-A243-78CA102BE445}</Project>
-      <Name>AgentMulder.Containers.Unity.7.1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.7.1.csproj">
-      <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
-      <Name>AgentMulder.ReSharper.Domain.7.1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.7.1.csproj">
-      <Project>{8FED260D-8CDB-45A1-B927-116DE2FECD8F}</Project>
-      <Name>AgentMulder.ReSharper.Plugin.7.1</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.7.1.csproj">
+      <Project>{31aefbc4-8f8a-4411-b9bc-f84a42c50e0d}</Project>
+      <Name>AgentMulder.Containers.Autofac.7.1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.7.1.csproj">
+      <Project>{e048d28a-b358-48cc-94c1-32164936459d}</Project>
+      <Name>AgentMulder.Containers.CastleWindsor.7.1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.Catel\AgentMulder.Containers.Catel.7.1.csproj">
+      <Project>{ad04f8c5-4558-4e36-af92-0d5338564719}</Project>
+      <Name>AgentMulder.Containers.Catel.7.1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.7.1.csproj">
+      <Project>{7bc34885-3fde-4b2d-9eb8-bbc933aee076}</Project>
+      <Name>AgentMulder.Containers.Ninject.7.1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.7.1.csproj">
+      <Project>{2c40bbab-a1a1-4f02-bf7a-33f6e5dd411c}</Project>
+      <Name>AgentMulder.Containers.Unity.7.1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.7.1.csproj">
+      <Project>{b4eba743-4bd2-4e6e-8917-f508ebf6a59d}</Project>
+      <Name>AgentMulder.ReSharper.Domain.7.1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.7.1.csproj">
+      <Project>{9ee3bab8-0e37-48a2-bbe4-8537288dca3b}</Project>
+      <Name>AgentMulder.ReSharper.Plugin.7.1</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v7.1</ReSharperSdkTargets>

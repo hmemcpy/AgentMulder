@@ -5,20 +5,19 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BF115DF4-E6F9-4205-BE25-CA7F665A7BA6}</ProjectGuid>
+    <ProjectGuid>{4EF1B908-98A3-4D6F-A243-78CA102BE445}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgentMulder.Containers.Catel</RootNamespace>
-    <AssemblyName>AgentMulder.Containers.Catel</AssemblyName>
+    <RootNamespace>AgentMulder.Containers.Unity</RootNamespace>
+    <AssemblyName>AgentMulder.Containers.Unity</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\output\Debug\Containers\</OutputPath>
+    <OutputPath>..\..\output\Debug\6.1\Containers\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\output\Release\Containers\</OutputPath>
+    <OutputPath>..\..\output\Release\6.1\Containers\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,24 +36,25 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CatelContainerInfo.cs" />
-    <Compile Include="Patterns\ServiceLocatorMethodRegistrationPatternBase.cs" />
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Patterns\RegisterType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Patterns\RegisterTypeIfNotYetRegisteredPattern.cs" />
-    <Compile Include="Patterns\RegisterTypePattern.cs" />
+    <Compile Include="UnityContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.csproj">
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.6.1.csproj">
       <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
-      <Name>AgentMulder.ReSharper.Domain</Name>
-      <Private>False</Private>      
+      <Name>AgentMulder.ReSharper.Domain.6.1</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>
   </PropertyGroup>

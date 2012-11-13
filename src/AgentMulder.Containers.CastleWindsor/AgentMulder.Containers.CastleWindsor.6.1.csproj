@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A9390BE1-FACF-4FBF-8B5F-71E6927A7B60}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AgentMulder.Containers.CastleWindsor</RootNamespace>
+    <AssemblyName>AgentMulder.Containers.CastleWindsor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\output\Debug\6.1\Containers\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\output\Release\6.1\Containers\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Helpers\INamespaceExtractor.cs" />
+    <Compile Include="Helpers\InNamespaceExtractor.cs" />
+    <Compile Include="Helpers\InSameNamespaceAsGenericExtractor.cs" />
+    <Compile Include="Helpers\NamespaceExtractor.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\Pick.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentHasAttributeMethodGroup.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInNamespace.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsNonGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\NamespaceRegistrationPatternBase.cs" />
+    <Compile Include="Patterns\FromTypes\FromAssemblyBasePattern.cs" />
+    <Compile Include="Patterns\FromTypes\FromAssemblyContainingNonGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\FromAssemblyNamed.cs" />
+    <Compile Include="Patterns\FromTypes\FromAssembly.cs" />
+    <Compile Include="Patterns\FromTypes\From.cs" />
+    <Compile Include="Patterns\FromTypes\FromAssemblyContainingGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\FromThisAssembly.cs" />
+    <Compile Include="Patterns\FromTypes\FromTypesPatternBase.cs" />
+    <Compile Include="Providers\AllTypesRegistrationProvider.cs" />
+    <Compile Include="Providers\BasedOnRegistrationProvider.cs" />
+    <Compile Include="Providers\ClassesRegistrationProvider.cs" />
+    <Compile Include="Providers\ComponentRegistrationProvider.cs" />
+    <Compile Include="Providers\ImplementedByRegistrationProvider.cs" />
+    <Compile Include="Patterns\Component\ComponentFor\ComponentForBasePattern.cs" />
+    <Compile Include="Patterns\Component\ComponentFor\ComponentForGeneric.cs" />
+    <Compile Include="Patterns\Component\ComponentFor\ComponentForNonGeneric.cs" />
+    <Compile Include="Patterns\Component\ImplementedBy\ImplementedByGeneric.cs" />
+    <Compile Include="Patterns\Component\ImplementedBy\ImplementedByNonGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\Where.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\BasedOnNonGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\InNamespace.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\InSameNamespaceAsGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\InSameNamespaceAsNonGeneric.cs" />
+    <Compile Include="Patterns\WindsorContainerRegisterPattern.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\BasedOnGeneric.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\TypesRegistrationProvider.cs" />
+    <Compile Include="Registrations\ClassesRegistrationCreator.cs" />
+    <Compile Include="Registrations\TypesRegistrationCreator.cs" />
+    <Compile Include="WindsorContainerInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.6.1.csproj">
+      <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
+      <Name>AgentMulder.ReSharper.Domain.6.1</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>
+  </PropertyGroup>
+  <Import Project="$(ReSharperSdkTargets)\Plugin.Targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

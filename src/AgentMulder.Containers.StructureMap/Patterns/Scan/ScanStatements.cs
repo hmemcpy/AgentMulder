@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Patterns;
@@ -8,7 +8,7 @@ using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.StructureMap.Patterns
+namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 {
     [Export("ComponentRegistration", typeof(IRegistrationPattern))]
     internal sealed class ScanStatements : FromDescriptorPatternBase
@@ -26,13 +26,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = Match(registrationRootElement);
-
-            if (match.Matched)
-            {
-
-            }
-
+            // todo extract statements, and use the based on patterns against them
 
             return BasedOnPatterns.SelectMany(basedOnPattern => basedOnPattern.GetBasedOnRegistrations(registrationRootElement));
         }

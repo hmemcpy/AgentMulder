@@ -15,8 +15,8 @@
     <AssemblyName>AgentMulder.ReSharper.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\Containers\</OutputPath>
-    <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>    
+    <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\</OutputPath>
+    <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -99,6 +99,7 @@
     <Compile Include="Registrations\ElementBasedOnRegistration.cs" />
     <Compile Include="Registrations\HasAttributeRegistration.cs" />
     <Compile Include="Registrations\IBasedOnRegistrationCreator.cs" />
+    <Compile Include="Utils\ContainerExtensions.cs" />
     <Compile Include="Utils\MaybeMonadExtensions.cs" />
     <Compile Include="Utils\PsiExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

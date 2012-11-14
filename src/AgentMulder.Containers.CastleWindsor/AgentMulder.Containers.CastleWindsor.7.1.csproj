@@ -52,12 +52,12 @@
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\NamespaceRegistrationPatternBase.cs" />
-    <Compile Include="Patterns\FromTypes\FromAssemblyBasePattern.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyContainingNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyNamed.cs" />
     <Compile Include="Patterns\FromTypes\FromAssembly.cs" />
     <Compile Include="Patterns\FromTypes\From.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyContainingGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\FromAssemblyPatternBase.cs" />
     <Compile Include="Patterns\FromTypes\FromThisAssembly.cs" />
     <Compile Include="Patterns\FromTypes\FromTypesPatternBase.cs" />
     <Compile Include="Providers\AllTypesRegistrationProvider.cs" />
@@ -87,6 +87,7 @@
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.7.1.csproj">
       <Project>{b4eba743-4bd2-4e6e-8917-f508ebf6a59d}</Project>
       <Name>AgentMulder.ReSharper.Domain.7.1</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

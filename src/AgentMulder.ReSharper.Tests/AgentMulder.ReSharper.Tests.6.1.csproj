@@ -37,7 +37,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
+    <Reference Include="Autofac, Version=2.6.3.862, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
@@ -62,6 +63,10 @@
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -83,6 +88,11 @@
     <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />
     <Compile Include="Ninject\SanityTests.cs" />
+    <Compile Include="StructureMap\ContainerTests.cs" />
+    <Compile Include="StructureMap\Helpers\TestStructureMapAttribute.cs" />
+    <Compile Include="StructureMap\RegistryTests.cs" />
+    <Compile Include="StructureMap\SanityTests.cs" />
+    <Compile Include="StructureMap\ScanTests.cs" />
     <Compile Include="TestEnvironmentAssembly.cs" />
     <Compile Include="Unity\Helpers\TestUnityAttribute.cs" />
     <Compile Include="Unity\RegisterTypeTests.cs" />
@@ -109,6 +119,10 @@
     <ProjectReference Include="..\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.6.1.csproj">
       <Project>{E1798D1B-C0DC-4A17-8683-230E89960E49}</Project>
       <Name>AgentMulder.Containers.Ninject.6.1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.6.1.csproj">
+      <Project>{fee31d27-ee22-4849-990c-dcaae623e724}</Project>
+      <Name>AgentMulder.Containers.StructureMap.6.1</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.6.1.csproj">
       <Project>{4EF1B908-98A3-4D6F-A243-78CA102BE445}</Project>

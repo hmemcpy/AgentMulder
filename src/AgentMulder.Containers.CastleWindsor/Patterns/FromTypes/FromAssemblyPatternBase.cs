@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
@@ -8,9 +7,9 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    public abstract class FromAssemblyBasePattern : FromDescriptorPatternBase
+    public abstract class FromAssemblyPatternBase : FromDescriptorPatternBase
     {
-        protected FromAssemblyBasePattern(IStructuralSearchPattern pattern, params IBasedOnPattern[] basedOnPatterns)
+        protected FromAssemblyPatternBase(IStructuralSearchPattern pattern, params IBasedOnPattern[] basedOnPatterns)
             : base(pattern, basedOnPatterns)
         {
         }

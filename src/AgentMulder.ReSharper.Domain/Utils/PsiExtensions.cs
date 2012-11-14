@@ -5,6 +5,7 @@ using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Domain.Utils
@@ -91,6 +92,19 @@ namespace AgentMulder.ReSharper.Domain.Utils
                 string namespaceName = Convert.ToString(expression.ConstantValue.Value);
 
                 return elementFactory.CreateNamespaceDeclaration(namespaceName).DeclaredElement;
+            }
+
+            return null;
+        }
+
+        public static TExpression GetParentExpression<TExpression>(this ITreeNode node)
+            where TExpression : class, ITreeNode
+        {
+            for (var n = node; n != null; n = n.Parent)
+            {
+                var expressionStatement = n as TExpression;
+                if (expressionStatement != null)
+                    return expressionStatement;
             }
 
             return null;

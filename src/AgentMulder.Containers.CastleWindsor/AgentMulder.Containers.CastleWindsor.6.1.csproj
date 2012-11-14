@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\Containers\</OutputPath>
-    <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>   
+    <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,12 +52,12 @@
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\NamespaceRegistrationPatternBase.cs" />
-    <Compile Include="Patterns\FromTypes\FromAssemblyBasePattern.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyContainingNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyNamed.cs" />
     <Compile Include="Patterns\FromTypes\FromAssembly.cs" />
     <Compile Include="Patterns\FromTypes\From.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyContainingGeneric.cs" />
+    <Compile Include="Patterns\FromTypes\FromAssemblyPatternBase.cs" />
     <Compile Include="Patterns\FromTypes\FromThisAssembly.cs" />
     <Compile Include="Patterns\FromTypes\FromTypesPatternBase.cs" />
     <Compile Include="Providers\AllTypesRegistrationProvider.cs" />

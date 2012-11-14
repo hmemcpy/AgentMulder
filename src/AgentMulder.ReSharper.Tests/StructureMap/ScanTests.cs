@@ -28,7 +28,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         }
 
         [TestCase("ScanTheCallingAssembly", 0, new string[0])]
-        [TestCase("ScanTheCallingAssemblyWithDefaultConventions", 1, new[] { "Foo.cs", "Bar.cs" })]
+        [Ignore, TestCase("ScanTheCallingAssemblyWithDefaultConventions", 1, new[] { "Foo.cs", "Bar.cs" })]
         public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {
             RunTest(testName, registrations =>

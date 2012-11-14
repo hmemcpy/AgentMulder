@@ -15,7 +15,7 @@
     <AssemblyName>AgentMulder.ReSharper.Plugin</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\Containers\</OutputPath>
+    <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\</OutputPath>
     <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
     <StartAction>Program</StartAction>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>

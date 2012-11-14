@@ -59,6 +59,7 @@
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.6.1.csproj">
       <Project>{edd20528-9034-4bd4-b5f1-f0159ec7ed14}</Project>
       <Name>AgentMulder.ReSharper.Domain.6.1</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

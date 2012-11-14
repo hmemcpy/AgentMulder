@@ -1,8 +1,6 @@
-﻿using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
+﻿using StructureMap;
 
-namespace TestApplication.Windsor
+namespace TestApplication.StructureMap
 {
     // THIS FILE IS NOT BEING COMPILED, AND IS SET TO BE IGNORED BY RESHARPER
     // this file tests what happens if the plugin tries to analyze unresolved types

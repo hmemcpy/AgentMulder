@@ -52,7 +52,8 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
+    <Reference Include="Autofac, Version=2.6.3.862, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Configuration">
@@ -78,6 +79,10 @@
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -150,6 +155,26 @@
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToNonGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToSelf.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericAddGenericExpression.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericAddGenericMultipleStatements.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericAddGenericStatement.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericExpression.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericMultipleStatements.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericStatement.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericWithAdditionalParams.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForNonGenericAddNonGenericTypeOf.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForNonGenericUseNonGenericTypeof.cs" />
+    <Compile Include="StructureMap\ContainerTests\ObjectFactoryContainerConfigure.cs" />
+    <Compile Include="StructureMap\MethodNamedBindInThisClass.cs" />
+    <Compile Include="StructureMap\MethodNamedForOnSomeClass.cs" />
+    <Compile Include="StructureMap\RegistryTests\ForGenericUseGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ForGenericUseGenericMultipleStatements.cs" />
+    <Compile Include="StructureMap\RegistryTests\ForGenericUseGenericWithAdditionalParams.cs" />
+    <Compile Include="StructureMap\RegistryTests\ForNonGenericUseNonGenericType.cs" />
+    <Compile Include="StructureMap\RegistryTests\RegistryInstanceConfigure.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssembly.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
+    <None Include="StructureMap\_DoesNotCompile-BrokenReference.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />
     <Compile Include="Types\Baz.cs" />

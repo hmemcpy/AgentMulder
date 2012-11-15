@@ -23,20 +23,12 @@ namespace AgentMulder.ReSharper.Domain.Registrations
                 return false;
             }
 
-            if (sourceModule.Equals(targetModule))
-            {
-                if (basedOn != null)
-                {
-                    return basedOn.IsSatisfiedBy(typeElement);
-                }
-            }
-
-            return false;
+            return sourceModule.Equals(targetModule) && basedOn.IsSatisfiedBy(typeElement);
         }
 
         public override string ToString()
         {
-            return string.Format("In module(s): {0}, {1}", sourceModule.Name, base.ToString());
+            return string.Format("In module(s): {0}, {1}", sourceModule.Name, basedOn);
         }
     }
 }

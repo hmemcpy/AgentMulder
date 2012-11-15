@@ -8,7 +8,6 @@ using AgentMulder.ReSharper.Domain.Elements.Modules.Impl;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
@@ -48,34 +47,15 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
 
                 IEnumerable<IModule> modules = arguments.SelectNotNull(argument => ModuleExtractor.GetTargetModule(argument.Value));
 
+                IEnumerable<BasedOnRegistrationBase> basedOnRegistrations = BasedOnPatterns.SelectMany(
+                    basedOnPattern => basedOnPattern.GetBasedOnRegistrations(parentExpression.Expression)).ToList();
+
                 foreach (IModule module in modules)
                 {
                     var registration = new ModuleBasedOnRegistration(module, new DefaultScanAssemblyRegistration(registrationRootElement));
-
-                    var basedOnRegistrations = BasedOnPatterns.SelectMany(
-                        basedOnPattern => basedOnPattern.GetBasedOnRegistrations(parentExpression.Expression));
-
-                    yield return new CompositeRegistration(registrationRootElement, registration, basedOnRegistrations.ToArray());
+                    
+                    yield return new CompositeRegistration(registrationRootElement, registration, basedOnRegistrations);
                 }
-            }
-        }
-
-        private class CompositeRegistration : ComponentRegistrationBase
-        {
-            private readonly ModuleBasedOnRegistration moduleBasedOnRegistration;
-            private readonly IEnumerable<BasedOnRegistrationBase> basedOnRegistrations;
-
-            public CompositeRegistration(ITreeNode registrationElement, ModuleBasedOnRegistration moduleBasedOnRegistration, IEnumerable<BasedOnRegistrationBase> basedOnRegistrations)
-                : base(registrationElement)
-            {
-                this.moduleBasedOnRegistration = moduleBasedOnRegistration;
-                this.basedOnRegistrations = basedOnRegistrations;
-            }
-
-            public override bool IsSatisfiedBy(ITypeElement typeElement)
-            {
-                return moduleBasedOnRegistration.IsSatisfiedBy(typeElement) && 
-                       basedOnRegistrations.All(registration => registration.IsSatisfiedBy(typeElement));
             }
         }
 

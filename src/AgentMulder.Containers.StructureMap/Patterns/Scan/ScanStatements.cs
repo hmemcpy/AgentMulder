@@ -6,7 +6,6 @@ using AgentMulder.ReSharper.Domain.Elements.Modules;
 using AgentMulder.ReSharper.Domain.Elements.Modules.Impl;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
@@ -41,20 +40,22 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
                 var invocationExpressions = match.GetMatchedElementList("statements")
                                                  .Cast<IExpressionStatement>()
                                                  .Select(statement => statement.Expression)
-                                                 .OfType<IInvocationExpression>();
+                                                 .OfType<IInvocationExpression>()
+                                                 .ToList();
 
-                IEnumerable<IModule> modules = invocationExpressions.SelectNotNull(expression => ModuleExtractor.GetTargetModule(expression.InvokedExpression));
+                var registrations = (from expression in invocationExpressions
+                                     from basedOnPattern in BasedOnPatterns
+                                     from registration in basedOnPattern.GetBasedOnRegistrations(expression)
+                                     select registration).ToList();
+
+                var modules = invocationExpressions.SelectNotNull(expression => ModuleExtractor.GetTargetModule(expression.InvokedExpression));
 
                 foreach (var module in modules)
                 {
-                    yield break;
+                    var registration = new ModuleBasedOnRegistration(module, new DefaultScanAssemblyRegistration(registrationRootElement));
+
+                    yield return new CompositeRegistration(registrationRootElement, registration, registrations);
                 }
-
-
-                //return from argumentPattern in scanPatterns
-                //       from expression in invocationExpressions
-                //       from registration in argumentPattern.GetComponentRegistrations(expression)
-                //       select registration;
             }
         }
     }

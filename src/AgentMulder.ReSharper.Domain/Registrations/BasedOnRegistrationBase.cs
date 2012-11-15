@@ -8,7 +8,6 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public abstract class BasedOnRegistrationBase : ComponentRegistrationBase
     {
-        // todo bug
         private readonly List<Predicate<ITypeElement>> filters = new List<Predicate<ITypeElement>>(); 
         
         protected BasedOnRegistrationBase(ITreeNode registrationRootElement)

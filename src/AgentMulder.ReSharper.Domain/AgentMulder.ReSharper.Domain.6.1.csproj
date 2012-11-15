@@ -97,6 +97,8 @@
     <Compile Include="Patterns\IRegistrationPattern.cs" />
     <Compile Include="Patterns\MultipleMatchBasedOnPatternBase.cs" />
     <Compile Include="Patterns\RegistrationPatternBase.cs" />
+    <Compile Include="Registrations\CompositeRegistration.cs" />
+    <Compile Include="Registrations\DefaultScanAssemblyRegistration.cs" />
     <Compile Include="Registrations\ElementBasedOnRegistration.cs" />
     <Compile Include="Registrations\HasAttributeRegistration.cs" />
     <Compile Include="Registrations\IBasedOnRegistrationCreator.cs" />

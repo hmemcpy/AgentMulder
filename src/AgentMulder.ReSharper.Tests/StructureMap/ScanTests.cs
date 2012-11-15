@@ -27,7 +27,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             get { return new StructureMapContainerInfo(); }
         }
 
-        [TestCase("ScanTheCallingAssembly", 1, new string[0])]
+        [TestCase("ScanTheCallingAssembly", 1, new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ScanTheCallingAssemblyWithDefaultConventions", 1, new[] { "Foo.cs", "Bar.cs" })]
         public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {
@@ -35,7 +35,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             {
                 ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
-                Assert.AreEqual(registrationsCount, registrations.Count());
+                Assert.AreEqual(registrationsCount, registrations.Count);
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
@@ -44,6 +44,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             });
         }
 
+        [TestCase("ScanTheCallingAssembly", new[] { "IFoo.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>

@@ -54,11 +54,12 @@
     <Compile Include="Patterns\For\Use\UseGeneric.cs" />
     <Compile Include="Patterns\For\Use\UseNonGeneric.cs" />
     <Compile Include="Patterns\Scan\ScanStatements.cs" />
-    <Compile Include="Patterns\Scan\TheCallingAssembly.cs" />
+    <Compile Include="Patterns\Scan\WithDefaultConventions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>
       </SubType>
     </Compile>
+    <Compile Include="Registrations\DefautConventionRegistration.cs" />
     <Compile Include="StructureMapContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>

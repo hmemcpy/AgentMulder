@@ -53,6 +53,7 @@
       <SubType>
       </SubType>
     </Compile>
+    <Compile Include="Registrations\DefautConventionRegistration.cs" />
     <Compile Include="StructureMapContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>

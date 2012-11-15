@@ -27,7 +27,8 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             get { return new StructureMapContainerInfo(); }
         }
 
-        [TestCase("ScanTheCallingAssembly", 1, new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanNoAssemblyStatement", 0, new string[0])]
+        [TestCase("ScanTheCallingAssembly", 0, new string[0])]
         [TestCase("ScanTheCallingAssemblyWithDefaultConventions", 1, new[] { "Foo.cs", "Bar.cs" })]
         public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {

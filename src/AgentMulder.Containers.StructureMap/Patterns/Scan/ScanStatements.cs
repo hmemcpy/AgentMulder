@@ -48,6 +48,11 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
                                      from registration in basedOnPattern.GetBasedOnRegistrations(expression)
                                      select registration).ToList();
 
+                if (!registrations.Any())
+                {
+                    yield break;
+                }
+
                 var modules = invocationExpressions.SelectNotNull(expression => ModuleExtractor.GetTargetModule(expression.InvokedExpression));
 
                 foreach (var module in modules)

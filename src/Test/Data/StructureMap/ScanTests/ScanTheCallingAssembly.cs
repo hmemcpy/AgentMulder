@@ -8,9 +8,13 @@ namespace TestApplication.StructureMap.ScanTests
         {
             var container = new Container(x => x.Scan(scanner =>
             {
+                // without specifying conventions, this should yield no results
+
+                // ReSharper disable ConvertToLambdaExpression
                 scanner.TheCallingAssembly();
+                // ReSharper restore ConvertToLambdaExpression
             }));
-        } 
- 
+        }
+
     }
 }

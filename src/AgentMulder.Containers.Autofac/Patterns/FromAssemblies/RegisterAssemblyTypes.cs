@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using AgentMulder.Containers.Autofac.Patterns.Helpers;
 using AgentMulder.Containers.Autofac.Registrations;
 using AgentMulder.ReSharper.Domain.Elements.Modules;
+using AgentMulder.ReSharper.Domain.Elements.Modules.Impl;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ProjectModel;
@@ -30,7 +30,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
         public RegisterAssemblyTypes([ImportMany] params IBasedOnPattern[] basedOnPatterns)
             : base(pattern, basedOnPatterns)
         {
-            ModuleExtractor.AddExtractor(new AutofacModuleThisAssemblyExtractor());
+            ModuleExtractor.AddExtractor(new CallingAssemblyExtractor("Autofac.Module", "ThisAssembly"));
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)

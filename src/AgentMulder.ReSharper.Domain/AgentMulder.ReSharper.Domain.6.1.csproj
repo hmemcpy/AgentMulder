@@ -55,6 +55,7 @@
     <Compile Include="Elements\IElementExtractor.cs" />
     <Compile Include="Elements\Modules\IModuleExtractor.cs" />
     <Compile Include="Elements\Modules\Impl\AssemblyNameExtractor.cs" />
+    <Compile Include="Elements\Modules\Impl\CallingAssemblyExtractor.cs" />
     <Compile Include="Elements\Modules\Impl\GetExecutingAssemblyExtractor.cs" />
     <Compile Include="Elements\Modules\Impl\TypeAssemblyPropertyExtractor.cs" />
     <Compile Include="Elements\Modules\Impl\TypeElementExtractor.cs" />

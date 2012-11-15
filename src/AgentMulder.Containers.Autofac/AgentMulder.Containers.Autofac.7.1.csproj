@@ -57,7 +57,6 @@
     <Compile Include="Patterns\FromAssemblies\BasedOn\InNamespaceOf.cs" />
     <Compile Include="Patterns\FromAssemblies\BasedOn\InNamespaceString.cs" />
     <Compile Include="Patterns\Helpers\ReturnTypeCollector.cs" />
-    <Compile Include="Patterns\Helpers\AutofacModuleThisAssemblyExtractor.cs" />
     <Compile Include="Patterns\FromAssemblies\RegisterAssemblyTypes.cs" />
     <Compile Include="Patterns\RegisterLambdaExpression.cs" />
     <Compile Include="Patterns\RegisterLambdaStatements.cs" />

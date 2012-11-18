@@ -109,5 +109,24 @@ namespace AgentMulder.ReSharper.Domain.Utils
 
             return null;
         }
+
+        public static IInvocationExpression GetInvocationExpression(this ITreeNode node)
+        {
+            // first, try to find the parent statement expression
+            var statement = node.GetParentExpression<IExpressionStatement>();
+            if (statement != null)
+            {
+                return statement.Expression as IInvocationExpression;
+            }
+
+            // otherwise, try finding the lambda expression, and take its invocation
+            var lambdaExpression = node.GetParentExpression<ILambdaExpression>();
+            if (lambdaExpression != null)
+            {
+                return lambdaExpression.BodyExpression as IInvocationExpression;
+            }
+
+            return null;
+        }
     }
 }

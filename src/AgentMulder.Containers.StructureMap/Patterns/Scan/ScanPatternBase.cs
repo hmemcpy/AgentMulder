@@ -6,34 +6,48 @@ using AgentMulder.ReSharper.Domain.Elements.Modules;
 using AgentMulder.ReSharper.Domain.Elements.Modules.Impl;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
+using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
-using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
 namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 {
-    [Export("ComponentRegistration", typeof(IRegistrationPattern))]
-    internal sealed class ScanStatements : FromDescriptorPatternBase
+    [InheritedExport("ComponentRegistration", typeof(IRegistrationPattern))]
+    internal abstract class ScanPatternBase : FromDescriptorPatternBase
     {
-        private static readonly IStructuralSearchPattern pattern = 
-            new CSharpStructuralSearchPattern("$registry$.Scan($id$ => { $statements$ })",
-                new ExpressionPlaceholder("registry", "global::StructureMap.Configuration.DSL.IRegistry"),
-                new ArgumentPlaceholder("id"),
-                new StatementPlaceholder("statements", -1, -1));
-
-        [ImportingConstructor]
-        public ScanStatements([ImportMany] IEnumerable<IBasedOnPattern> basedOnPatterns)
+        protected ScanPatternBase(IStructuralSearchPattern pattern, IEnumerable<IBasedOnPattern> basedOnPatterns)
             : base(pattern, basedOnPatterns)
+        {
+        }
+
+        static ScanPatternBase()
         {
             ModuleExtractor.AddExtractor(new CallingAssemblyExtractor("StructureMap.Graph.IAssemblyScanner", "TheCallingAssembly"));
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IStructuralMatchResult match = Match(registrationRootElement);
+            // todo this is duplicated, needs refactoring!
+            // This entire thing is one big hack. Need to come back to it one day :)
+            // There is (currently) no way to create a pattern that would match the Scan() call with implicit 'this' in ReSharper SSR
+            // (i.e. a call to Scan being made withing a method, located in the Registry class)
+            // Therefore I'm only matching by the method name only, and later verifying that the method indeed belongs to StructureMap, by
+            // making sure the invocation's qualifier derived from global::StructureMap.Configuration.DSL.IRegistry
+
+            if (!registrationRootElement.IsContainerCall(Constants.StructureMapRegistryTypeName))
+            {
+                yield break;
+            }
+
+            IInvocationExpression invocationExpression = registrationRootElement.GetInvocationExpression();
+            if (invocationExpression == null)
+            {
+                yield break;
+            }
+
+            IStructuralMatchResult match = Match(invocationExpression);
 
             if (match.Matched)
             {

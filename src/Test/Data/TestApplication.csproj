@@ -172,6 +172,11 @@
     <Compile Include="StructureMap\RegistryTests\ForGenericUseGenericWithAdditionalParams.cs" />
     <Compile Include="StructureMap\RegistryTests\ForNonGenericUseNonGenericType.cs" />
     <Compile Include="StructureMap\RegistryTests\RegistryInstanceConfigure.cs" />
+    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanNoAssemblyStatement.cs" />
+    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanTheCallingAssembly.cs" />
+    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanTheCallingAssemblyAddAllTypesOfGeneric.cs" />
+    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanTheCallingAssemblyAddAllTypesOfNonGeneric.cs" />
+    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <Compile Include="StructureMap\ScanTests\ScanNoAssemblyStatement.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssembly.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyAddAllTypesOfGeneric.cs" />

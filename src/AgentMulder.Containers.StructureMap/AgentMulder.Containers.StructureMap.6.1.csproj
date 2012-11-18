@@ -43,6 +43,9 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Patterns\For\Add\AddGeneric.cs" />
+    <Compile Include="Patterns\For\Add\AddNonGeneric.cs" />
     <Compile Include="Patterns\For\ForBasePattern.cs" />
     <Compile Include="Patterns\For\ForGeneric.cs" />
     <Compile Include="Patterns\For\ForNonGeneric.cs" />
@@ -52,7 +55,13 @@
     <Compile Include="Patterns\For\Use\UseNonGeneric.cs" />
     <Compile Include="Patterns\Scan\AddAllTypesOfGeneric.cs" />
     <Compile Include="Patterns\Scan\AddAllTypesOfNonGeneric.cs" />
-    <Compile Include="Patterns\Scan\ScanStatements.cs" />
+    <Compile Include="Patterns\Scan\RegistryScanPattern.cs">
+      <DependentUpon>ScanPattern.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Patterns\Scan\ScanPattern.cs" />
+    <Compile Include="Patterns\Scan\ScanPatternBase.cs">
+      <DependentUpon>ScanPattern.cs</DependentUpon>
+    </Compile>
     <Compile Include="Patterns\Scan\WithDefaultConventions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>

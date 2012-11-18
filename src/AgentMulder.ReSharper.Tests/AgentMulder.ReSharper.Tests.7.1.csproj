@@ -90,6 +90,7 @@
     <Compile Include="StructureMap\Helpers\TestStructureMapAttribute.cs" />
     <Compile Include="StructureMap\RegistryTests.cs" />
     <Compile Include="StructureMap\SanityTests.cs" />
+    <Compile Include="StructureMap\ScanRegistryTests.cs" />
     <Compile Include="StructureMap\ScanTests.cs" />
     <Compile Include="Unity\Helpers\TestUnityAttribute.cs" />
     <Compile Include="Unity\RegisterTypeTests.cs" />

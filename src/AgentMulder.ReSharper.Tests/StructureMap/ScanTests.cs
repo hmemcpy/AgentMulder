@@ -32,7 +32,6 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ScanTheCallingAssemblyWithDefaultConventions", 1, new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ScanTheCallingAssemblyAddAllTypesOfGeneric", 1, new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
         [TestCase("ScanTheCallingAssemblyAddAllTypesOfNonGeneric", 1, new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
-        [TestCase("ScanTheCallingAssemblyAddAllTypesOfOpenGenericType", 1, new[] { "MyList.cs" })]
         // todo make sure scans work within Registries too!
         public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {

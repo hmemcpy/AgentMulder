@@ -30,6 +30,10 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ScanNoAssemblyStatement", 0, new string[0])]
         [TestCase("ScanTheCallingAssembly", 0, new string[0])]
         [TestCase("ScanTheCallingAssemblyWithDefaultConventions", 1, new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanTheCallingAssemblyAddAllTypesOfGeneric", 1, new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
+        [TestCase("ScanTheCallingAssemblyAddAllTypesOfNonGeneric", 1, new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
+        [TestCase("ScanTheCallingAssemblyAddAllTypesOfOpenGenericType", 1, new[] { "MyList.cs" })]
+        // todo make sure scans work within Registries too!
         public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {
             RunTest(testName, registrations =>
@@ -45,7 +49,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             });
         }
 
-        [TestCase("ScanTheCallingAssembly", new[] { "IFoo.cs" })]
+        [TestCase("ScanTheCallingAssemblyWithDefaultConventions", new[] { "CommonImpl1.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>
@@ -59,6 +63,12 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
                         Assert.That(registrations.All((r => !r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
                 }
             });
+        }
+
+        [TestCase("ScanTheCallingAssembly")]
+        public void EmptyTest(string testName)
+        {
+            RunTest(testName, CollectionAssert.IsEmpty);
         }
     }
 }

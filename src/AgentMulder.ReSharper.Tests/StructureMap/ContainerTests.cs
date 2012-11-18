@@ -43,7 +43,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             {
                 ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
-                Assert.AreEqual(codeFiles.Length, registrations.Count());
+                Assert.AreEqual(codeFiles.Length, registrations.Count);
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>

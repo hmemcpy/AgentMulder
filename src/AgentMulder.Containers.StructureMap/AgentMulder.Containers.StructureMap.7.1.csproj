@@ -53,13 +53,15 @@
     <Compile Include="Patterns\For\RegistryForNonGeneric.cs" />
     <Compile Include="Patterns\For\Use\UseGeneric.cs" />
     <Compile Include="Patterns\For\Use\UseNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\AddAllTypesOfGeneric.cs" />
+    <Compile Include="Patterns\Scan\AddAllTypesOfNonGeneric.cs" />
     <Compile Include="Patterns\Scan\ScanStatements.cs" />
     <Compile Include="Patterns\Scan\WithDefaultConventions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>
       </SubType>
     </Compile>
-    <Compile Include="Registrations\DefautConventionRegistration.cs" />
+    <Compile Include="Registrations\DefaultStructureMapConvention.cs" />
     <Compile Include="StructureMapContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>

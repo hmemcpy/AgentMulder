@@ -6,9 +6,9 @@ using JetBrains.Util;
 
 namespace AgentMulder.Containers.StructureMap.Registrations
 {
-    internal class DefautConventionRegistration : BasedOnRegistrationBase
+    internal class DefaultStructureMapConvention : BasedOnRegistrationBase
     {
-        public DefautConventionRegistration(ITreeNode registrationRootElement)
+        public DefaultStructureMapConvention(ITreeNode registrationRootElement)
             : base(registrationRootElement)
         {
             AddFilter(element =>

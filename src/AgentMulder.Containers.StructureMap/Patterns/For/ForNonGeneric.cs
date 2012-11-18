@@ -46,6 +46,5 @@ namespace AgentMulder.Containers.StructureMap.Patterns.For
                 }
             }
         }
-
     }
 }

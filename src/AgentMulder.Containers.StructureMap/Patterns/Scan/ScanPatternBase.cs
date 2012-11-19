@@ -17,14 +17,12 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
     [InheritedExport("ComponentRegistration", typeof(IRegistrationPattern))]
     internal abstract class ScanPatternBase : FromDescriptorPatternBase
     {
-        protected ScanPatternBase(IStructuralSearchPattern pattern, IEnumerable<IBasedOnPattern> basedOnPatterns)
+        private readonly IEnumerable<FromAssemblyPatternBase> fromAssemblyPatterns;
+
+        protected ScanPatternBase(IStructuralSearchPattern pattern, IEnumerable<FromAssemblyPatternBase> fromAssemblyPatterns, IEnumerable<IBasedOnPattern> basedOnPatterns)
             : base(pattern, basedOnPatterns)
         {
-        }
-
-        static ScanPatternBase()
-        {
-            ModuleExtractor.AddExtractor(new CallingAssemblyExtractor("StructureMap.Graph.IAssemblyScanner", "TheCallingAssembly"));
+            this.fromAssemblyPatterns = fromAssemblyPatterns;
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
@@ -62,22 +60,14 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
                                      from registration in basedOnPattern.GetBasedOnRegistrations(expression)
                                      select registration).ToList();
 
-                if (!registrations.Any())
+                if (registrations.Any())
                 {
-                    yield break;
-                }
+                    var moduleRegistrations = (from expression in invocationExpressions
+                                               from pattern in fromAssemblyPatterns
+                                               from registration in pattern.GetComponentRegistrations(expression)
+                                               select registration).ToList();
 
-                var modules = invocationExpressions.SelectNotNull(expression => ModuleExtractor.GetTargetModule(expression.InvokedExpression));
-
-                foreach (var module in modules)
-                {
-                    // todo blech, fix this
-                    yield return new CompositeRegistration(registrationRootElement, registrations.Union(
-                        new ComponentRegistrationBase[]
-                        {
-                            new DefaultScanAssemblyRegistration(registrationRootElement),
-                            new ModuleBasedOnRegistration(registrationRootElement, module)
-                        }));
+                    yield return new CompositeRegistration(registrationRootElement, registrations.Union(moduleRegistrations));
                 }
             }
         }

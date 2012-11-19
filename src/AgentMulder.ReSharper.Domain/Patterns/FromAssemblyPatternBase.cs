@@ -26,11 +26,6 @@ namespace AgentMulder.ReSharper.Domain.Patterns
                                      from registration in pattern.GetBasedOnRegistrations(registrationRootElement)
                                      select registration).ToList();
 
-                if (!registrations.Any())
-                {
-                    yield break;
-                }
-
                 yield return new CompositeRegistration(registrationRootElement, registrations.Union(new ComponentRegistrationBase[]
                 {
                     new ModuleBasedOnRegistration(registrationRootElement, module)

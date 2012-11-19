@@ -55,6 +55,7 @@
     <Compile Include="Patterns\For\Use\UseNonGeneric.cs" />
     <Compile Include="Patterns\Scan\AddAllTypesOfGeneric.cs" />
     <Compile Include="Patterns\Scan\AddAllTypesOfNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\AssemblyContainingTypeGeneric.cs" />
     <Compile Include="Patterns\Scan\RegistryScanPattern.cs">
       <DependentUpon>ScanPattern.cs</DependentUpon>
     </Compile>
@@ -62,6 +63,7 @@
     <Compile Include="Patterns\Scan\ScanPatternBase.cs">
       <DependentUpon>ScanPattern.cs</DependentUpon>
     </Compile>
+    <Compile Include="Patterns\Scan\TheCallingAssembly.cs" />
     <Compile Include="Patterns\Scan\WithDefaultConventions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>

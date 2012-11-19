@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using AgentMulder.ReSharper.Domain.Elements.Modules;
 using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
@@ -8,20 +9,21 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 {
     [Export("FromAssembly", typeof(FromAssemblyPatternBase))]
-    public class TheCallingAssembly : FromAssemblyPatternBase
+    public class AssemblyContainingTypeGeneric : FromAssemblyPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$scanner$.TheCallingAssembly()",
-                new ExpressionPlaceholder("scanner", "global::StructureMap.Graph.IAssemblyScanner"));
+            new CSharpStructuralSearchPattern("$scanner$.AssemblyContainingType<$type$>()",
+                new ExpressionPlaceholder("scanner", "global::StructureMap.Graph.IAssemblyScanner"),
+                new TypePlaceholder("type"));
         
-        public TheCallingAssembly()
+        public AssemblyContainingTypeGeneric()
             : base(pattern)
         {
         }
 
         protected override IModule GetTargetModule(IStructuralMatchResult match)
         {
-            return match.MatchedElement.GetPsiModule().ContainingProjectModule;
+            return ModuleExtractor.GetTargetModule(match.GetMatchedType("type"));
         }
     }
 }

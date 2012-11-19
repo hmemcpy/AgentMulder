@@ -23,12 +23,12 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
+        protected override IEnumerable<FilteredRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
             yield return new ImplementedInterfacesRegistration(registrationRootElement);
         }
 
-        private class ImplementedInterfacesRegistration : BasedOnRegistrationBase
+        private class ImplementedInterfacesRegistration : FilteredRegistrationBase
         {
             public ImplementedInterfacesRegistration(ITreeNode registrationRootElement)
                 : base(registrationRootElement)

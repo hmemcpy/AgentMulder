@@ -5,6 +5,6 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public interface IBasedOnRegistrationCreator
     {
-        BasedOnRegistrationBase Create(ITreeNode registrationRootElement, ITypeElement basedOnElement);
+        FilteredRegistrationBase Create(ITreeNode registrationRootElement, ITypeElement basedOnElement);
     }
 }

@@ -23,7 +23,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
+        protected override IEnumerable<FilteredRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
             var argument = match.GetMatchedElement("argument") as ICSharpArgument;
             if (argument != null)

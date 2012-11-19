@@ -71,9 +71,13 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 
                 foreach (var module in modules)
                 {
-                    var registration = new ModuleBasedOnRegistration(module, new DefaultScanAssemblyRegistration(registrationRootElement));
-
-                    yield return new CompositeRegistration(registrationRootElement, registration, registrations);
+                    // todo blech, fix this
+                    yield return new CompositeRegistration(registrationRootElement, registrations.Union(
+                        new ComponentRegistrationBase[]
+                        {
+                            new DefaultScanAssemblyRegistration(registrationRootElement),
+                            new ModuleBasedOnRegistration(registrationRootElement, module)
+                        }));
                 }
             }
         }

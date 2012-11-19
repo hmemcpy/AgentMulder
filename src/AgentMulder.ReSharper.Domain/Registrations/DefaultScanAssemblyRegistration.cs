@@ -4,7 +4,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
-    public class DefaultScanAssemblyRegistration : BasedOnRegistrationBase
+    public class DefaultScanAssemblyRegistration : FilteredRegistrationBase
     {
         public DefaultScanAssemblyRegistration(ITreeNode registrationRootElement)
             : base(registrationRootElement)

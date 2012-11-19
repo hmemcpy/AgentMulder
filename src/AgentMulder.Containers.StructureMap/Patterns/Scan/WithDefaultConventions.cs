@@ -27,7 +27,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
             return GetBasedOnRegistrations(registrationRootElement);
         }
 
-        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
+        public override IEnumerable<FilteredRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
             var match = Match(registrationRootElement);
 

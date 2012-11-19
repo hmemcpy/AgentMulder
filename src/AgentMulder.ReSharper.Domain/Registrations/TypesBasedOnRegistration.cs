@@ -6,10 +6,10 @@ namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public class TypesBasedOnRegistration : ComponentRegistrationBase
     {
-        private readonly BasedOnRegistrationBase basedOn;
+        private readonly FilteredRegistrationBase basedOn;
         private readonly IEnumerable<ITypeElement> types;
 
-        public TypesBasedOnRegistration(IEnumerable<ITypeElement> types, BasedOnRegistrationBase basedOn)
+        public TypesBasedOnRegistration(IEnumerable<ITypeElement> types, FilteredRegistrationBase basedOn)
             : base(basedOn.RegistrationElement)
         {
             this.basedOn = basedOn;

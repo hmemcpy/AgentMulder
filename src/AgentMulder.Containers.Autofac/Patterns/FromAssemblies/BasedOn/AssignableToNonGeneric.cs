@@ -24,7 +24,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
+        protected override IEnumerable<FilteredRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
             var argument = match.GetMatchedElement("argument") as ICSharpArgument;
             if (argument == null)
@@ -42,7 +42,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
                     if (typeElement != null)
                     {
                         // todo possible bug: same as in the generic variant. Currently works the same as As<T>.
-                        yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
+                        yield return new ServiceRegistration(registrationRootElement, typeElement);
                     }
                 }
             }

@@ -99,7 +99,7 @@
     <Compile Include="Patterns\RegistrationPatternBase.cs" />
     <Compile Include="Registrations\CompositeRegistration.cs" />
     <Compile Include="Registrations\DefaultScanAssemblyRegistration.cs" />
-    <Compile Include="Registrations\ElementBasedOnRegistration.cs" />
+    <Compile Include="Registrations\ServiceRegistration.cs" />
     <Compile Include="Registrations\HasAttributeRegistration.cs" />
     <Compile Include="Registrations\IBasedOnRegistrationCreator.cs" />
     <Compile Include="Utils\ContainerExtensions.cs" />
@@ -113,7 +113,7 @@
     <Compile Include="Registrations\IRegistrationPatternsProvider.cs" />
     <Compile Include="Registrations\ModuleBasedOnRegistration.cs" />
     <Compile Include="Registrations\TypesBasedOnRegistration.cs" />
-    <Compile Include="Registrations\BasedOnRegistrationBase.cs" />
+    <Compile Include="Registrations\FilteredRegistrationBase.cs" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

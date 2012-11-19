@@ -28,7 +28,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
             return GetBasedOnRegistrations(registrationRootElement);
         }
 
-        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
+        public override IEnumerable<FilteredRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
             IStructuralMatchResult match = Match(registrationRootElement);
 
@@ -40,7 +40,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
                     ITypeElement typeElement = matchedType.GetTypeElement();
                     if (typeElement != null)
                     {
-                        yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
+                        yield return new ServiceRegistration(registrationRootElement, typeElement);
                     }
                 }
             }

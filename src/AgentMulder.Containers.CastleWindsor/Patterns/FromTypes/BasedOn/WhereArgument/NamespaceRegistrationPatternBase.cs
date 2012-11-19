@@ -19,7 +19,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereA
             return GetBasedOnRegistrations(registrationRootElement);
         }
 
-        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
+        public override IEnumerable<FilteredRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
             var match = Match(registrationRootElement);
 

@@ -4,7 +4,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Autofac.Registrations
 {
-    internal sealed class ExceptRegistration : BasedOnRegistrationBase
+    internal sealed class ExceptRegistration : FilteredRegistrationBase
     {
         public ExceptRegistration(ITreeNode registrationRootElement, ITypeElement exceptElement)
             : base(registrationRootElement)

@@ -47,14 +47,18 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
 
                 IEnumerable<IModule> modules = arguments.SelectNotNull(argument => ModuleExtractor.GetTargetModule(argument.Value));
 
-                IEnumerable<BasedOnRegistrationBase> basedOnRegistrations = BasedOnPatterns.SelectMany(
+                IEnumerable<FilteredRegistrationBase> basedOnRegistrations = BasedOnPatterns.SelectMany(
                     basedOnPattern => basedOnPattern.GetBasedOnRegistrations(parentExpression.Expression)).ToList();
 
                 foreach (IModule module in modules)
                 {
-                    var registration = new ModuleBasedOnRegistration(module, new DefaultScanAssemblyRegistration(registrationRootElement));
-                    
-                    yield return new CompositeRegistration(registrationRootElement, registration, basedOnRegistrations);
+                    // todo blech, fix this
+                    yield return new CompositeRegistration(registrationRootElement, basedOnRegistrations.Union(
+                        new ComponentRegistrationBase[]
+                        {
+                            new DefaultScanAssemblyRegistration(registrationRootElement),
+                            new ModuleBasedOnRegistration(registrationRootElement, module)
+                        }));
                 }
             }
         }

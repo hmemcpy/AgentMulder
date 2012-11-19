@@ -8,12 +8,12 @@ namespace AgentMulder.Containers.CastleWindsor.Registrations
     [Export("Types", typeof(IBasedOnRegistrationCreator))]
     internal sealed class TypesRegistrationCreator : IBasedOnRegistrationCreator
     {
-        public BasedOnRegistrationBase Create(ITreeNode registrationRootElement, ITypeElement basedOnElement)
+        public FilteredRegistrationBase Create(ITreeNode registrationRootElement, ITypeElement basedOnElement)
         {
             return new TypesRegistration(registrationRootElement, basedOnElement);
         }
 
-        private sealed class TypesRegistration : BasedOnRegistrationBase
+        private sealed class TypesRegistration : FilteredRegistrationBase
         {
             public TypesRegistration(ITreeNode registrationRootElement, ITypeElement basedOnElement)
                 : base(registrationRootElement)

@@ -59,6 +59,7 @@
     <Compile Include="Patterns\Scan\RegistryScanPattern.cs" />
     <Compile Include="Patterns\Scan\ScanPattern.cs" />
     <Compile Include="Patterns\Scan\ScanPatternBase.cs" />
+    <Compile Include="Patterns\Scan\TheCallingAssembly.cs" />
     <Compile Include="Patterns\Scan\WithDefaultConventions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>

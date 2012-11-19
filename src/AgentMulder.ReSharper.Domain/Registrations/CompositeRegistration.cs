@@ -1,26 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
-    internal class CompositeRegistration : ComponentRegistrationBase
+    public class CompositeRegistration : ComponentRegistrationBase
     {
-        private readonly ModuleBasedOnRegistration moduleBasedOnRegistration;
-        private readonly IEnumerable<BasedOnRegistrationBase> basedOnRegistrations;
+        private readonly IEnumerable<IComponentRegistration> componentRegistrations;
 
-        public CompositeRegistration(ITreeNode registrationElement, ModuleBasedOnRegistration moduleBasedOnRegistration, IEnumerable<BasedOnRegistrationBase> basedOnRegistrations)
+        public CompositeRegistration(ITreeNode registrationElement, IEnumerable<IComponentRegistration> componentRegistrations)
             : base(registrationElement)
         {
-            this.moduleBasedOnRegistration = moduleBasedOnRegistration;
-            this.basedOnRegistrations = basedOnRegistrations;
+            this.componentRegistrations = componentRegistrations;
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
         {
-            return moduleBasedOnRegistration.IsSatisfiedBy(typeElement) && 
-                   basedOnRegistrations.All(registration => registration.IsSatisfiedBy(typeElement));
+            return componentRegistrations.All(registration => registration.IsSatisfiedBy(typeElement));
+        }
+
+        public override string ToString()
+        {
+            return string.Join(Environment.NewLine, componentRegistrations.Select(registration => registration.ToString()));
         }
     }
 }

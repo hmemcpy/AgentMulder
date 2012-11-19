@@ -6,11 +6,11 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
-    public abstract class BasedOnRegistrationBase : ComponentRegistrationBase
+    public abstract class FilteredRegistrationBase : ComponentRegistrationBase
     {
         private readonly List<Predicate<ITypeElement>> filters = new List<Predicate<ITypeElement>>(); 
         
-        protected BasedOnRegistrationBase(ITreeNode registrationRootElement)
+        protected FilteredRegistrationBase(ITreeNode registrationRootElement)
             : base(registrationRootElement)
         {
             filters.Add(typeElement => !(typeElement is IInterface));

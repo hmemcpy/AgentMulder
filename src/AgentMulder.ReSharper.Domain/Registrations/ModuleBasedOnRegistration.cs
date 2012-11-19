@@ -1,18 +1,17 @@
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
     public class ModuleBasedOnRegistration : ComponentRegistrationBase
     {
         private readonly IModule sourceModule;
-        private readonly BasedOnRegistrationBase basedOn;
 
-        public ModuleBasedOnRegistration(IModule sourceModule, BasedOnRegistrationBase basedOn)
-            : base(basedOn.RegistrationElement)
+        public ModuleBasedOnRegistration(ITreeNode registrationElement, IModule sourceModule)
+            : base(registrationElement)
         {
             this.sourceModule = sourceModule;
-            this.basedOn = basedOn;
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
@@ -23,12 +22,12 @@ namespace AgentMulder.ReSharper.Domain.Registrations
                 return false;
             }
 
-            return sourceModule.Equals(targetModule) && basedOn.IsSatisfiedBy(typeElement);
+            return sourceModule.Equals(targetModule);
         }
 
         public override string ToString()
         {
-            return string.Format("In module(s): {0}, {1}", sourceModule.Name, basedOn);
+            return string.Format("In module(s): {0}", sourceModule.Name);
         }
     }
 }

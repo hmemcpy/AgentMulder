@@ -29,12 +29,12 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
 
             return new IRegistrationPattern[]
             {
-                new From(AllTypesFullTypeName, basedOnPatterns),
-                new FromAssembly(AllTypesFullTypeName, basedOnPatterns), 
-                new FromThisAssembly(AllTypesFullTypeName, basedOnPatterns),
-                new FromAssemblyNamed(AllTypesFullTypeName, basedOnPatterns), 
-                new FromAssemblyContainingGeneric(AllTypesFullTypeName, basedOnPatterns),
-                new FromAssemblyContainingNonGeneric(AllTypesFullTypeName, basedOnPatterns)
+                new CompositePattern(new From(AllTypesFullTypeName), basedOnPatterns),
+                new CompositePattern(new FromAssembly(AllTypesFullTypeName), basedOnPatterns), 
+                new CompositePattern(new FromThisAssembly(AllTypesFullTypeName), basedOnPatterns),
+                new CompositePattern(new FromAssemblyNamed(AllTypesFullTypeName), basedOnPatterns), 
+                new CompositePattern(new FromAssemblyContainingGeneric(AllTypesFullTypeName), basedOnPatterns),
+                new CompositePattern(new FromAssemblyContainingNonGeneric(AllTypesFullTypeName), basedOnPatterns)
             };
         }
     }

@@ -92,8 +92,8 @@
     <Compile Include="Patterns\BasedOnPatternBase.cs" />
     <Compile Include="Patterns\ComponentImplementationPatternBase.cs" />
     <Compile Include="Patterns\ComponentRegistrationPatternBase.cs" />
-    <Compile Include="Patterns\FromAssemblyPatternBase.cs" />
-    <Compile Include="Patterns\FromDescriptorPatternBase.cs" />
+    <Compile Include="Patterns\CompositePattern.cs" />
+    <Compile Include="Patterns\ModuleBasedPatternBase.cs" />
     <Compile Include="Patterns\IBasedOnPattern.cs" />
     <Compile Include="Patterns\IRegistrationPattern.cs" />
     <Compile Include="Patterns\MultipleMatchBasedOnPatternBase.cs" />

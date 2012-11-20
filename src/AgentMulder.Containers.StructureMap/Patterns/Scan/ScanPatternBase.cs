@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using AgentMulder.ReSharper.Domain.Elements.Modules;
-using AgentMulder.ReSharper.Domain.Elements.Modules.Impl;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Utils;
@@ -15,14 +13,16 @@ using JetBrains.Util;
 namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 {
     [InheritedExport("ComponentRegistration", typeof(IRegistrationPattern))]
-    internal abstract class ScanPatternBase : FromDescriptorPatternBase
+    internal abstract class ScanPatternBase : RegistrationPatternBase
     {
-        private readonly IEnumerable<FromAssemblyPatternBase> fromAssemblyPatterns;
+        private readonly IEnumerable<ModuleBasedPatternBase> fromAssemblyPatterns;
+        private readonly IEnumerable<IBasedOnPattern> basedOnPatterns;
 
-        protected ScanPatternBase(IStructuralSearchPattern pattern, IEnumerable<FromAssemblyPatternBase> fromAssemblyPatterns, IEnumerable<IBasedOnPattern> basedOnPatterns)
-            : base(pattern, basedOnPatterns)
+        protected ScanPatternBase(IStructuralSearchPattern pattern, IEnumerable<ModuleBasedPatternBase> fromAssemblyPatterns, IEnumerable<IBasedOnPattern> basedOnPatterns)
+            : base(pattern)
         {
             this.fromAssemblyPatterns = fromAssemblyPatterns;
+            this.basedOnPatterns = basedOnPatterns;
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
@@ -56,7 +56,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
                                                  .ToList();
 
                 var registrations = (from expression in invocationExpressions
-                                     from basedOnPattern in BasedOnPatterns
+                                     from basedOnPattern in basedOnPatterns
                                      from registration in basedOnPattern.GetBasedOnRegistrations(expression)
                                      select registration).ToList();
 

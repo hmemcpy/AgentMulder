@@ -10,15 +10,23 @@ namespace AgentMulder.ReSharper.Domain.Patterns
 {
     public abstract class RegistrationPatternBase : IRegistrationPattern
     {
+        private readonly IStructuralSearchPattern pattern;
         private readonly IStructuralMatcher matcher;
 
-        public IStructuralMatcher Matcher
+        IStructuralSearchPattern IRegistrationPattern.Pattern
+        {
+            get { return pattern; }
+        }
+
+        IStructuralMatcher IRegistrationPattern.Matcher
         {
             get { return matcher; }
         }
 
         protected RegistrationPatternBase(IStructuralSearchPattern pattern)
         {
+           this.pattern = pattern;
+
             matcher = pattern.CreateMatcher();
         }
 

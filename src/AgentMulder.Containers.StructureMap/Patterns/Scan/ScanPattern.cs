@@ -16,7 +16,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
                 new StatementPlaceholder("statements", -1, -1));
 
         [ImportingConstructor]
-        public ScanPattern([ImportMany("FromAssembly")] IEnumerable<FromAssemblyPatternBase> fromAssemblyPatterns,
+        public ScanPattern([ImportMany("FromAssembly")] IEnumerable<ModuleBasedPatternBase> fromAssemblyPatterns,
                            [ImportMany] IEnumerable<IBasedOnPattern> basedOnPatterns)
             : base(pattern, fromAssemblyPatterns, basedOnPatterns)
         {

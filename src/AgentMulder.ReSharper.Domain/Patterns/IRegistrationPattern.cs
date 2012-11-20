@@ -7,6 +7,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
 {
     public interface IRegistrationPattern
     {
+        IStructuralSearchPattern Pattern { get; }
         IStructuralMatcher Matcher { get; }
         IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement);
     }

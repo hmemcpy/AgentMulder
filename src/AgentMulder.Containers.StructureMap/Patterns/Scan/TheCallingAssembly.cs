@@ -7,8 +7,8 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 {
-    [Export("FromAssembly", typeof(FromAssemblyPatternBase))]
-    public class TheCallingAssembly : FromAssemblyPatternBase
+    [Export("FromAssembly", typeof(ModuleBasedPatternBase))]
+    public class TheCallingAssembly : ModuleBasedPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$scanner$.TheCallingAssembly()",

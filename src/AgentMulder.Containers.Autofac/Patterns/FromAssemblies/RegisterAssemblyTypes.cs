@@ -18,17 +18,20 @@ using JetBrains.Util;
 namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
 {
     [Export("ComponentRegistration", typeof(IRegistrationPattern))]
-    public sealed class RegisterAssemblyTypes : FromDescriptorPatternBase
+    public sealed class RegisterAssemblyTypes : RegistrationPatternBase
     {
+        private readonly IEnumerable<IBasedOnPattern> basedOnPatterns;
+
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.RegisterAssemblyTypes($assemblies$)",
                 new ExpressionPlaceholder("builder", "global::Autofac.ContainerBuilder", true),
                 new ArgumentPlaceholder("assemblies", -1, -1));
 
         [ImportingConstructor]
-        public RegisterAssemblyTypes([ImportMany] params IBasedOnPattern[] basedOnPatterns)
-            : base(pattern, basedOnPatterns)
+        public RegisterAssemblyTypes([ImportMany] IEnumerable<IBasedOnPattern> basedOnPatterns)
+            : base(pattern)
         {
+            this.basedOnPatterns = basedOnPatterns;
             ModuleExtractor.AddExtractor(new CallingAssemblyExtractor("Autofac.Module", "ThisAssembly"));
         }
 
@@ -47,7 +50,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
 
                 IEnumerable<IModule> modules = arguments.SelectNotNull(argument => ModuleExtractor.GetTargetModule(argument.Value));
 
-                IEnumerable<FilteredRegistrationBase> basedOnRegistrations = BasedOnPatterns.SelectMany(
+                IEnumerable<FilteredRegistrationBase> basedOnRegistrations = basedOnPatterns.SelectMany(
                     basedOnPattern => basedOnPattern.GetBasedOnRegistrations(parentExpression.Expression)).ToList();
 
                 foreach (IModule module in modules)

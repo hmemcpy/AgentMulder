@@ -9,10 +9,10 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    internal sealed class FromAssemblyContainingNonGeneric : FromAssemblyPatternBase
+    internal sealed class FromAssemblyContainingNonGeneric : ModuleBasedPatternBase
     {
-        public FromAssemblyContainingNonGeneric(string qualiferType, params IBasedOnPattern[] basedOnPatterns)
-            : base(CreatePattern(qualiferType), basedOnPatterns)
+        public FromAssemblyContainingNonGeneric(string qualiferType)
+            : base(CreatePattern(qualiferType))
         {
         }
 

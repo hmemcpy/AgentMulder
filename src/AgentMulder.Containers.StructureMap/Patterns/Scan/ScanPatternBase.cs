@@ -60,14 +60,22 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
                                      from registration in basedOnPattern.GetBasedOnRegistrations(expression)
                                      select registration).ToList();
 
-                if (registrations.Any())
+                if (!registrations.Any())
                 {
-                    var moduleRegistrations = (from expression in invocationExpressions
-                                               from pattern in fromAssemblyPatterns
-                                               from registration in pattern.GetComponentRegistrations(expression)
-                                               select registration).ToList();
+                    yield break;
+                }
 
-                    yield return new CompositeRegistration(registrationRootElement, registrations.Union(moduleRegistrations));
+                var moduleRegistrations = (from expression in invocationExpressions
+                                           from pattern in fromAssemblyPatterns
+                                           from registration in pattern.GetComponentRegistrations(expression)
+                                           select registration).ToList();
+
+                foreach (var moduleRegistration  in moduleRegistrations)
+                {
+                    yield return new CompositeRegistration(registrationRootElement, registrations.Union(new[]
+                    {
+                        moduleRegistration
+                    }));
                 }
             }
         }

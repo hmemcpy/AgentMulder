@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.Containers.Autofac.Registrations;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;

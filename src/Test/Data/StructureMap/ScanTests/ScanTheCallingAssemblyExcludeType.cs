@@ -1,15 +1,16 @@
 ﻿using StructureMap;
+using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ScanTests
 {
-    public class ScanTheCallingAssemblyExcludeNamespace
+    public class ScanTheCallingAssemblyExcludeType
     {
-        public ScanTheCallingAssemblyExcludeNamespace()
+        public ScanTheCallingAssemblyExcludeType()
         {
             var container = new Container(x => x.Scan(scanner =>
             {
                 scanner.TheCallingAssembly();
-                scanner.ExcludeNamespace("TestApplication.Types");
+                scanner.ExcludeType<Bar>();
                 scanner.WithDefaultConventions();
             }));
         } 

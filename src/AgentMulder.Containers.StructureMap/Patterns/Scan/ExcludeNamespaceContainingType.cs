@@ -1,28 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
-using PsiExtensions = AgentMulder.ReSharper.Domain.Utils.PsiExtensions;
 
 namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 {
     [Export(typeof(IBasedOnPattern))]
-    public class ExcludeNamespace : NamespaceRegistrationPatternBase
+    public class ExcludeNamespaceContainingType : NamespaceRegistrationPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$scanner$.ExcludeNamespace($argument$)",
+            new CSharpStructuralSearchPattern("$scanner$.ExcludeNamespaceContainingType<$type$>()",
                 new ExpressionPlaceholder("scanner", "global::StructureMap.Graph.IAssemblyScanner"),
-                new ArgumentPlaceholder("argument", 1, 1));
+                new TypePlaceholder("type"));
 
-        public ExcludeNamespace()
+        public ExcludeNamespaceContainingType()
             : base(pattern)
         {
         }
@@ -38,10 +35,14 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
         {
             includeSubnamespaces = true;
 
-            var argument = (ICSharpArgument)match.GetMatchedElement("argument");
-            if (argument != null)
+            var declaredType = match.GetMatchedType("type") as IDeclaredType;
+            if (declaredType != null)
             {
-                return PsiExtensions.GetNamespaceDeclaration(argument.Value);
+                ITypeElement typeElement = declaredType.GetTypeElement();
+                if (typeElement != null)
+                {
+                    return typeElement.GetContainingNamespace();
+                }
             }
 
             return null;

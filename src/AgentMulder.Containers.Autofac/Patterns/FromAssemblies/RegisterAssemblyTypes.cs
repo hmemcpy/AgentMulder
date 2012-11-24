@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using AgentMulder.Containers.Autofac.Registrations;
 using AgentMulder.ReSharper.Domain.Elements.Modules;
 using AgentMulder.ReSharper.Domain.Elements.Modules.Impl;
 using AgentMulder.ReSharper.Domain.Patterns;

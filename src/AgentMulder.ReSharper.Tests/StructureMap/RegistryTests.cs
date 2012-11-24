@@ -40,8 +40,10 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ScanAssemblyTypeofTAssembly", 1, new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ScanAssemblyGetExecutingAssembly", 1, new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ScanTheCallingAssemblyExcludeNamespace", 1, new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
-        [TestCase("ScanTheCallingAssemblyExcludeNamespaceContainingType", new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanTheCallingAssemblyExcludeNamespaceContainingType", 1, new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
         [TestCase("ScanTheCallingAssemblyExcludeType", 1, new[] { "Foo.cs" })]
+        [TestCase("ScanTheCallingAssemblyIncludeNamespace", 1, new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
+        [TestCase("ScanTheCallingAssemblyIncludeNamespaceContainingType", 1, new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
         public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {
             RunTest(testName, registrations =>
@@ -68,6 +70,8 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ScanTheCallingAssemblyExcludeNamespace", new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ScanTheCallingAssemblyExcludeNamespaceContainingType", new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ScanTheCallingAssemblyExcludeType", new[] { "Bar.cs" })]
+        [TestCase("ScanTheCallingAssemblyIncludeNamespace", new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanTheCallingAssemblyIncludeNamespaceContainingType", new[] { "Foo.cs", "Bar.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>

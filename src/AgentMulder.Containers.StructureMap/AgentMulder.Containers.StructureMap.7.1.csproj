@@ -62,6 +62,8 @@
     <Compile Include="Patterns\Scan\ExcludeNamespace.cs" />
     <Compile Include="Patterns\Scan\ExcludeNamespaceContainingType.cs" />
     <Compile Include="Patterns\Scan\ExcludeType.cs" />
+    <Compile Include="Patterns\Scan\IncludeNamespace.cs" />
+    <Compile Include="Patterns\Scan\IncludeNamespaceContainingType.cs" />
     <Compile Include="Patterns\Scan\RegistryScanPattern.cs" />
     <Compile Include="Patterns\Scan\ScanPattern.cs" />
     <Compile Include="Patterns\Scan\ScanPatternBase.cs" />

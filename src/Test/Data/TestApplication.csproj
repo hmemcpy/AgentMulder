@@ -181,6 +181,8 @@
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyExcludeNamespace.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyExcludeNamespaceContainingType.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyExcludeType.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyIncludeNamespace.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyIncludeNamespaceContainingType.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeGeneric.cs" />
     <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeNonGeneric.cs" />
@@ -193,6 +195,8 @@
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyExcludeNamespace.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyExcludeNamespaceContainingType.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyExcludeType.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyIncludeNamespace.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyIncludeNamespaceContainingType.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <None Include="StructureMap\_DoesNotCompile-BrokenReference.cs" />
     <Compile Include="Types\Bar.cs" />

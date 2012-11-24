@@ -82,6 +82,17 @@ namespace AgentMulder.ReSharper.Domain.Utils
             return element is IDelegate;
         }
 
+        public static bool IsConcrete(this ITypeElement element)
+        {
+            var @class = element as IClass;
+            if (@class == null)
+            {
+                return false;
+            }
+
+            return !@class.IsAbstract;
+        }
+
         public static INamespace GetNamespaceDeclaration(ICSharpExpression expression)
         {
             CSharpElementFactory elementFactory = CSharpElementFactory.GetInstance(expression.GetPsiModule());

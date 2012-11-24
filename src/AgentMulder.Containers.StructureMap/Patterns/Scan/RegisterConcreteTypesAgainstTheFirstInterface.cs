@@ -11,13 +11,13 @@ using JetBrains.ReSharper.Psi.Tree;
 namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 {
     [Export(typeof(IBasedOnPattern))]
-    internal sealed class WithDefaultConventions : BasedOnPatternBase
+    internal sealed class RegisterConcreteTypesAgainstTheFirstInterface : BasedOnPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$scanner$.WithDefaultConventions()",
+            new CSharpStructuralSearchPattern("$scanner$.RegisterConcreteTypesAgainstTheFirstInterface()",
                 new ExpressionPlaceholder("scanner", "global::StructureMap.Graph.IAssemblyScanner"));
 
-        public WithDefaultConventions()
+        public RegisterConcreteTypesAgainstTheFirstInterface()
             : base(pattern)
         {
         }
@@ -33,7 +33,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 
             if (match.Matched)
             {
-                yield return new DefaultConvention(registrationRootElement);
+                yield return new FirstInterfaceConvention(registrationRootElement);
             }
         }
     }

@@ -33,8 +33,10 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
             public ImplementedInterfacesRegistration(ITreeNode registrationRootElement)
                 : base(registrationRootElement)
             {
-                AddFilter(typeElement => typeElement.GetSuperTypes().SelectNotNull(type => type.GetTypeElement() as IInterface)
-                                            .Any(@interface => @interface.GetClrName().FullName != "System.IDisposable"));
+                AddFilter(typeElement => typeElement.GetSuperTypes()
+                                                    .SelectNotNull(type => type.GetTypeElement())
+                                                    .OfType<IInterface>()
+                                                    .Any(@interface => @interface.GetClrName().FullName != "System.IDisposable"));
             }
         }
     }

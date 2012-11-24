@@ -101,7 +101,6 @@
     <Compile Include="Patterns\NamespaceRegistrationPatternBase.cs" />
     <Compile Include="Patterns\RegistrationPatternBase.cs" />
     <Compile Include="Registrations\CompositeRegistration.cs" />
-    <Compile Include="Registrations\DefaultScanAssemblyRegistration.cs" />
     <Compile Include="Registrations\ExceptRegistration.cs" />
     <Compile Include="Registrations\NegateRegistration.cs" />
     <Compile Include="Registrations\ServiceRegistration.cs" />

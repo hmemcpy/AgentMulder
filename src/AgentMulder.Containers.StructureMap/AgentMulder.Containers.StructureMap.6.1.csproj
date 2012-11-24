@@ -71,7 +71,9 @@
       <SubType>
       </SubType>
     </Compile>
-    <Compile Include="Registrations\DefaultStructureMapConvention.cs" />
+    <Compile Include="Registrations\DefaultConvention.cs" />
+    <Compile Include="Registrations\FirstInterfaceConvention.cs" />
+    <Compile Include="Registrations\StructureMapConventionBase.cs" />
     <Compile Include="StructureMapContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,16 +6,15 @@ using JetBrains.Util;
 
 namespace AgentMulder.Containers.StructureMap.Registrations
 {
-    internal class DefaultStructureMapConvention : FilteredRegistrationBase
+    public class DefaultConvention : StructureMapConventionBase
     {
-        public DefaultStructureMapConvention(ITreeNode registrationRootElement)
+        public DefaultConvention(ITreeNode registrationRootElement)
             : base(registrationRootElement)
         {
             AddFilter(element =>
             {
                 var interfaces = element.GetSuperTypes()
-                                        .Select(type => type.GetTypeElement())
-                                        .WhereNotNull()
+                                        .SelectNotNull(type => type.GetTypeElement())
                                         .OfType<IInterface>();
 
                 return interfaces.Any(@interface => @interface.ShortName == "I" + element.ShortName);

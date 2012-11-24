@@ -1,8 +1,9 @@
-﻿using AgentMulder.ReSharper.Domain.Utils;
+﻿using AgentMulder.ReSharper.Domain.Registrations;
+using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.ReSharper.Domain.Registrations
+namespace AgentMulder.Containers.Autofac.Registrations
 {
     public class DefaultScanAssemblyRegistration : FilteredRegistrationBase
     {

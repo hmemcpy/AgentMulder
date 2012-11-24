@@ -41,6 +41,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
                 ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
                 Assert.AreEqual(registrationsCount, registrations.Count);
+
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
@@ -57,6 +58,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
                 ICSharpFile[] codeFiles = fileNamesToExclude.Select(GetCodeFile).ToArray();
 
                 CollectionAssert.IsNotEmpty(registrations);
+
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>

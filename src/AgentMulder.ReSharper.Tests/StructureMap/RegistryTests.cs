@@ -27,23 +27,24 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             get { return new StructureMapContainerInfo(); }
         }
 
-        [TestCase("RegistryInstanceConfigure", new[] { "Foo.cs" })]
-        [TestCase("ForGenericUseGeneric", new[] { "Foo.cs" })]
-        [TestCase("ForGenericUseGenericMultipleStatements", new[] { "Foo.cs", "Bar.cs" })]
-        [TestCase("ForGenericUseGenericWithAdditionalParams", new[] { "Foo.cs" })]
-        [TestCase("ForNonGenericUseNonGenericType", new[] { "Foo.cs" })]
-        [TestCase("ScanTheCallingAssemblyWithDefaultConventions", new[] { "Foo.cs", "Bar.cs" })]
-        [TestCase("ScanTheCallingAssemblyAddAllTypesOfGeneric", new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
-        [TestCase("ScanTheCallingAssemblyAddAllTypesOfNonGeneric", new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
-        [TestCase("ScanAssemblyContainigTypeGeneric", new[] { "Foo.cs", "Bar.cs" })]
-        [TestCase("ScanAssemblyContainigTypeNonGeneric", new[] { "Foo.cs", "Bar.cs" })]
-        public void DoTest(string testName, string[] fileNames)
+        [TestCase("RegistryInstanceConfigure", 1, new[] { "Foo.cs" })]
+        [TestCase("ForGenericUseGeneric", 1, new[] { "Foo.cs" })]
+        [TestCase("ForGenericUseGenericMultipleStatements", 2, new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ForGenericUseGenericWithAdditionalParams", 1, new[] { "Foo.cs" })]
+        [TestCase("ForNonGenericUseNonGenericType", 1, new[] { "Foo.cs" })]
+        [TestCase("ScanTheCallingAssemblyWithDefaultConventions", 1, new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanTheCallingAssemblyAddAllTypesOfGeneric", 1, new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
+        [TestCase("ScanTheCallingAssemblyAddAllTypesOfNonGeneric", 1, new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
+        [TestCase("ScanAssemblyContainigTypeGeneric", 1, new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanAssemblyContainigTypeNonGeneric", 1, new[] { "Foo.cs", "Bar.cs" })]
+        public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {
             RunTest(testName, registrations =>
             {
                 ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
-                Assert.IsNotEmpty(registrations);
+                Assert.AreEqual(registrationsCount, registrations.Count);
+
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>

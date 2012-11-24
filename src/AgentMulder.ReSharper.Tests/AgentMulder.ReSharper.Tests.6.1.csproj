@@ -15,6 +15,7 @@
     <AssemblyName>AgentMulder.ReSharper.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <OutputPath>bin\$(Configuration)\$(ReSharperSdkVersion)\</OutputPath>
     <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -23,7 +24,6 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>JET_MODE_ASSERT;DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,14 +31,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=2.6.3.862, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
@@ -47,7 +45,7 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Catel.Core, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Catel.Core">
       <HintPath>..\packages\Catel.Core.3.3\lib\NET40\Catel.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
@@ -63,8 +61,7 @@
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -79,8 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autofac\ContainerBuilderTests.cs" />
-    <Compile Include="Autofac\RegisterAssemblyTypesTests.cs" />
     <Compile Include="Autofac\Helpers\TestAutofacAttribute.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests.cs" />
     <Compile Include="Catel\Helpers\TestCatelAttribute.cs" />
     <Compile Include="Catel\ServiceLocatorTests.cs" />
     <Compile Include="ComponentRegistrationsTestBase.cs" />
@@ -92,17 +89,22 @@
     <Compile Include="StructureMap\Helpers\TestStructureMapAttribute.cs" />
     <Compile Include="StructureMap\RegistryTests.cs" />
     <Compile Include="StructureMap\SanityTests.cs" />
-    <Compile Include="StructureMap\ScanRegistryTests.cs" />
     <Compile Include="StructureMap\ScanTests.cs" />
     <Compile Include="TestEnvironmentAssembly.cs" />
     <Compile Include="Unity\Helpers\TestUnityAttribute.cs" />
     <Compile Include="Unity\RegisterTypeTests.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
     <Compile Include="Windsor\ClassesTests.cs" />
-    <Compile Include="Windsor\TypesTests.cs" />
-    <Compile Include="Windsor\Helpers\TestWindsorAttribute.cs" />
     <Compile Include="Windsor\ComponentRegistrationTests.cs" />
+    <Compile Include="Windsor\Helpers\TestWindsorAttribute.cs" />
     <Compile Include="Windsor\SanityTests.cs" />
+    <Compile Include="Windsor\TypesTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.6.1.csproj">
@@ -137,12 +139,6 @@
       <Project>{8FED260D-8CDB-45A1-B927-116DE2FECD8F}</Project>
       <Name>AgentMulder.ReSharper.Plugin.6.1</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>

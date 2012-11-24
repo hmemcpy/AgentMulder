@@ -27,7 +27,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
             this.searchDomainFactory = searchDomainFactory;
         }
 
-        public IEnumerable<IStructuralMatchResult> Search(IRegistrationPattern patern)
+        public IEnumerable<IStructuralMatchResult> Search(IStructuralPatternHolder patern)
         {
             var results = new List<IStructuralMatchResult>();
             var consumer = new FindResultConsumer<IStructuralMatchResult>(result =>

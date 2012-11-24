@@ -32,6 +32,8 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ScanTheCallingAssemblyWithDefaultConventions", 1, new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ScanTheCallingAssemblyAddAllTypesOfGeneric", 1, new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
         [TestCase("ScanTheCallingAssemblyAddAllTypesOfNonGeneric", 1, new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
+        [TestCase("ScanAssemblyContainigTypeGeneric", 1, new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanAssemblyContainigTypeNonGeneric", 1, new[] { "Foo.cs", "Bar.cs" })]
         public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {
             RunTest(testName, registrations =>

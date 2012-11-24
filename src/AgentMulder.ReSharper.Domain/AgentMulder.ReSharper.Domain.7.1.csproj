@@ -93,6 +93,7 @@
     <Compile Include="Patterns\ComponentImplementationPatternBase.cs" />
     <Compile Include="Patterns\ComponentRegistrationPatternBase.cs" />
     <Compile Include="Patterns\CompositePattern.cs" />
+    <Compile Include="Patterns\IStructuralPatternHolder.cs" />
     <Compile Include="Patterns\ModuleBasedPatternBase.cs" />
     <Compile Include="Patterns\IBasedOnPattern.cs" />
     <Compile Include="Patterns\IRegistrationPattern.cs" />

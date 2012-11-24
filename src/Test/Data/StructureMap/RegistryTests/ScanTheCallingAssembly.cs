@@ -1,7 +1,6 @@
-﻿using StructureMap;
-using StructureMap.Configuration.DSL;
+﻿using StructureMap.Configuration.DSL;
 
-namespace TestApplication.StructureMap.ScanTests.RegistryTests
+namespace TestApplication.StructureMap.RegistryTests
 {
     public class ScanTheCallingAssembly : Registry
     {

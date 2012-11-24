@@ -1,17 +1,18 @@
-﻿using StructureMap.Configuration.DSL;
+﻿using StructureMap;
+using StructureMap.Configuration.DSL;
 using TestApplication.Types;
 
-namespace TestApplication.StructureMap.ScanTests.RegistryTests
+namespace TestApplication.StructureMap.ScanTests
 {
-    public class ScanAssemblyContainigTypeNonGeneric : Registry
+    public class ScanAssemblyContainigTypeNonGeneric
     {
         public ScanAssemblyContainigTypeNonGeneric()
         {
-            Scan(scanner =>
+            var container = new Container(x => x.Scan(scanner =>
             {
                 scanner.AssemblyContainingType(typeof(IFoo));
                 scanner.WithDefaultConventions();
-            });
+            }));
         }
     }
 }

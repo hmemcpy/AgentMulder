@@ -37,10 +37,10 @@ namespace AgentMulder.ReSharper.Tests
             {
                 var searchDomainFactory = ShellInstance.GetComponent<SearchDomainFactory>();
                 var patternSearcher = new PatternSearcher(searchDomainFactory);
-                var solutionnAnalyzer = new SolutionAnalyzer(patternSearcher);
-                solutionnAnalyzer.AddContainer(ContainerInfo);
+                var solutionAnalyzer = new SolutionAnalyzer(patternSearcher);
+                solutionAnalyzer.AddContainer(ContainerInfo);
 
-                var componentRegistrations = solutionnAnalyzer.Analyze();
+                var componentRegistrations = solutionAnalyzer.Analyze();
 
                 action(componentRegistrations.ToList());
             }));

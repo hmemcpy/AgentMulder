@@ -13,12 +13,12 @@ namespace AgentMulder.ReSharper.Domain.Patterns
         private readonly IStructuralSearchPattern pattern;
         private readonly IStructuralMatcher matcher;
 
-        IStructuralSearchPattern IRegistrationPattern.Pattern
+        IStructuralSearchPattern IStructuralPatternHolder.Pattern
         {
             get { return pattern; }
         }
 
-        IStructuralMatcher IRegistrationPattern.Matcher
+        IStructuralMatcher IStructuralPatternHolder.Matcher
         {
             get { return matcher; }
         }

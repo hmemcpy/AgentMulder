@@ -95,6 +95,7 @@
     <Compile Include="Patterns\CompositePattern.cs" />
     <Compile Include="Patterns\IBasedOnPattern.cs" />
     <Compile Include="Patterns\IRegistrationPattern.cs" />
+    <Compile Include="Patterns\IStructuralPatternHolder.cs" />
     <Compile Include="Patterns\ModuleBasedPatternBase.cs" />
     <Compile Include="Patterns\MultipleMatchBasedOnPatternBase.cs" />
     <Compile Include="Patterns\RegistrationPatternBase.cs" />

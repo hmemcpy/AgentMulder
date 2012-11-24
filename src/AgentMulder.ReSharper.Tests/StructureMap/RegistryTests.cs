@@ -32,13 +32,18 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ForGenericUseGenericMultipleStatements", new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ForGenericUseGenericWithAdditionalParams", new[] { "Foo.cs" })]
         [TestCase("ForNonGenericUseNonGenericType", new[] { "Foo.cs" })]
+        [TestCase("ScanTheCallingAssemblyWithDefaultConventions", new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanTheCallingAssemblyAddAllTypesOfGeneric", new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
+        [TestCase("ScanTheCallingAssemblyAddAllTypesOfNonGeneric", new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
+        [TestCase("ScanAssemblyContainigTypeGeneric", new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanAssemblyContainigTypeNonGeneric", new[] { "Foo.cs", "Bar.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>
             {
                 ICSharpFile[] codeFiles = fileNames.Select(GetCodeFile).ToArray();
 
-                Assert.AreEqual(codeFiles.Length, registrations.Count());
+                Assert.IsNotEmpty(registrations);
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
@@ -52,6 +57,8 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ForGenericUseGenericMultipleStatements", new[] { "Baz.cs" })]
         [TestCase("ForGenericUseGenericWithAdditionalParams", new[] { "Bar.cs" })]
         [TestCase("ForNonGenericUseNonGenericType", new[] { "Bar.cs" })]
+        [TestCase("ScanTheCallingAssemblyWithDefaultConventions", new[] { "CommonImpl1.cs" })]
+        [TestCase("ScanAssemblyContainigTypeGeneric", new[] { "CommonImpl1.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>
@@ -65,6 +72,13 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
                         Assert.That(registrations.All((r => !r.Registration.IsSatisfiedBy(declaration.DeclaredElement)))));
                 }
             });
+        }
+
+        [TestCase("ScanTheCallingAssembly")]
+        [TestCase("ScanNoAssemblyStatement")]
+        public void EmptyTest(string testName)
+        {
+            RunTest(testName, CollectionAssert.IsEmpty);
         }
     }
 }

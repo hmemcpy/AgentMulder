@@ -52,8 +52,7 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=2.6.3.862, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Autofac">
       <HintPath>..\..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Configuration">
@@ -65,7 +64,7 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\..\packages\Castle.Windsor.3.1.0\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Catel.Core, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Catel.Core">
       <HintPath>..\..\packages\Catel.Core.3.3\lib\NET40\Catel.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
@@ -80,8 +79,7 @@
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="StructureMap">
       <HintPath>..\..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -172,13 +170,15 @@
     <Compile Include="StructureMap\RegistryTests\ForGenericUseGenericWithAdditionalParams.cs" />
     <Compile Include="StructureMap\RegistryTests\ForNonGenericUseNonGenericType.cs" />
     <Compile Include="StructureMap\RegistryTests\RegistryInstanceConfigure.cs" />
-    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanAssemblyContainigTypeGeneric.cs" />
-    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanAssemblyContainigTypeNonGeneric.cs" />
-    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanNoAssemblyStatement.cs" />
-    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanTheCallingAssembly.cs" />
-    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanTheCallingAssemblyAddAllTypesOfGeneric.cs" />
-    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanTheCallingAssemblyAddAllTypesOfNonGeneric.cs" />
-    <Compile Include="StructureMap\ScanTests\RegistryTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanAssemblyContainigTypeGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanAssemblyContainigTypeNonGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanNoAssemblyStatement.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssembly.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyAddAllTypesOfGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyAddAllTypesOfNonGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeGeneric.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeNonGeneric.cs" />
     <Compile Include="StructureMap\ScanTests\ScanNoAssemblyStatement.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssembly.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyAddAllTypesOfGeneric.cs" />

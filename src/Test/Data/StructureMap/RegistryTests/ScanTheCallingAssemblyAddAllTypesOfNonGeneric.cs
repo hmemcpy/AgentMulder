@@ -1,8 +1,7 @@
-﻿using StructureMap;
-using StructureMap.Configuration.DSL;
+﻿using StructureMap.Configuration.DSL;
 using TestApplication.Types;
 
-namespace TestApplication.StructureMap.ScanTests.RegistryTests
+namespace TestApplication.StructureMap.RegistryTests
 {
     public class ScanTheCallingAssemblyAddAllTypesOfNonGeneric : Registry
     {

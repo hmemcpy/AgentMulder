@@ -27,13 +27,13 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             get { return new StructureMapContainerInfo(); }
         }
 
-        [TestCase("ScanNoAssemblyStatement", 0, new string[0])]
-        [TestCase("ScanTheCallingAssembly", 0, new string[0])]
         [TestCase("ScanTheCallingAssemblyWithDefaultConventions", 1, new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ScanTheCallingAssemblyAddAllTypesOfGeneric", 1, new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
         [TestCase("ScanTheCallingAssemblyAddAllTypesOfNonGeneric", 1, new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
         [TestCase("ScanAssemblyContainigTypeGeneric", 1, new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ScanAssemblyContainigTypeNonGeneric", 1, new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanAssemblyTypeofTAssembly", 1, new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanAssemblyGetExecutingAssembly", 1, new[] { "Foo.cs", "Bar.cs" })]
         public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {
             RunTest(testName, registrations =>
@@ -67,6 +67,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             });
         }
 
+        [TestCase("ScanNoAssemblyStatement")]
         [TestCase("ScanTheCallingAssembly")]
         public void EmptyTest(string testName)
         {

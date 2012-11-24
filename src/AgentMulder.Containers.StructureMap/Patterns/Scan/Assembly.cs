@@ -10,21 +10,21 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 {
     [Export("FromAssembly", typeof(ModuleBasedPatternBase))]
-    public class AssemblyContainingTypeNonGeneric : ModuleBasedPatternBase
+    internal sealed class Assembly : ModuleBasedPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$scanner$.AssemblyContainingType($argument$)",
+            new CSharpStructuralSearchPattern("$scanner$.Assembly($assembly$)",
                 new ExpressionPlaceholder("scanner", "global::StructureMap.Graph.IAssemblyScanner"),
-                new ArgumentPlaceholder("argument", 1, 1));
+                new ArgumentPlaceholder("assembly", 1, 1));
 
-        public AssemblyContainingTypeNonGeneric()
+        public Assembly()
             : base(pattern)
         {
         }
 
         protected override IModule GetTargetModule(IStructuralMatchResult match)
         {
-            var argument = (ICSharpArgument)match.GetMatchedElement("argument");
+            var argument = (ICSharpArgument)match.GetMatchedElement("assembly");
 
             return ModuleExtractor.GetTargetModule(argument.Value);
         }

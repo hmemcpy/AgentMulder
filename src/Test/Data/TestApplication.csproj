@@ -172,6 +172,8 @@
     <Compile Include="StructureMap\RegistryTests\RegistryInstanceConfigure.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanAssemblyContainigTypeGeneric.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanAssemblyContainigTypeNonGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanAssemblyGetExecutingAssembly.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanAssemblyTypeofTAssembly.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanNoAssemblyStatement.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssembly.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyAddAllTypesOfGeneric.cs" />
@@ -179,6 +181,8 @@
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeGeneric.cs" />
     <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeNonGeneric.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanAssemblyGetExecutingAssembly.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanAssemblyTypeofTAssembly.cs" />
     <Compile Include="StructureMap\ScanTests\ScanNoAssemblyStatement.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssembly.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyAddAllTypesOfGeneric.cs" />

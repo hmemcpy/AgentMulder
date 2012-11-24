@@ -178,6 +178,7 @@
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssembly.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyAddAllTypesOfGeneric.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyAddAllTypesOfNonGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyExcludeNamespace.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeGeneric.cs" />
     <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeNonGeneric.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssembly.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyAddAllTypesOfGeneric.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyAddAllTypesOfNonGeneric.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyExcludeNamespace.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <None Include="StructureMap\_DoesNotCompile-BrokenReference.cs" />
     <Compile Include="Types\Bar.cs" />

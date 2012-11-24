@@ -51,7 +51,6 @@
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInNamespace.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsGeneric.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsNonGeneric.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\NamespaceRegistrationPatternBase.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyContainingNonGeneric.cs" />
     <Compile Include="Patterns\FromTypes\FromAssemblyNamed.cs" />
     <Compile Include="Patterns\FromTypes\FromAssembly.cs" />

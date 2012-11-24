@@ -59,6 +59,7 @@
     <Compile Include="Patterns\Scan\Assembly.cs" />
     <Compile Include="Patterns\Scan\AssemblyContainingTypeGeneric.cs" />
     <Compile Include="Patterns\Scan\AssemblyContainingTypeNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\ExcludeNamespace.cs" />
     <Compile Include="Patterns\Scan\RegistryScanPattern.cs" />
     <Compile Include="Patterns\Scan\ScanPattern.cs" />
     <Compile Include="Patterns\Scan\ScanPatternBase.cs" />

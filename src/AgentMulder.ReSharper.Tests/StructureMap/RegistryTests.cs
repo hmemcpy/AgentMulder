@@ -39,6 +39,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ScanAssemblyContainigTypeNonGeneric", 1, new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ScanAssemblyTypeofTAssembly", 1, new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ScanAssemblyGetExecutingAssembly", 1, new[] { "Foo.cs", "Bar.cs" })]
+        [TestCase("ScanTheCallingAssemblyExcludeNamespace", 1, new[] { "InSomeNamespace.cs", "InSomeOtherNamespace.cs" })]
         public void DoTest(string testName, int registrationsCount, string[] fileNames)
         {
             RunTest(testName, registrations =>
@@ -62,6 +63,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
         [TestCase("ForNonGenericUseNonGenericType", new[] { "Bar.cs" })]
         [TestCase("ScanTheCallingAssemblyWithDefaultConventions", new[] { "CommonImpl1.cs" })]
         [TestCase("ScanAssemblyContainigTypeGeneric", new[] { "CommonImpl1.cs" })]
+        [TestCase("ScanTheCallingAssemblyExcludeNamespace", new[] { "Foo.cs", "Bar.cs" })]
         public void ExcludeTest(string testName, string[] fileNamesToExclude)
         {
             RunTest(testName, registrations =>
@@ -69,6 +71,7 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
                 ICSharpFile[] codeFiles = fileNamesToExclude.Select(GetCodeFile).ToArray();
 
                 CollectionAssert.IsNotEmpty(registrations);
+
                 foreach (var codeFile in codeFiles)
                 {
                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>

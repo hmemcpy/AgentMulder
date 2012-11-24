@@ -14,7 +14,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.InSameNamespaceAs<$type$>($subnamespace$)",
-                new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
+                new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor"),
                 new TypePlaceholder("type"),
                 new ArgumentPlaceholder("subnamespace", 0, 1));
 

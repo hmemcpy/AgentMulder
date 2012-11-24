@@ -1,5 +1,6 @@
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Helpers;
+using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;

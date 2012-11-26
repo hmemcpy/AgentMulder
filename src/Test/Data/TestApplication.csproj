@@ -184,6 +184,7 @@
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyIncludeNamespace.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyIncludeNamespaceContainingType.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyRegisterConcreteTypesAgainstTheFirstInterface.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblySingleImplementationsOfInterface.cs" />
     <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeGeneric.cs" />
     <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeNonGeneric.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyIncludeNamespace.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyIncludeNamespaceContainingType.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyRegisterConcreteTypesAgainstTheFirstInterface.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblySingleImplementationsOfInterface.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <None Include="StructureMap\_DoesNotCompile-BrokenReference.cs" />
     <Compile Include="Types\Bar.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="Types\IPageRepository.cs" />
     <Compile Include="Types\IPrimitiveArgument.cs" />
     <Compile Include="Types\IRepository.cs" />
+    <Compile Include="Types\ISingle.cs" />
     <Compile Include="Types\MyAttribute.cs" />
     <Compile Include="Types\MyList.cs" />
     <Compile Include="Types\MyStruct.cs" />
@@ -238,6 +241,7 @@
     <Compile Include="Types\PlatinumCard.cs" />
     <Compile Include="Types\PrimitiveArgument.cs" />
     <Compile Include="Types\Repository.cs" />
+    <Compile Include="Types\Single.cs" />
     <Compile Include="Types\SomeClass.cs" />
     <Compile Include="Types\StandardCard.cs" />
     <Compile Include="Types\TakesDependency.cs" />

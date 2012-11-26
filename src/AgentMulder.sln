@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Plugin.6.1", "AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.6.1.csproj", "{8FED260D-8CDB-45A1-B927-116DE2FECD8F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{F0AF21D8-9FFB-4641-AA4A-404A86F9029D}"
@@ -168,6 +168,6 @@ Global
 		{49E73F55-BB2A-4B1D-9A31-992E7E71861D} = {93E2B889-FBCA-4F2F-AF2C-10CFAF822BE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35
 	EndGlobalSection
 EndGlobal

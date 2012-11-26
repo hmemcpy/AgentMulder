@@ -5,14 +5,13 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Autofac.Registrations
 {
-    public class DefaultScanAssemblyRegistration : BasedOnRegistrationBase
+    public class DefaultScanAssemblyRegistration : FilteredRegistrationBase
     {
         public DefaultScanAssemblyRegistration(ITreeNode registrationRootElement)
             : base(registrationRootElement)
         {
             AddFilter(typeElement =>
             {
-                // taken from the method 'ScanAssemblies' in ScanningRegistrationExtensions of Autofac
                 var @class = typeElement as IClass;
                 if (@class == null)
                 {

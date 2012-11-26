@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Helpers;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereArgument;
 using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -15,7 +14,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.InNamespace($arguments$)",
-                new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
+                new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor"),
                 new ArgumentPlaceholder("arguments", 1, 2)); // at most two occurrences, for both overloads
 
         public InNamespace()

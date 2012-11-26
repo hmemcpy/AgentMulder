@@ -30,7 +30,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
             return ((IBasedOnPattern)this).GetBasedOnRegistrations(registrationRootElement);
         }
 
-        IEnumerable<BasedOnRegistrationBase> IBasedOnPattern.GetBasedOnRegistrations(ITreeNode registrationRootElement)
+        IEnumerable<FilteredRegistrationBase> IBasedOnPattern.GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
             IStructuralMatchResult match = Match(registrationRootElement);
 

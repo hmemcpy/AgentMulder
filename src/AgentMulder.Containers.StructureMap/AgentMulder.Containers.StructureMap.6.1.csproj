@@ -37,11 +37,16 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Patterns\For\Add\AddGeneric.cs" />
+    <Compile Include="Patterns\For\Add\AddNonGeneric.cs" />
     <Compile Include="Patterns\For\ForBasePattern.cs" />
     <Compile Include="Patterns\For\ForGeneric.cs" />
     <Compile Include="Patterns\For\ForNonGeneric.cs" />
@@ -49,10 +54,31 @@
     <Compile Include="Patterns\For\RegistryForNonGeneric.cs" />
     <Compile Include="Patterns\For\Use\UseGeneric.cs" />
     <Compile Include="Patterns\For\Use\UseNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\AddAllTypesOfGeneric.cs" />
+    <Compile Include="Patterns\Scan\AddAllTypesOfNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\Assembly.cs" />
+    <Compile Include="Patterns\Scan\AssemblyContainingTypeGeneric.cs" />
+    <Compile Include="Patterns\Scan\AssemblyContainingTypeNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\ExcludeNamespace.cs" />
+    <Compile Include="Patterns\Scan\ExcludeNamespaceContainingType.cs" />
+    <Compile Include="Patterns\Scan\ExcludeType.cs" />
+    <Compile Include="Patterns\Scan\IncludeNamespace.cs" />
+    <Compile Include="Patterns\Scan\IncludeNamespaceContainingType.cs" />
+    <Compile Include="Patterns\Scan\RegisterConcreteTypesAgainstTheFirstInterface.cs" />
+    <Compile Include="Patterns\Scan\RegistryScanPattern.cs" />
+    <Compile Include="Patterns\Scan\ScanPattern.cs" />
+    <Compile Include="Patterns\Scan\ScanPatternBase.cs" />
+    <Compile Include="Patterns\Scan\SingleImplementationsOfInterface.cs" />
+    <Compile Include="Patterns\Scan\TheCallingAssembly.cs" />
+    <Compile Include="Patterns\Scan\WithDefaultConventions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>
       </SubType>
     </Compile>
+    <Compile Include="Registrations\DefaultConvention.cs" />
+    <Compile Include="Registrations\FirstInterfaceConvention.cs" />
+    <Compile Include="Registrations\SingleImplementationsOfInterfaceConvention.cs" />
+    <Compile Include="Registrations\StructureMapConventionBase.cs" />
     <Compile Include="StructureMapContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>

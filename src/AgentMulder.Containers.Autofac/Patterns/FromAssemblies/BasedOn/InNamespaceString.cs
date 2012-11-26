@@ -15,7 +15,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.InNamespace($argument$)",
                 new ExpressionPlaceholder("builder",
-                    "global::Autofac.Builder.IRegistrationBuilder<object,global::Autofac.Features.Scanning.ScanningActivatorData,global::Autofac.Builder.DynamicRegistrationStyle>", false),
+                    "global::Autofac.Builder.IRegistrationBuilder<object,global::Autofac.Features.Scanning.ScanningActivatorData,global::Autofac.Builder.DynamicRegistrationStyle>"),
                 new ArgumentPlaceholder("argument"));
 
         public InNamespaceString()
@@ -23,7 +23,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
+        protected override IEnumerable<FilteredRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
             var argument = match.GetMatchedElement("argument") as ICSharpArgument;
             if (argument != null)

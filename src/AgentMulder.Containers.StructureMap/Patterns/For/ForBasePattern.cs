@@ -13,8 +13,6 @@ namespace AgentMulder.Containers.StructureMap.Patterns.For
     [InheritedExport("ComponentRegistration", typeof(IRegistrationPattern))]
     internal abstract class ForBasePattern : ComponentRegistrationPatternBase
     {
-        private const string StructureMapRegistryTypeName = "StructureMap.Configuration.DSL.IRegistry";
-
         private readonly IEnumerable<ComponentImplementationPatternBase> usePatterns;
         
         protected ForBasePattern(IStructuralSearchPattern pattern, string elementName, IEnumerable<ComponentImplementationPatternBase> usePatterns)
@@ -32,13 +30,12 @@ namespace AgentMulder.Containers.StructureMap.Patterns.For
             // Therefore I'm only matching by the method name only, and later verifying that the method indeed belongs to StructureMap, by
             // making sure the invocation's qualifier derived from global::StructureMap.Configuration.DSL.IRegistry
 
-            if (!registrationRootElement.IsContainerCall(StructureMapRegistryTypeName))
+            if (!registrationRootElement.IsContainerCall(Constants.StructureMapRegistryTypeName))
             {
                 yield break;
             }
 
-
-            IInvocationExpression invocationExpression = GetInvocationExpression(registrationRootElement);
+            IInvocationExpression invocationExpression = registrationRootElement.GetInvocationExpression();
             if (invocationExpression == null)
             {
                 yield break;
@@ -59,25 +56,6 @@ namespace AgentMulder.Containers.StructureMap.Patterns.For
                     }
                 }
             }
-        }
-
-        private IInvocationExpression GetInvocationExpression(ITreeNode node)
-        {
-            // first, try to find the parent statement expression
-            var statement = node.GetParentExpression<IExpressionStatement>();
-            if (statement != null)
-            {
-                return statement.Expression as IInvocationExpression;
-            }
-
-            // otherwise, try finding the lambda expression, and take its invocation
-            var lambdaExpression = node.GetParentExpression<ILambdaExpression>();
-            if (lambdaExpression != null)
-            {
-                return lambdaExpression.BodyExpression as IInvocationExpression;
-            }
-
-            return null;
         }
 
         protected virtual IEnumerable<IComponentRegistration> DoCreateRegistrations(ITreeNode parentElement)

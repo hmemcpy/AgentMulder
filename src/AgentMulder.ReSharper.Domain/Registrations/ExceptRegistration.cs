@@ -1,10 +1,9 @@
-using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.Autofac.Registrations
+namespace AgentMulder.ReSharper.Domain.Registrations
 {
-    internal sealed class ExceptRegistration : BasedOnRegistrationBase
+    internal sealed class ExceptRegistration : FilteredRegistrationBase
     {
         public ExceptRegistration(ITreeNode registrationRootElement, ITypeElement exceptElement)
             : base(registrationRootElement)

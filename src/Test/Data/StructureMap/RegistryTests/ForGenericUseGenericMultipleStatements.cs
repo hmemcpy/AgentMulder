@@ -8,7 +8,7 @@ namespace TestApplication.StructureMap.RegistryTests
         public ForGenericUseGenericMultipleStatements()
         {
             For<IFoo>().Use<Foo>();
-            For<IBar>().Use<Bar>();            
+            For<IBar>().Use<Bar>();
         }
     }
 }

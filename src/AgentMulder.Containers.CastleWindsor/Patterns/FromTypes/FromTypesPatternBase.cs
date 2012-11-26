@@ -10,11 +10,14 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    public abstract class FromTypesPatternBase : FromDescriptorPatternBase
+    public abstract class FromTypesPatternBase : RegistrationPatternBase
     {
+        private readonly IEnumerable<IBasedOnPattern> basedOnPatterns;
+
         protected FromTypesPatternBase(IStructuralSearchPattern pattern, IEnumerable<IBasedOnPattern> basedOnPatterns)
-            : base(pattern, basedOnPatterns)
+            : base(pattern)
         {
+            this.basedOnPatterns = basedOnPatterns;
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
@@ -23,9 +26,13 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 
             if (match.Matched)
             {
-                foreach (IBasedOnPattern basedOnPattern in BasedOnPatterns)
+                var registrations = (from p in basedOnPatterns
+                                     from registration in p.GetBasedOnRegistrations(registrationRootElement)
+                                     select registration).ToList();
+
+                if (registrations.Any())
                 {
-                    foreach (BasedOnRegistrationBase basedOnRegistration in basedOnPattern.GetBasedOnRegistrations(registrationRootElement))
+                    foreach (FilteredRegistrationBase basedOnRegistration in registrations)
                     {
                         IEnumerable<ICSharpArgument> matchedArguments = match.GetMatchedElementList("services").OfType<ICSharpArgument>();
                         IEnumerable<ITypeElement> typeElements = matchedArguments.SelectMany(argument => GetRegisteredTypes(match, argument.Value));

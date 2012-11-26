@@ -9,18 +9,18 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
 {
-    internal class FromAssembly : FromAssemblyPatternBase
+    internal sealed class FromAssembly : ModuleBasedPatternBase
     {
-        public FromAssembly(string qualiferType, params IBasedOnPattern[] basedOnPatterns)
-            : base(CreatePattern(qualiferType), basedOnPatterns)
+        public FromAssembly(string qualiferType)
+            : base(CreatePattern(qualiferType))
         {
         }
 
         private static IStructuralSearchPattern CreatePattern(string qualiferType)
         {
             return new CSharpStructuralSearchPattern("$qualifier$.FromAssembly($assembly$)",
-                                                     new ExpressionPlaceholder("qualifier", qualiferType, true),
-                                                     new ArgumentPlaceholder("assembly", 1, 1)); // matches exactly one argument
+                new ExpressionPlaceholder("qualifier", qualiferType, true),
+                new ArgumentPlaceholder("assembly", 1, 1)); // matches exactly one argument
         }
 
         protected override IModule GetTargetModule(IStructuralMatchResult match)

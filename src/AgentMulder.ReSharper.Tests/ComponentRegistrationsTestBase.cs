@@ -27,7 +27,7 @@ namespace AgentMulder.ReSharper.Tests
             get { return "..\\Types"; }
         }
 
-        protected void RunTest(string testName, Action<IEnumerable<RegistrationInfo>> action)
+        protected void RunTest(string testName, Action<List<RegistrationInfo>> action)
         {
             string fileName = testName + Extension;
             var dataPath = new DirectoryInfo(Path.Combine(SolutionItemsBasePath, RelativeTypesPath));
@@ -37,12 +37,12 @@ namespace AgentMulder.ReSharper.Tests
             {
                 var searchDomainFactory = ShellInstance.GetComponent<SearchDomainFactory>();
                 var patternSearcher = new PatternSearcher(searchDomainFactory);
-                var solutionnAnalyzer = new SolutionAnalyzer(patternSearcher);
-                solutionnAnalyzer.AddContainer(ContainerInfo);
+                var solutionAnalyzer = new SolutionAnalyzer(patternSearcher);
+                solutionAnalyzer.AddContainer(ContainerInfo);
 
-                var componentRegistrations = solutionnAnalyzer.Analyze();
+                var componentRegistrations = solutionAnalyzer.Analyze();
 
-                action(componentRegistrations);
+                action(componentRegistrations.ToList());
             }));
         }
 

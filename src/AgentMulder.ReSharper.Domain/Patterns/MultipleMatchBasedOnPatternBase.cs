@@ -23,12 +23,12 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             return GetBasedOnRegistrations(registrationRootElement);
         }
 
-        public override IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
+        public override IEnumerable<FilteredRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
             return MatchMany(registrationRootElement).Where(match => match.Matched)
                 .SelectMany(match => DoCreateRegistrations(registrationRootElement, match));
         }
 
-        protected abstract IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match);
+        protected abstract IEnumerable<FilteredRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match);
     }
 }

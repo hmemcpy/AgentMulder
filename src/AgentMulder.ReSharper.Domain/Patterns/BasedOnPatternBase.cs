@@ -17,6 +17,6 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             return GetBasedOnRegistrations(registrationRootElement);
         }
 
-        public abstract IEnumerable<BasedOnRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement);
+        public abstract IEnumerable<FilteredRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement);
     }
 }

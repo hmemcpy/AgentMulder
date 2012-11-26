@@ -82,6 +82,17 @@ namespace AgentMulder.ReSharper.Domain.Utils
             return element is IDelegate;
         }
 
+        public static bool IsConcrete(this ITypeElement element)
+        {
+            var @class = element as IClass;
+            if (@class == null)
+            {
+                return false;
+            }
+
+            return !@class.IsAbstract;
+        }
+
         public static INamespace GetNamespaceDeclaration(ICSharpExpression expression)
         {
             CSharpElementFactory elementFactory = CSharpElementFactory.GetInstance(expression.GetPsiModule());
@@ -105,6 +116,25 @@ namespace AgentMulder.ReSharper.Domain.Utils
                 var expressionStatement = n as TExpression;
                 if (expressionStatement != null)
                     return expressionStatement;
+            }
+
+            return null;
+        }
+
+        public static IInvocationExpression GetInvocationExpression(this ITreeNode node)
+        {
+            // first, try to find the parent statement expression
+            var statement = node.GetParentExpression<IExpressionStatement>();
+            if (statement != null)
+            {
+                return statement.Expression as IInvocationExpression;
+            }
+
+            // otherwise, try finding the lambda expression, and take its invocation
+            var lambdaExpression = node.GetParentExpression<ILambdaExpression>();
+            if (lambdaExpression != null)
+            {
+                return lambdaExpression.BodyExpression as IInvocationExpression;
             }
 
             return null;

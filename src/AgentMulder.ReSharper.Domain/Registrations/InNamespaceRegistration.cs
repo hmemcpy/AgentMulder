@@ -4,7 +4,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
-    public class InNamespaceRegistration : BasedOnRegistrationBase
+    public class InNamespaceRegistration : FilteredRegistrationBase
     {
         private readonly INamespace matchedNamespace;
         private readonly bool includeSubnamespaces;

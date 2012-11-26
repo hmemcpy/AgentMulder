@@ -55,6 +55,7 @@
     <Compile Include="Elements\IElementExtractor.cs" />
     <Compile Include="Elements\Modules\IModuleExtractor.cs" />
     <Compile Include="Elements\Modules\Impl\AssemblyNameExtractor.cs" />
+    <Compile Include="Elements\Modules\Impl\CallingAssemblyExtractor.cs" />
     <Compile Include="Elements\Modules\Impl\GetExecutingAssemblyExtractor.cs" />
     <Compile Include="Elements\Modules\Impl\TypeAssemblyPropertyExtractor.cs" />
     <Compile Include="Elements\Modules\Impl\TypeElementExtractor.cs" />
@@ -91,14 +92,21 @@
     <Compile Include="Patterns\BasedOnPatternBase.cs" />
     <Compile Include="Patterns\ComponentImplementationPatternBase.cs" />
     <Compile Include="Patterns\ComponentRegistrationPatternBase.cs" />
-    <Compile Include="Patterns\FromDescriptorPatternBase.cs" />
+    <Compile Include="Patterns\CompositePattern.cs" />
+    <Compile Include="Patterns\IStructuralPatternHolder.cs" />
+    <Compile Include="Patterns\ModuleBasedPatternBase.cs" />
     <Compile Include="Patterns\IBasedOnPattern.cs" />
     <Compile Include="Patterns\IRegistrationPattern.cs" />
     <Compile Include="Patterns\MultipleMatchBasedOnPatternBase.cs" />
+    <Compile Include="Patterns\NamespaceRegistrationPatternBase.cs" />
     <Compile Include="Patterns\RegistrationPatternBase.cs" />
-    <Compile Include="Registrations\ElementBasedOnRegistration.cs" />
+    <Compile Include="Registrations\CompositeRegistration.cs" />
+    <Compile Include="Registrations\ExceptRegistration.cs" />
+    <Compile Include="Registrations\FilteredRegistrationBase.cs" />
     <Compile Include="Registrations\HasAttributeRegistration.cs" />
     <Compile Include="Registrations\IBasedOnRegistrationCreator.cs" />
+    <Compile Include="Registrations\NegateRegistration.cs" />
+    <Compile Include="Registrations\ServiceRegistration.cs" />
     <Compile Include="Utils\ContainerExtensions.cs" />
     <Compile Include="Utils\MaybeMonadExtensions.cs" />
     <Compile Include="Utils\PsiExtensions.cs" />
@@ -110,7 +118,6 @@
     <Compile Include="Registrations\IRegistrationPatternsProvider.cs" />
     <Compile Include="Registrations\ModuleBasedOnRegistration.cs" />
     <Compile Include="Registrations\TypesBasedOnRegistration.cs" />
-    <Compile Include="Registrations\BasedOnRegistrationBase.cs" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

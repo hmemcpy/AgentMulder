@@ -26,14 +26,14 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
         {
             var basedOnPatterns = basedOnProvider.GetRegistrationPatterns(new TypesRegistrationCreator()).ToArray();
 
-            return new FromDescriptorPatternBase[]
+            return new IRegistrationPattern[]
             {
-                new From(TypesFullTypeName, basedOnPatterns),
-                new FromAssembly(TypesFullTypeName, basedOnPatterns),
-                new FromThisAssembly(TypesFullTypeName, basedOnPatterns),
-                new FromAssemblyNamed(TypesFullTypeName, basedOnPatterns), 
-                new FromAssemblyContainingGeneric(TypesFullTypeName, basedOnPatterns),
-                new FromAssemblyContainingNonGeneric(TypesFullTypeName, basedOnPatterns)
+                new CompositePattern(new From(TypesFullTypeName), basedOnPatterns),
+                new CompositePattern(new FromAssembly(TypesFullTypeName), basedOnPatterns), 
+                new CompositePattern(new FromThisAssembly(TypesFullTypeName), basedOnPatterns),
+                new CompositePattern(new FromAssemblyNamed(TypesFullTypeName), basedOnPatterns), 
+                new CompositePattern(new FromAssemblyContainingGeneric(TypesFullTypeName), basedOnPatterns),
+                new CompositePattern(new FromAssemblyContainingNonGeneric(TypesFullTypeName), basedOnPatterns)
             };
         }
     }

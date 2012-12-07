@@ -25,7 +25,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
 
         protected RegistrationPatternBase(IStructuralSearchPattern pattern)
         {
-           this.pattern = pattern;
+            this.pattern = pattern;
 
             matcher = pattern.CreateMatcher();
         }

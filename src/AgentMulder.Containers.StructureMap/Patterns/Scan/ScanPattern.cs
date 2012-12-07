@@ -11,7 +11,9 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$registry$.Scan($id$ => { $statements$ })",
-                new ExpressionPlaceholder("registry", "global::StructureMap.Configuration.DSL.IRegistry"),
+            // ReSharper disable RedundantArgumentDefaultValue
+                new ExpressionPlaceholder("registry", "global::StructureMap.Configuration.DSL.IRegistry", false),
+            // ReSharper restore RedundantArgumentDefaultValue
                 new ArgumentPlaceholder("id"),
                 new StatementPlaceholder("statements", -1, -1));
 

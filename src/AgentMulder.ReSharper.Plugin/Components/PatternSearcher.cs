@@ -27,7 +27,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
             this.searchDomainFactory = searchDomainFactory;
         }
 
-        public IEnumerable<IStructuralMatchResult> Search(IRegistrationPattern patern)
+        public IEnumerable<IStructuralMatchResult> Search(IStructuralPatternHolder pattern)
         {
             var results = new List<IStructuralMatchResult>();
             var consumer = new FindResultConsumer<IStructuralMatchResult>(result =>
@@ -48,7 +48,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
                 return FindExecution.Continue;
             });
 
-            DoSearch(patern.Matcher, consumer);
+            DoSearch(pattern.Matcher, consumer);
 
             return results;
         }

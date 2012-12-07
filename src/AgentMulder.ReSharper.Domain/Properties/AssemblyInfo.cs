@@ -7,3 +7,4 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("AgentMulder.Containers.CastleWindsor")]
 [assembly: InternalsVisibleTo("AgentMulder.Containers.Ninject")]
 [assembly: InternalsVisibleTo("AgentMulder.Containers.Unity")]
+[assembly: InternalsVisibleTo("AgentMulder.Containers.StructureMap")]

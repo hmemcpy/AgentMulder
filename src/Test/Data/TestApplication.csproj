@@ -65,7 +65,7 @@
       <HintPath>..\..\packages\Castle.Windsor.3.1.0\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="Catel.Core">
-      <HintPath>..\..\packages\Catel.Core.3.2\lib\NET40\Catel.Core.dll</HintPath>
+      <HintPath>..\..\packages\Catel.Core.3.3\lib\NET40\Catel.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -78,6 +78,9 @@
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -150,6 +153,56 @@
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToNonGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\RebindNonGenericToSelf.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericAddGenericExpression.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericAddGenericMultipleStatements.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericAddGenericStatement.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericExpression.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericMultipleStatements.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericStatement.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForGenericUseGenericWithAdditionalParams.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForNonGenericAddNonGenericTypeOf.cs" />
+    <Compile Include="StructureMap\ContainerTests\ForNonGenericUseNonGenericTypeof.cs" />
+    <Compile Include="StructureMap\ContainerTests\ObjectFactoryContainerConfigure.cs" />
+    <Compile Include="StructureMap\MethodNamedBindInThisClass.cs" />
+    <Compile Include="StructureMap\MethodNamedForOnSomeClass.cs" />
+    <Compile Include="StructureMap\RegistryTests\ForGenericUseGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ForGenericUseGenericMultipleStatements.cs" />
+    <Compile Include="StructureMap\RegistryTests\ForGenericUseGenericWithAdditionalParams.cs" />
+    <Compile Include="StructureMap\RegistryTests\ForNonGenericUseNonGenericType.cs" />
+    <Compile Include="StructureMap\RegistryTests\RegistryInstanceConfigure.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanAssemblyContainigTypeGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanAssemblyContainigTypeNonGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanAssemblyGetExecutingAssembly.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanAssemblyTypeofTAssembly.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanNoAssemblyStatement.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssembly.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyAddAllTypesOfGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyAddAllTypesOfNonGeneric.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyExcludeNamespace.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyExcludeNamespaceContainingType.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyExcludeType.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyIncludeNamespace.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyIncludeNamespaceContainingType.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyRegisterConcreteTypesAgainstTheFirstInterface.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblySingleImplementationsOfInterface.cs" />
+    <Compile Include="StructureMap\RegistryTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeGeneric.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanAssemblyContainigTypeNonGeneric.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanAssemblyGetExecutingAssembly.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanAssemblyTypeofTAssembly.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanNoAssemblyStatement.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssembly.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyAddAllTypesOfGeneric.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyAddAllTypesOfNonGeneric.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyExcludeNamespace.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyExcludeNamespaceContainingType.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyExcludeType.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyIncludeNamespace.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyIncludeNamespaceContainingType.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyRegisterConcreteTypesAgainstTheFirstInterface.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblySingleImplementationsOfInterface.cs" />
+    <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
+    <None Include="StructureMap\_DoesNotCompile-BrokenReference.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />
     <Compile Include="Types\Baz.cs" />
@@ -177,14 +230,18 @@
     <Compile Include="Types\InSomeNamespace.cs" />
     <Compile Include="Types\InSomeOtherNamespace.cs" />
     <Compile Include="Types\IPageRepository.cs" />
+    <Compile Include="Types\IPrimitiveArgument.cs" />
     <Compile Include="Types\IRepository.cs" />
+    <Compile Include="Types\ISingle.cs" />
     <Compile Include="Types\MyAttribute.cs" />
     <Compile Include="Types\MyList.cs" />
     <Compile Include="Types\MyStruct.cs" />
     <Compile Include="Types\Page.cs" />
     <Compile Include="Types\PageRepository.cs" />
     <Compile Include="Types\PlatinumCard.cs" />
+    <Compile Include="Types\PrimitiveArgument.cs" />
     <Compile Include="Types\Repository.cs" />
+    <Compile Include="Types\Single.cs" />
     <Compile Include="Types\SomeClass.cs" />
     <Compile Include="Types\StandardCard.cs" />
     <Compile Include="Types\TakesDependency.cs" />
@@ -253,9 +310,9 @@
     <None Include="Windsor\_DoesNotCompile-BrokenReference.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests70.csproj">
+    <ProjectReference Include="..\..\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.6.1.csproj">
       <Project>{C6154279-CFEE-47FC-8F17-F901A5636B0A}</Project>
-      <Name>AgentMulder.ReSharper.Tests70</Name>
+      <Name>AgentMulder.ReSharper.Tests.6.1</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
-    public class HasAttributeRegistration : BasedOnRegistrationBase
+    public class HasAttributeRegistration : FilteredRegistrationBase
     {
         private readonly ITypeElement attributeType;
 

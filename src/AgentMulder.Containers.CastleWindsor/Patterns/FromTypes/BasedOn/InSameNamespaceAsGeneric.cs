@@ -14,7 +14,11 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.InSameNamespaceAs<$type$>($subnamespace$)",
-                new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
+            // ReSharper disable RedundantArgumentDefaultValue
+            // Note: in R# 6.1, the value 'false' is not the default! Don't remove this, otherwise 6.1 matching will fail!
+                new ExpressionPlaceholder("fromDescriptor", "global::Castle.MicroKernel.Registration.FromDescriptor", false),
+            // ReSharper restore RedundantArgumentDefaultValue
+
                 new TypePlaceholder("type"),
                 new ArgumentPlaceholder("subnamespace", 0, 1));
 

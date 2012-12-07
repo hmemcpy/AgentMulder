@@ -22,7 +22,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
+        protected override IEnumerable<FilteredRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
             var matchedType = match.GetMatchedType("service") as IDeclaredType;
             if (matchedType != null)
@@ -31,7 +31,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
                 if (typeElement != null)
                 {
                     // todo possible bug here. Investigate wheather As and AssignableTo differ somehow in the result.
-                    yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
+                    yield return new ServiceRegistration(registrationRootElement, typeElement);
                 }
             }
         }

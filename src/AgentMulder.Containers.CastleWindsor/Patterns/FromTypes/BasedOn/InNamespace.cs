@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using AgentMulder.Containers.CastleWindsor.Helpers;
-using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereArgument;
 using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -15,7 +14,10 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.InNamespace($arguments$)",
-                new ExpressionPlaceholder("fromDescriptor", "Castle.MicroKernel.Registration.FromDescriptor", false),
+                // ReSharper disable RedundantArgumentDefaultValue
+                // Note: in R# 6.1, the value 'false' is not the default! Don't remove this, otherwise 6.1 matching will fail!
+                new ExpressionPlaceholder("fromDescriptor", "global::Castle.MicroKernel.Registration.FromDescriptor", false),
+                // ReSharper restore RedundantArgumentDefaultValue
                 new ArgumentPlaceholder("arguments", 1, 2)); // at most two occurrences, for both overloads
 
         public InNamespace()
@@ -24,7 +26,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         }
 
         protected override INamespace GetNamespaceElement(IStructuralMatchResult match, out bool includeSubnamespaces)
-        {           
+        {
             var arguments = match.GetMatchedElementList("arguments").Cast<ICSharpArgument>().ToArray();
 
             return NamespaceExtractor.GetNamespace(arguments, out includeSubnamespaces);

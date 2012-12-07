@@ -5,6 +5,7 @@ using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Domain.Utils
@@ -81,6 +82,17 @@ namespace AgentMulder.ReSharper.Domain.Utils
             return element is IDelegate;
         }
 
+        public static bool IsConcrete(this ITypeElement element)
+        {
+            var @class = element as IClass;
+            if (@class == null)
+            {
+                return false;
+            }
+
+            return !@class.IsAbstract;
+        }
+
         public static INamespace GetNamespaceDeclaration(ICSharpExpression expression)
         {
             CSharpElementFactory elementFactory = CSharpElementFactory.GetInstance(expression.GetPsiModule());
@@ -91,6 +103,38 @@ namespace AgentMulder.ReSharper.Domain.Utils
                 string namespaceName = Convert.ToString(expression.ConstantValue.Value);
 
                 return elementFactory.CreateNamespaceDeclaration(namespaceName).DeclaredElement;
+            }
+
+            return null;
+        }
+
+        public static TExpression GetParentExpression<TExpression>(this ITreeNode node)
+            where TExpression : class, ITreeNode
+        {
+            for (var n = node; n != null; n = n.Parent)
+            {
+                var expressionStatement = n as TExpression;
+                if (expressionStatement != null)
+                    return expressionStatement;
+            }
+
+            return null;
+        }
+
+        public static IInvocationExpression GetInvocationExpression(this ITreeNode node)
+        {
+            // first, try to find the parent statement expression
+            var statement = node.GetParentExpression<IExpressionStatement>();
+            if (statement != null)
+            {
+                return statement.Expression as IInvocationExpression;
+            }
+
+            // otherwise, try finding the lambda expression, and take its invocation
+            var lambdaExpression = node.GetParentExpression<ILambdaExpression>();
+            if (lambdaExpression != null)
+            {
+                return lambdaExpression.BodyExpression as IInvocationExpression;
             }
 
             return null;

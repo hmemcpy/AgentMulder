@@ -51,7 +51,7 @@ namespace AgentMulder.Containers.Autofac.Patterns
                         var typeElement = declaredType.GetTypeElement();
                         if (typeElement != null)
                         {
-                            yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
+                            yield return new ServiceRegistration(registrationRootElement, typeElement);
                         }
                     }
                 }

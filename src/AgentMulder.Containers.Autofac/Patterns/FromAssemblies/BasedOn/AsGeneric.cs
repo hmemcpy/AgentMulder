@@ -22,7 +22,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
+        protected override IEnumerable<FilteredRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
             var matchedType = match.GetMatchedType("service") as IDeclaredType;
             if (matchedType != null)
@@ -30,7 +30,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
                 ITypeElement typeElement = matchedType.GetTypeElement();
                 if (typeElement != null)
                 {
-                    yield return new ElementBasedOnRegistration(registrationRootElement, typeElement);
+                    yield return new ServiceRegistration(registrationRootElement, typeElement);
                 }
             }
         }

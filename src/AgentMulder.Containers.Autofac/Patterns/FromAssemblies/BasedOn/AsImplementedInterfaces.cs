@@ -23,18 +23,20 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
         {
         }
 
-        protected override IEnumerable<BasedOnRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
+        protected override IEnumerable<FilteredRegistrationBase> DoCreateRegistrations(ITreeNode registrationRootElement, IStructuralMatchResult match)
         {
             yield return new ImplementedInterfacesRegistration(registrationRootElement);
         }
 
-        private class ImplementedInterfacesRegistration : BasedOnRegistrationBase
+        private class ImplementedInterfacesRegistration : FilteredRegistrationBase
         {
             public ImplementedInterfacesRegistration(ITreeNode registrationRootElement)
                 : base(registrationRootElement)
             {
-                AddFilter(typeElement => typeElement.GetSuperTypes().SelectNotNull(type => type.GetTypeElement() as IInterface)
-                                            .Any(@interface => @interface.GetClrName().FullName != "System.IDisposable"));
+                AddFilter(typeElement => typeElement.GetSuperTypes()
+                                                    .SelectNotNull(type => type.GetTypeElement())
+                                                    .OfType<IInterface>()
+                                                    .Any(@interface => @interface.GetClrName().FullName != "System.IDisposable"));
             }
         }
     }

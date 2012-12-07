@@ -4,8 +4,10 @@ What's new in Agent Mulder
 v1.0.5
 ======
 
-+ Initial support for Catel IoC (part of Catel framework) (https://github.com/hmemcpy/AgentMulder/wiki/Catel-IoC)
-* Numerous performace improvements
++ Support for StructureMap (https://github.com/hmemcpy/AgentMulder/wiki/StructureMap)
++ Support for Catel IoC (part of Catel framework) (https://github.com/hmemcpy/AgentMulder/wiki/Catel-IoC)
++ Support for ReSharper 7.1 (7.0 support removed, please upgrade to 7.1)
+* Numerous performace improvements and bug fixes
  
 
 v1.0.4.2
@@ -24,17 +26,21 @@ v1.0.4
 + Initial support for Autofac (https://github.com/hmemcpy/AgentMulder/wiki/Autofac)
 * Miscellaneous bug fixes
 
+
 v1.0.3.1 - Hotfix
 =================
 * Fixed a bug where Ninject registration wasn't picked up by Agent Mulder (issue #10)
+
 
 v1.0.3
 ======
 + Initial support for Unity (https://github.com/hmemcpy/AgentMulder/wiki/Unity)
 
+
 v1.0.2
 ======
 + Initial support for Ninject (https://github.com/hmemcpy/AgentMulder/wiki/Ninject)
+
 
 v1.0.1
 ======
@@ -44,6 +50,7 @@ v1.0.1
   * Component.IsInNamespace
   * Component.IsInSameNamespaceAs (both generic and non-generic)
 + Added a new installer, based on the free edition of Advanced Installer (http://www.advancedinstaller.com)
+
 
 v1.0.0
 ======

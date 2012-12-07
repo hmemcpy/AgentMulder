@@ -13,7 +13,7 @@ namespace AgentMulder.Containers.CastleWindsor.Providers
     [Export(typeof(IRegistrationPatternsProvider))]
     public class AllTypesRegistrationProvider : IRegistrationPatternsProvider
     {
-        private const string AllTypesFullTypeName = "Castle.MicroKernel.Registration.AllTypes";
+        private const string AllTypesFullTypeName = "global::Castle.MicroKernel.Registration.AllTypes";
 
         private readonly BasedOnRegistrationProvider basedOnProvider;
 

@@ -20,7 +20,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
 
         public override IEnumerable<FilteredRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
         {
-            var match = Match(registrationRootElement);
+            IStructuralMatchResult match = Match(registrationRootElement);
 
             if (match.Matched)
             {

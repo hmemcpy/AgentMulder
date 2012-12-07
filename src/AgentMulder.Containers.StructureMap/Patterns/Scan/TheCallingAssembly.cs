@@ -12,7 +12,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$scanner$.TheCallingAssembly()",
-                new ExpressionPlaceholder("scanner", "global::StructureMap.Graph.IAssemblyScanner"));
+                new ExpressionPlaceholder("scanner", "global::StructureMap.Graph.IAssemblyScanner", false));
         
         public TheCallingAssembly()
             : base(pattern)

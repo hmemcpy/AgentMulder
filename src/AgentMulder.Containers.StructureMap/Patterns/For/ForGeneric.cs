@@ -11,7 +11,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.For
     {
         private static readonly IStructuralSearchPattern pattern = 
             new CSharpStructuralSearchPattern("$registry$.For<$service$>()",
-                new ExpressionPlaceholder("registry", "global::StructureMap.Configuration.DSL.IRegistry"),
+                new ExpressionPlaceholder("registry", "global::StructureMap.Configuration.DSL.IRegistry", false),
                 new TypePlaceholder("service"));
 
         [ImportingConstructor]

@@ -16,7 +16,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$scanner$.IncludeNamespaceContainingType<$type$>()",
-                new ExpressionPlaceholder("scanner", "global::StructureMap.Graph.IAssemblyScanner"),
+                new ExpressionPlaceholder("scanner", "global::StructureMap.Graph.IAssemblyScanner", false),
                 new TypePlaceholder("type"));
 
         public IncludeNamespaceContainingType()

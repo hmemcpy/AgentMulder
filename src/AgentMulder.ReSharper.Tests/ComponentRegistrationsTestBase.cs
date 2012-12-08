@@ -35,9 +35,8 @@ namespace AgentMulder.ReSharper.Tests
 
             WithSingleProject(fileSet, (lifetime, project) => RunGuarded(() =>
             {
-                var searchDomainFactory = ShellInstance.GetComponent<SearchDomainFactory>();
-                var patternSearcher = new PatternSearcher(searchDomainFactory);
-                var solutionAnalyzer = new SolutionAnalyzer(patternSearcher);
+                var patternSearcher = new PatternSearcher(Solution);
+                var solutionAnalyzer = new SolutionAnalyzer(patternSearcher, Solution);
                 solutionAnalyzer.AddContainer(ContainerInfo);
 
                 var componentRegistrations = solutionAnalyzer.Analyze();

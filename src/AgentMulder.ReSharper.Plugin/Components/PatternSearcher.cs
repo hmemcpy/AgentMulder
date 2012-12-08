@@ -17,14 +17,14 @@ using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {
-    [ShellComponent]
+    [SolutionComponent]
     public class PatternSearcher
     {
-        private readonly SearchDomainFactory searchDomainFactory;
+        private readonly ISolution solution;
 
-        public PatternSearcher(SearchDomainFactory searchDomainFactory)
+        public PatternSearcher(ISolution solution)
         {
-            this.searchDomainFactory = searchDomainFactory;
+            this.solution = solution;
         }
 
         public IEnumerable<IStructuralMatchResult> Search(IStructuralPatternHolder pattern)
@@ -53,26 +53,21 @@ namespace AgentMulder.ReSharper.Plugin.Components
             return results;
         }
 
-        private void DoSearch(IStructuralMatcher matcher, FindResultConsumer<IStructuralMatchResult> consumer)
+        private void DoSearch(IStructuralMatcher matcher, IFindResultConsumer<IStructuralMatchResult> consumer)
         {
-#if SDK70
-            ISolution solution = Shell.Instance.GetComponent<SolutionsManager>().Solution;
-#else
-            ISolution solution = Shell.Instance.GetComponent<ISolutionManager>().CurrentSolution;
-#endif
-
+            var searchDomainFactory = Shell.Instance.GetComponent<SearchDomainFactory>();
             var searchDomain = searchDomainFactory.CreateSearchDomain(solution, false);
             var documentManager = solution.GetComponent<DocumentManager>();
 
             // todo add support for VB (eventually)
             var structuralSearcher = new StructuralSearcher(documentManager, CSharpLanguage.Instance, matcher);
             var searchDomainSearcher = new StructuralSearchDomainSearcher<IStructuralMatchResult>(
-                NarrowSearchDomain(solution, matcher.Words, matcher.GetExtendedWords(solution), searchDomain),
+                NarrowSearchDomain(matcher.Words, matcher.GetExtendedWords(solution), searchDomain, searchDomainFactory),
                 structuralSearcher, consumer, NullProgressIndicator.Instance, true);
             searchDomainSearcher.Run();
         }
 
-        private ISearchDomain NarrowSearchDomain(ISolution solution, IEnumerable<string> words, IEnumerable<string> extendedWords, ISearchDomain domain)
+        private ISearchDomain NarrowSearchDomain(IEnumerable<string> words, IEnumerable<string> extendedWords, ISearchDomain domain, SearchDomainFactory searchDomainFactory)
         {
             List<string> allWords = words.ToList();
             List<string> allExtendedWords = extendedWords.ToList();

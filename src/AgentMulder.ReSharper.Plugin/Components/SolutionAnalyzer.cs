@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using AgentMulder.ReSharper.Domain.Containers;
 using JetBrains.ProjectModel;
+using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {
@@ -44,25 +45,24 @@ namespace AgentMulder.ReSharper.Plugin.Components
             knownContainers.AddRange(values);
         }
 
-        private IEnumerable<RegistrationInfo> cachedRegistrations; 
-
+        
         public IEnumerable<RegistrationInfo> Analyze()
         {
-            if (cachedRegistrations == null)
-            {
-                cachedRegistrations = knownContainers.SelectMany(ScanRegistrations).ToList();
-            }
-
-            return cachedRegistrations;
+            return knownContainers.SelectMany(info => ScanRegistrations(info));
         }
 
-        private IEnumerable<RegistrationInfo> ScanRegistrations(IContainerInfo containerInfo)
+        public IEnumerable<RegistrationInfo> Analyze(IPsiSourceFile sourceFile)
         {
-            return (from pattern in containerInfo.RegistrationPatterns
-                    let matchResults = patternSearcher.Search(pattern)
-                    from matchResult in matchResults.Where(result => result.Matched)
-                    from registration in pattern.GetComponentRegistrations(matchResult.MatchedElement)
-                    select new RegistrationInfo(registration, containerInfo.ContainerDisplayName)).ToList();
+            return knownContainers.SelectMany(info => ScanRegistrations(info, sourceFile)).ToList();
+        }
+
+        private IEnumerable<RegistrationInfo> ScanRegistrations(IContainerInfo containerInfo, IPsiSourceFile sourceFile = null)
+        {
+            return from pattern in containerInfo.RegistrationPatterns
+                   let matchResults = patternSearcher.Search(pattern, sourceFile)
+                   from matchResult in matchResults.Where(result => result.Matched)
+                   from registration in pattern.GetComponentRegistrations(matchResult.MatchedElement)
+                   select new RegistrationInfo(registration, containerInfo.ContainerDisplayName);
         }
     }
 }

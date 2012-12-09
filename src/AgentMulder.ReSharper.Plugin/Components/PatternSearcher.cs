@@ -21,13 +21,15 @@ namespace AgentMulder.ReSharper.Plugin.Components
     public class PatternSearcher
     {
         private readonly ISolution solution;
+        private readonly SearchDomainFactory searchDomainFactory;
 
         public PatternSearcher(ISolution solution)
         {
             this.solution = solution;
+            searchDomainFactory = Shell.Instance.GetComponent<SearchDomainFactory>();
         }
 
-        public IEnumerable<IStructuralMatchResult> Search(IStructuralPatternHolder pattern)
+        public IEnumerable<IStructuralMatchResult> Search(IStructuralPatternHolder pattern, IPsiSourceFile sourceFile = null)
         {
             var results = new List<IStructuralMatchResult>();
             var consumer = new FindResultConsumer<IStructuralMatchResult>(result =>
@@ -48,15 +50,18 @@ namespace AgentMulder.ReSharper.Plugin.Components
                 return FindExecution.Continue;
             });
 
-            DoSearch(pattern.Matcher, consumer);
+            DoSearch(pattern.Matcher, consumer, sourceFile);
 
             return results;
         }
 
-        private void DoSearch(IStructuralMatcher matcher, IFindResultConsumer<IStructuralMatchResult> consumer)
+        private void DoSearch(IStructuralMatcher matcher, IFindResultConsumer<IStructuralMatchResult> consumer, IPsiSourceFile sourceFile)
         {
-            var searchDomainFactory = Shell.Instance.GetComponent<SearchDomainFactory>();
-            var searchDomain = searchDomainFactory.CreateSearchDomain(solution, false);
+            
+            ISearchDomain searchDomain = sourceFile == null
+                                             ? searchDomainFactory.CreateSearchDomain(solution, false)
+                                             : searchDomainFactory.CreateSearchDomain(sourceFile);
+            
             var documentManager = solution.GetComponent<DocumentManager>();
 
             // todo add support for VB (eventually)

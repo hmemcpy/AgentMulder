@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\</OutputPath>
-    <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>    
+    <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
     <StartAction>Program</StartAction>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
     <StartArguments>/rootsuffix AGML /ReSharper.Plugin AgentMulder.ReSharper.Plugin.dll /ReSharper.Internal</StartArguments>
@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="Components\IRegistrationInfo.cs" />
     <Compile Include="Components\ITypeUsageManager.cs" />
+    <Compile Include="Components\PatternManager.cs" />
     <Compile Include="Components\PatternSearcher.cs" />
     <Compile Include="Components\TypeUsageManager.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.cs" />

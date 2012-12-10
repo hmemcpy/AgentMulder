@@ -6,6 +6,8 @@ For more information, visit http://hmemcpy.github.com/AgentMulder/
 
 ## Contributing to Agent Mulder
 
+<a href='http://www.pledgie.com/campaigns/18901'><img alt='Click here to lend your support to: Agent Mulder plugin for ReSharper and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/18901.png?skin_name=chrome' border='0' /></a>
+
 If you want to contribute to the project, check out the list of open [issues](https://github.com/hmemcpy/AgentMulder/issues).  
 
 You can:

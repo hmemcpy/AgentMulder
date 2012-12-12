@@ -10,7 +10,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {
-    public class ContainerRegistrationAnalysisStageProcess : IDaemonStageProcess
+    public partial class ContainerRegistrationAnalysisStageProcess : IDaemonStageProcess
     {
         private readonly IDaemonProcess process;
         private readonly IContextBoundSettingsStore settingsStore;
@@ -46,11 +46,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                         IPsiSourceFile psiSourceFile = registrationInfo.GetSourceFile();
                         consumer.AddHighlighting(new RegisteredByContainerHighlighting(registrationInfo),
                                                  declaration.GetNameDocumentRange(),
-#if SDK70
-                                                 psiSourceFile.GetTheOnlyPsiFile(psiSourceFile.PrimaryPsiLanguage));
-#else
-                                                 psiSourceFile.GetPsiFile(psiSourceFile.PrimaryPsiLanguage));
-#endif
+                                                 GetPsiFile(psiSourceFile));
                         
                         typeUsageManager.MarkTypeAsUsed(declaration);
                     }

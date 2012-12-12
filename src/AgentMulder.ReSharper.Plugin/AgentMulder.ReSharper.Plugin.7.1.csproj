@@ -60,10 +60,13 @@
     </Compile>
     <Compile Include="Components\IRegistrationInfo.cs" />
     <Compile Include="Components\ITypeUsageManager.cs" />
+    <Compile Include="Components\PatternManager.7.1.cs" />
     <Compile Include="Components\PatternManager.cs" />
     <Compile Include="Components\PatternSearcher.cs" />
     <Compile Include="Components\TypeUsageManager.cs" />
+    <Compile Include="Daemon\ContainerRegistrationAnalysisStage.7.1.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.cs" />
+    <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.7.1.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.cs" />
     <Compile Include="Highlighting\ContainerGutterMark.cs" />
     <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />

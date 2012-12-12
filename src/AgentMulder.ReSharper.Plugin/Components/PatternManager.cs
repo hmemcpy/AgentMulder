@@ -1,27 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Application;
-using JetBrains.Application.Progress;
-using JetBrains.DataFlow;
 using JetBrains.DocumentManagers.impl;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Caches;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
-using JetBrains.ReSharper.Psi.Impl.Caches2;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
-#if !SDK70
-using JetBrains.ReSharper.Psi.Util.Caches;
-#endif
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {
     [SolutionComponent]
-    public class PatternManager : IPatternManager
+    public partial class PatternManager : IPatternManager, ICache
     {
         private readonly SolutionAnalyzer analyzer;
+        private readonly HashSet<IPsiSourceFile> dirtyFiles = new HashSet<IPsiSourceFile>();
+        private ILookup<IPsiSourceFile, RegistrationInfo> registrationsLookup;
 
         public PatternManager(SolutionAnalyzer analyzer)
         {
@@ -30,7 +25,93 @@ namespace AgentMulder.ReSharper.Plugin.Components
 
         public IEnumerable<RegistrationInfo> GetRegistrationsForFile(IPsiSourceFile psiSourceFile)
         {
-            return analyzer.Analyze();
+            IEnumerable<RegistrationInfo> results = analyzer.Analyze().ToList();
+
+            registrationsLookup = results.ToLookup(info => info.GetSourceFile(), info => info);
+
+            return results;
+        }
+
+        object ICache.Build(IPsiAssembly assembly)
+        {
+            return null;
+        }
+
+        object ICache.Build(IPsiSourceFile sourceFile, bool isStartup)
+        {
+            return null;
+        }
+
+        public bool HasDirtyFiles
+        {
+            get { return Enumerable.Any(dirtyFiles); }
+        }
+
+        void ICache.MarkAsDirty(IPsiSourceFile sourceFile)
+        {
+            if (registrationsLookup.Contains(sourceFile))
+            {
+                dirtyFiles.Add(sourceFile);
+            }
+        }
+
+        void ICache.Merge(IPsiAssembly assembly, object part)
+        {
+        }
+
+        void ICache.Merge(IPsiSourceFile sourceFile, object builtPart)
+        {
+        }
+
+        void ICache.MergeLoaded(object data)
+        {
+        }
+
+        void ICache.OnAssemblyRemoved(IPsiAssembly assembly)
+        {
+        }
+
+        void ICache.OnDocumentChange(ProjectFileDocumentCopyChange change)
+        {
+        }
+
+        void ICache.OnFileRemoved(IPsiSourceFile sourceFile)
+        {
+        }
+
+        IEnumerable<IPsiSourceFile> ICache.OnProjectModelChange(ProjectModelChange change)
+        {
+            return EmptyList<IPsiSourceFile>.InstanceList;
+        }
+
+        void ICache.OnPsiChange(ITreeNode elementContainingChanges, PsiChangedElementType type)
+        {
+        }
+
+        IEnumerable<IPsiSourceFile> ICache.OnPsiModulePropertiesChange(IPsiModule module)
+        {
+            return EmptyList<IPsiSourceFile>.InstanceList;
+        }
+
+        void ICache.OnSandBoxCreated(SandBox sandBox)
+        {
+        }
+
+        void ICache.OnSandBoxPsiChange(ITreeNode elementContainingChanges)
+        {
+        }
+
+        void ICache.Release()
+        {
+        }
+
+        void ICache.SyncUpdate(bool underTransaction)
+        {
+        }
+
+        bool ICache.UpToDate(IPsiSourceFile sourceFile)
+        {
+            return !HasDirtyFiles;
         }
     }
 

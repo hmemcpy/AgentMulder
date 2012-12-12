@@ -4,12 +4,11 @@ using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.CSharp.Stages;
 using JetBrains.ReSharper.Daemon.UsageChecking;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {
     [DaemonStage(StagesBefore = new[] { typeof(LanguageSpecificDaemonStage) })]
-    public class ContainerRegistrationAnalysisStage : CSharpDaemonStageBase
+    public partial class ContainerRegistrationAnalysisStage : CSharpDaemonStageBase
     {
         private readonly IPatternManager patternManager;
 
@@ -18,15 +17,12 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
             this.patternManager = patternManager;
         }
 
-#if SDK70
-        protected override IDaemonStageProcess CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind, ICSharpFile file)
-#else
-        public override IDaemonStageProcess CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
-#endif
-        
+        private IDaemonStageProcess DoCreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
         {
             if (!IsSupported(process.SourceFile))
+            {
                 return null;
+            }
 
             if (processKind != DaemonProcessKind.VISIBLE_DOCUMENT)
             {

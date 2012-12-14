@@ -57,8 +57,8 @@ There is a lot of help available for Git Flow, which can be accessed by typing `
 
 ## Special thanks ##
 
-// todo align images to text
+![ReSharper](http://www.jetbrains.com/img/logos/logo_resharper_small.gif)  
+[ReSharper](http://www.jetbrains.com/resharper/) - the most advanced productivity add-in for Visual Studio!
 
-<img src="http://www.jetbrains.com/img/logos/logo_resharper_small.gif" width="142" height="29" alt="ReSharper"> [ReSharper](http://www.jetbrains.com/resharper/) - the most advanced productivity add-in for Visual Studio!
-
-![Advanced Installer](http://www.caphyon.com/img/press/ai/small-logo.png) Agent Mulder's installer is powered by [Advanced Installer](http://www.advancedinstaller.com/) - the easiest way to create powerful MSI-based installers!
+![Advanced Installer](http://www.caphyon.com/img/press/ai/small-logo.png)  
+Agent Mulder's installer is powered by [Advanced Installer](http://www.advancedinstaller.com/) - the easiest way to create powerful MSI-based installers!

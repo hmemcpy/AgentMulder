@@ -4,7 +4,7 @@ using JetBrains.ReSharper.Psi.Caches;
 namespace AgentMulder.ReSharper.Plugin.Components
 {
     // for 7.1
-    public partial class PatternManager
+    public partial class PatternManagerCache
     {
         object ICache.Load(IProgressIndicator progress, bool enablePersistence)
         {

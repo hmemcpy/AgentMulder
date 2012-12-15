@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.ComponentModel.Composition.Primitives;
 using System.Linq;
 using System.Reflection;
 using AgentMulder.Containers.CastleWindsor.Patterns;
-using AgentMulder.Containers.CastleWindsor.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
@@ -20,6 +18,15 @@ namespace AgentMulder.Containers.CastleWindsor
         public IEnumerable<IRegistrationPattern> RegistrationPatterns
         {
             get { return registrationPatterns; }
+        }
+
+        public IEnumerable<string> ContainerQualifiedNames
+        {
+            get
+            {
+                yield return "Castle.Windsor";
+                yield return "Castle.MicroKernel.Registration";
+            }
         }
 
         [ImportMany]

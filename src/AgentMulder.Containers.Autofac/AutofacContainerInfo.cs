@@ -14,6 +14,11 @@ namespace AgentMulder.Containers.Autofac
             get { return "Autofac"; }
         }
 
+        public override System.Collections.Generic.IEnumerable<string> ContainerQualifiedNames
+        {
+            get { yield return "Autofac"; }
+        } 
+
         protected override ComposablePartCatalog GetComponentCatalog()
         {
             return new AssemblyCatalog(Assembly.GetExecutingAssembly());

@@ -21,6 +21,15 @@ namespace AgentMulder.Containers.Ninject
             get { return registrationPatterns; }
         }
 
+        public IEnumerable<string> ContainerQualifiedNames
+        {
+            get
+            {
+                yield return "Ninject";
+                yield return "Ninject.Modules";
+            }
+        }
+
         [ImportMany]
         private IEnumerable<IRegistrationPatternsProvider> PatternsProviders { get; set; }
 

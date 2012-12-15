@@ -2,9 +2,11 @@
 using Castle.Core;
 using Castle.Windsor;
 using JetBrains.ReSharper.TestFramework;
+using NUnit.Framework;
 
 namespace AgentMulder.ReSharper.Tests.Windsor.Helpers
 {
+    [TestFixture]
     public class TestWindsorAttribute : TestReferencesAttribute
     {
 #if SDK70

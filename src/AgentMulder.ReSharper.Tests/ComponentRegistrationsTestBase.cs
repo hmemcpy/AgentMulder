@@ -84,7 +84,9 @@ namespace AgentMulder.ReSharper.Tests
             return cSharpFile;
         }
 
+// ReSharper disable MemberCanBePrivate.Global
         protected IEnumerable TestCases 
+// ReSharper restore MemberCanBePrivate.Global
         {
             get
             {

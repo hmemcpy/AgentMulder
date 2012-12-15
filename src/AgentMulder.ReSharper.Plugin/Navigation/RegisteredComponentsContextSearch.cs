@@ -5,8 +5,11 @@ using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application;
 using JetBrains.Application.DataContext;
+using JetBrains.DocumentManagers;
+using JetBrains.DocumentModel;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.ContextNavigation.Util;
+using JetBrains.ReSharper.Feature.Services.TodoItems;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.Tree;
@@ -18,21 +21,43 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
     {
         private readonly IShellLocks locks;
 
-        // todo fixme needs a real cache
-        private readonly IEnumerable<RegistrationInfo> cachedRegistrations;
-        
-        public RegisteredComponentsContextSearch(SolutionAnalyzer solutionAnalyzer, IShellLocks locks)
+        public RegisteredComponentsContextSearch(/*SolutionAnalyzer solutionAnalyzer, */IShellLocks locks)
         {
             this.locks = locks;
-            cachedRegistrations = solutionAnalyzer.Analyze();
         }
 
         public bool IsAvailable(IDataContext dataContext)
         {
-            // todo make this resolvable also via the AllTypes... line
-            var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
+            ISolution solution = dataContext.GetData(JetBrains.ProjectModel.DataContext.DataConstants.SOLUTION);
+            if (solution == null)
+                return false;
+#if SDK70
+            IDocument document = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT);
+#else
+            IDocument document = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT);
+#endif
 
-            return cachedRegistrations.Any(r => r.Registration.RegistrationElement.Children().Contains(invokedNode));
+            if (document == null)
+                return false;
+#if SDK70
+            DocumentOffset documentOffset = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT_OFFSET);
+#else
+            DocumentOffset documentOffset = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT_OFFSET);
+#endif
+            if (documentOffset == null)
+                return false;
+            IPsiSourceFile psiSourceFile = document.GetPsiSourceFile(solution);
+            if (psiSourceFile != null)
+            {
+                // todo make this resolvable also via the AllTypes... line
+                var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
+
+                return solution.GetComponent<SolutionAnalyzer>()
+                               .Analyze()
+                               .Any(r => r.Registration.RegistrationElement.Children().Contains(invokedNode));
+            }
+
+            return false;
         }
 
         public bool IsApplicable(IDataContext dataContext)
@@ -49,7 +74,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             }
 
             var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
-            var registration = cachedRegistrations.FirstOrDefault(r => r.Registration.RegistrationElement.Children().Contains(invokedNode));
+            var registration = solution.GetComponent<SolutionAnalyzer>().Analyze().FirstOrDefault(r => r.Registration.RegistrationElement.Children().Contains(invokedNode));
             if (registration == null)
             {
                 return null;

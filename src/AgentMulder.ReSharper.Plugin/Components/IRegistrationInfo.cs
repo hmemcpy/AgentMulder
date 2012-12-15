@@ -1,4 +1,5 @@
 ﻿using AgentMulder.ReSharper.Domain.Registrations;
+using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Components
@@ -24,9 +25,9 @@ namespace AgentMulder.ReSharper.Plugin.Components
             this.containerDisplayName = containerDisplayName;
         }
 
-        public IFile GetRegistrationFile()
+        public IPsiSourceFile GetSourceFile()
         {
-            return registration.RegistrationElement.GetContainingFile();
+            return registration.RegistrationElement.GetSourceFile();
         }
     }
 }

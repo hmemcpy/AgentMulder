@@ -50,7 +50,8 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
             if (match.Matched)
             {
                 var invocationExpressions = match.GetMatchedElementList("statements")
-                                                 .Cast<IExpressionStatement>()
+                                                 .OfType<IExpressionStatement>()
+                                                 .WhereNotNull()
                                                  .Select(statement => statement.Expression)
                                                  .OfType<IInvocationExpression>()
                                                  .ToList();

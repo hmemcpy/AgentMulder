@@ -6,6 +6,8 @@ For more information, visit http://hmemcpy.github.com/AgentMulder/
 
 ## Contributing to Agent Mulder
 
+<a href='http://www.pledgie.com/campaigns/18901'><img alt='Click here to lend your support to: Agent Mulder plugin for ReSharper and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/18901.png?skin_name=chrome' border='0' /></a>
+
 If you want to contribute to the project, check out the list of open [issues](https://github.com/hmemcpy/AgentMulder/issues).  
 
 You can:
@@ -55,8 +57,8 @@ There is a lot of help available for Git Flow, which can be accessed by typing `
 
 ## Special thanks ##
 
-// todo align images to text
+![ReSharper](http://www.jetbrains.com/img/logos/logo_resharper_small.gif)  
+[ReSharper](http://www.jetbrains.com/resharper/) - the most advanced productivity add-in for Visual Studio!
 
-<img src="http://www.jetbrains.com/img/logos/logo_resharper_small.gif" width="142" height="29" alt="ReSharper"> [ReSharper](http://www.jetbrains.com/resharper/) - the most advanced productivity add-in for Visual Studio!
-
-![Advanced Installer](http://www.caphyon.com/img/press/ai/small-logo.png) Agent Mulder's installer is powered by [Advanced Installer](http://www.advancedinstaller.com/) - the easiest way to create powerful MSI-based installers!
+![Advanced Installer](http://www.caphyon.com/img/press/ai/small-logo.png)  
+Agent Mulder's installer is powered by [Advanced Installer](http://www.advancedinstaller.com/) - the easiest way to create powerful MSI-based installers!

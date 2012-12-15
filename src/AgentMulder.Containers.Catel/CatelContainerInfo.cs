@@ -23,6 +23,11 @@ namespace AgentMulder.Containers.Catel
             get { return "Catel IoC"; }
         }
 
+        public override System.Collections.Generic.IEnumerable<string> ContainerQualifiedNames
+        {
+            get { yield return "Catel.IoC"; }
+        }
+
         protected override ComposablePartCatalog GetComponentCatalog()
         {
             return new AssemblyCatalog(Assembly.GetExecutingAssembly());

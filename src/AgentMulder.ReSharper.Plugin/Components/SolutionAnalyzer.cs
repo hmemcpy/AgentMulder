@@ -4,25 +4,34 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using AgentMulder.ReSharper.Domain.Containers;
-using JetBrains.Application;
+using JetBrains.ProjectModel;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Search;
+using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {
-    [ShellComponent]
+    [SolutionComponent]
     public class SolutionAnalyzer
     {
-        private readonly PatternSearcher patternSearcher;
         private readonly List<IContainerInfo> knownContainers = new List<IContainerInfo>();
+        private readonly PatternSearcher patternSearcher;
+        private readonly ISolution solution;
+        private readonly SearchDomainFactory searchDomainFactory; 
 
         public void AddContainer(IContainerInfo containerInfo)
         {
             knownContainers.Add(containerInfo);
         }
 
-        public SolutionAnalyzer(PatternSearcher patternSearcher)
+        public SolutionAnalyzer(PatternSearcher patternSearcher, ISolution solution, SearchDomainFactory searchDomainFactory)
         {
             this.patternSearcher = patternSearcher;
-            
+            this.solution = solution;
+            this.searchDomainFactory = searchDomainFactory;
+
             LoadContainerInfos();
         }
 
@@ -42,18 +51,62 @@ namespace AgentMulder.ReSharper.Plugin.Components
             knownContainers.AddRange(values);
         }
 
+        
         public IEnumerable<RegistrationInfo> Analyze()
         {
-            return knownContainers.SelectMany(ScanRegistrations);
+            ISearchDomain searchDomain = searchDomainFactory.CreateSearchDomain(solution, false);
+            
+            return knownContainers.SelectMany(info => ScanRegistrations(info, searchDomain));
         }
 
-        private IEnumerable<RegistrationInfo> ScanRegistrations(IContainerInfo containerInfo)
+        public IEnumerable<RegistrationInfo> Analyze(IPsiSourceFile sourceFile)
         {
-            return (from pattern in containerInfo.RegistrationPatterns
-                    let matchResults = patternSearcher.Search(pattern)
-                    from matchResult in matchResults.Where(result => result.Matched)
-                    from registration in pattern.GetComponentRegistrations(matchResult.MatchedElement)
-                    select new RegistrationInfo(registration, containerInfo.ContainerDisplayName)).ToList();
+            ICSharpFile cSharpFile;
+#if SDK70
+            cSharpFile = sourceFile.GetTheOnlyPsiFile(CSharpLanguage.Instance) as ICSharpFile;
+#else
+            cSharpFile = sourceFile.GetPsiFile(CSharpLanguage.Instance) as ICSharpFile;
+#endif
+            if (cSharpFile == null)
+            {
+                return EmptyList<RegistrationInfo>.InstanceList;
+            }
+
+            var usingStatements = cSharpFile.Imports
+                                            .Where(directive => !directive.ImportedSymbolName.QualifiedName.StartsWith("System"))
+                                            .Select(directive => directive.ImportedSymbolName.QualifiedName).ToList();
+
+            IContainerInfo matchingContainer = GetMatchingContainer(usingStatements);
+            if (matchingContainer == null)
+            {
+                return EmptyList<RegistrationInfo>.InstanceList;
+            }
+
+            ISearchDomain searchDomain = searchDomainFactory.CreateSearchDomain(sourceFile);
+
+            return ScanRegistrations(matchingContainer, searchDomain);
+        }
+
+        public IEnumerable<RegistrationInfo> Analyze(IEnumerable<IPsiSourceFile> sourceFiles)
+        {
+            ISearchDomain searchDomain = searchDomainFactory.CreateSearchDomain(sourceFiles);
+
+            return knownContainers.SelectMany(info => ScanRegistrations(info, searchDomain));
+        }
+
+        private IContainerInfo GetMatchingContainer(IEnumerable<string> usingStatements)
+        {
+            return knownContainers.FirstOrDefault(knownContainer => 
+                knownContainer.ContainerQualifiedNames.Any(usingStatements.Contains));
+        }
+
+        private IEnumerable<RegistrationInfo> ScanRegistrations(IContainerInfo containerInfo, ISearchDomain searchDomain)
+        {
+            return from pattern in containerInfo.RegistrationPatterns
+                   let matchResults = patternSearcher.Search(pattern, searchDomain)
+                   from matchResult in matchResults.Where(result => result.Matched)
+                   from registration in pattern.GetComponentRegistrations(matchResult.MatchedElement)
+                   select new RegistrationInfo(registration, containerInfo.ContainerDisplayName);
         }
     }
 }

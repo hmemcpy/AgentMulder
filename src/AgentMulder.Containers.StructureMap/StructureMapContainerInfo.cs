@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Reflection;
@@ -12,6 +13,11 @@ namespace AgentMulder.Containers.StructureMap
         public override string ContainerDisplayName
         {
             get { return "StructureMap"; }
+        }
+
+        public override IEnumerable<string> ContainerQualifiedNames
+        {
+            get { yield return "StructureMap"; }
         }
 
         protected override ComposablePartCatalog GetComponentCatalog()

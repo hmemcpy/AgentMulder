@@ -14,7 +14,7 @@
     <ROW Property="Manufacturer" Value="Igal Tabachnik" ValueLocId="*"/>
     <ROW Property="ProductCode" Value="1033:{C6A9360E-2283-421C-B118-7A2FD021B5A0} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="Agent Mulder plugin for ReSharper" ValueLocId="*"/>
+    <ROW Property="ProductName" Value="Agent Mulder plugin for ReSharper v1.0.5" ValueLocId="*"/>
     <ROW Property="ProductShortName" Value="AgentMulder"/>
     <ROW Property="ProductVersion" Value="1.0.5.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>

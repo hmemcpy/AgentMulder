@@ -5,7 +5,6 @@ using JetBrains.Application;
 using JetBrains.Application.Progress;
 using JetBrains.DocumentManagers;
 using JetBrains.ProjectModel;
-using JetBrains.ProjectModel.Impl;
 using JetBrains.ReSharper.Features.StructuralSearch.Finding;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
@@ -17,17 +16,17 @@ using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {
-    [ShellComponent]
+    [SolutionComponent]
     public class PatternSearcher
     {
-        private readonly SearchDomainFactory searchDomainFactory;
+        private readonly DocumentManager documentManager;
 
-        public PatternSearcher(SearchDomainFactory searchDomainFactory)
+        public PatternSearcher(DocumentManager documentManager)
         {
-            this.searchDomainFactory = searchDomainFactory;
+            this.documentManager = documentManager;
         }
 
-        public IEnumerable<IStructuralMatchResult> Search(IStructuralPatternHolder pattern)
+        public IEnumerable<IStructuralMatchResult> Search(IStructuralPatternHolder pattern, ISearchDomain searchDomain)
         {
             var results = new List<IStructuralMatchResult>();
             var consumer = new FindResultConsumer<IStructuralMatchResult>(result =>
@@ -48,56 +47,48 @@ namespace AgentMulder.ReSharper.Plugin.Components
                 return FindExecution.Continue;
             });
 
-            DoSearch(pattern.Matcher, consumer);
+            DoSearch(pattern.Matcher, consumer, searchDomain);
 
             return results;
         }
 
-        private void DoSearch(IStructuralMatcher matcher, FindResultConsumer<IStructuralMatchResult> consumer)
+        private void DoSearch(IStructuralMatcher matcher, IFindResultConsumer<IStructuralMatchResult> consumer, ISearchDomain searchDomain)
         {
-#if SDK70
-            ISolution solution = Shell.Instance.GetComponent<SolutionsManager>().Solution;
-#else
-            ISolution solution = Shell.Instance.GetComponent<ISolutionManager>().CurrentSolution;
-#endif
-
-            var searchDomain = searchDomainFactory.CreateSearchDomain(solution, false);
-            var documentManager = solution.GetComponent<DocumentManager>();
-
             // todo add support for VB (eventually)
-            var structuralSearcher = new StructuralSearcher(documentManager, CSharpLanguage.Instance, matcher);
+            var searcher = new StructuralSearcher(documentManager, CSharpLanguage.Instance, matcher);
             var searchDomainSearcher = new StructuralSearchDomainSearcher<IStructuralMatchResult>(
-                NarrowSearchDomain(solution, matcher.Words, matcher.GetExtendedWords(solution), searchDomain),
-                structuralSearcher, consumer, NullProgressIndicator.Instance, true);
+                searchDomain, searcher, consumer, NullProgressIndicator.Instance, true);
+            //NarrowSearchDomain(matcher.Words, matcher.GetExtendedWords(solution), searchDomain, searchDomainFactory),
+            //searcher, consumer, NullProgressIndicator.Instance, true);
             searchDomainSearcher.Run();
         }
 
-        private ISearchDomain NarrowSearchDomain(ISolution solution, IEnumerable<string> words, IEnumerable<string> extendedWords, ISearchDomain domain)
-        {
-            List<string> allWords = words.ToList();
-            List<string> allExtendedWords = extendedWords.ToList();
+        //private ISearchDomain NarrowSearchDomain(IEnumerable<string> words, IEnumerable<string> extendedWords, ISearchDomain domain, SearchDomainFactory factory)
+        //{
+        //    List<string> allWords = words.ToList();
+        //    List<string> allExtendedWords = extendedWords.ToList();
 
-            if (domain.IsEmpty || allWords.IsEmpty())
-                return domain;
-            IWordIndex wordIndex = solution.GetPsiServices().CacheManager.WordIndex;
-            var jetHashSet1 = new JetHashSet<IPsiSourceFile>(wordIndex.GetFilesContainingWord(allWords.First()), null);
-            foreach (string word in allWords.Skip(1))
-                jetHashSet1.IntersectWith(wordIndex.GetFilesContainingWord(word));
-            if (allExtendedWords.Any())
-            {
-                var jetHashSet2 = new JetHashSet<IPsiSourceFile>(null);
-                using (JetHashSet<IPsiSourceFile>.ElementEnumerator enumerator = jetHashSet1.GetEnumerator())
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        IPsiSourceFile file = enumerator.Current;
-                        if (allExtendedWords.Any(word => wordIndex.CanContainWord(file, word)))
-                            jetHashSet2.Add(file);
-                    }
-                }
-                jetHashSet1 = jetHashSet2;
-            }
-            return domain.Intersect(searchDomainFactory.CreateSearchDomain(jetHashSet1));
-        }
+        //    if (domain.IsEmpty || allWords.IsEmpty())
+        //        return domain;
+        //    IWordIndex wordIndex = solution.GetPsiServices().CacheManager.WordIndex;
+        //    var jetHashSet1 = new JetHashSet<IPsiSourceFile>(wordIndex.GetFilesContainingWord(allWords.First()), null);
+        //    foreach (string word in allWords.Skip(1))
+        //        jetHashSet1.IntersectWith(wordIndex.GetFilesContainingWord(word));
+        //    if (allExtendedWords.Any())
+        //    {
+        //        var jetHashSet2 = new JetHashSet<IPsiSourceFile>(null);
+        //        using (JetHashSet<IPsiSourceFile>.ElementEnumerator enumerator = jetHashSet1.GetEnumerator())
+        //        {
+        //            while (enumerator.MoveNext())
+        //            {
+        //                IPsiSourceFile file = enumerator.Current;
+        //                if (allExtendedWords.Any(word => wordIndex.CanContainWord(file, word)))
+        //                    jetHashSet2.Add(file);
+        //            }
+        //        }
+        //        jetHashSet1 = jetHashSet2;
+        //    }
+        //    return domain.Intersect(factory.CreateSearchDomain(jetHashSet1));
+        //}
     }
 }

@@ -4,34 +4,35 @@ using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.CSharp.Stages;
 using JetBrains.ReSharper.Daemon.UsageChecking;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {
     [DaemonStage(StagesBefore = new[] { typeof(LanguageSpecificDaemonStage) })]
-    public class ContainerRegistrationAnalysisStage : CSharpDaemonStageBase
+    public partial class ContainerRegistrationAnalysisStage : CSharpDaemonStageBase
     {
-        private readonly SolutionAnalyzer solutionAnalyzer;
+        private readonly IPatternManager patternManager;
 
-        public ContainerRegistrationAnalysisStage(SolutionAnalyzer solutionAnalyzer)
+        public ContainerRegistrationAnalysisStage(IPatternManager patternManager)
         {
-            this.solutionAnalyzer = solutionAnalyzer;
+            this.patternManager = patternManager;
         }
 
-#if SDK70
-        protected override IDaemonStageProcess CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind, ICSharpFile file)
-#else
-        public override IDaemonStageProcess CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
-#endif
-        
+        private IDaemonStageProcess DoCreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
         {
             if (!IsSupported(process.SourceFile))
+            {
                 return null;
+            }
+
+            if (processKind != DaemonProcessKind.VISIBLE_DOCUMENT)
+            {
+                return null;
+            }
 
             var collectUsagesStageProcess = process.GetStageProcess<CollectUsagesStageProcess>();
             var typeUsageManager = new TypeUsageManager(collectUsagesStageProcess);
 
-            return new ContainerRegistrationAnalysisStageProcess(process, settings, typeUsageManager, solutionAnalyzer);
+            return new ContainerRegistrationAnalysisStageProcess(process, settings, typeUsageManager, patternManager);
         }
     }
 }

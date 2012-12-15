@@ -20,7 +20,12 @@ namespace AgentMulder.Containers.Unity
         {
             get { return registrationPatterns; }
         }
-        
+
+        public IEnumerable<string> ContainerQualifiedNames
+        {
+            get { yield return "Microsoft.Practices.Unity"; }
+        }
+
         public UnityContainerInfo()
         {
             registrationPatterns = new List<IRegistrationPattern>

@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace AgentMulder.ReSharper.Tests.StructureMap
 {
     [TestStructureMap]
-    public class ContainerTests : ComponentRegistrationsTestBase
+    public class ContainerTests : AgentMulderTestBase
     {
         protected override string RelativeTestDataPath
         {

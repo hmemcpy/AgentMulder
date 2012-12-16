@@ -7,7 +7,7 @@ using AgentMulder.ReSharper.Tests.Windsor.Helpers;
 namespace AgentMulder.ReSharper.Tests.Windsor
 {
     [TestWindsor]
-    public class ComponentRegistrationTests : ComponentRegistrationsTestBase
+    public class ComponentRegistrationTests : AgentMulderTestBase
     {
         protected override string RelativeTestDataPath
         {

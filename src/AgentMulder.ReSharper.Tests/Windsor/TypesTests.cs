@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace AgentMulder.ReSharper.Tests.Windsor
 {
     [TestWindsor]
-    public class TypesTests : ComponentRegistrationsTestBase
+    public class TypesTests : AgentMulderTestBase
     {
         protected override string RelativeTestDataPath
         {
@@ -40,7 +40,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
                 Assert.AreEqual(0, registrations.Count()));
         }
 
-        [TestCase("BasedOn\\FromTypesParamsBasedOnGeneric", new[] { "Foo.cs", "Baz.cs" })]
         [TestCase("BasedOn\\FromTypesNewListBasedOnGeneric", new[] { "Foo.cs", "Baz.cs" })]
         [TestCase("BasedOn\\FromTypesNewArrayBasedOnGeneric", new[] { "Foo.cs", "Baz.cs" })]
         [TestCase("BasedOn\\FromThisAssemblyBasedOnGeneric", new[] { "Foo.cs" })]

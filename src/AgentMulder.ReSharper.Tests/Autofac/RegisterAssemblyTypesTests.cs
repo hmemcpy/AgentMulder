@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace AgentMulder.ReSharper.Tests.Autofac
 {
     [TestAutofac]
-    public class RegisterAssemblyTypesTests : ComponentRegistrationsTestBase
+    public class RegisterAssemblyTypesTests : AgentMulderTestBase
     {
         protected override string RelativeTestDataPath
         {

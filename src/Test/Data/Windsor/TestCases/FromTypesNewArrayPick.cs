@@ -1,3 +1,7 @@
+// Patterns: 1
+// Matches: Foo.cs,Bar.cs,Baz.cs
+// NotMatches: IFoo.cs
+
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;

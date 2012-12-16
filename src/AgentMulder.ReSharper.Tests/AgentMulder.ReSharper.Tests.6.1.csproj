@@ -78,12 +78,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgentMulderTestBase.cs" />
     <Compile Include="Autofac\ContainerBuilderTests.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests.cs" />
     <Compile Include="Autofac\Helpers\TestAutofacAttribute.cs" />
     <Compile Include="Catel\Helpers\TestCatelAttribute.cs" />
     <Compile Include="Catel\ServiceLocatorTests.cs" />
-    <Compile Include="ComponentRegistrationsTestBase.cs" />
     <Compile Include="Ninject\Helpers\TestNinjectAttribute.cs" />
     <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />

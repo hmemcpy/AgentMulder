@@ -1,3 +1,7 @@
+// Patterns: 1
+// Matches: InSomeNamespace.cs
+// NotMatches: Foo.cs,InSomeOtherNamespace.cs
+
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;

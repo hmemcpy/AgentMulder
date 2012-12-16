@@ -13,7 +13,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
     // todo these tests are currently duplicated, because of a bug in R# test runner involving abstract test fixtures and TestCases http://youtrack.jetbrains.com/issue/RSRP-299812
 
     [TestWindsor]
-    public class ClassesTests : ComponentRegistrationsTestBase
+    public class ClassesTests : AgentMulderTestBase
     {
         protected override string RelativeTestDataPath
         {

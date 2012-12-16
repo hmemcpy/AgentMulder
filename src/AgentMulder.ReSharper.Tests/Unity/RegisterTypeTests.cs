@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace AgentMulder.ReSharper.Tests.Unity
 {
     [TestUnity]
-    public class RegisterTypeTests : ComponentRegistrationsTestBase
+    public class RegisterTypeTests : AgentMulderTestBase
     {
         protected override string RelativeTestDataPath
         {

@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace AgentMulder.ReSharper.Tests.Ninject
 {
-    public class SanityTests : ComponentRegistrationsTestBase
+    public class SanityTests : AgentMulderTestBase
     {
         protected override string RelativeTestDataPath
         {

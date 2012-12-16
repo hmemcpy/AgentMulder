@@ -1,3 +1,5 @@
+// Patterns: 0
+
 using System.Reflection;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;

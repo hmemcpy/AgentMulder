@@ -1,10 +1,14 @@
+// Patterns: 1
+// Matches: InSomeNamespace.cs,InSomeOtherNamespace.cs
+// NotMatches: Foo.cs,Bar.cs
+
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
 namespace TestApplication.Windsor.TestCases
 {
-    public class FromThisAssemblyInNamespaceWithSubnamespaces : IWindsorInstaller
+    public class FromThisAssemblyInNamespaceWithSubnamespacesTrue : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {

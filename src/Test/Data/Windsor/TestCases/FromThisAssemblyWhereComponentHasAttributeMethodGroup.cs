@@ -1,3 +1,7 @@
+// Patterns: 1
+// Matches: HaveAttribute.cs
+// NotMatches: Foo.cs
+
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;

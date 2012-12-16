@@ -24,7 +24,7 @@ using FluentAssertions;
 namespace AgentMulder.ReSharper.Tests
 {
     [TestFixture]
-    public abstract class ComponentRegistrationsTestBase : BaseTestWithSingleProject
+    public abstract class AgentMulderTestBase : BaseTestWithSingleProject
     {
         private static readonly Regex patternCountRegex = new Regex(@"// Patterns: (?<patterns>\d+)");
         private static readonly Regex matchesRegex      = new Regex(@"// Matches: (?<files>.*?)\r?\n");
@@ -97,17 +97,22 @@ namespace AgentMulder.ReSharper.Tests
                 registrations.Count.Should().Be(testData.Item1, 
                     "Mismatched number of expected registrations. Make sure the '// Patterns:' comment is correct");
 
-                IEnumerable<ICSharpFile> codeFiles = testData.Item2.SelectNotNull(GetCodeFile);
-                foreach (ICSharpFile codeFile in codeFiles)
+                if (testData.Item1 > 0)
                 {
-                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
-                         registrations.Should().Contain(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)));
-                }
-                codeFiles = testData.Item3.SelectNotNull(GetCodeFile);
-                foreach (ICSharpFile codeFile in codeFiles)
-                {
-                     codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
-                         registrations.Should().NotContain(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)));
+                    IEnumerable<ICSharpFile> codeFiles = testData.Item2.SelectNotNull(GetCodeFile);
+                    foreach (ICSharpFile codeFile in codeFiles)
+                    {
+                         codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
+                             registrations.Should().Contain(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement), 
+                             "Of {0} registrations, at least one should match '{1}'", registrations.Count, declaration.CLRName));
+                    }
+                    codeFiles = testData.Item3.SelectNotNull(GetCodeFile);
+                    foreach (ICSharpFile codeFile in codeFiles)
+                    {
+                         codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
+                             registrations.Should().NotContain(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement),
+                             "Of {0} registrations, none should match '{1}'", registrations.Count, declaration.CLRName));
+                    }
                 }
             });
         }
@@ -122,6 +127,11 @@ namespace AgentMulder.ReSharper.Tests
             }
             
             int count = Convert.ToInt32(match.Groups["patterns"].Value);
+
+            if (count == 0)
+            {
+                return Tuple.Create(0, EmptyArray<string>.Instance, EmptyArray<string>.Instance);
+            }
 
             match = matchesRegex.Match(code);
             if (!match.Success)

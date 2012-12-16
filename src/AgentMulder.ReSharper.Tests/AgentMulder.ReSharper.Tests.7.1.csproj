@@ -48,7 +48,8 @@
     <Reference Include="Catel.Core">
       <HintPath>..\packages\Catel.Core.3.3\lib\NET40\Catel.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FluentAssertions">
+    <Reference Include="FluentAssertions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentAssertions.2.0.0.1\lib\net40\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -84,7 +85,7 @@
     <Compile Include="Autofac\Helpers\TestAutofacAttribute.cs" />
     <Compile Include="Catel\Helpers\TestCatelAttribute.cs" />
     <Compile Include="Catel\ServiceLocatorTests.cs" />
-    <Compile Include="ComponentRegistrationsTestBase.cs" />
+    <Compile Include="AgentMulderTestBase.cs" />
     <Compile Include="Ninject\Helpers\TestNinjectAttribute.cs" />
     <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />

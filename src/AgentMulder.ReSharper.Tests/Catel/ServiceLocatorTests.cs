@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace AgentMulder.ReSharper.Tests.Catel
 {
     [TestCatel]
-    public class ServiceLocatorTests : ComponentRegistrationsTestBase
+    public class ServiceLocatorTests : AgentMulderTestBase
     {
         protected override string RelativeTestDataPath
         {

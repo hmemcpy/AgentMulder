@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace AgentMulder.ReSharper.Tests.Ninject
 {
     [TestNinject]
-    public class ModuleTests : ComponentRegistrationsTestBase
+    public class ModuleTests : AgentMulderTestBase
     {
         protected override string RelativeTestDataPath
         {

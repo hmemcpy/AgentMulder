@@ -1,4 +1,8 @@
-﻿using System.Reflection;
+﻿// Patterns: 1
+// Matches: Foo.cs,Baz.cs
+// NotMatches: Bar.cs
+
+using System.Reflection;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;

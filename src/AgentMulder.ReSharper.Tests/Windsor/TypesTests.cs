@@ -10,8 +10,6 @@ using NUnit.Framework;
 
 namespace AgentMulder.ReSharper.Tests.Windsor
 {
-    // todo these tests are currently duplicated, because of a bug in R# test runner involving abstract test fixtures and TestCases http://youtrack.jetbrains.com/issue/RSRP-299812
-
     [TestWindsor]
     public class TypesTests : ComponentRegistrationsTestBase
     {
@@ -29,11 +27,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
                     new TypesRegistrationProvider(new BasedOnRegistrationProvider())
                 });
             }
-        }
-
-        protected override string RelativeTypesPath
-        {
-            get { return @"..\..\Types"; }
         }
 
         [TestCase("FromTypesParams")]

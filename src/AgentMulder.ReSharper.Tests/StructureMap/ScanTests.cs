@@ -17,11 +17,6 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             get { return @"StructureMap\ScanTests"; }
         }
 
-        protected override string RelativeTypesPath
-        {
-            get { return @"..\..\Types"; }
-        }
-
         protected override IContainerInfo ContainerInfo
         {
             get { return new StructureMapContainerInfo(); }

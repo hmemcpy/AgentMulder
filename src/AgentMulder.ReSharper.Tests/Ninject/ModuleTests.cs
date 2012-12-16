@@ -18,11 +18,6 @@ namespace AgentMulder.ReSharper.Tests.Ninject
             get { return @"Ninject\ModuleTestCases"; }
         }
 
-        protected override string RelativeTypesPath
-        {
-            get { return @"..\..\Types"; }
-        }
-
         protected override IContainerInfo ContainerInfo
         {
             get

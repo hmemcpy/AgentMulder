@@ -22,11 +22,6 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             get { return new StructureMapContainerInfo(); }
         }
 
-        protected override string RelativeTypesPath
-        {
-            get { return @"..\..\Types"; }
-        }
-
         [TestCase("ObjectFactoryContainerConfigure", new[] { "Foo.cs" })]
         [TestCase("ForGenericUseGenericExpression", new[] { "Foo.cs" })]
         [TestCase("ForGenericUseGenericStatement", new[] { "Foo.cs" })]

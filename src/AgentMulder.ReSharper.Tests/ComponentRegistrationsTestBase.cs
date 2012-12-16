@@ -32,18 +32,12 @@ namespace AgentMulder.ReSharper.Tests
 
         protected abstract IContainerInfo ContainerInfo { get; }
 
-        protected virtual string RelativeTypesPath
-        {
-            get { return "..\\Types"; }
-        }
-
         protected void RunTest(string fileName, Action<List<RegistrationInfo>> action)
         {
-            fileName = Path.Combine(SolutionItemsBasePath, fileName);
-            var typesPath = new DirectoryInfo(Path.Combine(SolutionItemsBasePath, RelativeTypesPath));
+            var typesPath = new DirectoryInfo(Path.Combine(BaseTestDataPath.FullPath, "Types"));
             var fileSet = typesPath.GetFiles("*" + Extension)
-                                   .SelectNotNull(fileInfo => Path.Combine(RelativeTypesPath, fileInfo.Name))
-                                   .Concat(new[] { fileName });
+                                   .SelectNotNull(fs => fs.FullName)
+                                   .Concat(new[] { Path.Combine(SolutionItemsBasePath, fileName) });
 
             WithSingleProject(fileSet, (lifetime, project) => RunGuarded(() =>
             {
@@ -61,7 +55,6 @@ namespace AgentMulder.ReSharper.Tests
 
         protected ICSharpFile GetCodeFile(string fileName)
         {
-            PsiManager manager = PsiManager.GetInstance(Solution);
             IProjectFile projectFile = Project.GetAllProjectFiles(file => file.Name.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
             if (projectFile == null)
                 return null;
@@ -71,16 +64,13 @@ namespace AgentMulder.ReSharper.Tests
                 return null;
 
 #if SDK70
-            var cSharpFile = manager.GetPsiFile(psiSourceFile, CSharpLanguage.Instance, 
-                new DocumentRange(psiSourceFile.Document, psiSourceFile.Document.DocumentRange)) as ICSharpFile;
+            var cSharpFile = psiSourceFile.GetTheOnlyPsiFile(CSharpLanguage.Instance) as ICSharpFile;
 #else
-            var cSharpFile = manager.GetPsiFile(psiSourceFile, CSharpLanguage.Instance) as ICSharpFile;
+            var cSharpFile = psiSourceFile.GetPsiFile(CSharpLanguage.Instance) as ICSharpFile;
 #endif
-            if (cSharpFile == null || string.IsNullOrEmpty(cSharpFile.GetText()))
-            {
-                Assert.Fail("Unable to open the file '{0}', or the file is empty", fileName);
-            }
 
+            cSharpFile.AssertIsValid();
+            
             return cSharpFile;
         }
 
@@ -96,7 +86,7 @@ namespace AgentMulder.ReSharper.Tests
             }
         }
 
-        [Test, TestCaseSource("TestCases")]
+        [TestCaseSource("TestCases")]
         public void Test(string fileName)
         {
             RunTest(fileName, registrations =>
@@ -122,7 +112,7 @@ namespace AgentMulder.ReSharper.Tests
             });
         }
 
-        private Tuple<int, string[], string[]> GetTestData(ICSharpFile cSharpFile)
+        private static Tuple<int, string[], string[]> GetTestData(ICSharpFile cSharpFile)
         {
             string code = cSharpFile.GetText();
             var match = patternCountRegex.Match(code); 

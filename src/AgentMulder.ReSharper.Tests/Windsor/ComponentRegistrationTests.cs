@@ -14,11 +14,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             get { return @"Windsor\ComponentTestCases"; }
         }
 
-        protected override string RelativeTypesPath
-        {
-            get { return @"..\..\Types"; }
-        }
-
         protected override IContainerInfo ContainerInfo
         {
             get

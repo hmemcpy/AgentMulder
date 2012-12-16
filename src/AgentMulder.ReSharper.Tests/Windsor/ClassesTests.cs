@@ -31,11 +31,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
             }
         }
 
-        protected override string RelativeTypesPath
-        {
-            get { return @"..\..\Types"; }
-        }
-
         [TestCase("FromTypesParams")]
         [TestCase("FromTypesNewArray")]
         [TestCase("FromTypesNewList")]

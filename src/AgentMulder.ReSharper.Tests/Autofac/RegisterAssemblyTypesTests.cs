@@ -17,11 +17,6 @@ namespace AgentMulder.ReSharper.Tests.Autofac
             get { return @"Autofac\RegisterAssemblyTypesTests"; }
         }
 
-        protected override string RelativeTypesPath
-        {
-            get { return @"..\..\Types"; }
-        }
-
         protected override IContainerInfo ContainerInfo
         {
             get { return new AutofacContainerInfo(); }

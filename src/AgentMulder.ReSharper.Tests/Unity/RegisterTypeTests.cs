@@ -23,14 +23,14 @@ namespace AgentMulder.ReSharper.Tests.Unity
             get { return new UnityContainerInfo(); }
         }
 
-        [TestCase("RegisterTypeGenericFromTo", new[]{ "CommonImpl1.cs" })]
-        [TestCase("RegisterTypeGenericFromTo2Times", new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
-        [TestCase("RegisterTypeGenericFromTo3TimesIsTheCharm", new[] { "CommonImpl1.cs", "CommonImpl12.cs", "Foo.cs" })]
-        [TestCase("RegisterTypeNonGenericFromTo", new[] { "CommonImpl1.cs" })]
-        [TestCase("RegisterTypeNonGenericFromToExtraArguments", new[] { "CommonImpl1.cs" })]
-        [TestCase("RegisterTypeSingleGeneric", new[] { "CommonImpl1.cs" })]
-        [TestCase("RegisterTypeSingleNonGeneric", new[] { "CommonImpl1.cs" })]
-        [TestCase("RegisterTypeOpenGenericType", new[] { "MyList.cs" })]
+        [TestCase("RegisterTypeGenericFromTo.cs", new[]{ "CommonImpl1.cs" })]
+        [TestCase("RegisterTypeGenericFromTo2Times.cs", new[] { "CommonImpl1.cs", "CommonImpl12.cs" })]
+        [TestCase("RegisterTypeGenericFromTo3TimesIsTheCharm.cs", new[] { "CommonImpl1.cs", "CommonImpl12.cs", "Foo.cs" })]
+        [TestCase("RegisterTypeNonGenericFromTo.cs", new[] { "CommonImpl1.cs" })]
+        [TestCase("RegisterTypeNonGenericFromToExtraArguments.cs", new[] { "CommonImpl1.cs" })]
+        [TestCase("RegisterTypeSingleGeneric.cs", new[] { "CommonImpl1.cs" })]
+        [TestCase("RegisterTypeSingleNonGeneric.cs", new[] { "CommonImpl1.cs" })]
+        [TestCase("RegisterTypeOpenGenericType.cs", new[] { "MyList.cs" })]
         public void DoTest(string testName, string[] fileNames)
         {
             RunTest(testName, registrations =>

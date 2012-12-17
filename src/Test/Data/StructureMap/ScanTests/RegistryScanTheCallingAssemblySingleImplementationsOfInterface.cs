@@ -1,21 +1,20 @@
-﻿// Patterns: 1
+// Patterns: 1
 // Matches: Single.cs
 // NotMatches: CommonImpl1.cs
 
-using StructureMap;
 using StructureMap.Configuration.DSL;
 
 namespace TestApplication.StructureMap.ScanTests
 {
-    public class ScanTheCallingAssemblySingleImplementationsOfInterface
+    public class RegistryScanTheCallingAssemblySingleImplementationsOfInterface : Registry
     {
-        public ScanTheCallingAssemblySingleImplementationsOfInterface()
+        public RegistryScanTheCallingAssemblySingleImplementationsOfInterface()
         {
-            var container = new Container(x=> x.Scan(scanner =>
+            Scan(scanner =>
             {
                 scanner.TheCallingAssembly();
                 scanner.SingleImplementationsOfInterface();
-            }));
-        } 
+            });
+        }
     }
 }

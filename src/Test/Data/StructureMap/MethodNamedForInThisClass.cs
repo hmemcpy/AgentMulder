@@ -1,10 +1,12 @@
+// Patterns: 0
+
 using TestApplication.Types;
 
 namespace TestApplication.StructureMap
 {
-    public class MethodNamedBindInThisClass
+    public class MethodNamedForInThisClass
     {
-        public MethodNamedBindInThisClass()
+        public MethodNamedForInThisClass()
         {
             For<ICommon>().Use<CommonImpl1>();
         }

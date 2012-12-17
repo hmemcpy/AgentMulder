@@ -1,23 +1,21 @@
-﻿// Patterns: 1
+// Patterns: 1
 // Matches: Foo.cs,Bar.cs
 // NotMatches: CommonImpl1.cs
 
 using System.Reflection;
-using StructureMap;
-using TestApplication.Types;
+using StructureMap.Configuration.DSL;
 
 namespace TestApplication.StructureMap.ScanTests
 {
-    public class ScanAssemblyGetExecutingAssembly
+    public class RegistryScanAssemblyGetExecutingAssembly : Registry
     {
-        public ScanAssemblyGetExecutingAssembly()
+        public RegistryScanAssemblyGetExecutingAssembly()
         {
-            var container = new Container(x => x.Scan(scanner =>
+            Scan(scanner =>
             {
                 scanner.Assembly(Assembly.GetExecutingAssembly());
                 scanner.WithDefaultConventions();
-            }));
-
-        } 
+            });
+        }
     }
 }

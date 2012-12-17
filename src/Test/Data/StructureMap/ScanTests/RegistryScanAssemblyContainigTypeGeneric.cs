@@ -1,12 +1,15 @@
-﻿using System;
+// Patterns: 1
+// Matches: Foo.cs,Bar.cs
+// NotMatches: CommonImpl1.cs
+
 using StructureMap.Configuration.DSL;
 using TestApplication.Types;
 
-namespace TestApplication.StructureMap.RegistryTests
+namespace TestApplication.StructureMap.ScanTests
 {
-    public class ScanAssemblyContainigTypeGeneric : Registry
+    public class RegistryScanAssemblyContainigTypeGeneric : Registry
     {
-        public ScanAssemblyContainigTypeGeneric()
+        public RegistryScanAssemblyContainigTypeGeneric()
         {
             Scan(scanner =>
             {

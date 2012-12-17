@@ -2,7 +2,7 @@
 
 namespace AgentMulder.ReSharper.Domain.Registrations
 {
-    internal class NegateRegistration : FilteredRegistrationBase
+    public class NegateRegistration : FilteredRegistrationBase
     {
         private readonly IComponentRegistration registration;
 

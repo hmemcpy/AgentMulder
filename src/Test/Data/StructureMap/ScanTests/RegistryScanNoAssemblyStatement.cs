@@ -1,12 +1,14 @@
-﻿using StructureMap.Configuration.DSL;
+// Patterns: 0
 
-namespace TestApplication.StructureMap.RegistryTests
+using StructureMap.Configuration.DSL;
+
+namespace TestApplication.StructureMap.ScanTests
 {
-    public class ScanNoAssemblyStatement : Registry
+    public class RegistryScanNoAssemblyStatement : Registry
     {
-        public ScanNoAssemblyStatement()
+        public RegistryScanNoAssemblyStatement()
         {
-            Scan(scanner => 
+            Scan(scanner =>
             {
                 // adding as a sanity, should yield no results
 
@@ -14,6 +16,6 @@ namespace TestApplication.StructureMap.RegistryTests
                 scanner.Include(type => true);
                 // ReSharper restore ConvertToLambdaExpression
             });
-        } 
+        }
     }
 }

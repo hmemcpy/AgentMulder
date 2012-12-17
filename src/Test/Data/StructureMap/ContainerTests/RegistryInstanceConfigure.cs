@@ -4,7 +4,7 @@
 
 using TestApplication.Types;
 
-namespace TestApplication.StructureMap.RegistryTests
+namespace TestApplication.StructureMap.ContainerTests
 {
     public class RegistryInstanceConfigure
     {

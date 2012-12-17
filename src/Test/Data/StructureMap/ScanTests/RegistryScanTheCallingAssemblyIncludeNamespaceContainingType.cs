@@ -1,22 +1,22 @@
-﻿// Patterns: 1
+// Patterns: 1
 // Matches: InSomeNamespace.cs,InSomeOtherNamespace.cs
 // NotMatches: CommonImpl1.cs,Foo.cs
 
 using SomeNamespace;
-using StructureMap;
+using StructureMap.Configuration.DSL;
 
 namespace TestApplication.StructureMap.ScanTests
 {
-    public class ScanTheCallingAssemblyIncludeNamespaceContainingType
+    public class RegistryScanTheCallingAssemblyIncludeNamespaceContainingType : Registry
     {
-        public ScanTheCallingAssemblyIncludeNamespaceContainingType()
+        public RegistryScanTheCallingAssemblyIncludeNamespaceContainingType()
         {
-            var container = new Container(x => x.Scan(scanner =>
+            Scan(scanner =>
             {
                 scanner.TheCallingAssembly();
                 scanner.IncludeNamespaceContainingType<InSomeNamespace>();
                 scanner.WithDefaultConventions();
-            }));
-        } 
+            });
+        }
     }
 }

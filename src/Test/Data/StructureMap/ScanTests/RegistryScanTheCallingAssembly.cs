@@ -1,10 +1,12 @@
-﻿using StructureMap.Configuration.DSL;
+// Patterns: 0
 
-namespace TestApplication.StructureMap.RegistryTests
+using StructureMap.Configuration.DSL;
+
+namespace TestApplication.StructureMap.ScanTests
 {
-    public class ScanTheCallingAssembly : Registry
+    public class RegistryScanTheCallingAssembly : Registry
     {
-        public ScanTheCallingAssembly()
+        public RegistryScanTheCallingAssembly()
         {
             Scan(scanner =>
             {
@@ -15,6 +17,5 @@ namespace TestApplication.StructureMap.RegistryTests
                 // ReSharper restore ConvertToLambdaExpression
             });
         }
-
     }
 }

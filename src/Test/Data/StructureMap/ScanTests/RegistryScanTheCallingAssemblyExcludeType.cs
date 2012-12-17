@@ -1,12 +1,15 @@
-﻿using StructureMap;
+// Patterns: 1
+// Matches: Foo.cs
+// NotMatches: Bar.cs
+
 using StructureMap.Configuration.DSL;
 using TestApplication.Types;
 
-namespace TestApplication.StructureMap.RegistryTests
+namespace TestApplication.StructureMap.ScanTests
 {
-    public class ScanTheCallingAssemblyExcludeType : Registry
+    public class RegistryScanTheCallingAssemblyExcludeType : Registry
     {
-        public ScanTheCallingAssemblyExcludeType()
+        public RegistryScanTheCallingAssemblyExcludeType()
         {
             Scan(scanner =>
             {
@@ -14,6 +17,6 @@ namespace TestApplication.StructureMap.RegistryTests
                 scanner.ExcludeType<Bar>();
                 scanner.WithDefaultConventions();
             });
-        } 
+        }
     }
 }

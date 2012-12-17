@@ -1,21 +1,21 @@
-﻿// Patterns: 1
+// Patterns: 1
 // Matches: Foo.cs,Bar.cs
 // NotMatches: CommonImpl1.cs
 
-using StructureMap;
+using StructureMap.Configuration.DSL;
 using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ScanTests
 {
-    public class ScanAssemblyContainigTypeNonGeneric
+    public class RegistryScanAssemblyContainigTypeNonGeneric : Registry
     {
-        public ScanAssemblyContainigTypeNonGeneric()
+        public RegistryScanAssemblyContainigTypeNonGeneric()
         {
-            var container = new Container(x => x.Scan(scanner =>
+            Scan(scanner =>
             {
                 scanner.AssemblyContainingType(typeof(IFoo));
                 scanner.WithDefaultConventions();
-            }));
+            });
         }
     }
 }

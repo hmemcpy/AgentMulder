@@ -1,18 +1,21 @@
-﻿using StructureMap;
+// Patterns: 1
+// Matches: Foo.cs,Bar.cs
+// NotMatches: CommonImpl1.cs
+
 using StructureMap.Configuration.DSL;
 using TestApplication.Types;
 
-namespace TestApplication.StructureMap.RegistryTests
+namespace TestApplication.StructureMap.ScanTests
 {
-    public class ScanAssemblyTypeofTAssembly : Registry
+    public class RegistryScanAssemblyTypeofTAssembly : Registry
     {
-        public ScanAssemblyTypeofTAssembly()
+        public RegistryScanAssemblyTypeofTAssembly()
         {
             Scan(scanner =>
             {
                 scanner.Assembly(typeof(IFoo).Assembly);
                 scanner.WithDefaultConventions();
             });
-        } 
+        }
     }
 }

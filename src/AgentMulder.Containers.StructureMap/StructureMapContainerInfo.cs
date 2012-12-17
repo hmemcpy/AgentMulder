@@ -4,7 +4,6 @@ using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Reflection;
 using AgentMulder.ReSharper.Domain.Containers;
-using AgentMulder.ReSharper.Domain.Patterns;
 
 namespace AgentMulder.Containers.StructureMap
 {
@@ -18,12 +17,11 @@ namespace AgentMulder.Containers.StructureMap
 
         public override IEnumerable<string> ContainerQualifiedNames
         {
-            get { yield return "StructureMap"; }
-        }
-
-        internal StructureMapContainerInfo(params IRegistrationPattern[] registrationPatterns)
-        {
-            RegistrationPatterns = registrationPatterns;
+            get
+            {
+                yield return "StructureMap";
+                yield return "StructureMap.Configuration.DSL";
+            }
         }
 
         protected override ComposablePartCatalog GetComponentCatalog()

@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Patterns: 1
+// Matches: MyList.cs
+// NotMatches: Foo.cs 
+
+using System.Collections.Generic;
 using Microsoft.Practices.Unity;
 using TestApplication.Types;
 

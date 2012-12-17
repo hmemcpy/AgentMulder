@@ -10,7 +10,7 @@ namespace AgentMulder.ReSharper.Domain.Containers
     public abstract class ContainerInfoBase : IContainerInfo
     {
         public abstract string ContainerDisplayName { get; }
-        public IEnumerable<IRegistrationPattern> RegistrationPatterns { get; private set; }
+        public IEnumerable<IRegistrationPattern> RegistrationPatterns { get; protected set; }
         public abstract IEnumerable<string> ContainerQualifiedNames { get; }
 
         protected ContainerInfoBase()

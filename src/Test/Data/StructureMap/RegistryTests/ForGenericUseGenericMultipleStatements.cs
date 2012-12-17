@@ -1,4 +1,8 @@
-﻿using StructureMap.Configuration.DSL;
+﻿// Patterns: 2
+// Matches: Foo.cs,Bar.cs
+// NotMatches: Baz.cs 
+
+using StructureMap.Configuration.DSL;
 using TestApplication.Types;
 
 namespace TestApplication.StructureMap.RegistryTests

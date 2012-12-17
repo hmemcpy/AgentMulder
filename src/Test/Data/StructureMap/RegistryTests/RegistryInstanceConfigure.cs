@@ -1,4 +1,8 @@
-﻿using TestApplication.Types;
+﻿// Patterns: 1
+// Matches: Foo.cs
+// NotMatches: Bar.cs 
+
+using TestApplication.Types;
 
 namespace TestApplication.StructureMap.RegistryTests
 {

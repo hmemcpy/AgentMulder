@@ -22,9 +22,6 @@ namespace AgentMulder.ReSharper.Tests.StructureMap
             get { return new StructureMapContainerInfo(); }
         }
 
-        [TestCase("RegistryInstanceConfigure", 1, new[] { "Foo.cs" })]
-        [TestCase("ForGenericUseGeneric", 1, new[] { "Foo.cs" })]
-        [TestCase("ForGenericUseGenericMultipleStatements", 2, new[] { "Foo.cs", "Bar.cs" })]
         [TestCase("ForGenericUseGenericWithAdditionalParams", 1, new[] { "Foo.cs" })]
         [TestCase("ForNonGenericUseNonGenericType", 1, new[] { "Foo.cs" })]
         [TestCase("ScanTheCallingAssemblyWithDefaultConventions", 1, new[] { "Foo.cs", "Bar.cs" })]

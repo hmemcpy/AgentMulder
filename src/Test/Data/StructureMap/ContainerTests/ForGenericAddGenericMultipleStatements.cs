@@ -1,3 +1,7 @@
+// Patterns: 2
+// Matches: Foo.cs,Bar.cs
+// NotMatches: Baz.cs
+
 using StructureMap;
 using TestApplication.Types;
 

@@ -1,3 +1,7 @@
+// Patterns: 1
+// Matches: CommonImpl12.cs
+// NotMatches: CommonImpl1.cs
+
 using Autofac;
 using TestApplication.Types;
 

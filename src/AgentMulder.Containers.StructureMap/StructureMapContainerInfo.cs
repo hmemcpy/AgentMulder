@@ -10,14 +10,18 @@ namespace AgentMulder.Containers.StructureMap
     [Export(typeof(IContainerInfo))]
     public class StructureMapContainerInfo : ContainerInfoBase
     {
+        public override IEnumerable<string> ContainerQualifiedNames
+        {
+            get
+            {
+                yield return "StructureMap";
+                yield return "StructureMap.Configuration.DSL";
+            }
+        }
+
         public override string ContainerDisplayName
         {
             get { return "StructureMap"; }
-        }
-
-        public override IEnumerable<string> ContainerQualifiedNames
-        {
-            get { yield return "StructureMap"; }
         }
 
         protected override ComposablePartCatalog GetComponentCatalog()

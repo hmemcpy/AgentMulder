@@ -1,4 +1,8 @@
-﻿using Autofac;
+﻿// Patterns: 1
+// Matches: Foo.cs,Bar.cs,Baz,CommonImpl1.cs
+// NotMatches: Page.cs,GoldCard.cs,TakesDependency.cs
+
+using Autofac;
 
 namespace TestApplication.Autofac.RegisterAssemblyTypesTests
 {

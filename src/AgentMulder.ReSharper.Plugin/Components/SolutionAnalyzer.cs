@@ -72,6 +72,10 @@ namespace AgentMulder.ReSharper.Plugin.Components
                 return EmptyList<RegistrationInfo>.InstanceList;
             }
 
+            // todo - optimization
+            // determine all modules referenced from the source file
+            // scan all type declarations in the file to see if any types' module is the container module
+            
             var usingStatements = cSharpFile.Imports
                                             .Where(directive => !directive.ImportedSymbolName.QualifiedName.StartsWith("System"))
                                             .Select(directive => directive.ImportedSymbolName.QualifiedName).ToList();

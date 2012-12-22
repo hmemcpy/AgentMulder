@@ -1,4 +1,6 @@
-﻿using Castle.MicroKernel.Registration;
+﻿// Patterns: 0
+
+using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Ninject;

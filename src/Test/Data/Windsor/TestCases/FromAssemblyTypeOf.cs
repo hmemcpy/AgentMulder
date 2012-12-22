@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Patterns: 0
+
+using System;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;

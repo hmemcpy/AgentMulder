@@ -1,3 +1,7 @@
+// Patterns: 2
+// Matches: CommonImpl1.cs,CommonImpl12.cs
+// NotMatches: Foo.cs 
+
 using Microsoft.Practices.Unity;
 using TestApplication.Types;
 

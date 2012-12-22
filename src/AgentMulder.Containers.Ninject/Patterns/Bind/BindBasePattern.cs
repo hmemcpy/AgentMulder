@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
@@ -9,6 +10,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Ninject.Patterns.Bind
 {
+    [InheritedExport("ComponentRegistration", typeof(IRegistrationPattern))]
     internal abstract class BindBasePattern : ComponentRegistrationPatternBase
     {
         private const string NinjectBindingRootClrTypeName = "Ninject.Syntax.IBindingRoot";

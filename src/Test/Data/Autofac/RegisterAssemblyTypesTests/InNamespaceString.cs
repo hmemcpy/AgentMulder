@@ -1,3 +1,7 @@
+// Patterns: 1
+// Matches: InSomeNamespace.cs,InSomeOtherNamespace.cs
+// NotMatches: Foo.cs
+
 using Autofac;
 
 namespace TestApplication.Autofac.RegisterAssemblyTypesTests

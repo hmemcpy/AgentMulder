@@ -1,3 +1,7 @@
+// Patterns: 1
+// Matches: MyList.cs
+// NotMatches: Foo.cs
+
 using System.Collections.Generic;
 using Ninject;
 using TestApplication.Types;

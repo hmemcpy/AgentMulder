@@ -4,15 +4,14 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.ComponentModel.Composition.Primitives;
-
 namespace AgentMulder.Containers.Catel
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.ComponentModel.Composition.Hosting;
+    using System.ComponentModel.Composition.Primitives;
     using System.Reflection;
-
     using ReSharper.Domain.Containers;
 
     [Export(typeof(IContainerInfo))]
@@ -23,7 +22,7 @@ namespace AgentMulder.Containers.Catel
             get { return "Catel IoC"; }
         }
 
-        public override System.Collections.Generic.IEnumerable<string> ContainerQualifiedNames
+        public override IEnumerable<string> ContainerQualifiedNames
         {
             get { yield return "Catel.IoC"; }
         }

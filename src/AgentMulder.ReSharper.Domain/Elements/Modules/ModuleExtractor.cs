@@ -22,7 +22,7 @@ namespace AgentMulder.ReSharper.Domain.Elements.Modules
             extractors.Add(new GetExecutingAssemblyExtractor());
         }
 
-        internal static void AddExtractor(IModuleExtractor extractor)
+        public static void AddExtractor(IModuleExtractor extractor)
         {
             extractors.Add(extractor);
         }

@@ -165,7 +165,12 @@ namespace AgentMulder.ReSharper.Plugin.Components
         {
             lock (lockObject)
             {
-                if (HasDirtyFiles)
+                if (dirtyFiles.Contains(sourceFile))
+                {
+                    return false;
+                }
+
+                if (!registrationsMap.ContainsKey(sourceFile))
                 {
                     return false;
                 }

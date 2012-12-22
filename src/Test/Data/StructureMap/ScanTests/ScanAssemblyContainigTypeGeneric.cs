@@ -1,6 +1,9 @@
-﻿using System;
+﻿// Patterns: 1
+// Matches: Foo.cs,Bar.cs
+// NotMatches: CommonImpl1.cs
+
+using System;
 using StructureMap;
-using StructureMap.Configuration.DSL;
 using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ScanTests

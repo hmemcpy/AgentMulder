@@ -29,7 +29,7 @@ namespace AgentMulder.ReSharper.Tests.Ninject
             }
         }
 
-        [TestCase("GenericOpenType", "MyList.cs")]
+        [TestCase("ModuleGenericOpenType", "MyList.cs")]
         [TestCase("BindGenericToGeneric", "CommonImpl1.cs")]
         [TestCase("BindGenericToNonGeneric", "CommonImpl1.cs")]
         [TestCase("BindNonGenericToGeneric", "CommonImpl1.cs")]

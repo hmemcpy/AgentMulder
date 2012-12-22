@@ -1,13 +1,17 @@
+// Patterns: 1
+// Matches: CommonImpl1.cs
+// NotMatches: Foo.cs
+
 using Ninject.Modules;
 using TestApplication.Types;
 
 namespace TestApplication.Ninject.ModuleTestCases
 {
-    public class BindGenericToSelf : NinjectModule
+    public class ModuleBindGenericToGeneric : NinjectModule
     {
         public override void Load()
         {
-            Bind<CommonImpl1>().ToSelf();
+            Bind<ICommon>().To<CommonImpl1>();
         }
     }
 }

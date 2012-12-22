@@ -2,6 +2,7 @@
 // Matches: Foo.cs
 // NotMatches: Bar.cs 
 
+using StructureMap.Configuration.DSL;
 using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ContainerTests
@@ -10,7 +11,7 @@ namespace TestApplication.StructureMap.ContainerTests
     {
         public RegistryInstanceConfigure()
         {
-            var registry = new global::StructureMap.Configuration.DSL.Registry();
+            var registry = new Registry();
             registry.For<IFoo>().Use<Foo>();
         }
     }

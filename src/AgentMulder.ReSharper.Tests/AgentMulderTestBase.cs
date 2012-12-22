@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Plugin.Components;
+using AgentMulder.ReSharper.Plugin.Daemon;
 using JetBrains.Application;
 using JetBrains.DocumentManagers;
 using JetBrains.ProjectModel;
@@ -30,7 +31,7 @@ namespace AgentMulder.ReSharper.Tests
 
         protected abstract IContainerInfo ContainerInfo { get; }
 
-        protected void RunTest(string fileName, Action<List<RegistrationInfo>> action)
+        protected void RunTest(string fileName, Action<IPatternManager> action)
         {
             var typesPath = new DirectoryInfo(Path.Combine(BaseTestDataPath.FullPath, "Types"));
             var fileSet = typesPath.GetFiles("*" + Extension)
@@ -39,15 +40,12 @@ namespace AgentMulder.ReSharper.Tests
 
             WithSingleProject(fileSet, (lifetime, project) => RunGuarded(() =>
             {
-                var documentManager = Solution.GetComponent<DocumentManager>();
-                var patternSearcher = new PatternSearcher(documentManager);
-                var searchDomainFactory = Shell.Instance.GetComponent<SearchDomainFactory>();
-                var solutionAnalyzer = new SolutionAnalyzer(patternSearcher, Solution, searchDomainFactory);
+                var solutionAnalyzer = Solution.GetComponent<SolutionAnalyzer>();
                 solutionAnalyzer.AddContainer(ContainerInfo);
 
-                var componentRegistrations = solutionAnalyzer.Analyze();
+                var patternManager = Solution.GetComponent<IPatternManager>();
 
-                action(componentRegistrations.ToList());
+                action(patternManager);
             }));
         }
 
@@ -87,12 +85,14 @@ namespace AgentMulder.ReSharper.Tests
         [TestCaseSource("TestCases")]
         public void Test(string fileName)
         {
-            RunTest(fileName, registrations =>
+            RunTest(fileName, patternManager =>
             {
                 ICSharpFile cSharpFile = GetCodeFile(fileName);
                 var testData = GetTestData(cSharpFile);
-                
-                registrations.Count.Should().Be(testData.Item1, 
+
+                var patterns = patternManager.GetRegistrationsForFile(cSharpFile.GetSourceFile()).ToList();
+
+                patterns.Count.Should().Be(testData.Item1, 
                     "Mismatched number of expected registrations. Make sure the '// Patterns:' comment is correct");
 
                 if (testData.Item1 > 0)
@@ -101,15 +101,15 @@ namespace AgentMulder.ReSharper.Tests
                     foreach (ICSharpFile codeFile in codeFiles)
                     {
                          codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
-                             registrations.Should().Contain(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement), 
-                             "Of {0} registrations, at least one should match '{1}'", registrations.Count, declaration.CLRName));
+                             patterns.Should().Contain(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement),
+                             "Of {0} registrations, at least one should match '{1}'", patterns.Count, declaration.CLRName));
                     }
                     codeFiles = testData.Item3.SelectNotNull(GetCodeFile);
                     foreach (ICSharpFile codeFile in codeFiles)
                     {
                          codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
-                             registrations.Should().NotContain(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement),
-                             "Of {0} registrations, none should match '{1}'", registrations.Count, declaration.CLRName));
+                             patterns.Should().NotContain(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement),
+                             "Of {0} registrations, none should match '{1}'", patterns.Count, declaration.CLRName));
                     }
                 }
             });

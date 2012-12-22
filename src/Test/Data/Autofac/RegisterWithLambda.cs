@@ -1,4 +1,8 @@
-﻿using Autofac;
+﻿// Patterns: 1
+// Matches: Foo.cs
+// NotMatches: Bar.cs
+
+using Autofac;
 using TestApplication.Types;
 
 namespace TestApplication.Autofac

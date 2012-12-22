@@ -1,4 +1,8 @@
-﻿using Autofac;
+﻿// Patterns: 2
+// Matches: GoldCard.cs,StandardCard.cs
+// NotMatches: Foo.cs
+
+using Autofac;
 using TestApplication.Types;
 
 namespace TestApplication.Autofac

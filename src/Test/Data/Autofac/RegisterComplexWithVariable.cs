@@ -1,3 +1,7 @@
+// Patterns: 1
+// Matches: GoldCard.cs
+// NotMatches: StandardCard.cs
+
 using System.Linq;
 using Autofac;
 using TestApplication.Types;

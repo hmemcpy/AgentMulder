@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
@@ -12,11 +13,12 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
 {
     internal sealed class ModuleBindNonGeneric : BindBasePattern
     {
-        private static readonly IStructuralSearchPattern pattern 
-            = new CSharpStructuralSearchPattern("Bind($service$)",
+        private static readonly IStructuralSearchPattern pattern = 
+            new CSharpStructuralSearchPattern("Bind($service$)",
                 new ArgumentPlaceholder("service"));
 
-        public ModuleBindNonGeneric(params ComponentImplementationPatternBase[] toPatterns)
+        [ImportingConstructor]
+        public ModuleBindNonGeneric([ImportMany] params ComponentImplementationPatternBase[] toPatterns)
             : base(pattern, "service", toPatterns)
         {
         }

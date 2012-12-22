@@ -1,4 +1,6 @@
-﻿using TestApplication.Types;
+﻿// Patterns: 0
+
+using TestApplication.Types;
 
 namespace TestApplication.Ninject
 {

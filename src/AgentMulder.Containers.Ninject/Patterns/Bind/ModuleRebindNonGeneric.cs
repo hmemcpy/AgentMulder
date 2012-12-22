@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
@@ -16,7 +17,8 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
             new CSharpStructuralSearchPattern("Rebind($service$)",
                 new ArgumentPlaceholder("service"));
 
-        public ModuleRebindNonGeneric(params ComponentImplementationPatternBase[] toPatterns)
+        [ImportingConstructor]
+        public ModuleRebindNonGeneric([ImportMany] params ComponentImplementationPatternBase[] toPatterns)
             : base(pattern, "service", toPatterns)
         {
         }

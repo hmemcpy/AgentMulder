@@ -1,5 +1,4 @@
 using AgentMulder.Containers.Ninject;
-using AgentMulder.Containers.Ninject.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Tests.Ninject.Helpers;
 
@@ -15,13 +14,7 @@ namespace AgentMulder.ReSharper.Tests.Ninject
 
         protected override IContainerInfo ContainerInfo
         {
-            get
-            {
-                return new NinjectContainerInfo(new[]
-                {
-                    new BindRegistrationProvider(new ToRegistrationProvider())
-                });
-            }
+            get { return new NinjectContainerInfo(); }
         }
     }
 }

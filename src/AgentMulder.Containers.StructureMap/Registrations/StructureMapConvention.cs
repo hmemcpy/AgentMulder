@@ -5,13 +5,22 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.StructureMap.Registrations
 {
-    public abstract class StructureMapConventionBase : FilteredRegistrationBase
+    public abstract class StructureMapConvention : FilteredRegistrationBase
     {
-        protected StructureMapConventionBase(ITreeNode registrationRootElement)
+        protected StructureMapConvention(ITreeNode registrationRootElement)
             : base(registrationRootElement)
         {
-            AddFilter(element => element.Constructors.All(
-                constructor => constructor.Parameters.All(IsAutoFillable)));
+            AddFilter(typeElement =>
+            {
+                var publicCtors = typeElement.Constructors.Where(constructor => constructor.GetAccessRights() == AccessRights.PUBLIC).ToArray();
+
+                if (!publicCtors.Any())
+                {
+                    return false;
+                }
+
+                return publicCtors.All(constructor => constructor.Parameters.All(IsAutoFillable));
+            });
         }
 
         private bool IsAutoFillable(IParameter parameter)

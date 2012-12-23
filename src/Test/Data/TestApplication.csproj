@@ -206,6 +206,7 @@
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblySingleImplementationsOfInterface.cs" />
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <None Include="StructureMap\_DoesNotCompile-BrokenReference.cs" />
+    <Compile Include="StructureMap\TypeWithPrivateConstructor.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />
     <Compile Include="Types\Baz.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="Types\PageRepository.cs" />
     <Compile Include="Types\PlatinumCard.cs" />
     <Compile Include="Types\PrimitiveArgument.cs" />
+    <Compile Include="Types\PrivateCtor.cs" />
     <Compile Include="Types\Repository.cs" />
     <Compile Include="Types\Single.cs" />
     <Compile Include="Types\SomeClass.cs" />

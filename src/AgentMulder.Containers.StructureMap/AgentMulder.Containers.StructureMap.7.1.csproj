@@ -75,10 +75,11 @@
       <SubType>
       </SubType>
     </Compile>
-    <Compile Include="Registrations\DefaultConvention.cs" />
+    <Compile Include="Registrations\DefaultInterfaceConvention.cs" />
     <Compile Include="Registrations\FirstInterfaceConvention.cs" />
     <Compile Include="Registrations\SingleImplementationsOfInterfaceConvention.cs" />
-    <Compile Include="Registrations\StructureMapConventionBase.cs" />
+    <Compile Include="Registrations\StructureMapConvention.cs" />
+    <Compile Include="Registrations\StructureMapServiceRegistration.cs" />
     <Compile Include="StructureMapContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>

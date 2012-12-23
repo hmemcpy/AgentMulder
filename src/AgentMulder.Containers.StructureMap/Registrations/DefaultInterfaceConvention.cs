@@ -1,14 +1,13 @@
 ﻿using System.Linq;
-using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
 namespace AgentMulder.Containers.StructureMap.Registrations
 {
-    public class DefaultConvention : StructureMapConventionBase
+    public class DefaultInterfaceConvention : StructureMapConvention
     {
-        public DefaultConvention(ITreeNode registrationRootElement)
+        public DefaultInterfaceConvention(ITreeNode registrationRootElement)
             : base(registrationRootElement)
         {
             AddFilter(element =>

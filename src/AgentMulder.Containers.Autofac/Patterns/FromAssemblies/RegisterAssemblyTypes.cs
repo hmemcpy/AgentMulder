@@ -56,7 +56,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
                 foreach (IModule module in modules)
                 {
                     // todo blech, fix this
-                    yield return new CompositeRegistration(registrationRootElement, basedOnRegistrations.Union(
+                    yield return new CompositeRegistration(registrationRootElement, basedOnRegistrations.Concat(
                         new ComponentRegistrationBase[]
                         {
                             new DefaultScanAssemblyRegistration(registrationRootElement),

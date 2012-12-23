@@ -32,7 +32,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
                 {
                     var registrations = pattern.GetComponentRegistrations(registrationRootElement);
 
-                    yield return new CompositeRegistration(registrationRootElement, innerRegistrations.Union(registrations));
+                    yield return new CompositeRegistration(registrationRootElement, innerRegistrations.Concat(registrations));
                 }
             }
         }

@@ -14,8 +14,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.Except<$type$>($arguments$)",
-                new ExpressionPlaceholder("builder",
-                    "global::Autofac.Builder.IRegistrationBuilder<object,global::Autofac.Features.Scanning.ScanningActivatorData,global::Autofac.Builder.DynamicRegistrationStyle>", false),
+                new ExpressionPlaceholder("builder", "global::Autofac.Builder.IRegistrationBuilder<,,>", false),
                 new TypePlaceholder("type"),
                 new ArgumentPlaceholder("arguments", -1 ,-1));
 

@@ -73,7 +73,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 
                 foreach (var moduleRegistration  in moduleRegistrations)
                 {
-                    yield return new CompositeRegistration(registrationRootElement, registrations.Union(new[]
+                    yield return new CompositeRegistration(registrationRootElement, registrations.Concat(new[]
                     {
                         moduleRegistration
                     }));

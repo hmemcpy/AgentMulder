@@ -1,5 +1,6 @@
 using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application;
+using JetBrains.ReSharper;
 using JetBrains.Threading;
 using System.Reflection;
 using System.Collections.Generic;
@@ -8,10 +9,34 @@ using NUnit.Framework;
 /// <summary>
 /// Test environment. Must be in the global namespace.
 /// </summary>
-[SetUpFixture]
 // ReSharper disable CheckNamespace
-public class TestEnvironmentAssembly : ReSharperTestEnvironmentAssembly
-// ReSharper restore CheckNamespace
+
+// Note: per suggestion by Matt Ellis, create an isolated environment, to prevent ReSharper from
+// loading 3rd party plugins into the test environment. For more information: http://youtrack.jetbrains.com/issue/RSRP-337526
+public class IsolatedReSharperTestEnvironmentAssembly : ReSharperTestEnvironmentAssembly
+{
+    public override IApplicationDescriptor CreateApplicationDescriptor()
+    {
+        return new IsolatedReSharperApplicationDescriptor();
+    }
+
+    private class IsolatedReSharperApplicationDescriptor : ReSharperApplicationDescriptor
+    {
+        public override string ProductName
+        {
+            get
+            {
+                // The product name is used to find settings under APPDATA. Leaving it at
+                // ReSharper would use your normal ReSharper settings (+plugins!) while
+                // running tests. This keeps them isolated
+                return base.ProductName + "_Isolated";
+            }
+        }
+    }
+}
+
+[SetUpFixture]
+public class TestEnvironmentAssembly : IsolatedReSharperTestEnvironmentAssembly
 {
   /// <summary>
   /// Gets the assemblies to load into test environment.
@@ -43,3 +68,5 @@ public class TestEnvironmentAssembly : ReSharperTestEnvironmentAssembly
     base.TearDown();
   }
 }
+
+// ReSharper restore CheckNamespace

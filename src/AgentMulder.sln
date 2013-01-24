@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Plugin.6.1", "AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.6.1.csproj", "{8FED260D-8CDB-45A1-B927-116DE2FECD8F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{F0AF21D8-9FFB-4641-AA4A-404A86F9029D}"

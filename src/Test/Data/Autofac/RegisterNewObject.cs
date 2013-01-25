@@ -5,12 +5,11 @@ using TestApplication.Types;
 
 namespace TestApplication.Autofac
 {
-    public class RegisterNonSpecificObjectAsService : Module
+    public class RegisterNewObject : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            // Casting an instance to object is not supported
-            builder.Register(context => (object)(new Foo())).As<IFoo>();
+            builder.Register(context => new object());
         }
     }
 }

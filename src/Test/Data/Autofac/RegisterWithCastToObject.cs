@@ -1,6 +1,4 @@
-﻿// Patterns: 1
-// Matches: Foo.cs
-// NotMatches: IFoo.cs
+﻿// Patterns: 0
 
 using System;
 using Autofac;
@@ -8,7 +6,7 @@ using TestApplication.Types;
 
 namespace TestApplication.Autofac
 {
-    public class RegisterNonSpecificObject : Module
+    public class RegisterWithCastToObject : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

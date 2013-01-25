@@ -13,7 +13,7 @@ using NUnit.Framework;
 
 // Note: per suggestion by Matt Ellis, create an isolated environment, to prevent ReSharper from
 // loading 3rd party plugins into the test environment. For more information: http://youtrack.jetbrains.com/issue/RSRP-337526
-public class IsolatedReSharperTestEnvironmentAssembly : ReSharperTestEnvironmentAssembly
+public abstract class IsolatedReSharperTestEnvironmentAssembly : ReSharperTestEnvironmentAssembly
 {
     public override IApplicationDescriptor CreateApplicationDescriptor()
     {

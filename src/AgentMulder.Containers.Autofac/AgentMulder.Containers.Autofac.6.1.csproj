@@ -48,6 +48,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AutofacContainerInfo.cs" />
+    <Compile Include="Patterns\FromAssemblies\BasedOn\AsClosedTypesOf.cs" />
     <Compile Include="Patterns\FromAssemblies\BasedOn\AsGeneric.cs" />
     <Compile Include="Patterns\FromAssemblies\BasedOn\AsImplementedInterfaces.cs" />
     <Compile Include="Patterns\FromAssemblies\BasedOn\AsNonGeneric.cs" />

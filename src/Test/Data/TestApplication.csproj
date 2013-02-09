@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autofac\RegisterAssemblyTypesTests\AllThreeTogether.cs" />
+    <Compile Include="Autofac\RegisterAssemblyTypesTests\AsClosedTypesOf.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\AsGeneric1.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\AsGeneric2.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests\AsImplementedInterfaces.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <None Include="StructureMap\_DoesNotCompile-BrokenReference.cs" />
     <Compile Include="StructureMap\TypeWithPrivateConstructor.cs" />
+    <Compile Include="Types\SaveCommand.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />
     <Compile Include="Types\Baz.cs" />
@@ -227,6 +229,7 @@
     <Compile Include="Types\FooBar.cs" />
     <Compile Include="Types\GoldCard.cs" />
     <Compile Include="Types\HaveAttribute.cs" />
+    <Compile Include="Types\ICommand.cs" />
     <Compile Include="Types\IBar.cs" />
     <Compile Include="Types\ICommon.cs" />
     <Compile Include="Types\ICommon2.cs" />
@@ -251,6 +254,7 @@
     <Compile Include="Types\PrimitiveArgument.cs" />
     <Compile Include="Types\PrivateCtor.cs" />
     <Compile Include="Types\Repository.cs" />
+    <Compile Include="Types\SaveCommandData.cs" />
     <Compile Include="Types\Single.cs" />
     <Compile Include="Types\SomeClass.cs" />
     <Compile Include="Types\StandardCard.cs" />

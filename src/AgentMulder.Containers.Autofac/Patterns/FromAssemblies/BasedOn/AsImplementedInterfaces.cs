@@ -11,7 +11,7 @@ using JetBrains.Util;
 
 namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 {
-    public class AsImplementedInterfaces : MultipleMatchBasedOnPatternBase
+    internal sealed class AsImplementedInterfaces : MultipleMatchBasedOnPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.AsImplementedInterfaces()",

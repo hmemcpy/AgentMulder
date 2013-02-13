@@ -58,6 +58,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Stru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.StructureMap.7.1", "AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.7.1.csproj", "{F1DF90A4-C9E9-4749-9925-57F14684BCA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.SimpleInjector.7.1", "AgentMulder.Containers.SimpleInjector\AgentMulder.Containers.SimpleInjector.7.1.csproj", "{6804EC8B-D9C0-49C6-BCF1-C308B1D7000C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -138,6 +140,10 @@ Global
 		{F1DF90A4-C9E9-4749-9925-57F14684BCA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1DF90A4-C9E9-4749-9925-57F14684BCA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1DF90A4-C9E9-4749-9925-57F14684BCA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6804EC8B-D9C0-49C6-BCF1-C308B1D7000C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6804EC8B-D9C0-49C6-BCF1-C308B1D7000C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6804EC8B-D9C0-49C6-BCF1-C308B1D7000C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6804EC8B-D9C0-49C6-BCF1-C308B1D7000C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +171,7 @@ Global
 		{2C40BBAB-A1A1-4F02-BF7A-33F6E5DD411C} = {0AFEAB16-D259-49ED-A30C-08B4D9997E48}
 		{31AEFBC4-8F8A-4411-B9BC-F84A42C50E0D} = {0AFEAB16-D259-49ED-A30C-08B4D9997E48}
 		{F1DF90A4-C9E9-4749-9925-57F14684BCA5} = {0AFEAB16-D259-49ED-A30C-08B4D9997E48}
+		{6804EC8B-D9C0-49C6-BCF1-C308B1D7000C} = {0AFEAB16-D259-49ED-A30C-08B4D9997E48}
 		{49E73F55-BB2A-4B1D-9A31-992E7E71861D} = {93E2B889-FBCA-4F2F-AF2C-10CFAF822BE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

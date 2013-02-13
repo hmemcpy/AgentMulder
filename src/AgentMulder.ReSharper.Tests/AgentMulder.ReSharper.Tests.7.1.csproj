@@ -93,6 +93,8 @@
     <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />
     <Compile Include="Ninject\SanityTests.cs" />
+    <Compile Include="SimpleInjector\ContainerTests.cs" />
+    <Compile Include="SimpleInjector\Helpers\TestSimpleInjectorAttribute.cs" />
     <Compile Include="StructureMap\ContainerTests.cs" />
     <Compile Include="StructureMap\Helpers\TestStructureMapAttribute.cs" />
     <Compile Include="StructureMap\SanityTests.cs" />
@@ -129,6 +131,10 @@
     <ProjectReference Include="..\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.7.1.csproj">
       <Project>{7bc34885-3fde-4b2d-9eb8-bbc933aee076}</Project>
       <Name>AgentMulder.Containers.Ninject.7.1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.SimpleInjector\AgentMulder.Containers.SimpleInjector.7.1.csproj">
+      <Project>{6804ec8b-d9c0-49c6-bcf1-c308b1d7000c}</Project>
+      <Name>AgentMulder.Containers.SimpleInjector.7.1</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.7.1.csproj">
       <Project>{f1df90a4-c9e9-4749-9925-57f14684bca5}</Project>

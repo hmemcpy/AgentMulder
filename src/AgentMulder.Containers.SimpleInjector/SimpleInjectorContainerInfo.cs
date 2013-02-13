@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Reflection;
@@ -19,7 +20,7 @@ namespace AgentMulder.Containers.SimpleInjector
 
         public override string ContainerDisplayName
         {
-            get { return "Ninject"; }
+            get { return "Simple Injector"; }
         }
 
         protected override ComposablePartCatalog GetComponentCatalog()

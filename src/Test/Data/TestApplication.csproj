@@ -162,6 +162,7 @@
     <Compile Include="Ninject\ModuleTestCases\ModuleRebindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\ModuleRebindNonGenericToNonGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\ModuleRebindNonGenericToSelf.cs" />
+    <Compile Include="SimpleInjector\RegisterGeneric.cs" />
     <Compile Include="StructureMap\ContainerTests\RegistryForNonGenericUseNonGenericTypeOf.cs" />
     <Compile Include="StructureMap\ContainerTests\RegistryForNonGenericAddNonGenericTypeOf.cs" />
     <Compile Include="StructureMap\ContainerTests\RegistryForGenericUseGenericWithAdditionalParams.cs" />
@@ -342,9 +343,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SimpleInjector\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

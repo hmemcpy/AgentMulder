@@ -1,14 +1,14 @@
+﻿using System;
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Files;
 
-namespace AgentMulder.ReSharper.Plugin.Components
+namespace AgentMulder.ReSharper.Domain.Utils
 {
-    public partial class SolutionAnalyzer
+    public static partial class PsiExtensions
     {
-        private ICSharpFile GetCSharpFile(IPsiSourceFile sourceFile)
+        public static ICSharpFile GetCSharpFile(this IPsiSourceFile sourceFile)
         {
             return sourceFile.GetPsiFile<CSharpLanguage>(new DocumentRange(sourceFile.Document, sourceFile.Document.DocumentRange)) as ICSharpFile;
         }

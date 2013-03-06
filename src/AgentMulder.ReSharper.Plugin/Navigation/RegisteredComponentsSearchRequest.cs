@@ -16,6 +16,7 @@ using JetBrains.ReSharper.Features.Finding.FindDependentCode;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.Psi;
+using AgentMulder.ReSharper.Domain.Utils;
 
 namespace AgentMulder.ReSharper.Plugin.Navigation
 {
@@ -44,11 +45,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
                     var sourceFiles = project.GetAllProjectFiles().SelectMany(projectFile => projectFile.ToSourceFiles());
                     foreach (var psiSourceFile in sourceFiles)
                     {
-#if SDK70
-                        IFile file = psiSourceFile.GetPsiFile(CSharpLanguage.Instance, new DocumentRange(psiSourceFile.Document, psiSourceFile.Document.DocumentRange));
-#else
-                        IFile file = psiSourceFile.GetPsiFile(CSharpLanguage.Instance);
-#endif
+                        IFile file = psiSourceFile.GetCSharpFile();
                         if (file == null)
                         {
                             continue;

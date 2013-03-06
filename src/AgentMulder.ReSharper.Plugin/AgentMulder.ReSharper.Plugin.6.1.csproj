@@ -64,7 +64,6 @@
     <Compile Include="Components\PatternManagerCache.6.1.cs" />
     <Compile Include="Components\PatternManagerCache.cs" />
     <Compile Include="Components\PatternSearcher.cs" />
-    <Compile Include="Components\SolutionAnalyzer.6.1.cs" />
     <Compile Include="Components\TypeUsageManager.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.6.1.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.cs" />

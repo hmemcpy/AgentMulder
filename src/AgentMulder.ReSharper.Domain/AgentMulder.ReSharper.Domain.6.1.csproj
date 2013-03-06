@@ -82,6 +82,7 @@
     <Compile Include="Registrations\IBasedOnRegistrationCreator.cs" />
     <Compile Include="Utils\ContainerExtensions.cs" />
     <Compile Include="Utils\MaybeMonadExtensions.cs" />
+    <Compile Include="Utils\PsiExtensions.6.1.cs" />
     <Compile Include="Utils\PsiExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrations\ComponentRegistrationBase.cs" />

@@ -14,6 +14,7 @@ using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.TestFramework;
 using JetBrains.Util;
 using NUnit.Framework;
+using AgentMulder.ReSharper.Domain.Utils;
 
 namespace AgentMulder.ReSharper.Tests
 {
@@ -54,11 +55,7 @@ namespace AgentMulder.ReSharper.Tests
             if (psiSourceFile == null)
                 return null;
 
-#if SDK70
-            var cSharpFile = psiSourceFile.GetTheOnlyPsiFile(CSharpLanguage.Instance) as ICSharpFile;
-#else
-            var cSharpFile = psiSourceFile.GetPsiFile(CSharpLanguage.Instance) as ICSharpFile;
-#endif
+            ICSharpFile cSharpFile = psiSourceFile.GetCSharpFile();
 
             cSharpFile.AssertIsValid();
             

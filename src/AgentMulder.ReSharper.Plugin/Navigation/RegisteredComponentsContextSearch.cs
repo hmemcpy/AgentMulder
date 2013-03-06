@@ -28,7 +28,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             ISolution solution = dataContext.GetData(JetBrains.ProjectModel.DataContext.DataConstants.SOLUTION);
             if (solution == null)
                 return false;
-#if SDK70
+#if SDK70 || SDK80
             IDocument document = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT);
 #else
             IDocument document = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT);
@@ -36,7 +36,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
 
             if (document == null)
                 return false;
-#if SDK70
+#if SDK70 || SDK80
             DocumentOffset documentOffset = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT_OFFSET);
 #else
             DocumentOffset documentOffset = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT_OFFSET);
@@ -73,7 +73,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
 
 
-#if SDK70
+#if SDK70 || SDK80
             IDocument document = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT);
 #else
             IDocument document = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT);

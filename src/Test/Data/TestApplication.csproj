@@ -334,12 +334,6 @@
     <None Include="Windsor\_DoesNotCompile-BrokenReference.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.6.1.csproj">
-      <Project>{C6154279-CFEE-47FC-8F17-F901A5636B0A}</Project>
-      <Name>AgentMulder.ReSharper.Tests.6.1</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>

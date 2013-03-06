@@ -8,7 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{49E73F55-BB2A-4B1D-9A31-992E7E71861D}</ProjectGuid>
+    <ProjectGuid>{5F0EA8D2-161A-421F-9D81-7123EE760A2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.ReSharper.Tests</RootNamespace>

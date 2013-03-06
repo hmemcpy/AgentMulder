@@ -8,11 +8,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7BC34885-3FDE-4B2D-9EB8-BBC933AEE076}</ProjectGuid>
+    <ProjectGuid>{CC996833-A3DB-4E39-B5AF-2811EC02F4E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgentMulder.Containers.Ninject</RootNamespace>
-    <AssemblyName>AgentMulder.Containers.Ninject</AssemblyName>
+    <RootNamespace>AgentMulder.Containers.Unity</RootNamespace>
+    <AssemblyName>AgentMulder.Containers.Unity</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\Containers\</OutputPath>
@@ -37,30 +37,24 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="NinjectContainerInfo.cs" />
-    <Compile Include="Patterns\Bind\BindBasePattern.cs" />
-    <Compile Include="Patterns\Bind\KernelBindGeneric.cs" />
-    <Compile Include="Patterns\Bind\KernelBindNonGeneric.cs" />
-    <Compile Include="Patterns\Bind\KernelRebindGeneric.cs" />
-    <Compile Include="Patterns\Bind\KernelRebindNonGeneric.cs" />
-    <Compile Include="Patterns\Bind\ModuleBindGeneric.cs" />
-    <Compile Include="Patterns\Bind\ModuleBindNonGeneric.cs" />
-    <Compile Include="Patterns\Bind\ModuleRebindGeneric.cs" />
-    <Compile Include="Patterns\Bind\ModuleRebindNonGeneric.cs" />
-    <Compile Include="Patterns\Bind\To\ToGeneric.cs" />
-    <Compile Include="Patterns\Bind\To\ToNonGeneric.cs" />
-    <Compile Include="Patterns\Bind\To\ToSelf.cs" />
+    <Compile Include="Patterns\RegisterType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnityContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.7.1.csproj">
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.0.csproj">
       <Project>{b4eba743-4bd2-4e6e-8917-f508ebf6a59d}</Project>
-      <Name>AgentMulder.ReSharper.Domain.7.1</Name>
+      <Name>AgentMulder.ReSharper.Domain.8.0</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

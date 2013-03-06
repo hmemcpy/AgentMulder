@@ -8,7 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9EE3BAB8-0E37-48A2-BBE4-8537288DCA3B}</ProjectGuid>
+    <ProjectGuid>{F1C37DEA-FA19-4FA7-BE80-F013D532C6ED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.ReSharper.Plugin</RootNamespace>
@@ -84,9 +84,9 @@
     <EmbeddedResource Include="Resources\Hat.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.7.1.csproj">
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.0.csproj">
       <Project>{b4eba743-4bd2-4e6e-8917-f508ebf6a59d}</Project>
-      <Name>AgentMulder.ReSharper.Domain.7.1</Name>
+      <Name>AgentMulder.ReSharper.Domain.8.0</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

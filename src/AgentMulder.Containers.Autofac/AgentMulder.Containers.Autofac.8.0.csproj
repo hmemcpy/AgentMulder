@@ -67,9 +67,9 @@
     <Compile Include="Registrations\DefaultScanAssemblyRegistration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.7.1.csproj">
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.0.csproj">
       <Project>{b4eba743-4bd2-4e6e-8917-f508ebf6a59d}</Project>
-      <Name>AgentMulder.ReSharper.Domain.7.1</Name>
+      <Name>AgentMulder.ReSharper.Domain.8.0</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

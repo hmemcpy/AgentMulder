@@ -8,7 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E048D28A-B358-48CC-94C1-32164936459D}</ProjectGuid>
+    <ProjectGuid>{43FC7171-6E4D-4C3C-8CE7-39AEC065BC32}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.Containers.CastleWindsor</RootNamespace>
@@ -82,9 +82,9 @@
     <Compile Include="WindsorContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.7.1.csproj">
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.0.csproj">
       <Project>{b4eba743-4bd2-4e6e-8917-f508ebf6a59d}</Project>
-      <Name>AgentMulder.ReSharper.Domain.7.1</Name>
+      <Name>AgentMulder.ReSharper.Domain.8.0</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

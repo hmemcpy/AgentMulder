@@ -8,11 +8,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AD04F8C5-4558-4E36-AF92-0D5338564719}</ProjectGuid>
+    <ProjectGuid>{A987C35F-0E1D-4999-BDDA-667289B4A3E6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgentMulder.Containers.Catel</RootNamespace>
-    <AssemblyName>AgentMulder.Containers.Catel</AssemblyName>
+    <RootNamespace>AgentMulder.Containers.StructureMap</RootNamespace>
+    <AssemblyName>AgentMulder.Containers.StructureMap</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\Containers\</OutputPath>
@@ -37,25 +37,55 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CatelContainerInfo.cs" />
-    <Compile Include="Patterns\ServiceLocatorMethodRegistrationPatternBase.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Patterns\RegisterTypeIfNotYetRegisteredPattern.cs" />
-    <Compile Include="Patterns\RegisterTypePattern.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Patterns\For\Add\AddGeneric.cs" />
+    <Compile Include="Patterns\For\Add\AddNonGeneric.cs" />
+    <Compile Include="Patterns\For\ForBasePattern.cs" />
+    <Compile Include="Patterns\For\ForGeneric.cs" />
+    <Compile Include="Patterns\For\ForNonGeneric.cs" />
+    <Compile Include="Patterns\For\RegistryForGeneric.cs" />
+    <Compile Include="Patterns\For\RegistryForNonGeneric.cs" />
+    <Compile Include="Patterns\For\Use\UseGeneric.cs" />
+    <Compile Include="Patterns\For\Use\UseNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\AddAllTypesOfGeneric.cs" />
+    <Compile Include="Patterns\Scan\AddAllTypesOfNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\Assembly.cs" />
+    <Compile Include="Patterns\Scan\AssemblyContainingTypeGeneric.cs" />
+    <Compile Include="Patterns\Scan\AssemblyContainingTypeNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\RegisterConcreteTypesAgainstTheFirstInterface.cs" />
+    <Compile Include="Patterns\Scan\ExcludeNamespace.cs" />
+    <Compile Include="Patterns\Scan\ExcludeNamespaceContainingType.cs" />
+    <Compile Include="Patterns\Scan\ExcludeType.cs" />
+    <Compile Include="Patterns\Scan\IncludeNamespace.cs" />
+    <Compile Include="Patterns\Scan\IncludeNamespaceContainingType.cs" />
+    <Compile Include="Patterns\Scan\RegistryScanPattern.cs" />
+    <Compile Include="Patterns\Scan\ScanPattern.cs" />
+    <Compile Include="Patterns\Scan\ScanPatternBase.cs" />
+    <Compile Include="Patterns\Scan\SingleImplementationsOfInterface.cs" />
+    <Compile Include="Patterns\Scan\TheCallingAssembly.cs" />
+    <Compile Include="Patterns\Scan\WithDefaultConventions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="Registrations\DefaultInterfaceConvention.cs" />
+    <Compile Include="Registrations\FirstInterfaceConvention.cs" />
+    <Compile Include="Registrations\SingleImplementationsOfInterfaceConvention.cs" />
+    <Compile Include="Registrations\StructureMapConvention.cs" />
+    <Compile Include="Registrations\StructureMapServiceRegistration.cs" />
+    <Compile Include="StructureMapContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.7.1.csproj">
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.0.csproj">
       <Project>{b4eba743-4bd2-4e6e-8917-f508ebf6a59d}</Project>
-      <Name>AgentMulder.ReSharper.Domain.7.1</Name>
+      <Name>AgentMulder.ReSharper.Domain.8.0</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

@@ -25,7 +25,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>JET_MODE_ASSERT;DEBUG;TRACE;SDK70;</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
@@ -34,7 +34,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE;SDK70</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <StartWorkingDirectory>$(MSBuildProjectDirectory)\$(OutputPath)</StartWorkingDirectory>
@@ -64,13 +64,16 @@
     <Compile Include="Components\PatternManagerCache.7.1.cs" />
     <Compile Include="Components\PatternManagerCache.cs" />
     <Compile Include="Components\PatternSearcher.cs" />
+    <Compile Include="Components\SolutionAnalyzer.7.1.cs" />
     <Compile Include="Components\TypeUsageManager.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.7.1.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.7.1.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.cs" />
+    <Compile Include="Highlighting\ContainerGutterMark.7.1.cs" />
     <Compile Include="Highlighting\ContainerGutterMark.cs" />
     <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />
+    <Compile Include="Highlighting\RegisteredByContainerHighlighting.7.1.cs" />
     <Compile Include="Navigation\IRegisteredComponentsContextSearch.cs" />
     <Compile Include="Navigation\RegisteredComponentsContextSearch.cs" />
     <Compile Include="Navigation\RegisteredComponentsNavigationProvider.cs" />

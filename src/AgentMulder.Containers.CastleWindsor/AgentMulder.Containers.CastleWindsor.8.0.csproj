@@ -46,6 +46,9 @@
     <Compile Include="Helpers\InNamespaceExtractor.cs" />
     <Compile Include="Helpers\InSameNamespaceAsGenericExtractor.cs" />
     <Compile Include="Helpers\NamespaceExtractor.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\Pick.8.0.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Patterns\FromTypes\BasedOn\Pick.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentHasAttributeMethodGroup.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInNamespace.cs" />

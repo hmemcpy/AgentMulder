@@ -64,13 +64,16 @@
     <Compile Include="Components\PatternManagerCache.6.1.cs" />
     <Compile Include="Components\PatternManagerCache.cs" />
     <Compile Include="Components\PatternSearcher.cs" />
+    <Compile Include="Components\SolutionAnalyzer.6.1.cs" />
     <Compile Include="Components\TypeUsageManager.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.6.1.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.6.1.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.cs" />
+    <Compile Include="Highlighting\ContainerGutterMark.6.1.cs" />
     <Compile Include="Highlighting\ContainerGutterMark.cs" />
     <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />
+    <Compile Include="Highlighting\RegisteredByContainerHighlighting.6.1.cs" />
     <Compile Include="Navigation\IRegisteredComponentsContextSearch.cs" />
     <Compile Include="Navigation\RegisteredComponentsContextSearch.cs" />
     <Compile Include="Navigation\RegisteredComponentsNavigationProvider.cs" />

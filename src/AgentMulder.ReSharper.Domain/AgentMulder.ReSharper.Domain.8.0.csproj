@@ -24,14 +24,14 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>JET_MODE_ASSERT;DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT;SDK80</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;SDK80</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -62,33 +62,6 @@
     <Compile Include="Elements\Modules\Impl\TypeOfExtractor.cs" />
     <Compile Include="Elements\Modules\ModuleExtractor.cs" />
     <Compile Include="Elements\Modules\ModuleExtractorDecorator.cs" />
-    <Compile Include="Expressions\BinaryExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\EqualityExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\ExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\IExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\MemberReferenceExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\MethodCallExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\ParameterExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\UnaryOperatorExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\WherePredicateBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Patterns\BasedOnPatternBase.cs" />
     <Compile Include="Patterns\ComponentImplementationPatternBase.cs" />
     <Compile Include="Patterns\ComponentRegistrationPatternBase.cs" />

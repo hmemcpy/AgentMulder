@@ -7,7 +7,6 @@ using System.Reflection;
 using AgentMulder.ReSharper.Domain.Containers;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Search;
 using JetBrains.Util;
@@ -15,7 +14,7 @@ using JetBrains.Util;
 namespace AgentMulder.ReSharper.Plugin.Components
 {
     [SolutionComponent]
-    public class SolutionAnalyzer
+    public partial class SolutionAnalyzer
     {
         private readonly List<IContainerInfo> knownContainers = new List<IContainerInfo>();
         private readonly PatternSearcher patternSearcher;
@@ -63,12 +62,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
 
         public IEnumerable<RegistrationInfo> Analyze(IPsiSourceFile sourceFile)
         {
-            ICSharpFile cSharpFile;
-#if SDK70
-            cSharpFile = sourceFile.GetTheOnlyPsiFile(CSharpLanguage.Instance) as ICSharpFile;
-#else
-            cSharpFile = sourceFile.GetPsiFile(CSharpLanguage.Instance) as ICSharpFile;
-#endif
+            ICSharpFile cSharpFile = GetCSharpFile(sourceFile);
             if (cSharpFile == null)
             {
                 return EmptyList<RegistrationInfo>.InstanceList;

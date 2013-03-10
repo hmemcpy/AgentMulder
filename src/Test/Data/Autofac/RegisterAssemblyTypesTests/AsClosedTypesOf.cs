@@ -16,7 +16,7 @@ namespace TestApplication.Autofac.RegisterAssemblyTypesTests
             .AsClosedTypesOf(typeof(ICommand<>))
             .AsImplementedInterfaces()
             // rest of the methods are from a bug report, they are not relevant
-            .PropertiesAutowired(PropertyWiringFlags.AllowCircularDependencies)
+            .PropertiesAutowired(PropertyWiringOptions.PreserveSetValues)
             .InstancePerLifetimeScope()
             .OnActivated(OnActivatedService);
         }

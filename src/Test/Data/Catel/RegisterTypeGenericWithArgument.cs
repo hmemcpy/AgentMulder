@@ -11,7 +11,7 @@ namespace TestApplication.Catel
     {
         public RegisterTypeGenericWithArgument()
         {
-            ServiceLocator.Default.RegisterType<ICommon, CommonImpl1>();
+            ServiceLocator.Instance.RegisterType<ICommon, CommonImpl1>();
         } 
     }
 }

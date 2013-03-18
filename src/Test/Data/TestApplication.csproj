@@ -181,7 +181,6 @@
     <Compile Include="SimpleInjector\RegisterDecoratorLifestylePredicateNonGeneric.cs" />
     <Compile Include="SimpleInjector\RegisterDecoratorNonGeneric.cs" />
     <Compile Include="SimpleInjector\RegisterDecoratorPredicateNonGeneric.cs" />
-    <Compile Include="SimpleInjector\RegisterGeneric.cs" />
     <Compile Include="SimpleInjector\RegisterLifestyleGeneric.cs" />
     <Compile Include="SimpleInjector\RegisterLifestyleNonGeneric.cs" />
     <Compile Include="SimpleInjector\RegisterNonGeneric.cs" />

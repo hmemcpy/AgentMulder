@@ -1,37 +1,28 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using AgentMulder.Containers.Unity.Patterns;
+using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Primitives;
+using System.Reflection;
 using AgentMulder.ReSharper.Domain.Containers;
-using AgentMulder.ReSharper.Domain.Patterns;
 
 namespace AgentMulder.Containers.Unity
 {
     [Export(typeof(IContainerInfo))]
-    public class UnityContainerInfo : IContainerInfo
+    public class UnityContainerInfo : ContainerInfoBase
     {
-        private readonly List<IRegistrationPattern> registrationPatterns;
-
-        public string ContainerDisplayName
+        public override string ContainerDisplayName
         {
             get { return "Unity"; }
         }
 
-        public IEnumerable<IRegistrationPattern> RegistrationPatterns
-        {
-            get { return registrationPatterns; }
-        }
-
-        public IEnumerable<string> ContainerQualifiedNames
+        public override IEnumerable<string> ContainerQualifiedNames
         {
             get { yield return "Microsoft.Practices.Unity"; }
         }
 
-        public UnityContainerInfo()
+        protected override ComposablePartCatalog GetComponentCatalog()
         {
-            registrationPatterns = new List<IRegistrationPattern>
-            {
-                new RegisterType(),
-            };
+            return new AssemblyCatalog(Assembly.GetExecutingAssembly());
         }
     }
 }

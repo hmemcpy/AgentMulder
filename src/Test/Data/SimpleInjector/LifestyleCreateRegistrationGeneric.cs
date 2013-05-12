@@ -5,7 +5,7 @@
 using SimpleInjector;
 using TestApplication.Types;
 
-namespace TestApplication.SimpleInjector
+namespace TestApplication.SimpleInjector22
 {
     public class LifestyleCreateRegistrationGeneric
     {

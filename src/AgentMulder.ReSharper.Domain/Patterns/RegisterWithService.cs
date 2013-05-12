@@ -10,7 +10,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
 {
     public class RegisterWithService : RegistrationPatternBase
     {
-        private static readonly ClrTypeName clrTypeName = new ClrTypeName("System.Type");
+        protected static readonly ClrTypeName ClrTypeName = new ClrTypeName("System.Type");
 
         protected RegisterWithService(IStructuralSearchPattern pattern)
             : base(pattern)
@@ -58,7 +58,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             return CreateRegistration(invocationExpression, first, last);
         }
 
-        private static IEnumerable<IComponentRegistration> CreateRegistration(IInvocationExpression invocationExpression, IDeclaredType first, IDeclaredType last)
+        protected static IEnumerable<IComponentRegistration> CreateRegistration(IInvocationExpression invocationExpression, IDeclaredType first, IDeclaredType last)
         {
             if (first == null || last == null)
             {
@@ -76,13 +76,13 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             }
         }
 
-        private IEnumerable<IComponentRegistration> FromArguments(IInvocationExpression invocationExpression)
+        protected virtual IEnumerable<IComponentRegistration> FromArguments(IInvocationExpression invocationExpression)
         {
             List<ITypeofExpression> arguments = invocationExpression.ArgumentList.Arguments
                 .Where(argument => 
                 { 
                     var declaredType = argument.Value.Type() as IDeclaredType;
-                    return declaredType != null && declaredType.GetClrName().Equals(clrTypeName);
+                    return declaredType != null && declaredType.GetClrName().Equals(ClrTypeName);
                 }).Select(argument => argument.Value as ITypeofExpression)
                 .ToList();
 

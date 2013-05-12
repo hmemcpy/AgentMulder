@@ -40,8 +40,10 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Patterns\LifestyleRegisterWithService.cs" />
     <Compile Include="Patterns\RegisterDecorator.cs" />
-    <Compile Include="Patterns\SimpleInjectorRegisterWithService.cs" />
+    <Compile Include="Patterns\RegisterAllWithService.cs" />
+    <Compile Include="Patterns\RegisterWithService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleInjectorContainerInfo.cs" />
   </ItemGroup>

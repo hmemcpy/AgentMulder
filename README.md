@@ -14,10 +14,12 @@ You can:
 
  - raise an issue
  - suggest a feature for the application
+ - add [test cases](../../wiki/Test-Case-Data) for new features!
 
 If you would like to contribute code to the project:
  
   1. A bit of background reading:
+    - [How Agent Mulder works - wiki](../../wiki)
     - [Setting up Git for Windows and connecting to GitHub](http://help.github.com/win-set-up-git/)
     - [The Simple Guide to Git](http://rogerdudler.github.com/git-guide/)
     - [How to GitHub: Fork, Branch, Track, Squash and Pull Request](http://gun.io/blog/how-to-github-fork-branch-and-pull-request/).

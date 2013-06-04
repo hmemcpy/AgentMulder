@@ -11,12 +11,16 @@ using JetBrains.Util;
 
 namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 {
-    public class AsImplementedInterfaces : MultipleMatchBasedOnPatternBase
+    internal sealed class AsImplementedInterfaces : MultipleMatchBasedOnPatternBase
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$builder$.AsImplementedInterfaces()",
+#if SDK70
+                new ExpressionPlaceholder("builder", "global::Autofac.Builder.IRegistrationBuilder<,,>", false));
+#else
                 new ExpressionPlaceholder("builder",
                     "global::Autofac.Builder.IRegistrationBuilder<object,global::Autofac.Features.Scanning.ScanningActivatorData,global::Autofac.Builder.DynamicRegistrationStyle>", false));
+#endif
 
         public AsImplementedInterfaces()
             : base(pattern)

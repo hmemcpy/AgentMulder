@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
@@ -7,10 +8,10 @@ using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
-using System.Linq;
 
 namespace AgentMulder.Containers.Ninject.Patterns.Bind.To
 {
+    [Export(typeof(ComponentImplementationPatternBase))]
     public class ToSelf : ComponentImplementationPatternBase
     {
         private static readonly IStructuralSearchPattern pattern = 

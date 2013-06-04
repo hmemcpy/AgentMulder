@@ -1,15 +1,12 @@
-﻿using System.Linq;
-using AgentMulder.Containers.CastleWindsor;
+﻿using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.Containers.CastleWindsor.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Tree;
-using NUnit.Framework;
+using AgentMulder.ReSharper.Tests.Windsor.Helpers;
 
 namespace AgentMulder.ReSharper.Tests.Windsor
 {
-    public class SanityTests : ComponentRegistrationsTestBase
+    [TestWindsor]
+    public class SanityTests : AgentMulderTestBase
     {
         protected override string RelativeTestDataPath
         {
@@ -25,13 +22,6 @@ namespace AgentMulder.ReSharper.Tests.Windsor
                     new ClassesRegistrationProvider(new BasedOnRegistrationProvider())
                 });
             }
-        }
-
-        [Test]
-        public void BrokenReference_DoesNotCreateARegistration()
-        {
-            RunTest("_DoesNotCompile-BrokenReference", registrations =>
-                Assert.AreEqual(0, registrations.Count()));
         }
     }
 }

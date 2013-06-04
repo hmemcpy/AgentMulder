@@ -1,3 +1,7 @@
+// Patterns: 1
+// Matches: CommonImpl1234.cs
+// NotMatches: Bar.cs
+
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;

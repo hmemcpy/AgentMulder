@@ -1,4 +1,7 @@
-using System.Reflection;
+// Patterns: 1
+// Matches: Foo.cs,Bar.cs,Baz,CommonImpl1.cs,Page.cs,GoldCard.cs
+// NotMatches: 
+
 using Autofac;
 using TestApplication.Types;
 using Module = Autofac.Module;

@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
@@ -17,7 +15,9 @@ namespace AgentMulder.Containers.Unity.Patterns
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$container$.RegisterType($arguments$)",
+// ReSharper disable RedundantArgumentDefaultValue
                 new ExpressionPlaceholder("container", "Microsoft.Practices.Unity.IUnityContainer", false),
+// ReSharper restore RedundantArgumentDefaultValue
                 new ArgumentPlaceholder("arguments", -1, -1));
 
         private static readonly ClrTypeName clrTypeName = new ClrTypeName("System.Type");

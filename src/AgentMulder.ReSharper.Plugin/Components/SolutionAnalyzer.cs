@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -19,9 +20,9 @@ namespace AgentMulder.ReSharper.Plugin.Components
         private readonly List<IContainerInfo> knownContainers = new List<IContainerInfo>();
         private readonly PatternSearcher patternSearcher;
         private readonly ISolution solution;
-        private readonly SearchDomainFactory searchDomainFactory; 
+        private readonly SearchDomainFactory searchDomainFactory;
 
-        public void AddContainer(IContainerInfo containerInfo)
+        internal void AddContainer(IContainerInfo containerInfo)
         {
             knownContainers.Add(containerInfo);
         }
@@ -38,6 +39,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
         private void LoadContainerInfos()
         {
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            Debug.Assert(path != null, "path != null");
             path = Path.Combine(path, "Containers");
 
             if (!Directory.Exists(path))
@@ -72,6 +74,10 @@ namespace AgentMulder.ReSharper.Plugin.Components
                 return EmptyList<RegistrationInfo>.InstanceList;
             }
 
+            // todo - optimization
+            // determine all modules referenced from the source file
+            // scan all type declarations in the file to see if any types' module is the container module
+            
             var usingStatements = cSharpFile.Imports
                                             .Where(directive => !directive.ImportedSymbolName.QualifiedName.StartsWith("System"))
                                             .Select(directive => directive.ImportedSymbolName.QualifiedName).ToList();

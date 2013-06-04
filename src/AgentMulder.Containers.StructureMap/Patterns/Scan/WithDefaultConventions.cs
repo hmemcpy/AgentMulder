@@ -33,7 +33,7 @@ namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 
             if (match.Matched)
             {
-                yield return new DefaultConvention(registrationRootElement);
+                yield return new DefaultInterfaceConvention(registrationRootElement);
             }
         }
     }

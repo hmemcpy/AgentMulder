@@ -17,7 +17,7 @@ namespace AgentMulder.ReSharper.Domain.Registrations
         }
 
         public override bool IsSatisfiedBy(ITypeElement typeElement)
-        {
+         {
             return componentRegistrations.All(registration => registration.IsSatisfiedBy(typeElement));
         }
 

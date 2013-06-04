@@ -5,6 +5,7 @@ using JetBrains.ProjectModel.Model2.Assemblies.Interfaces;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
@@ -72,8 +73,19 @@ namespace AgentMulder.ReSharper.Domain.Utils
 
         public static bool IsGenericTypeDefinition(this ITypeElement element)
         {
-            // todo check if this is enoguh
-            return element.TypeParameters.Count > 0;
+            // todo check if this is enough
+            return element.HasTypeParameters();
+        }
+
+        public static bool IsOpenGeneric(this IInterface @interface)
+        {
+            return @interface.IdSubstitution.IsId();
+        }
+
+        public static bool ClosesOver(this ITypeElement typeElement, ITypeElement openGenericType)
+        {
+            // todo this is probably wrong
+            return typeElement.IsDescendantOf(openGenericType);
         }
 
         public static bool IsDelegate(this ITypeElement element)

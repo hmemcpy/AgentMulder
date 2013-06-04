@@ -73,7 +73,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes
             {
                 foreach (var initializer in objectCreationExpression.Initializer.InitializerElements.OfType<ICollectionElementInitializer>())
                 {
-                    // todo fixme find out if THERE CAN BE ONLY ONE!!!1
+                    // todo find out if THERE CAN BE ONLY ONE!!!1
                     if (initializer.Arguments.Count != 1)
                     {
                         continue;

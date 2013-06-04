@@ -1,4 +1,8 @@
-﻿using StructureMap;
+﻿// Patterns: 1
+// Matches: Foo.cs,Bar.cs
+// NotMatches: PrimitiveArgument.cs
+
+using StructureMap;
 
 namespace TestApplication.StructureMap.ScanTests
 {

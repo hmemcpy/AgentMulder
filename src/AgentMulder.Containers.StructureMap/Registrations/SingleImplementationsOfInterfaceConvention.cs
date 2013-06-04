@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Application.Progress;
-using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.Impl;
 using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
 namespace AgentMulder.Containers.StructureMap.Registrations
 {
-    public class SingleImplementationsOfInterfaceConvention : StructureMapConventionBase
+    public class SingleImplementationsOfInterfaceConvention : StructureMapConvention
     {
         private class SingleImplementationChecker : IFindResultConsumer<bool>
         {

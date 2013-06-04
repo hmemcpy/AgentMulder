@@ -1,6 +1,10 @@
 What's new in Agent Mulder
 ==========================
 
+v1.0.5.1
+========
+* Fixed StructureMap, so types having private constructors aren't picked up during scan
+
 v1.0.5
 ======
 

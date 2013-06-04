@@ -6,29 +6,29 @@ using AgentMulder.ReSharper.Domain.Utils;
 
 namespace AgentMulder.Containers.StructureMap.Registrations
 {
-    public class FirstInterfaceConvention : StructureMapConventionBase
+    public class FirstInterfaceConvention : StructureMapConvention
     {
         public FirstInterfaceConvention(ITreeNode registrationRootElement)
             : base(registrationRootElement)
         {
-            AddFilter(element =>
+            AddFilter(typeElement =>
             {
-                if (!element.IsConcrete())
+                if (!typeElement.IsConcrete())
                 {
                     return false;
                 }
 
-                var firstInterface = element.GetSuperTypes()
-                                            .SelectNotNull(type => type.GetTypeElement())
-                                            .OfType<IInterface>()
-                                            .FirstOrDefault();
+                var firstInterface = typeElement.GetSuperTypes()
+                                                .SelectNotNull(type => type.GetTypeElement())
+                                                .OfType<IInterface>()
+                                                .FirstOrDefault();
 
                 if (firstInterface == null)
                 {
                     return false;
                 }
 
-                return element.IsDescendantOf(firstInterface);
+                return typeElement.IsDescendantOf(firstInterface);
             });
         }
     }

@@ -1,5 +1,8 @@
-﻿using Ninject;
-using Ninject.Syntax;
+﻿// Patterns: 1
+// Matches: PageRepository.cs
+// NotMatches: Foo.cs
+
+using Ninject;
 using TestApplication.Types;
 
 namespace TestApplication.Ninject.KernelTestCases

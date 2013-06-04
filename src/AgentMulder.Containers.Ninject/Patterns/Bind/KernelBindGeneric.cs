@@ -1,3 +1,4 @@
+using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
@@ -12,7 +13,8 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
                 new ExpressionPlaceholder("kernel", "global::Ninject.Syntax.IBindingRoot", false),
                 new TypePlaceholder("service"));
 
-        public KernelBindGeneric(params ComponentImplementationPatternBase[] toPatterns)
+        [ImportingConstructor]
+        public KernelBindGeneric([ImportMany] params ComponentImplementationPatternBase[] toPatterns)
             : base(pattern, "service", toPatterns)
         {
         }

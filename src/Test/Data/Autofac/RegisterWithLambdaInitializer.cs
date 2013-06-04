@@ -1,3 +1,7 @@
+// Patterns: 1
+// Matches: FooBar.cs
+// NotMatches: Foo.cs
+
 using Autofac;
 using TestApplication.Types;
 

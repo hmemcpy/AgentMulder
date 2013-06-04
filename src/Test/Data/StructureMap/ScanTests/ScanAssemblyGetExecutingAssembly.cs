@@ -1,4 +1,8 @@
-﻿using System.Reflection;
+﻿// Patterns: 1
+// Matches: Foo.cs,Bar.cs
+// NotMatches: CommonImpl1.cs
+
+using System.Reflection;
 using StructureMap;
 using TestApplication.Types;
 

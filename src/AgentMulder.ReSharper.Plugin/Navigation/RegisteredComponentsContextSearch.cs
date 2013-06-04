@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application;
 using JetBrains.Application.DataContext;
@@ -9,7 +7,6 @@ using JetBrains.DocumentManagers;
 using JetBrains.DocumentModel;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.ContextNavigation.Util;
-using JetBrains.ReSharper.Feature.Services.TodoItems;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.Tree;
@@ -52,8 +49,8 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
                 // todo make this resolvable also via the AllTypes... line
                 var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
 
-                return solution.GetComponent<SolutionAnalyzer>()
-                               .Analyze()
+                return solution.GetComponent<IPatternManager>()
+                               .GetRegistrationsForFile(psiSourceFile)
                                .Any(r => r.Registration.RegistrationElement.Children().Contains(invokedNode));
             }
 
@@ -74,7 +71,25 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             }
 
             var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
-            var registration = solution.GetComponent<SolutionAnalyzer>().Analyze().FirstOrDefault(r => r.Registration.RegistrationElement.Children().Contains(invokedNode));
+
+
+#if SDK70
+            IDocument document = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT);
+#else
+            IDocument document = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT);
+#endif
+
+            if (document == null)
+                return null;
+
+            IPsiSourceFile psiSourceFile = document.GetPsiSourceFile(solution);
+            if (psiSourceFile == null)
+            {
+                return null;
+            }
+
+            var registration = solution.GetComponent<IPatternManager>().GetRegistrationsForFile(psiSourceFile)
+                .FirstOrDefault(r => r.Registration.RegistrationElement.Children().Contains(invokedNode));
             if (registration == null)
             {
                 return null;

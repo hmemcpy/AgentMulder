@@ -1,4 +1,8 @@
-﻿using StructureMap;
+﻿// Patterns: 1
+// Matches: CommonImpl1.cs,CommonImpl12.cs
+// NotMatches: Foo.cs
+
+using StructureMap;
 using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ScanTests

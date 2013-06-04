@@ -13,10 +13,10 @@ namespace AgentMulder.Containers.CastleWindsor.Registrations
             return new TypesRegistration(registrationRootElement, basedOnElement);
         }
 
-        private sealed class TypesRegistration : FilteredRegistrationBase
+        private sealed class TypesRegistration : ServiceRegistration
         {
             public TypesRegistration(ITreeNode registrationRootElement, ITypeElement basedOnElement)
-                : base(registrationRootElement)
+                : base(registrationRootElement, basedOnElement)
             {
                 AddFilter(typeElement =>
                 {
@@ -28,7 +28,6 @@ namespace AgentMulder.Containers.CastleWindsor.Registrations
 
                     return true;
                 });
-                AddFilter(typeElement => typeElement.IsDescendantOf(basedOnElement));
             }
         }
     }

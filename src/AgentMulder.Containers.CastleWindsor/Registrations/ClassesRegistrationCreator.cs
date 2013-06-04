@@ -10,16 +10,7 @@ namespace AgentMulder.Containers.CastleWindsor.Registrations
     {
         public FilteredRegistrationBase Create(ITreeNode registrationRootElement, ITypeElement basedOnElement)
         {
-            return new ClassesRegistration(registrationRootElement, basedOnElement);
-        }
-
-        private sealed class ClassesRegistration : FilteredRegistrationBase
-        {
-            public ClassesRegistration(ITreeNode registrationRootElement, ITypeElement basedOnElement)
-                : base(registrationRootElement)
-            {
-                AddFilter(typeElement => typeElement.IsDescendantOf(basedOnElement));
-            }
+            return new ServiceRegistration(registrationRootElement, basedOnElement);
         }
     }
 }

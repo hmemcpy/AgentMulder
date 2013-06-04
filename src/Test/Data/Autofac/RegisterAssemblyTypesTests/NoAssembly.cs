@@ -1,3 +1,5 @@
+// Patterns: 0
+
 using Autofac;
 
 namespace TestApplication.Autofac.RegisterAssemblyTypesTests

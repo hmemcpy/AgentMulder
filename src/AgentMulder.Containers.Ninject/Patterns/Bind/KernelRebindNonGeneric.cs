@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
@@ -17,7 +18,8 @@ namespace AgentMulder.Containers.Ninject.Patterns.Bind
                 new ExpressionPlaceholder("kernel", "global::Ninject.Syntax.IBindingRoot", false),
                 new ArgumentPlaceholder("service"));
 
-        public KernelRebindNonGeneric(params ComponentImplementationPatternBase[] toPatterns)
+        [ImportingConstructor]
+        public KernelRebindNonGeneric([ImportMany] params ComponentImplementationPatternBase[] toPatterns)
             : base(pattern, "service", toPatterns)
         {
         }

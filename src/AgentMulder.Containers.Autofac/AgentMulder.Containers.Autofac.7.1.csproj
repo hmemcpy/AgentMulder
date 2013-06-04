@@ -22,14 +22,14 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SDK70</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;SDK70</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -48,6 +48,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AutofacContainerInfo.cs" />
+    <Compile Include="Patterns\FromAssemblies\BasedOn\AsClosedTypesOf.cs" />
     <Compile Include="Patterns\FromAssemblies\BasedOn\AsGeneric.cs" />
     <Compile Include="Patterns\FromAssemblies\BasedOn\AsImplementedInterfaces.cs" />
     <Compile Include="Patterns\FromAssemblies\BasedOn\AsNonGeneric.cs" />

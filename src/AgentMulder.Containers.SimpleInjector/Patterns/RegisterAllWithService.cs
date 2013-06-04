@@ -13,8 +13,8 @@ namespace AgentMulder.Containers.SimpleInjector.Patterns
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$container$.RegisterAll($arguments$)",
-                                              new ExpressionPlaceholder("container", "global::SimpleInjector.Container", true),
-                                              new ArgumentPlaceholder("arguments", -1, -1));
+                new ExpressionPlaceholder("container", "global::SimpleInjector.Container", true),
+                new ArgumentPlaceholder("arguments", -1, -1));
 
         public RegisterAllWithService()
             : base(pattern)

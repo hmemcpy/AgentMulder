@@ -20,7 +20,7 @@ namespace AgentMulder.Containers.SimpleInjector.Patterns
         // bug: the only thing that is evident, is that R# can't resolve the 'lifestyle' variable type
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$lifestyle$.CreateRegistration($arguments$)",
-                new ExpressionPlaceholder("lifestyle"),
+                new ExpressionPlaceholder("lifestyle", "global::SimpleInjector.Lifestyle", false),
                 new ArgumentPlaceholder("arguments", -1, -1));
 
         public LifestyleRegisterWithService()

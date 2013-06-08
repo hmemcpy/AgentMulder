@@ -19,10 +19,8 @@ You can:
 If you would like to contribute code to the project:
  
   1. A bit of background reading:
+    - [ReSharper Plugin Development](http://confluence.jetbrains.com/display/ReSharper/ReSharper+8+Plugin+Development)
     - [How Agent Mulder works - wiki](../../wiki)
-    - [Setting up Git for Windows and connecting to GitHub](http://help.github.com/win-set-up-git/)
-    - [The Simple Guide to Git](http://rogerdudler.github.com/git-guide/)
-    - [How to GitHub: Fork, Branch, Track, Squash and Pull Request](http://gun.io/blog/how-to-github-fork-branch-and-pull-request/).
   2. Fork the repository ([how-to](http://help.github.com/fork-a-repo/))
   3. Make some changes to the code base
   4. Send us a Pull Request once you're happy with it ([how-to](http://help.github.com/send-pull-requests/))

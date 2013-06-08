@@ -62,33 +62,6 @@
     <Compile Include="Elements\Modules\Impl\TypeOfExtractor.cs" />
     <Compile Include="Elements\Modules\ModuleExtractor.cs" />
     <Compile Include="Elements\Modules\ModuleExtractorDecorator.cs" />
-    <Compile Include="Expressions\BinaryExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\EqualityExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\ExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\IExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\MemberReferenceExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\MethodCallExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\ParameterExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\UnaryOperatorExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\WherePredicateBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Patterns\BasedOnPatternBase.cs" />
     <Compile Include="Patterns\ComponentImplementationPatternBase.cs" />
     <Compile Include="Patterns\ComponentRegistrationPatternBase.cs" />
@@ -99,6 +72,7 @@
     <Compile Include="Patterns\IRegistrationPattern.cs" />
     <Compile Include="Patterns\MultipleMatchBasedOnPatternBase.cs" />
     <Compile Include="Patterns\NamespaceRegistrationPatternBase.cs" />
+    <Compile Include="Patterns\RegisterWithService.cs" />
     <Compile Include="Patterns\RegistrationPatternBase.cs" />
     <Compile Include="Registrations\CompositeRegistration.cs" />
     <Compile Include="Registrations\ExceptRegistration.cs" />

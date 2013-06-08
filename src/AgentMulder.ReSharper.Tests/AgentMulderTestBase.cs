@@ -14,7 +14,6 @@ using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.TestFramework;
 using JetBrains.Util;
 using NUnit.Framework;
-using FluentAssertions;
 
 namespace AgentMulder.ReSharper.Tests
 {
@@ -88,7 +87,7 @@ namespace AgentMulder.ReSharper.Tests
 
                 var patterns = patternManager.GetRegistrationsForFile(cSharpFile.GetSourceFile()).ToList();
 
-                patterns.Count.Should().Be(testData.Item1, 
+                Assert.AreEqual(testData.Item1, patterns.Count, 
                     "Mismatched number of expected registrations. Make sure the '// Patterns:' comment is correct");
 
                 if (testData.Item1 > 0)
@@ -97,14 +96,14 @@ namespace AgentMulder.ReSharper.Tests
                     foreach (ICSharpFile codeFile in codeFiles)
                     {
                          codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
-                             patterns.Should().Contain(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement),
+                             Assert.That(patterns.Any(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)),
                              "Of {0} registrations, at least one should match '{1}'", patterns.Count, declaration.CLRName));
                     }
                     codeFiles = testData.Item3.SelectNotNull(GetCodeFile);
                     foreach (ICSharpFile codeFile in codeFiles)
                     {
                          codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
-                             patterns.Should().NotContain(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement),
+                             Assert.That(patterns.All(r => !r.Registration.IsSatisfiedBy(declaration.DeclaredElement)),
                              "Of {0} registrations, none should match '{1}'", patterns.Count, declaration.CLRName));
                     }
                 }

@@ -5,6 +5,7 @@ using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
+using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Domain.Patterns
 {
@@ -26,6 +27,8 @@ namespace AgentMulder.ReSharper.Domain.Patterns
         protected RegistrationPatternBase(IStructuralSearchPattern pattern)
         {
             this.pattern = pattern;
+
+            Assertion.Assert(pattern.Check() == null, "Invalid pattern");
 
             matcher = pattern.CreateMatcher();
         }

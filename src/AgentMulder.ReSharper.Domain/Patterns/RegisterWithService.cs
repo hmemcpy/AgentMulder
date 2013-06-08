@@ -1,34 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
-using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AgentMulder.Containers.Unity.Patterns
+namespace AgentMulder.ReSharper.Domain.Patterns
 {
-    internal sealed class RegisterType : RegistrationPatternBase
+    public class RegisterWithService : RegistrationPatternBase
     {
-        private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$container$.RegisterType($arguments$)",
-// ReSharper disable RedundantArgumentDefaultValue
-                new ExpressionPlaceholder("container", "Microsoft.Practices.Unity.IUnityContainer", false),
-// ReSharper restore RedundantArgumentDefaultValue
-                new ArgumentPlaceholder("arguments", -1, -1));
-
-        private static readonly ClrTypeName clrTypeName = new ClrTypeName("System.Type");
-
-        public RegisterType()
+        protected RegisterWithService(IStructuralSearchPattern pattern)
             : base(pattern)
         {
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
+            // ReSharper does not currently match generic and non-generic overloads separately, meaning that Register<T> and Register(typeof(T))
+            // will be both matched with a single pattern Register($arguments$).
+            // Therefire I am using this pattern to look for both generic and non-generic (with typeof) overloads of the pattern
+
             IStructuralMatchResult match = Match(registrationRootElement);
 
             if (match.Matched)
@@ -39,7 +31,7 @@ namespace AgentMulder.Containers.Unity.Patterns
                     yield break;
                 }
 
-                if (invocationExpression.TypeArguments.Count > 0)
+                if (invocationExpression.TypeArguments.Any())
                 {
                     foreach (var registration in FromGenericArguments(invocationExpression))
                     {
@@ -56,7 +48,7 @@ namespace AgentMulder.Containers.Unity.Patterns
             }
         }
 
-        private static IEnumerable<IComponentRegistration> FromGenericArguments(IInvocationExpression invocationExpression)
+        protected virtual IEnumerable<IComponentRegistration> FromGenericArguments(IInvocationExpression invocationExpression)
         {
             var first = invocationExpression.TypeArguments.First() as IDeclaredType;
             var last = invocationExpression.TypeArguments.Last() as IDeclaredType;
@@ -64,7 +56,7 @@ namespace AgentMulder.Containers.Unity.Patterns
             return CreateRegistration(invocationExpression, first, last);
         }
 
-        private static IEnumerable<IComponentRegistration> CreateRegistration(IInvocationExpression invocationExpression, IDeclaredType first, IDeclaredType last)
+        private IEnumerable<IComponentRegistration> CreateRegistration(IInvocationExpression invocationExpression, IDeclaredType first, IDeclaredType last)
         {
             if (first == null || last == null)
             {
@@ -82,13 +74,13 @@ namespace AgentMulder.Containers.Unity.Patterns
             }
         }
 
-        private IEnumerable<IComponentRegistration> FromArguments(IInvocationExpression invocationExpression)
+        protected virtual IEnumerable<IComponentRegistration> FromArguments(IInvocationExpression invocationExpression)
         {
             List<ITypeofExpression> arguments = invocationExpression.ArgumentList.Arguments
                 .Where(argument => 
                 { 
                     var declaredType = argument.Value.Type() as IDeclaredType;
-                    return declaredType != null && declaredType.GetClrName().Equals(clrTypeName);
+                    return declaredType != null && declaredType.IsType();
                 }).Select(argument => argument.Value as ITypeofExpression)
                 .ToList();
 

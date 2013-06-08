@@ -10,9 +10,8 @@ namespace AgentMulder.Containers.SimpleInjector.Patterns
     public class LifestyleCreateRegistration : RegisterWithService
     {
         // Lifestyle instance takes the Container as the parameter (or the last parameter in the non-generic version)
-        // bug: for some reason, ReSharper cannot match this, so I omit the expression type...
-        // bug: the search dialog CAN match it with the type, so I have no idea.
-        // bug: the only thing that is evident, is that R# can't resolve the 'lifestyle' variable type
+        // bug: for some reason, ReSharper cannot match this in 7.1 (works in 6.1)
+        // bug: pending investigation by @kropp http://youtrack.jetbrains.com/issue/RSRP-367240
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$lifestyle$.CreateRegistration($arguments$)",
                 new ExpressionPlaceholder("lifestyle", "global::SimpleInjector.Lifestyle", false),

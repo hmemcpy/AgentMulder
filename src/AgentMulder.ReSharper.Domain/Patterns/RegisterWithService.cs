@@ -48,7 +48,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             }
         }
 
-        private static IEnumerable<IComponentRegistration> FromGenericArguments(IInvocationExpression invocationExpression)
+        protected virtual IEnumerable<IComponentRegistration> FromGenericArguments(IInvocationExpression invocationExpression)
         {
             var first = invocationExpression.TypeArguments.First() as IDeclaredType;
             var last = invocationExpression.TypeArguments.Last() as IDeclaredType;
@@ -56,7 +56,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             return CreateRegistration(invocationExpression, first, last);
         }
 
-        protected static IEnumerable<IComponentRegistration> CreateRegistration(IInvocationExpression invocationExpression, IDeclaredType first, IDeclaredType last)
+        private IEnumerable<IComponentRegistration> CreateRegistration(IInvocationExpression invocationExpression, IDeclaredType first, IDeclaredType last)
         {
             if (first == null || last == null)
             {

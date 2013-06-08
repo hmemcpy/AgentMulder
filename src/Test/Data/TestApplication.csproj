@@ -168,6 +168,7 @@
     <Compile Include="Ninject\ModuleTestCases\ModuleRebindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\ModuleRebindNonGenericToNonGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\ModuleRebindNonGenericToSelf.cs" />
+    <Compile Include="SimpleInjector\RegisterAll3Generic.cs" />
     <Compile Include="SimpleInjector\RegisterOpenGenericLifestyleNonGeneric.cs" />
     <Compile Include="SimpleInjector\RegisterOpenGenericNonGeneric.cs" />
     <Compile Include="SimpleInjector\LifestyleCreateRegistrationGeneric.cs" />

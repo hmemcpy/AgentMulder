@@ -7,7 +7,7 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 namespace AgentMulder.Containers.SimpleInjector.Patterns
 {
     [Export("ComponentRegistration", typeof(IRegistrationPattern))]
-    public class RegisterSingleOpenGeneric : ReSharper.Domain.Patterns.RegisterWithService
+    public class RegisterSingleOpenGeneric : RegisterWithService
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$container$.RegisterSingleOpenGeneric($arguments$)",

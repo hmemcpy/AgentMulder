@@ -1,10 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
+﻿using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Patterns;
-using AgentMulder.ReSharper.Domain.Registrations;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -12,7 +7,7 @@ using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 namespace AgentMulder.Containers.SimpleInjector.Patterns
 {
     [Export("ComponentRegistration", typeof(IRegistrationPattern))]
-    public class LifestyleRegisterWithService : ReSharper.Domain.Patterns.RegisterWithService
+    public class LifestyleCreateRegistration : RegisterWithService
     {
         // Lifestyle instance takes the Container as the parameter (or the last parameter in the non-generic version)
         // bug: for some reason, ReSharper cannot match this, so I omit the expression type...
@@ -23,7 +18,7 @@ namespace AgentMulder.Containers.SimpleInjector.Patterns
                 new ExpressionPlaceholder("lifestyle", "global::SimpleInjector.Lifestyle", false),
                 new ArgumentPlaceholder("arguments", -1, -1));
 
-        public LifestyleRegisterWithService()
+        public LifestyleCreateRegistration()
             : base(pattern)
         {
         }

@@ -34,7 +34,11 @@ namespace AgentMulder.ReSharper.Tests
                                    .SelectNotNull(fs => fs.FullName)
                                    .Concat(new[] { Path.Combine(SolutionItemsBasePath, fileName) });
 
+#if SDK80
+            WithSingleProject(fileSet, (lifetime, solution, project) => RunGuarded(() =>
+#else
             WithSingleProject(fileSet, (lifetime, project) => RunGuarded(() =>
+#endif
             {
                 var solutionAnalyzer = Solution.GetComponent<SolutionAnalyzer>();
                 solutionAnalyzer.AddContainer(ContainerInfo);

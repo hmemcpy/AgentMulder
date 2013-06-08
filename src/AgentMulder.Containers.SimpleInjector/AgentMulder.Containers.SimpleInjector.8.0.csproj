@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ReSharperSdkVersion>6.1</ReSharperSdkVersion>
+    <ReSharperSdkVersion>8.0</ReSharperSdkVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1593505F-945D-48F6-920D-FFE967036084}</ProjectGuid>
+    <ProjectGuid>{4F4A56BB-4405-4F77-8C36-C2E1E35A314E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.Containers.SimpleInjector</RootNamespace>
@@ -53,9 +53,9 @@
     <Compile Include="SimpleInjectorContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.6.1.csproj">
-      <Project>{EDD20528-9034-4BD4-B5F1-F0159EC7ED14}</Project>
-      <Name>AgentMulder.ReSharper.Domain.6.1</Name>
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.0.csproj">
+      <Project>{b264f899-4dc3-46f8-a891-0657841bb551}</Project>
+      <Name>AgentMulder.ReSharper.Domain.8.0</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

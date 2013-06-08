@@ -72,6 +72,7 @@
     <Compile Include="Patterns\IRegistrationPattern.cs" />
     <Compile Include="Patterns\MultipleMatchBasedOnPatternBase.cs" />
     <Compile Include="Patterns\NamespaceRegistrationPatternBase.cs" />
+    <Compile Include="Patterns\RegisterWithService.cs" />
     <Compile Include="Patterns\RegistrationPatternBase.cs" />
     <Compile Include="Registrations\CompositeRegistration.cs" />
     <Compile Include="Registrations\ExceptRegistration.cs" />

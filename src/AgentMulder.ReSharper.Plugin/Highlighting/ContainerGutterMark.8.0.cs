@@ -2,7 +2,7 @@
 using JetBrains.Application;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Features.Altering.Resources;
-using JetBrains.TextControl.Markup;
+using JetBrains.TextControl.DocumentMarkup;
 using JetBrains.UI.Icons;
 
 [assembly: RegisterHighlighter("Container Registration", EffectType = EffectType.GUTTER_MARK, GutterMarkType = typeof(ContainerGutterMark), Layer = 2001)]

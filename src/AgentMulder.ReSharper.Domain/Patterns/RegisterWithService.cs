@@ -31,7 +31,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
                     yield break;
                 }
 
-                if (invocationExpression.TypeArguments.Count > 0)
+                if (invocationExpression.TypeArguments.Any())
                 {
                     foreach (var registration in FromGenericArguments(invocationExpression))
                     {

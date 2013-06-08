@@ -27,33 +27,5 @@ namespace AgentMulder.Containers.SimpleInjector.Patterns
             : base(pattern)
         {
         }
-
-        public override IEnumerable<IComponentRegistration> GetComponentRegistrations(JetBrains.ReSharper.Psi.Tree.ITreeNode registrationRootElement)
-        {
-            IStructuralMatchResult match = Match(registrationRootElement);
-
-            if (match.Matched)
-            {
-                var invocationExpression = match.MatchedElement as IInvocationExpression;
-                if (invocationExpression == null)
-                {
-                    yield break;
-                }
-            }
-        }
-
-        protected override IEnumerable<IComponentRegistration> FromArguments(IInvocationExpression invocationExpression)
-        {
-            List<ITypeofExpression> arguments = invocationExpression.ArgumentList.Arguments.Where(argument =>
-            {
-                var declaredType = argument.Value.Type() as IDeclaredType;
-                return declaredType != null && declaredType.GetClrName().Equals(ClrTypeName);
-            }).Select(argument => argument.Value as ITypeofExpression).ToList();
-
-            var first = arguments.First().ArgumentType as IDeclaredType;
-            var last = arguments.Last().ArgumentType as IDeclaredType;
-
-            return CreateRegistration(invocationExpression, first, last);
-        }
     }
 }

@@ -10,8 +10,6 @@ namespace AgentMulder.ReSharper.Domain.Patterns
 {
     public class RegisterWithService : RegistrationPatternBase
     {
-        protected static readonly ClrTypeName ClrTypeName = new ClrTypeName("System.Type");
-
         protected RegisterWithService(IStructuralSearchPattern pattern)
             : base(pattern)
         {
@@ -82,7 +80,7 @@ namespace AgentMulder.ReSharper.Domain.Patterns
                 .Where(argument => 
                 { 
                     var declaredType = argument.Value.Type() as IDeclaredType;
-                    return declaredType != null && declaredType.GetClrName().Equals(ClrTypeName);
+                    return declaredType != null && declaredType.IsType();
                 }).Select(argument => argument.Value as ITypeofExpression)
                 .ToList();
 

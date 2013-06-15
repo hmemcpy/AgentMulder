@@ -62,6 +62,10 @@
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="SimpleInjector, Version=2.2.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SimpleInjector.2.2.3\lib\net40-client\SimpleInjector.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
@@ -92,6 +96,7 @@
     <Compile Include="StructureMap\Helpers\TestStructureMapAttribute.cs" />
     <Compile Include="StructureMap\SanityTests.cs" />
     <Compile Include="StructureMap\ScanTests.cs" />
+    <Compile Include="TinyIoC\ContainerTests.cs" />
     <Compile Include="Unity\Helpers\TestUnityAttribute.cs" />
     <Compile Include="Unity\RegisterTypeTests.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
@@ -132,6 +137,10 @@
     <ProjectReference Include="..\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.7.1.csproj">
       <Project>{f1df90a4-c9e9-4749-9925-57f14684bca5}</Project>
       <Name>AgentMulder.Containers.StructureMap.7.1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.TinyIoC\AgentMulder.Containers.TinyIoC.7.1.csproj">
+      <Project>{76E2EED3-DA2B-44DB-B080-A8720F2943AB}</Project>
+      <Name>AgentMulder.Containers.TinyIoC.7.1</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.7.1.csproj">
       <Project>{2c40bbab-a1a1-4f02-bf7a-33f6e5dd411c}</Project>

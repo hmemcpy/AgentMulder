@@ -13,7 +13,11 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Navigation
 {
+#if SDK80
+    [ShellFeaturePart]
+#else
     [FeaturePart]
+#endif
     public class RegisteredComponentsContextSearch : IRegisteredComponentsContextSearch
     {
         private readonly IShellLocks locks;
@@ -55,6 +59,11 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             }
 
             return false;
+        }
+
+        public bool IsContextApplicable(IDataContext dataContext)
+        {
+            return ContextNavigationUtil.CheckDefaultApplicability<CSharpLanguage>(dataContext);
         }
 
         public bool IsApplicable(IDataContext dataContext)

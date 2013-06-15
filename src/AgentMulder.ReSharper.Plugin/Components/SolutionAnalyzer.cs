@@ -88,6 +88,8 @@ namespace AgentMulder.ReSharper.Plugin.Components
             return ScanRegistrations(matchingContainer, searchDomain);
         }
 
+
+
         public IEnumerable<RegistrationInfo> Analyze(IEnumerable<IPsiSourceFile> sourceFiles)
         {
             ISearchDomain searchDomain = searchDomainFactory.CreateSearchDomain(sourceFiles);

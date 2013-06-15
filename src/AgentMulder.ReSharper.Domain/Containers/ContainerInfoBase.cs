@@ -6,7 +6,7 @@ using AgentMulder.ReSharper.Domain.Patterns;
 
 namespace AgentMulder.ReSharper.Domain.Containers
 {
-    [Export(typeof(IContainerInfo))]
+    [InheritedExport(typeof(IContainerInfo))]
     public abstract class ContainerInfoBase : IContainerInfo
     {
         public abstract string ContainerDisplayName { get; }

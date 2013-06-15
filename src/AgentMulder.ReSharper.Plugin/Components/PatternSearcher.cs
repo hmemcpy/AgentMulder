@@ -42,15 +42,14 @@ namespace AgentMulder.ReSharper.Plugin.Components
                 return FindExecution.Continue;
             });
 
-            DoSearch(pattern.Matcher, consumer, searchDomain);
+            DoSearch(pattern, consumer, searchDomain);
 
             return results;
         }
 
-        private void DoSearch(IStructuralMatcher matcher, IFindResultConsumer<IStructuralMatchResult> consumer, ISearchDomain searchDomain)
+        private void DoSearch(IStructuralPatternHolder pattern, IFindResultConsumer<IStructuralMatchResult> consumer, ISearchDomain searchDomain)
         {
-            // todo add support for VB (eventually)
-            var searcher = new StructuralSearcher(documentManager, CSharpLanguage.Instance, matcher);
+            var searcher = new StructuralSearcher(documentManager, pattern.Language, pattern.Matcher);
             var searchDomainSearcher = new StructuralSearchDomainSearcher<IStructuralMatchResult>(
                 searchDomain, searcher, consumer, NullProgressIndicator.Instance, true);
 

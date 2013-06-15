@@ -62,7 +62,6 @@
     <Compile Include="Components\IRegistrationInfo.cs" />
     <Compile Include="Components\ITypeUsageManager.cs" />
     <Compile Include="Components\PatternManagerCache.8.0.cs" />
-    <Compile Include="Components\PatternManagerCache.cs" />
     <Compile Include="Components\PatternSearcher.cs" />
     <Compile Include="Components\TypeUsageManager.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.7.1.cs" />
@@ -70,14 +69,8 @@
     <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.7.1.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.cs" />
     <Compile Include="Highlighting\ContainerGutterMark.8.0.cs" />
-    <Compile Include="Highlighting\ContainerGutterMark.cs" />
     <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />
     <Compile Include="Highlighting\RegisteredByContainerHighlighting.8.0.cs" />
-    <Compile Include="Navigation\IRegisteredComponentsContextSearch.cs" />
-    <Compile Include="Navigation\RegisteredComponentsContextSearch.cs" />
-    <Compile Include="Navigation\RegisteredComponentsNavigationProvider.cs" />
-    <Compile Include="Navigation\RegisteredComponentsSearchRequest.cs" />
-    <Compile Include="Navigation\SearchRegisteredComponentsDescriptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Highlighting\RegisteredByContainerHighlighting.cs" />
     <Compile Include="Components\SolutionAnalyzer.cs" />

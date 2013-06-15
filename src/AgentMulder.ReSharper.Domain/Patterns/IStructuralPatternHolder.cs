@@ -1,3 +1,4 @@
+using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 
 namespace AgentMulder.ReSharper.Domain.Patterns
@@ -6,5 +7,6 @@ namespace AgentMulder.ReSharper.Domain.Patterns
     {
         IStructuralSearchPattern Pattern { get; }
         IStructuralMatcher Matcher { get; }
+        PsiLanguageType Language { get; }
     }
 }

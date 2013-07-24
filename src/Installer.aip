@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="9.1.1" version="10.1" Modules="professional" RootPath="." Language="en" Id="{8DFF2E9E-5AF5-4EF2-B954-C1387455E81C}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="9.1.1" version="10.3" Modules="professional" RootPath="." Language="en" Id="{8DFF2E9E-5AF5-4EF2-B954-C1387455E81C}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiValidationComponent">
     <ROW Table="File" Column="Sequence" MinValue="1" MaxValue="32767" Description="Sequence with respect to the media images; order must track cabinet order." Options="0" ColumnType="2" ColumnIndex="7" ColumnSize="2" MsiKey="File#Sequence"/>
     <ROW Table="Media" Column="LastSequence" MinValue="0" MaxValue="32767" Description="File sequence number for the last file for this media." Options="0" ColumnType="2" ColumnIndex="1" ColumnSize="2" MsiKey="Media#LastSequence"/>
@@ -8,15 +8,15 @@
     <ROW Property="AI_MINDOTNETVERSION" MultiBuildValue="DefaultBuild:4.0" ValueLocId="-"/>
     <ROW Property="AI_ThemeStyle" Value="default" MsiKey="AI_ThemeStyle"/>
     <ROW Property="ALLUSERS" Value="2"/>
-    <ROW Property="ARPCONTACT" Value="http://hmemcpy.github.com/AgentMulder/"/>
-    <ROW Property="ARPURLINFOABOUT" Value="http://hmemcpy.github.com/AgentMulder/"/>
+    <ROW Property="ARPCONTACT" Value="http://hmemcpy.github.io/AgentMulder/"/>
+    <ROW Property="ARPURLINFOABOUT" Value="http://hmemcpy.github.io/AgentMulder/"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="Manufacturer" Value="Igal Tabachnik" ValueLocId="*"/>
-    <ROW Property="ProductCode" Value="1033:{C6A9360E-2283-421C-B118-7A2FD021B5A0} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{43B56279-C089-4118-9592-8CAC249E6545} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="Agent Mulder plugin for ReSharper v1.0.5" ValueLocId="*"/>
+    <ROW Property="ProductName" Value="Agent Mulder plugin for ReSharper v1.1.0" ValueLocId="*"/>
     <ROW Property="ProductShortName" Value="AgentMulder"/>
-    <ROW Property="ProductVersion" Value="1.0.5.0" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.1.0.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{F9637657-9637-4700-9455-375306DC5D47}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

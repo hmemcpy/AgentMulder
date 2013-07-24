@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Utils;
+using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
+using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Domain.Patterns
 {
@@ -23,9 +25,16 @@ namespace AgentMulder.ReSharper.Domain.Patterns
             get { return matcher; }
         }
 
+        public PsiLanguageType Language
+        {
+            get { return pattern.Language; }
+        }
+
         protected RegistrationPatternBase(IStructuralSearchPattern pattern)
         {
             this.pattern = pattern;
+
+            Assertion.Assert(pattern.Check() == null, "Invalid pattern");
 
             matcher = pattern.CreateMatcher();
         }

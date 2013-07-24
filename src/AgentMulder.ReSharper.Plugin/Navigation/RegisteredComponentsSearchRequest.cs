@@ -3,19 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Registrations;
-using JetBrains.Annotations;
 using JetBrains.Application;
 using JetBrains.Application.Progress;
 using JetBrains.Application.Threading;
-using JetBrains.DocumentModel;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.Occurences;
 using JetBrains.ReSharper.Feature.Services.Search;
 using JetBrains.ReSharper.Feature.Services.Search.SearchRequests;
-using JetBrains.ReSharper.Features.Finding.FindDependentCode;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.Psi;
+using AgentMulder.ReSharper.Domain.Utils;
 
 namespace AgentMulder.ReSharper.Plugin.Navigation
 {
@@ -44,11 +41,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
                     var sourceFiles = project.GetAllProjectFiles().SelectMany(projectFile => projectFile.ToSourceFiles());
                     foreach (var psiSourceFile in sourceFiles)
                     {
-#if SDK70
-                        IFile file = psiSourceFile.GetPsiFile(CSharpLanguage.Instance, new DocumentRange(psiSourceFile.Document, psiSourceFile.Document.DocumentRange));
-#else
-                        IFile file = psiSourceFile.GetPsiFile(CSharpLanguage.Instance);
-#endif
+                        IFile file = psiSourceFile.GetCSharpFile();
                         if (file == null)
                         {
                             continue;

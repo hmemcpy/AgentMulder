@@ -13,8 +13,12 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Navigation
 {
+#if SDK80
+    [ShellFeaturePart]
+#else
     [FeaturePart]
-    public class RegisteredComponentsContextSearch : IRegisteredComponentsContextSearch
+#endif
+    public partial class RegisteredComponentsContextSearch : IRegisteredComponentsContextSearch
     {
         private readonly IShellLocks locks;
 
@@ -23,43 +27,14 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             this.locks = locks;
         }
 
-        public bool IsAvailable(IDataContext dataContext)
-        {
-            ISolution solution = dataContext.GetData(JetBrains.ProjectModel.DataContext.DataConstants.SOLUTION);
-            if (solution == null)
-                return false;
-#if SDK70
-            IDocument document = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT);
-#else
-            IDocument document = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT);
-#endif
-
-            if (document == null)
-                return false;
-#if SDK70
-            DocumentOffset documentOffset = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT_OFFSET);
-#else
-            DocumentOffset documentOffset = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT_OFFSET);
-#endif
-            if (documentOffset == null)
-                return false;
-            IPsiSourceFile psiSourceFile = document.GetPsiSourceFile(solution);
-            if (psiSourceFile != null)
-            {
-                // todo make this resolvable also via the AllTypes... line
-                var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
-
-                return solution.GetComponent<IPatternManager>()
-                               .GetRegistrationsForFile(psiSourceFile)
-                               .Any(r => r.Registration.RegistrationElement.Children().Contains(invokedNode));
-            }
-
-            return false;
-        }
-
         public bool IsApplicable(IDataContext dataContext)
         {
             return ContextNavigationUtil.CheckDefaultApplicability<CSharpLanguage>(dataContext);
+        }
+
+        public bool IsAvailable(IDataContext dataContext)
+        {
+            return IsSelectedElementAssociatedWithRegistration(dataContext);
         }
 
         public RegisteredComponentsSearchRequest GetRegisteredComponentsRequest(IDataContext dataContext)
@@ -73,7 +48,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
 
 
-#if SDK70
+#if SDK70 || SDK80
             IDocument document = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT);
 #else
             IDocument document = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT);

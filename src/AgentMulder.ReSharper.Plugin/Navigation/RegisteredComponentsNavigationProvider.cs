@@ -53,7 +53,11 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
                 else
                 {
                     Func<SearchRegisteredComponentsDescriptor> descriptorBuilder = () => new SearchRegisteredComponentsDescriptor(requestToExecute, occurences);
+#if !SDK80
                     host.ShowResultsPopupMenu(dataContext, occurences, descriptorBuilder, null, true, requestToExecute.Title);
+#else
+                    host.ShowContextPopupMenu(dataContext, occurences, descriptorBuilder, null, true, requestToExecute.Title);
+#endif
                 }
             }
         }

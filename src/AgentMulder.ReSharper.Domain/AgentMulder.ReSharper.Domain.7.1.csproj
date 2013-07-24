@@ -62,33 +62,6 @@
     <Compile Include="Elements\Modules\Impl\TypeOfExtractor.cs" />
     <Compile Include="Elements\Modules\ModuleExtractor.cs" />
     <Compile Include="Elements\Modules\ModuleExtractorDecorator.cs" />
-    <Compile Include="Expressions\BinaryExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\EqualityExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\ExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\IExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\MemberReferenceExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\MethodCallExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\ParameterExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\UnaryOperatorExpressionBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Expressions\WherePredicateBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Patterns\BasedOnPatternBase.cs" />
     <Compile Include="Patterns\ComponentImplementationPatternBase.cs" />
     <Compile Include="Patterns\ComponentRegistrationPatternBase.cs" />
@@ -99,6 +72,7 @@
     <Compile Include="Patterns\IRegistrationPattern.cs" />
     <Compile Include="Patterns\MultipleMatchBasedOnPatternBase.cs" />
     <Compile Include="Patterns\NamespaceRegistrationPatternBase.cs" />
+    <Compile Include="Patterns\RegisterWithService.cs" />
     <Compile Include="Patterns\RegistrationPatternBase.cs" />
     <Compile Include="Registrations\CompositeRegistration.cs" />
     <Compile Include="Registrations\ExceptRegistration.cs" />
@@ -109,6 +83,7 @@
     <Compile Include="Registrations\ServiceRegistration.cs" />
     <Compile Include="Utils\ContainerExtensions.cs" />
     <Compile Include="Utils\MaybeMonadExtensions.cs" />
+    <Compile Include="Utils\PsiExtensions.7.1.cs" />
     <Compile Include="Utils\PsiExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrations\ComponentRegistrationBase.cs" />
@@ -121,7 +96,7 @@
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
-    <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v7.1</ReSharperSdkTargets>
+    <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v$(ReSharperSdkVersion)</ReSharperSdkTargets>
   </PropertyGroup>
   <Import Project="$(ReSharperSdkTargets)\Plugin.Targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

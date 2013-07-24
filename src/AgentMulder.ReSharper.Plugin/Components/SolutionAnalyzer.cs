@@ -5,9 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using AgentMulder.ReSharper.Domain.Containers;
+using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Search;
 using JetBrains.Util;
@@ -63,12 +63,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
 
         public IEnumerable<RegistrationInfo> Analyze(IPsiSourceFile sourceFile)
         {
-            ICSharpFile cSharpFile;
-#if SDK70
-            cSharpFile = sourceFile.GetTheOnlyPsiFile(CSharpLanguage.Instance) as ICSharpFile;
-#else
-            cSharpFile = sourceFile.GetPsiFile(CSharpLanguage.Instance) as ICSharpFile;
-#endif
+            ICSharpFile cSharpFile = sourceFile.GetCSharpFile();
             if (cSharpFile == null)
             {
                 return EmptyList<RegistrationInfo>.InstanceList;
@@ -92,6 +87,8 @@ namespace AgentMulder.ReSharper.Plugin.Components
 
             return ScanRegistrations(matchingContainer, searchDomain);
         }
+
+
 
         public IEnumerable<RegistrationInfo> Analyze(IEnumerable<IPsiSourceFile> sourceFiles)
         {

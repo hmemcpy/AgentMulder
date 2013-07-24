@@ -1,6 +1,16 @@
 What's new in Agent Mulder
 ==========================
 
+v1.1.0.0
+========
+
++ Added support for ReSharper 8 (installed via the Extensions Gallery)
+  Agent Mulder now supports ReSharper 6, 7 and 8
++ Added support for SimpleInjector (https://github.com/hmemcpy/AgentMulder/wiki/Simple-Injector)
+* Fixed several performace issues
+! Known issue: "Navigate to..." feature is currently disabled!
+
+
 v1.0.5.1
 ========
 * Fixed StructureMap, so types having private constructors aren't picked up during scan

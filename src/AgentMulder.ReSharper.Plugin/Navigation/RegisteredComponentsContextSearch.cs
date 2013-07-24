@@ -18,7 +18,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
 #else
     [FeaturePart]
 #endif
-    public class RegisteredComponentsContextSearch : IRegisteredComponentsContextSearch
+    public partial class RegisteredComponentsContextSearch : IRegisteredComponentsContextSearch
     {
         private readonly IShellLocks locks;
 
@@ -27,48 +27,14 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             this.locks = locks;
         }
 
-        public bool IsAvailable(IDataContext dataContext)
-        {
-            ISolution solution = dataContext.GetData(JetBrains.ProjectModel.DataContext.DataConstants.SOLUTION);
-            if (solution == null)
-                return false;
-#if SDK70 || SDK80
-            IDocument document = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT);
-#else
-            IDocument document = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT);
-#endif
-
-            if (document == null)
-                return false;
-#if SDK70 || SDK80
-            DocumentOffset documentOffset = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT_OFFSET);
-#else
-            DocumentOffset documentOffset = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT_OFFSET);
-#endif
-            if (documentOffset == null)
-                return false;
-            IPsiSourceFile psiSourceFile = document.GetPsiSourceFile(solution);
-            if (psiSourceFile != null)
-            {
-                // todo make this resolvable also via the AllTypes... line
-                var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
-
-                return solution.GetComponent<IPatternManager>()
-                               .GetRegistrationsForFile(psiSourceFile)
-                               .Any(r => r.Registration.RegistrationElement.Children().Contains(invokedNode));
-            }
-
-            return false;
-        }
-
-        public bool IsContextApplicable(IDataContext dataContext)
-        {
-            return ContextNavigationUtil.CheckDefaultApplicability<CSharpLanguage>(dataContext);
-        }
-
         public bool IsApplicable(IDataContext dataContext)
         {
             return ContextNavigationUtil.CheckDefaultApplicability<CSharpLanguage>(dataContext);
+        }
+
+        public bool IsAvailable(IDataContext dataContext)
+        {
+            return IsSelectedElementAssociatedWithRegistration(dataContext);
         }
 
         public RegisteredComponentsSearchRequest GetRegisteredComponentsRequest(IDataContext dataContext)

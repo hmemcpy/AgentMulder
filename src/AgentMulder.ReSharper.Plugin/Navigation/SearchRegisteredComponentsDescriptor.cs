@@ -31,7 +31,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             }
             else
             {
-                str = string.Format("No registerd components", new object[0]);
+                str = string.Format("No registered components", new object[0]);
             }
 
             return str;

@@ -6,7 +6,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Autofac.Patterns.Helpers
 {
-    public class ReturnTypeCollector : TreeNodeVisitor, IRecursiveElementProcessor
+    public partial class ReturnTypeCollector : TreeNodeVisitor, IRecursiveElementProcessor
     {
         private readonly List<IExpressionType> expressionTypes = new List<IExpressionType>();
         private readonly IResolveContext resolveContext;
@@ -49,7 +49,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.Helpers
             ICSharpExpression csharpExpression = returnStatementParam.Value;
             expressionTypes.Add(csharpExpression != null
                                     ? csharpExpression.GetExpressionType(resolveContext)
-                                    : returnStatementParam.GetPsiModule().GetPredefinedType().Void);
+                                    : GetVoidType(returnStatementParam.GetPsiModule()));
 
             base.VisitReturnStatement(returnStatementParam);
         }

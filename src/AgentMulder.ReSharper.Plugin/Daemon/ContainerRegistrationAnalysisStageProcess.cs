@@ -29,7 +29,11 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
         {
             var consumer = new DefaultHighlightingConsumer(this, settingsStore);
 
+#if !SDK80
             foreach (IFile psiFile in DaemonProcess.SourceFile.EnumeratePsiFiles())
+#else
+            foreach (IFile psiFile in DaemonProcess.SourceFile.EnumerateDominantPsiFiles())
+#endif
             {
                 IFile file = psiFile;
                 psiFile.ProcessChildren<ITypeDeclaration>(declaration =>

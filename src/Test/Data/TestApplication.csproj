@@ -246,6 +246,8 @@
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <None Include="StructureMap\_DoesNotCompile-BrokenReference.cs" />
     <Compile Include="StructureMap\TypeWithPrivateConstructor.cs" />
+    <Compile Include="Types\TinyIoC.cs" />
+    <Compile Include="TinyIoC\RegisterGeneric.cs" />
     <Compile Include="Types\SaveCommand.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />

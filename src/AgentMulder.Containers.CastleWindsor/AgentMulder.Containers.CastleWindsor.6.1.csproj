@@ -22,7 +22,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -46,6 +46,7 @@
     <Compile Include="Helpers\InNamespaceExtractor.cs" />
     <Compile Include="Helpers\InSameNamespaceAsGenericExtractor.cs" />
     <Compile Include="Helpers\NamespaceExtractor.cs" />
+    <Compile Include="Patterns\FromTypes\BasedOn\Pick.6.1.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\Pick.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentHasAttributeMethodGroup.cs" />
     <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInNamespace.cs" />
@@ -89,7 +90,7 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
-    <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v6.1</ReSharperSdkTargets>
+    <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v$(ReSharperSdkVersion)</ReSharperSdkTargets>
   </PropertyGroup>
   <Import Project="$(ReSharperSdkTargets)\Plugin.Targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

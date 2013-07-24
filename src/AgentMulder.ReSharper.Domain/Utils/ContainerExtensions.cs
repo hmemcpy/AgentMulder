@@ -28,11 +28,14 @@ namespace AgentMulder.ReSharper.Domain.Utils
                 return false;
             }
             
+#if SDK80
+            var containerClrType = TypeFactory.CreateTypeByCLRName(containerClrTypeName, node.GetPsiModule(), node.GetResolveContext());
+#else
             var containerClrType = TypeFactory.CreateTypeByCLRName(containerClrTypeName, node.GetPsiModule());
+#endif
 
             return containingType.IsDescendantOf(containerClrType.GetTypeElement());
         }
-
 
         public static IEnumerable<ITypeElement> GetRegisteredTypes(this ICSharpExpression expression)
         {

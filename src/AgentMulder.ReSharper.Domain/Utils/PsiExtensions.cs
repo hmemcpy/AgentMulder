@@ -8,7 +8,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Utils
 {
-    public static class PsiExtensions
+    public static partial class PsiExtensions
     {
         public static IEnumerable<IInvocationExpression> GetAllExpressions(this IInvocationExpression expression)
         {
@@ -20,7 +20,7 @@ namespace AgentMulder.ReSharper.Domain.Utils
         {
             return typeElement is IInterface &&
                    typeElement.HasTypeParameters();
-		}
+        }
 
         public static bool IsGenericTypeDefinition(this ITypeElement element)
         {

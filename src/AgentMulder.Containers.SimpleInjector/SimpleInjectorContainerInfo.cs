@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Reflection;
@@ -7,7 +6,6 @@ using AgentMulder.ReSharper.Domain.Containers;
 
 namespace AgentMulder.Containers.SimpleInjector
 {
-    [Export(typeof(IContainerInfo))]
     public class SimpleInjectorContainerInfo : ContainerInfoBase
     {
         public override IEnumerable<string> ContainerQualifiedNames

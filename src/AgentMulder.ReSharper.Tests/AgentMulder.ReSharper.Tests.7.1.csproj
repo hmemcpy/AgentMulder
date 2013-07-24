@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ReSharperSdkVersion>7.1</ReSharperSdkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.ReSharper.Tests</RootNamespace>
     <AssemblyName>AgentMulder.ReSharper.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>bin\$(Configuration)\$(ReSharperSdkVersion)\</OutputPath>
     <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
@@ -27,6 +28,7 @@
     <DefineConstants>TRACE;DEBUG;SDK70;JET_MODE_ASSERT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +36,7 @@
     <DefineConstants>TRACE;SDK70</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac">
@@ -62,8 +65,9 @@
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="SimpleInjector">
-      <HintPath>..\packages\SimpleInjector.1.6.0.12319\lib\net35\SimpleInjector.dll</HintPath>
+    <Reference Include="SimpleInjector, Version=2.2.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SimpleInjector.2.2.3\lib\net40-client\SimpleInjector.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
@@ -95,6 +99,7 @@
     <Compile Include="StructureMap\Helpers\TestStructureMapAttribute.cs" />
     <Compile Include="StructureMap\SanityTests.cs" />
     <Compile Include="StructureMap\ScanTests.cs" />
+    <Compile Include="TinyIoC\ContainerTests.cs" />
     <Compile Include="Unity\Helpers\TestUnityAttribute.cs" />
     <Compile Include="Unity\RegisterTypeTests.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
@@ -136,6 +141,10 @@
       <Project>{f1df90a4-c9e9-4749-9925-57f14684bca5}</Project>
       <Name>AgentMulder.Containers.StructureMap.7.1</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.TinyIoC\AgentMulder.Containers.TinyIoC.7.1.csproj">
+      <Project>{76E2EED3-DA2B-44DB-B080-A8720F2943AB}</Project>
+      <Name>AgentMulder.Containers.TinyIoC.7.1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.7.1.csproj">
       <Project>{2c40bbab-a1a1-4f02-bf7a-33f6e5dd411c}</Project>
       <Name>AgentMulder.Containers.Unity.7.1</Name>
@@ -150,7 +159,7 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
-    <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v7.1</ReSharperSdkTargets>
+    <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v$(ReSharperSdkVersion)</ReSharperSdkTargets>
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(ReSharperSdkTargets)\Plugin.Tests.Targets" />

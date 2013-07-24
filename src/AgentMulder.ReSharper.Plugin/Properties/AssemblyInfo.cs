@@ -14,7 +14,7 @@ using JetBrains.UI;
                              "Copyright © Igal Tabachnik, 2012")]
 [assembly: PluginVendor("Igal Tabachnik")]
 
-#if !SDK70
+#if !SDK70 && !SDK80
 [assembly: ImagesBase("AgentMulder.ReSharper.Plugin.Resources")]
 #endif
 [assembly: InternalsVisibleTo("AgentMulder.ReSharper.Tests")]

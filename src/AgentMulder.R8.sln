@@ -1,0 +1,103 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20617.1 PREVIEW
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5EE72A78-D1DE-4CDA-87C5-6D0BEED0CC29}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "Test\Data\TestApplication.csproj", "{2A40748D-310D-4193-A2E8-079A53040A93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Autofac.8.0", "AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.8.0.csproj", "{306EBFAD-68B8-44C0-9F06-F888FC1D5056}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.CastleWindsor.8.0", "AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.8.0.csproj", "{43FC7171-6E4D-4C3C-8CE7-39AEC065BC32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Catel.8.0", "AgentMulder.Containers.Catel\AgentMulder.Containers.Catel.8.0.csproj", "{7D02FCB1-9C40-4434-B044-DC8CA27E2501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Ninject.8.0", "AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.8.0.csproj", "{B55D5782-F18C-45E1-9CA7-0292C5142182}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.SimpleInjector.8.0", "AgentMulder.Containers.SimpleInjector\AgentMulder.Containers.SimpleInjector.8.0.csproj", "{4F4A56BB-4405-4F77-8C36-C2E1E35A314E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.StructureMap.8.0", "AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.8.0.csproj", "{A987C35F-0E1D-4999-BDDA-667289B4A3E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Unity.8.0", "AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.8.0.csproj", "{CC996833-A3DB-4E39-B5AF-2811EC02F4E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Domain.8.0", "AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.0.csproj", "{B264F899-4DC3-46F8-A891-0657841BB551}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Plugin.8.0", "AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.8.0.csproj", "{F1C37DEA-FA19-4FA7-BE80-F013D532C6ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Tests.8.0", "AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.8.0.csproj", "{5F0EA8D2-161A-421F-9D81-7123EE760A2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containers", "Containers", "{EFCE21CD-235F-4000-AF9B-4F96D5A886D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CBA1C880-0727-4357-8B7B-40D03E4DEE0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A40748D-310D-4193-A2E8-079A53040A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A40748D-310D-4193-A2E8-079A53040A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{306EBFAD-68B8-44C0-9F06-F888FC1D5056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{306EBFAD-68B8-44C0-9F06-F888FC1D5056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{306EBFAD-68B8-44C0-9F06-F888FC1D5056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{306EBFAD-68B8-44C0-9F06-F888FC1D5056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43FC7171-6E4D-4C3C-8CE7-39AEC065BC32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43FC7171-6E4D-4C3C-8CE7-39AEC065BC32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43FC7171-6E4D-4C3C-8CE7-39AEC065BC32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43FC7171-6E4D-4C3C-8CE7-39AEC065BC32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D02FCB1-9C40-4434-B044-DC8CA27E2501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D02FCB1-9C40-4434-B044-DC8CA27E2501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D02FCB1-9C40-4434-B044-DC8CA27E2501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D02FCB1-9C40-4434-B044-DC8CA27E2501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B55D5782-F18C-45E1-9CA7-0292C5142182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B55D5782-F18C-45E1-9CA7-0292C5142182}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B55D5782-F18C-45E1-9CA7-0292C5142182}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B55D5782-F18C-45E1-9CA7-0292C5142182}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F4A56BB-4405-4F77-8C36-C2E1E35A314E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F4A56BB-4405-4F77-8C36-C2E1E35A314E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F4A56BB-4405-4F77-8C36-C2E1E35A314E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F4A56BB-4405-4F77-8C36-C2E1E35A314E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A987C35F-0E1D-4999-BDDA-667289B4A3E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A987C35F-0E1D-4999-BDDA-667289B4A3E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A987C35F-0E1D-4999-BDDA-667289B4A3E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A987C35F-0E1D-4999-BDDA-667289B4A3E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC996833-A3DB-4E39-B5AF-2811EC02F4E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC996833-A3DB-4E39-B5AF-2811EC02F4E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC996833-A3DB-4E39-B5AF-2811EC02F4E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC996833-A3DB-4E39-B5AF-2811EC02F4E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B264F899-4DC3-46F8-A891-0657841BB551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B264F899-4DC3-46F8-A891-0657841BB551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B264F899-4DC3-46F8-A891-0657841BB551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B264F899-4DC3-46F8-A891-0657841BB551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1C37DEA-FA19-4FA7-BE80-F013D532C6ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1C37DEA-FA19-4FA7-BE80-F013D532C6ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1C37DEA-FA19-4FA7-BE80-F013D532C6ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1C37DEA-FA19-4FA7-BE80-F013D532C6ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F0EA8D2-161A-421F-9D81-7123EE760A2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F0EA8D2-161A-421F-9D81-7123EE760A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F0EA8D2-161A-421F-9D81-7123EE760A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F0EA8D2-161A-421F-9D81-7123EE760A2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F0EA8D2-161A-421F-9D81-7123EE760A2D} = {CBA1C880-0727-4357-8B7B-40D03E4DEE0D}
+		{2A40748D-310D-4193-A2E8-079A53040A93} = {CBA1C880-0727-4357-8B7B-40D03E4DEE0D}
+		{43FC7171-6E4D-4C3C-8CE7-39AEC065BC32} = {EFCE21CD-235F-4000-AF9B-4F96D5A886D1}
+		{7D02FCB1-9C40-4434-B044-DC8CA27E2501} = {EFCE21CD-235F-4000-AF9B-4F96D5A886D1}
+		{B55D5782-F18C-45E1-9CA7-0292C5142182} = {EFCE21CD-235F-4000-AF9B-4F96D5A886D1}
+		{4F4A56BB-4405-4F77-8C36-C2E1E35A314E} = {EFCE21CD-235F-4000-AF9B-4F96D5A886D1}
+		{A987C35F-0E1D-4999-BDDA-667289B4A3E6} = {EFCE21CD-235F-4000-AF9B-4F96D5A886D1}
+		{CC996833-A3DB-4E39-B5AF-2811EC02F4E9} = {EFCE21CD-235F-4000-AF9B-4F96D5A886D1}
+		{306EBFAD-68B8-44C0-9F06-F888FC1D5056} = {EFCE21CD-235F-4000-AF9B-4F96D5A886D1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal

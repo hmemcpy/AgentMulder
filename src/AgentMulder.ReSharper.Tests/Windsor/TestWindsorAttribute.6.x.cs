@@ -1,17 +1,12 @@
-﻿using System.Collections.Generic;
-using Castle.Core;
+﻿using Castle.Core;
 using Castle.Windsor;
 using JetBrains.ReSharper.TestFramework;
 
-namespace AgentMulder.ReSharper.Tests.Windsor.Helpers
+namespace AgentMulder.ReSharper.Tests.Windsor
 {
     public class TestWindsorAttribute : TestReferencesAttribute
     {
-#if SDK70 || SDK80
-        public override IEnumerable<string> GetReferences()
-#else
         public override string[] GetReferences()
-#endif
         {
             return new[]
             {

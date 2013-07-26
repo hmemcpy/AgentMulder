@@ -1,6 +1,5 @@
 ﻿using AgentMulder.Containers.Unity;
 using AgentMulder.ReSharper.Domain.Containers;
-using AgentMulder.ReSharper.Tests.Unity.Helpers;
 
 namespace AgentMulder.ReSharper.Tests.Unity
 {

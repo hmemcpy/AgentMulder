@@ -25,7 +25,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT;SDK80</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -33,7 +33,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE;SDK80</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -80,24 +80,25 @@
   <ItemGroup>
     <Compile Include="Autofac\ContainerBuilderTests.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests.cs" />
-    <Compile Include="Autofac\Helpers\TestAutofacAttribute.cs" />
-    <Compile Include="Catel\Helpers\TestCatelAttribute.cs" />
+    <Compile Include="Autofac\TestAutofacAttribute.cs" />
+    <Compile Include="Catel\TestCatelAttribute.cs" />
     <Compile Include="Catel\ServiceLocatorTests.cs" />
     <Compile Include="AgentMulderTestBase.cs" />
-    <Compile Include="Ninject\Helpers\TestNinjectAttribute.cs" />
+    <Compile Include="AgentMulderTestBase.8.x.cs" />
+    <Compile Include="Ninject\TestNinjectAttribute.cs" />
     <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />
     <Compile Include="Ninject\SanityTests.cs" />
     <Compile Include="StructureMap\ContainerTests.cs" />
-    <Compile Include="StructureMap\Helpers\TestStructureMapAttribute.cs" />
+    <Compile Include="StructureMap\TestStructureMapAttribute.cs" />
     <Compile Include="StructureMap\SanityTests.cs" />
     <Compile Include="StructureMap\ScanTests.cs" />
-    <Compile Include="Unity\Helpers\TestUnityAttribute.cs" />
+    <Compile Include="Unity\TestUnityAttribute.cs" />
     <Compile Include="Unity\RegisterTypeTests.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
     <Compile Include="Windsor\ClassesTests.cs" />
     <Compile Include="Windsor\TypesTests.cs" />
-    <Compile Include="Windsor\Helpers\TestWindsorAttribute.cs" />
+    <Compile Include="Windsor\TestWindsorAttribute.cs" />
     <Compile Include="Windsor\ComponentRegistrationTests.cs" />
     <Compile Include="TestEnvironmentAssembly.cs" />
     <Compile Include="Windsor\SanityTests.cs" />

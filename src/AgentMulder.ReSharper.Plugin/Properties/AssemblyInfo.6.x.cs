@@ -1,0 +1,1 @@
+[assembly: ImagesBase("AgentMulder.ReSharper.Plugin.Resources")]

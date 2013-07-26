@@ -1,6 +1,5 @@
 ﻿using AgentMulder.Containers.StructureMap;
 using AgentMulder.ReSharper.Domain.Containers;
-using AgentMulder.ReSharper.Tests.StructureMap.Helpers;
 
 namespace AgentMulder.ReSharper.Tests.StructureMap
 {

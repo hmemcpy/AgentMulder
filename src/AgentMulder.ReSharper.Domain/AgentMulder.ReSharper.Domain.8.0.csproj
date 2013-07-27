@@ -24,14 +24,14 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT;SDK80</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE;SDK80</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -82,6 +82,7 @@
     <Compile Include="Registrations\NegateRegistration.cs" />
     <Compile Include="Registrations\ServiceRegistration.cs" />
     <Compile Include="Utils\ContainerExtensions.cs" />
+    <Compile Include="Utils\ContainerExtensions.8.0.cs" />
     <Compile Include="Utils\MaybeMonadExtensions.cs" />
     <Compile Include="Utils\PsiExtensions.8.0.cs" />
     <Compile Include="Utils\PsiExtensions.cs" />

@@ -1,7 +1,6 @@
 ﻿using AgentMulder.Containers.CastleWindsor;
 using AgentMulder.Containers.CastleWindsor.Providers;
 using AgentMulder.ReSharper.Domain.Containers;
-using AgentMulder.ReSharper.Tests.Windsor.Helpers;
 
 namespace AgentMulder.ReSharper.Tests.Windsor
 {

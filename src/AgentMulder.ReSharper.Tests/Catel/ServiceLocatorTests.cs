@@ -1,6 +1,5 @@
 ﻿using AgentMulder.Containers.Catel;
 using AgentMulder.ReSharper.Domain.Containers;
-using AgentMulder.ReSharper.Tests.Catel.Helpers;
 
 namespace AgentMulder.ReSharper.Tests.Catel
 {

@@ -19,14 +19,14 @@ using AgentMulder.ReSharper.Domain.Utils;
 namespace AgentMulder.ReSharper.Tests
 {
     [TestFixture]
-    public abstract class AgentMulderTestBase : BaseTestWithSingleProject
+    public abstract partial class AgentMulderTestBase : BaseTestWithSingleProject
     {
         private static readonly Regex patternCountRegex = new Regex(@"// Patterns: (?<patterns>\d+)");
         private static readonly Regex matchesRegex      = new Regex(@"// Matches: (?<files>.*?)\r?\n");
         private static readonly Regex notMatchesRegex   = new Regex(@"// NotMatches: (?<files>.*?)\r?\n");
 
         protected abstract IContainerInfo ContainerInfo { get; }
-
+        
         protected void RunTest(string fileName, Action<IPatternManager> action)
         {
             var typesPath = new DirectoryInfo(Path.Combine(BaseTestDataPath.FullPath, "Types"));
@@ -34,19 +34,14 @@ namespace AgentMulder.ReSharper.Tests
                                    .SelectNotNull(fs => fs.FullName)
                                    .Concat(new[] { Path.Combine(SolutionItemsBasePath, fileName) });
 
-#if SDK80
-            WithSingleProject(fileSet, (lifetime, solution, project) => RunGuarded(() =>
-#else
-            WithSingleProject(fileSet, (lifetime, project) => RunGuarded(() =>
-#endif
-            {
+            RunFixture(fileSet, () => { 
                 var solutionAnalyzer = Solution.GetComponent<SolutionAnalyzer>();
                 solutionAnalyzer.AddContainer(ContainerInfo);
 
                 var patternManager = Solution.GetComponent<IPatternManager>();
 
                 action(patternManager);
-            }));
+            });
         }
 
         protected ICSharpFile GetCodeFile(string fileName)

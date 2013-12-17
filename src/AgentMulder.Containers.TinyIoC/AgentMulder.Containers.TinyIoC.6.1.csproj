@@ -9,8 +9,8 @@
     <ProjectGuid>{1593505F-945D-48F6-920D-FFE967036084}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgentMulder.Containers.SimpleInjector</RootNamespace>
-    <AssemblyName>AgentMulder.Containers.SimpleInjector</AssemblyName>
+    <RootNamespace>AgentMulder.Containers.TinyIoC</RootNamespace>
+    <AssemblyName>AgentMulder.Containers.TinyIoC</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\Containers\</OutputPath>

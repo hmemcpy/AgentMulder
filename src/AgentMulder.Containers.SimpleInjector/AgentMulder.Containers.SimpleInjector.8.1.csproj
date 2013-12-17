@@ -7,16 +7,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{21420556-ECE3-44A2-89AE-8C490497BB7D}</ProjectGuid>
+    <ProjectGuid>{6C36A2ED-3664-4C48-B80A-5CBC47FB2AAF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgentMulder.ReSharper.Plugin</RootNamespace>
-    <AssemblyName>AgentMulder.ReSharper.Plugin</AssemblyName>
+    <RootNamespace>AgentMulder.Containers.SimpleInjector</RootNamespace>
+    <AssemblyName>AgentMulder.Containers.SimpleInjector</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\</OutputPath>
+    <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\Containers\</OutputPath>
     <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
     <StartAction>Program</StartAction>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
@@ -41,51 +39,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Components\IPatternManager.cs" />
-    <Compile Include="Components\IRegistrationInfo.cs" />
-    <Compile Include="Components\ITypeUsageManager.cs" />
-    <Compile Include="Components\PatternManagerCache.8.0.cs" />
-    <Compile Include="Components\PatternSearcher.cs" />
-    <Compile Include="Components\TypeUsageManager.cs" />
-    <Compile Include="Daemon\ContainerRegistrationAnalysisStage.7.x.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Daemon\ContainerRegistrationAnalysisStage.cs" />
-    <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.7.x.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.cs" />
-    <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.8.x.cs" />
-    <Compile Include="Highlighting\ContainerGutterMark.8.0.cs" />
-    <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />
-    <Compile Include="Highlighting\RegisteredByContainerHighlighting.8.0.cs" />
+    <Compile Include="Patterns\LifestyleCreateRegistration.cs" />
+    <Compile Include="Patterns\RegisterAll.cs" />
+    <Compile Include="Patterns\RegisterDecorator.cs" />
+    <Compile Include="Patterns\RegisterOpenGeneric.cs" />
+    <Compile Include="Patterns\RegisterSingle.cs" />
+    <Compile Include="Patterns\RegisterSingleDecorator.cs" />
+    <Compile Include="Patterns\RegisterSingleOpenGeneric.cs" />
+    <Compile Include="Patterns\Register.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Highlighting\RegisteredByContainerHighlighting.cs" />
-    <Compile Include="Components\SolutionAnalyzer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Hat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Navigation\" />
+    <Compile Include="SimpleInjectorContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.1.csproj">

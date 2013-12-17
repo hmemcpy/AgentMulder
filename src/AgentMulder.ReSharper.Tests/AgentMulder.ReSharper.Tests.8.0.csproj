@@ -113,42 +113,38 @@
     <ProjectReference Include="..\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.8.0.csproj">
       <Project>{306ebfad-68b8-44c0-9f06-f888fc1d5056}</Project>
       <Name>AgentMulder.Containers.Autofac.8.0</Name>
-      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.8.0.csproj">
       <Project>{43fc7171-6e4d-4c3c-8ce7-39aec065bc32}</Project>
       <Name>AgentMulder.Containers.CastleWindsor.8.0</Name>
-      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.Catel\AgentMulder.Containers.Catel.8.0.csproj">
       <Project>{7d02fcb1-9c40-4434-b044-dc8ca27e2501}</Project>
       <Name>AgentMulder.Containers.Catel.8.0</Name>
-      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.8.0.csproj">
       <Project>{b55d5782-f18c-45e1-9ca7-0292c5142182}</Project>
       <Name>AgentMulder.Containers.Ninject.8.0</Name>
-      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\AgentMulder.Containers.SimpleInjector\AgentMulder.Containers.SimpleInjector.8.0.csproj">
+      <Project>{4f4a56bb-4405-4f77-8c36-c2e1e35a314e}</Project>
+      <Name>AgentMulder.Containers.SimpleInjector.8.0</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.8.0.csproj">
       <Project>{a987c35f-0e1d-4999-bdda-667289b4a3e6}</Project>
       <Name>AgentMulder.Containers.StructureMap.8.0</Name>
-      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.8.0.csproj">
       <Project>{cc996833-a3db-4e39-b5af-2811ec02f4e9}</Project>
       <Name>AgentMulder.Containers.Unity.8.0</Name>
-      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.0.csproj">
       <Project>{b264f899-4dc3-46f8-a891-0657841bb551}</Project>
       <Name>AgentMulder.ReSharper.Domain.8.0</Name>
-      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.8.0.csproj">
       <Project>{f1c37dea-fa19-4fa7-be80-f013d532c6ed}</Project>
       <Name>AgentMulder.ReSharper.Plugin.8.0</Name>
-      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

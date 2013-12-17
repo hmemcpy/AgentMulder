@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Props" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Props')" />
+  <PropertyGroup>
+    <ReSharperSdkVersion>8.1</ReSharperSdkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BCF44043-8FBE-4117-89CE-4FDAAB530D93}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AgentMulder.Containers.StructureMap</RootNamespace>
+    <AssemblyName>AgentMulder.Containers.StructureMap</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\Containers\</OutputPath>
+    <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
+    <StartArguments>/ReSharper.Plugin  $(AssemblyName).dll /ReSharper.Internal</StartArguments>
+    <StartWorkingDirectory>$(MSBuildProjectDirectory)\$(OutputPath)</StartWorkingDirectory>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Patterns\For\Add\AddGeneric.cs" />
+    <Compile Include="Patterns\For\Add\AddNonGeneric.cs" />
+    <Compile Include="Patterns\For\ForBasePattern.cs" />
+    <Compile Include="Patterns\For\ForGeneric.cs" />
+    <Compile Include="Patterns\For\ForNonGeneric.cs" />
+    <Compile Include="Patterns\For\RegistryForGeneric.cs" />
+    <Compile Include="Patterns\For\RegistryForNonGeneric.cs" />
+    <Compile Include="Patterns\For\Use\UseGeneric.cs" />
+    <Compile Include="Patterns\For\Use\UseNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\AddAllTypesOfGeneric.cs" />
+    <Compile Include="Patterns\Scan\AddAllTypesOfNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\Assembly.cs" />
+    <Compile Include="Patterns\Scan\AssemblyContainingTypeGeneric.cs" />
+    <Compile Include="Patterns\Scan\AssemblyContainingTypeNonGeneric.cs" />
+    <Compile Include="Patterns\Scan\RegisterConcreteTypesAgainstTheFirstInterface.cs" />
+    <Compile Include="Patterns\Scan\ExcludeNamespace.cs" />
+    <Compile Include="Patterns\Scan\ExcludeNamespaceContainingType.cs" />
+    <Compile Include="Patterns\Scan\ExcludeType.cs" />
+    <Compile Include="Patterns\Scan\IncludeNamespace.cs" />
+    <Compile Include="Patterns\Scan\IncludeNamespaceContainingType.cs" />
+    <Compile Include="Patterns\Scan\RegistryScanPattern.cs" />
+    <Compile Include="Patterns\Scan\ScanPattern.cs" />
+    <Compile Include="Patterns\Scan\ScanPatternBase.cs" />
+    <Compile Include="Patterns\Scan\SingleImplementationsOfInterface.cs" />
+    <Compile Include="Patterns\Scan\TheCallingAssembly.cs" />
+    <Compile Include="Patterns\Scan\WithDefaultConventions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="Registrations\DefaultInterfaceConvention.cs" />
+    <Compile Include="Registrations\FirstInterfaceConvention.cs" />
+    <Compile Include="Registrations\SingleImplementationsOfInterfaceConvention.cs" />
+    <Compile Include="Registrations\StructureMapConvention.cs" />
+    <Compile Include="Registrations\StructureMapServiceRegistration.cs" />
+    <Compile Include="StructureMapContainerInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.1.csproj">
+      <Project>{69909d74-5f9a-45fa-bdcf-17e3f3e3cc23}</Project>
+      <Name>AgentMulder.ReSharper.Domain.8.1</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Targets" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Targets')" />
+</Project>

@@ -1,13 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.20617.1 PREVIEW
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5EE72A78-D1DE-4CDA-87C5-6D0BEED0CC29}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "Test\Data\TestApplication.csproj", "{2A40748D-310D-4193-A2E8-079A53040A93}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.Containers.Autofac.8.0", "AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.8.0.csproj", "{306EBFAD-68B8-44C0-9F06-F888FC1D5056}"
@@ -33,6 +27,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containers", "Containers", "{EFCE21CD-235F-4000-AF9B-4F96D5A886D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CBA1C880-0727-4357-8B7B-40D03E4DEE0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8.0", "8.0", "{94BFC802-D876-4846-8330-FC4BB3266E27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8.1", "8.1", "{3772CBF3-BCF5-44E3-BDE8-B82044111FCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +94,9 @@ Global
 		{A987C35F-0E1D-4999-BDDA-667289B4A3E6} = {EFCE21CD-235F-4000-AF9B-4F96D5A886D1}
 		{CC996833-A3DB-4E39-B5AF-2811EC02F4E9} = {EFCE21CD-235F-4000-AF9B-4F96D5A886D1}
 		{306EBFAD-68B8-44C0-9F06-F888FC1D5056} = {EFCE21CD-235F-4000-AF9B-4F96D5A886D1}
+		{B264F899-4DC3-46F8-A891-0657841BB551} = {94BFC802-D876-4846-8330-FC4BB3266E27}
+		{F1C37DEA-FA19-4FA7-BE80-F013D532C6ED} = {94BFC802-D876-4846-8330-FC4BB3266E27}
+		{EFCE21CD-235F-4000-AF9B-4F96D5A886D1} = {94BFC802-D876-4846-8330-FC4BB3266E27}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35

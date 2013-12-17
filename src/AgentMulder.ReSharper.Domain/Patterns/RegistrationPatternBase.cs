@@ -34,8 +34,6 @@ namespace AgentMulder.ReSharper.Domain.Patterns
         {
             this.pattern = pattern;
 
-            Assertion.Assert(pattern.Check() == null, "Invalid pattern");
-
             matcher = pattern.CreateMatcher();
         }
 

@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ReSharperSdkVersion>8.0</ReSharperSdkVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -19,13 +21,16 @@
     <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
     <StartAction>Program</StartAction>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
-    <StartArguments>/rootsuffix AGML /ReSharper.Plugin AgentMulder.ReSharper.Plugin.dll /ReSharper.Internal</StartArguments>
+    <StartArguments>/ReSharper.Plugin  $(AssemblyName).dll /ReSharper.Internal</StartArguments>
+    <StartWorkingDirectory>$(MSBuildProjectDirectory)\$(OutputPath)</StartWorkingDirectory>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>false</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT;SDK80</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
@@ -34,7 +39,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE;SDK80</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <StartWorkingDirectory>$(MSBuildProjectDirectory)\$(OutputPath)</StartWorkingDirectory>
@@ -64,10 +69,15 @@
     <Compile Include="Components\PatternManagerCache.8.0.cs" />
     <Compile Include="Components\PatternSearcher.cs" />
     <Compile Include="Components\TypeUsageManager.cs" />
-    <Compile Include="Daemon\ContainerRegistrationAnalysisStage.7.1.cs" />
+    <Compile Include="Daemon\ContainerRegistrationAnalysisStage.7.x.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.cs" />
-    <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.7.1.cs" />
+    <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.7.x.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.cs" />
+    <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.8.x.cs" />
     <Compile Include="Highlighting\ContainerGutterMark.8.0.cs" />
     <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />
     <Compile Include="Highlighting\RegisteredByContainerHighlighting.8.0.cs" />
@@ -85,9 +95,7 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Navigation\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <ReSharperSdkTargets Condition=" '$(ReSharperSdkTargets)' == '' ">$(MSBuildExtensionsPath)\JetBrains\ReSharper.SDK\v$(ReSharperSdkVersion)</ReSharperSdkTargets>
   </PropertyGroup>

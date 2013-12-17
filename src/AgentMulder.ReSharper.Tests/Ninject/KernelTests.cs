@@ -1,6 +1,5 @@
 using AgentMulder.Containers.Ninject;
 using AgentMulder.ReSharper.Domain.Containers;
-using AgentMulder.ReSharper.Tests.Ninject.Helpers;
 
 namespace AgentMulder.ReSharper.Tests.Ninject
 {

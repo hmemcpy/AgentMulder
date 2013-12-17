@@ -2,14 +2,14 @@
 using JetBrains.ReSharper.TestFramework;
 using Ninject.Modules;
 
-namespace AgentMulder.ReSharper.Tests.Ninject.Helpers
+namespace AgentMulder.ReSharper.Tests.Ninject
 {
     public class TestNinjectAttribute : TestReferencesAttribute
     {
-#if SDK70 || SDK80
-        public override IEnumerable<string> GetReferences()
+#if SDK81
+        public override IEnumerable<string> GetReferences(JetBrains.ProjectModel.PlatformID platformId)
 #else
-        public override string[] GetReferences()
+        public override IEnumerable<string> GetReferences()
 #endif
         {
             return new[]

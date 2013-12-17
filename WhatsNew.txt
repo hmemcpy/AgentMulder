@@ -1,6 +1,11 @@
 What's new in Agent Mulder
 ==========================
 
+v1.1.1
+======
+
++ Added support for ReSharper 8.1 (installed via the Extensions Gallery)
+
 v1.1.0.0
 ========
 

@@ -66,6 +66,12 @@
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="SimpleInjector">
+      <HintPath>..\packages\SimpleInjector.2.4.0\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Diagnostics">
+      <HintPath>..\packages\SimpleInjector.2.4.0\lib\net45\SimpleInjector.Diagnostics.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
@@ -91,6 +97,8 @@
     <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />
     <Compile Include="Ninject\SanityTests.cs" />
+    <Compile Include="SimpleInjector\ContainerTests.cs" />
+    <Compile Include="SimpleInjector\Helpers\TestSimpleInjectorAttribute.cs" />
     <Compile Include="StructureMap\ContainerTests.cs" />
     <Compile Include="StructureMap\TestStructureMapAttribute.cs" />
     <Compile Include="StructureMap\SanityTests.cs" />
@@ -151,4 +159,5 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Targets" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.8.1.555\build\JetBrains.ReSharper.SDK.Targets')" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 </Project>

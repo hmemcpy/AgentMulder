@@ -11,7 +11,7 @@ namespace TestApplication.Catel
     {
         public RegisterTypeNonGeneric()
         {
-            ServiceLocator.Instance.RegisterType(typeof(ICommon), typeof(CommonImpl1));
+            ServiceLocator.Default.RegisterType(typeof(ICommon), typeof(CommonImpl1));
         }
     }
 }

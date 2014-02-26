@@ -11,7 +11,7 @@ namespace TestApplication.Catel
     {
         public RegisterTypeIfNotYetRegisteredGeneric()
         {
-            ServiceLocator.Instance.RegisterTypeIfNotYetRegistered<ICommon, CommonImpl1>();
+            ServiceLocator.Default.RegisterTypeIfNotYetRegistered<ICommon, CommonImpl1>();
         } 
     }
 }

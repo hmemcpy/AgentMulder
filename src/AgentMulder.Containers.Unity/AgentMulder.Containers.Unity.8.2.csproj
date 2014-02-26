@@ -9,7 +9,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{ED24F123-0DE0-4872-A79A-FC2E6F5077B1}</ProjectGuid>
+    <ProjectGuid>{7442C236-576B-4D8C-AF5A-BE69A0540E8F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.Containers.Unity</RootNamespace>
@@ -59,13 +59,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
-      <Project>{69909d74-5f9a-45fa-bdcf-17e3f3e3cc23}</Project>
+      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
       <Name>AgentMulder.ReSharper.Domain.8.2</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.AgentMulder.Containers.Unity.8.1.config" />
+    <None Include="packages.AgentMulder.Containers.Unity.8.2.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets')" />

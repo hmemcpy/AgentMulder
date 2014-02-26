@@ -9,7 +9,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{21420556-ECE3-44A2-89AE-8C490497BB7D}</ProjectGuid>
+    <ProjectGuid>{28F00ABB-62B6-4FDA-AB4C-6B71D6B68DFE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.ReSharper.Plugin</RootNamespace>
@@ -89,9 +89,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
-      <Project>{69909d74-5f9a-45fa-bdcf-17e3f3e3cc23}</Project>
+      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
       <Name>AgentMulder.ReSharper.Domain.8.2</Name>
-      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

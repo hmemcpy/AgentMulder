@@ -12,12 +12,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5888ED60-2324-4D2A-BCD0-A91ECA156DE4}</ProjectGuid>
+    <ProjectGuid>{90B8F448-9CD6-4849-8F21-D826A76FE45C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.ReSharper.Tests</RootNamespace>
     <AssemblyName>AgentMulder.ReSharper.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>bin\$(Configuration)\$(ReSharperSdkVersion)\</OutputPath>
     <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
@@ -123,43 +123,51 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.8.1.csproj">
-      <Project>{1eff9976-9e25-4c7b-b92c-677f0e854488}</Project>
+    <ProjectReference Include="..\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.8.2.csproj">
+      <Project>{b452529d-2120-473f-b953-821fd14df8df}</Project>
       <Name>AgentMulder.Containers.Autofac.8.2</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.8.1.csproj">
-      <Project>{15d3254d-b9d7-493d-a8f5-8c2f594ec6c0}</Project>
+    <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.8.2.csproj">
+      <Project>{a3ece176-1a92-4314-8418-efcd6c4c3938}</Project>
       <Name>AgentMulder.Containers.CastleWindsor.8.2</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.Catel\AgentMulder.Containers.Catel.8.2.csproj">
-      <Project>{870877ad-d98e-497e-babd-9b94fa60bac6}</Project>
+      <Project>{62838d3c-c7b8-408e-a735-210a71d09e5e}</Project>
       <Name>AgentMulder.Containers.Catel.8.2</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.8.2.csproj">
-      <Project>{45c79271-cfed-402c-9cab-70f9a8931b4a}</Project>
+      <Project>{925efc80-5dc3-450f-9be0-cfab69488992}</Project>
       <Name>AgentMulder.Containers.Ninject.8.2</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.SimpleInjector\AgentMulder.Containers.SimpleInjector.8.2.csproj">
-      <Project>{6c36a2ed-3664-4c48-b80a-5cbc47fb2aaf}</Project>
+      <Project>{95df731b-f078-46a9-ae9b-9fe293b2f5f8}</Project>
       <Name>AgentMulder.Containers.SimpleInjector.8.2</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.8.2.csproj">
-      <Project>{bcf44043-8fbe-4117-89ce-4fdaab530d93}</Project>
+      <Project>{932bc0d7-a525-460d-a3ed-a010464811e8}</Project>
       <Name>AgentMulder.Containers.StructureMap.8.2</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.8.2.csproj">
-      <Project>{ed24f123-0de0-4872-a79a-fc2e6f5077b1}</Project>
+      <Project>{7442c236-576b-4d8c-af5a-be69a0540e8f}</Project>
       <Name>AgentMulder.Containers.Unity.8.2</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
-      <Project>{69909d74-5f9a-45fa-bdcf-17e3f3e3cc23}</Project>
+      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
       <Name>AgentMulder.ReSharper.Domain.8.2</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.8.2.csproj">
-      <Project>{21420556-ece3-44a2-89ae-8c490497bb7d}</Project>
+      <Project>{28f00abb-62b6-4fda-ab4c-6b71d6b68dfe}</Project>
       <Name>AgentMulder.ReSharper.Plugin.8.2</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.8.2.555\build\JetBrains.ReSharper.SDK.Targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Props'))" />
+    <Error Condition="!Exists('..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets'))" />
+    <Error Condition="!Exists('..\packages\JetBrains.ReSharper.SDK.Tests.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Tests.Props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.ReSharper.SDK.Tests.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Tests.Props'))" />
+  </Target>
+  <Import Project="..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets')" />
 </Project>

@@ -9,7 +9,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{15D3254D-B9D7-493D-A8F5-8C2F594EC6C0}</ProjectGuid>
+    <ProjectGuid>{A3ECE176-1A92-4314-8418-EFCD6C4C3938}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.Containers.CastleWindsor</RootNamespace>
@@ -93,10 +93,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
-      <Project>{69909d74-5f9a-45fa-bdcf-17e3f3e3cc23}</Project>
+      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
       <Name>AgentMulder.ReSharper.Domain.8.2</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.AgentMulder.Containers.CastleWindsor.8.2.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.8.2.921-EAP\build\JetBrains.ReSharper.SDK.Targets')" />

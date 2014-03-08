@@ -6,11 +6,7 @@ namespace AgentMulder.ReSharper.Tests.Ninject
 {
     public class TestNinjectAttribute : TestReferencesAttribute
     {
-#if SDK81
         public override IEnumerable<string> GetReferences(JetBrains.ProjectModel.PlatformID platformId)
-#else
-        public override IEnumerable<string> GetReferences()
-#endif
         {
             return new[]
             {

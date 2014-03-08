@@ -7,11 +7,7 @@ namespace AgentMulder.ReSharper.Tests.Windsor
 {
     public class TestWindsorAttribute : TestReferencesAttribute
     {
-#if SDK81
         public override IEnumerable<string> GetReferences(JetBrains.ProjectModel.PlatformID platformId)
-#else
-        public override IEnumerable<string> GetReferences()
-#endif
         {
             return new[]
             {

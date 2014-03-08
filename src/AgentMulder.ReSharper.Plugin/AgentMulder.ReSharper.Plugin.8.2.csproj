@@ -62,7 +62,7 @@
     <Compile Include="Components\IPatternManager.cs" />
     <Compile Include="Components\IRegistrationInfo.cs" />
     <Compile Include="Components\ITypeUsageManager.cs" />
-    <Compile Include="Components\PatternManagerCache.8.0.cs" />
+    <Compile Include="Components\PatternManagerCache.cs" />
     <Compile Include="Components\PatternSearcher.cs" />
     <Compile Include="Components\TypeUsageManager.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.cs" />

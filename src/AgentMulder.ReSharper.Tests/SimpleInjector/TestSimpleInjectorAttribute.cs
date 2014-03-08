@@ -6,7 +6,7 @@ namespace AgentMulder.ReSharper.Tests.SimpleInjector.Helpers
 {
     public class TestSimpleInjectorAttribute : TestReferencesAttribute
     {
-        public override string[] GetReferences()
+        public override IEnumerable<string> GetReferences(JetBrains.ProjectModel.PlatformID platformId)
         {
             return new[]
             {

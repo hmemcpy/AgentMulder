@@ -1,33 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using JetBrains.Application.Progress;
 using JetBrains.DataFlow;
 using JetBrains.DocumentManagers.impl;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Caches;
-using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
-using JetBrains.ReSharper.Psi.Impl.Caches2;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
+using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {
     [SolutionComponent]
-    public partial class PatternManagerCache : IPatternManager, ICache
+    public class PatternManagerCache80 : IPatternManager, ICache
     {
         private readonly object lockObject = new object();
+        private readonly JetHashSet<IPsiSourceFile> dirtyFiles = new JetHashSet<IPsiSourceFile>();
         private readonly PsiProjectFileTypeCoordinator projectFileTypeCoordinator;
         private readonly SolutionAnalyzer solutionAnalyzer;
-        private readonly JetHashSet<IPsiSourceFile> dirtyFiles = new JetHashSet<IPsiSourceFile>();
-        private readonly OneToListMap<IPsiSourceFile, RegistrationInfo> registrationsMap = new OneToListMap<IPsiSourceFile, RegistrationInfo>();
 
-        public PatternManagerCache(Lifetime lifetime, CacheManagerEx cacheManager, PsiProjectFileTypeCoordinator projectFileTypeCoordinator, SolutionAnalyzer solutionAnalyzer)
+        private readonly OneToListMap<IPsiSourceFile, RegistrationInfo> registrationsMap =
+            new OneToListMap<IPsiSourceFile, RegistrationInfo>();
+
+        public PatternManagerCache80(SolutionAnalyzer solutionAnalyzer, PsiProjectFileTypeCoordinator projectFileTypeCoordinator)
         {
             this.projectFileTypeCoordinator = projectFileTypeCoordinator;
             this.solutionAnalyzer = solutionAnalyzer;
-
-            lifetime.AddBracket(() => cacheManager.RegisterCache(this), () => cacheManager.UnregisterCache(this));
         }
 
         public IEnumerable<RegistrationInfo> GetRegistrationsForFile(IPsiSourceFile sourceFile)
@@ -41,11 +41,6 @@ namespace AgentMulder.ReSharper.Plugin.Components
             {
                 return registrationsMap.Values;
             }
-        }
-
-        object ICache.Build(IPsiAssembly assembly)
-        {
-            return null;
         }
 
         object ICache.Build(IPsiSourceFile sourceFile, bool isStartup)
@@ -63,16 +58,21 @@ namespace AgentMulder.ReSharper.Plugin.Components
             get { return Enumerable.Any(dirtyFiles); }
         }
 
+        void ICache.Save(IProgressIndicator progress, bool enablePersistence)
+        {
+        }
+
         void ICache.MarkAsDirty(IPsiSourceFile sourceFile)
+        {
+            MarkAsDirty(sourceFile);
+        }
+
+        private void MarkAsDirty(IPsiSourceFile sourceFile)
         {
             lock (lockObject)
             {
-                dirtyFiles.Add(sourceFile);                
+                dirtyFiles.Add(sourceFile);
             }
-        }
-
-        void ICache.Merge(IPsiAssembly assembly, object part)
-        {
         }
 
         void ICache.Merge(IPsiSourceFile sourceFile, object builtPart)
@@ -83,6 +83,11 @@ namespace AgentMulder.ReSharper.Plugin.Components
             }
 
             Merge(sourceFile, (IEnumerable<RegistrationInfo>)builtPart);
+        }
+
+        void ICache.Drop(IPsiSourceFile sourceFile)
+        {
+            RemoveFileItems(sourceFile);
         }
 
         private void Merge(IPsiSourceFile sourceFile, IEnumerable<RegistrationInfo> items)
@@ -96,25 +101,13 @@ namespace AgentMulder.ReSharper.Plugin.Components
             }
         }
 
+        object ICache.Load(IProgressIndicator progress, bool enablePersistence)
+        {
+            return null;
+        }
+
         void ICache.MergeLoaded(object data)
         {
-        }
-
-        void ICache.OnAssemblyRemoved(IPsiAssembly assembly)
-        {
-        }
-
-        void ICache.OnDocumentChange(ProjectFileDocumentCopyChange change)
-        {
-            foreach (IPsiSourceFile sourceFile in change.ProjectFile.ToSourceFiles())
-            {
-                ((ICache)this).MarkAsDirty(sourceFile);
-            }
-        }
-
-        void ICache.OnFileRemoved(IPsiSourceFile sourceFile)
-        {
-            RemoveFileItems(sourceFile);
         }
 
         private void RemoveFileItems(IPsiSourceFile sourceFile)
@@ -130,30 +123,14 @@ namespace AgentMulder.ReSharper.Plugin.Components
             }
         }
 
-        IEnumerable<IPsiSourceFile> ICache.OnProjectModelChange(ProjectModelChange change)
-        {
-            return EmptyList<IPsiSourceFile>.InstanceList;
-        }
-
         void ICache.OnPsiChange(ITreeNode elementContainingChanges, PsiChangedElementType type)
         {
         }
 
-        IEnumerable<IPsiSourceFile> ICache.OnPsiModulePropertiesChange(IPsiModule module)
+        void ICache.OnDocumentChange(IPsiSourceFile sourceFile, ProjectFileDocumentCopyChange change)
         {
-            return EmptyList<IPsiSourceFile>.InstanceList;
-        }
+            MarkAsDirty(sourceFile);
 
-        void ICache.OnSandBoxCreated(SandBox sandBox)
-        {
-        }
-
-        void ICache.OnSandBoxPsiChange(ITreeNode elementContainingChanges)
-        {
-        }
-
-        void ICache.Release()
-        {
         }
 
         void ICache.SyncUpdate(bool underTransaction)

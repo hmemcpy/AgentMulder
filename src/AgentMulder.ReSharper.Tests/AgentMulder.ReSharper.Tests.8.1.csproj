@@ -95,7 +95,6 @@
     <Compile Include="Catel\TestCatelAttribute.cs" />
     <Compile Include="Catel\ServiceLocatorTests.cs" />
     <Compile Include="AgentMulderTestBase.cs" />
-    <Compile Include="AgentMulderTestBase.8.x.cs" />
     <Compile Include="Ninject\TestNinjectAttribute.cs" />
     <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />

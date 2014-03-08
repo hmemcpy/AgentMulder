@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Modules;
 using JetBrains.ReSharper.Psi.Resolve.Managed;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Autofac.Patterns.Helpers
 {
-    public partial class ReturnTypeCollector : TreeNodeVisitor, IRecursiveElementProcessor
+    public class ReturnTypeCollector : TreeNodeVisitor, IRecursiveElementProcessor
     {
         private readonly List<IExpressionType> expressionTypes = new List<IExpressionType>();
         private readonly IResolveContext resolveContext;
@@ -53,5 +54,11 @@ namespace AgentMulder.Containers.Autofac.Patterns.Helpers
 
             base.VisitReturnStatement(returnStatementParam);
         }
+
+        private IDeclaredType GetVoidType(IPsiModule module)
+        {
+            return module.GetPredefinedType(module.GetContextFromModule()).Void;
+        }
+
     }
 }

@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Files;
 using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Utils
 {
-    public static partial class PsiExtensions
+    public static class PsiExtensions
     {
         public static IEnumerable<IInvocationExpression> GetAllExpressions(this IInvocationExpression expression)
         {
@@ -101,6 +103,11 @@ namespace AgentMulder.ReSharper.Domain.Utils
             }
 
             return null;
+        }
+
+        public static ICSharpFile GetCSharpFile(this IPsiSourceFile sourceFile)
+        {
+            return sourceFile.GetTheOnlyPsiFile(sourceFile.PrimaryPsiLanguage) as ICSharpFile;
         }
     }
 }

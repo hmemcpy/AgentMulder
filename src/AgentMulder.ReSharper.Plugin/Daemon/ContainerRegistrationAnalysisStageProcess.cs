@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using AgentMulder.ReSharper.Plugin.Components;
 using AgentMulder.ReSharper.Plugin.Highlighting;
@@ -10,7 +11,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {
-    public partial class ContainerRegistrationAnalysisStageProcess : IDaemonStageProcess
+    public class ContainerRegistrationAnalysisStageProcess : IDaemonStageProcess
     {
         private readonly IDaemonProcess process;
         private readonly IContextBoundSettingsStore settingsStore;
@@ -50,7 +51,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                         IPsiSourceFile psiSourceFile = registrationInfo.GetSourceFile();
                         consumer.AddHighlighting(new RegisteredByContainerHighlighting(registrationInfo),
                                                  declaration.GetNameDocumentRange(),
-                                                 GetPsiFile(psiSourceFile));
+                                                 psiSourceFile.GetTheOnlyPsiFile(psiSourceFile.PrimaryPsiLanguage));
                         
                         typeUsageManager.MarkTypeAsUsed(declaration);
                     }
@@ -58,6 +59,11 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
             }
 
             commiter(new DaemonStageResult(consumer.Highlightings));
+        }
+
+        private IEnumerable<IFile> EnumeratePsiFiles()
+        {
+            return DaemonProcess.SourceFile.EnumerateDominantPsiFiles();
         }
 
         public IDaemonProcess DaemonProcess

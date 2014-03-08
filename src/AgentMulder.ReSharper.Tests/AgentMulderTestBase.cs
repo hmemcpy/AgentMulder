@@ -19,7 +19,7 @@ using AgentMulder.ReSharper.Domain.Utils;
 namespace AgentMulder.ReSharper.Tests
 {
     [TestFixture]
-    public abstract partial class AgentMulderTestBase : BaseTestWithSingleProject
+    public abstract class AgentMulderTestBase : BaseTestWithSingleProject
     {
         private static readonly Regex patternCountRegex = new Regex(@"// Patterns: (?<patterns>\d+)");
         private static readonly Regex matchesRegex      = new Regex(@"// Matches: (?<files>.*?)\r?\n");
@@ -43,6 +43,11 @@ namespace AgentMulder.ReSharper.Tests
 
                 action(patternManager);
             });
+        }
+
+        private void RunFixture(IEnumerable<string> fileSet, Action action)
+        {
+            WithSingleProject(fileSet, (lifetime, solution, project) => RunGuarded(action));
         }
 
         protected ICSharpFile GetCodeFile(string fileName)

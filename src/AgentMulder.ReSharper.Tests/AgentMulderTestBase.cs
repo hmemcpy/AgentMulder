@@ -8,7 +8,6 @@ using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.TestFramework;
@@ -18,15 +17,19 @@ using AgentMulder.ReSharper.Domain.Utils;
 
 namespace AgentMulder.ReSharper.Tests
 {
-    [TestFixture]
-    public abstract partial class AgentMulderTestBase : BaseTestWithSingleProject
+    [TestNetFramework45]
+    public abstract class AgentMulderTestBase<TContainerInfo> : BaseTestWithSingleProject
+        where TContainerInfo : IContainerInfo, new()
     {
         private static readonly Regex patternCountRegex = new Regex(@"// Patterns: (?<patterns>\d+)");
         private static readonly Regex matchesRegex      = new Regex(@"// Matches: (?<files>.*?)\r?\n");
         private static readonly Regex notMatchesRegex   = new Regex(@"// NotMatches: (?<files>.*?)\r?\n");
 
-        protected abstract IContainerInfo ContainerInfo { get; }
-        
+        protected virtual IContainerInfo ContainerInfo
+        {
+            get { return new TContainerInfo(); }
+        }
+
         protected void RunTest(string fileName, Action<IPatternManager> action)
         {
             var typesPath = new DirectoryInfo(Path.Combine(BaseTestDataPath.FullPath, "Types"));
@@ -36,12 +39,18 @@ namespace AgentMulder.ReSharper.Tests
 
             RunFixture(fileSet, () => { 
                 var solutionAnalyzer = Solution.GetComponent<SolutionAnalyzer>();
-                solutionAnalyzer.AddContainer(ContainerInfo);
+                solutionAnalyzer.KnownContainers.Clear();
+                solutionAnalyzer.KnownContainers.Add(ContainerInfo);
 
                 var patternManager = Solution.GetComponent<IPatternManager>();
 
                 action(patternManager);
             });
+        }
+
+        private void RunFixture(IEnumerable<string> fileSet, Action action)
+        {
+            WithSingleProject(fileSet, (lifetime, solution, project) => RunGuarded(action));
         }
 
         protected ICSharpFile GetCodeFile(string fileName)

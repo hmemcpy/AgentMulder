@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
+using JetBrains.Metadata.Reader.API;
+using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -8,7 +10,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
-    public partial class Pick : BasedOnPatternBase
+    public class Pick : BasedOnPatternBase
     {
         private readonly IBasedOnRegistrationCreator registrationCreator;
 
@@ -25,6 +27,23 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
             return GetBasedOnRegistrations(registrationRootElement);
+        }
+
+        public override IEnumerable<FilteredRegistrationBase> GetBasedOnRegistrations(ITreeNode registrationRootElement)
+        {
+            IStructuralMatchResult match = Match(registrationRootElement);
+
+            if (match.Matched)
+            {
+                ITypeElement objectTypeElement = registrationRootElement.GetPsiModule()
+                                                                        .GetPredefinedType(UniversalModuleReferenceContext.Instance)
+                                                                        .Object.GetTypeElement();
+                    
+                if (objectTypeElement != null)
+                {
+                    yield return registrationCreator.Create(registrationRootElement, objectTypeElement);
+                }
+            }
         }
     }
 }

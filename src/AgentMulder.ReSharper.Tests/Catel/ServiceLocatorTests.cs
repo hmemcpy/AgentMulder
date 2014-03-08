@@ -1,19 +1,13 @@
 ﻿using AgentMulder.Containers.Catel;
-using AgentMulder.ReSharper.Domain.Containers;
 
 namespace AgentMulder.ReSharper.Tests.Catel
 {
-    [TestCatel]
-    public class ServiceLocatorTests : AgentMulderTestBase
+    [TestWithNuGetPackage(Packages = new[] { "Catel.Core" })]
+    public class ServiceLocatorTests : AgentMulderTestBase<CatelContainerInfo>
     {
         protected override string RelativeTestDataPath
         {
             get { return @"Catel"; }
-        }
-
-        protected override IContainerInfo ContainerInfo
-        {
-            get { return new CatelContainerInfo(); }
         }
     }
 }

@@ -39,18 +39,16 @@ namespace AgentMulder.ReSharper.Domain.Patterns
 
         private IInvocationExpression GetMatchedExpression(ITreeNode element)
         {
-            var invocationExpression = element as IInvocationExpression;
-            if (invocationExpression == null)
-                return null;
-
-            return invocationExpression.GetAllExpressions().FirstOrDefault(expression => matcher.QuickMatch(expression));
+            return GetAllMatchedExpressions(element).FirstOrDefault();
         }
 
         private IEnumerable<IInvocationExpression> GetAllMatchedExpressions(ITreeNode element)
         {
             var invocationExpression = element as IInvocationExpression;
             if (invocationExpression == null)
-                return null;
+            {
+                return EmptyList<IInvocationExpression>.InstanceList;
+            }
 
             return invocationExpression.GetAllExpressions().Where(expression => matcher.QuickMatch(expression));
         }
@@ -70,7 +68,6 @@ namespace AgentMulder.ReSharper.Domain.Patterns
         {
             return GetAllMatchedExpressions(treeNode).Select(expression => matcher.Match(expression));
         }
-
 
         public abstract IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement);
     }

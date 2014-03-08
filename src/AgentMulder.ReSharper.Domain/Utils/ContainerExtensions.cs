@@ -6,7 +6,7 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Utils
 {
-    public static partial class ContainerExtensions
+    public static class ContainerExtensions
     {
         public static bool IsContainerCall(this ITreeNode node, string containerClrTypeName)
         {
@@ -30,11 +30,12 @@ namespace AgentMulder.ReSharper.Domain.Utils
 
             IDeclaredType containerClrType = CreateTypeByClrName(node, containerClrTypeName);
 
-#if SDK70
-            IDeclaredType containerClrType = TypeFactory.CreateTypeByCLRName(containerClrTypeName, node.GetPsiModule());
-#endif
-
             return containingType.IsDescendantOf(containerClrType.GetTypeElement());
+        }
+
+        private static IDeclaredType CreateTypeByClrName(ITreeNode node, string containerClrTypeName)
+        {
+            return TypeFactory.CreateTypeByCLRName(containerClrTypeName, node.GetPsiModule(), node.GetResolveContext());
         }
 
         public static IEnumerable<ITypeElement> GetRegisteredTypes(this ICSharpExpression expression)

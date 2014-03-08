@@ -1,19 +1,13 @@
 ﻿using AgentMulder.Containers.StructureMap;
-using AgentMulder.ReSharper.Domain.Containers;
 
 namespace AgentMulder.ReSharper.Tests.StructureMap
 {
-    [TestStructureMap]
-    public class ScanTests : AgentMulderTestBase
+    [TestWithNuGetPackage(Packages = new[] { "StructureMap" })]
+    public class ScanTests : AgentMulderTestBase<StructureMapContainerInfo>
     {
         protected override string RelativeTestDataPath
         {
             get { return @"StructureMap\ScanTests"; }
-        }
-
-        protected override IContainerInfo ContainerInfo
-        {
-            get { return new StructureMapContainerInfo(); }
         }
     }
 }

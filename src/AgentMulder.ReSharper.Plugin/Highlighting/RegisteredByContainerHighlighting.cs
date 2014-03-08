@@ -1,11 +1,13 @@
 ﻿using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application;
 using JetBrains.ReSharper.Daemon;
+using JetBrains.ReSharper.Feature.Services.Navigation.Navigation.NavigationExtensions;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Highlighting
 {
     [StaticSeverityHighlighting(Severity.INFO, "GutterMarks", OverlapResolve = OverlapResolveKind.NONE, AttributeId = "Container Registration", ShowToolTipInStatusBar = false)]
-    public partial class RegisteredByContainerHighlighting : IClickableGutterHighlighting
+    public class RegisteredByContainerHighlighting : IClickableGutterHighlighting
     {
         private readonly RegistrationInfo registrationInfo;
         private readonly string containerName;
@@ -45,6 +47,11 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
             {
                 NavigateTo(registrationInfo.Registration.RegistrationElement);
             }
+        }
+
+        private void NavigateTo(ITreeNode registrationElement)
+        {
+            registrationElement.NavigateToTreeNode(true);
         }
     }
 }

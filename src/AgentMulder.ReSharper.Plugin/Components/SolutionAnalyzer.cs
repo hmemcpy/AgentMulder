@@ -22,9 +22,9 @@ namespace AgentMulder.ReSharper.Plugin.Components
         private readonly ISolution solution;
         private readonly SearchDomainFactory searchDomainFactory;
 
-        internal void AddContainer(IContainerInfo containerInfo)
+        internal List<IContainerInfo> KnownContainers
         {
-            knownContainers.Add(containerInfo);
+            get { return knownContainers; }
         }
 
         public SolutionAnalyzer(PatternSearcher patternSearcher, ISolution solution, SearchDomainFactory searchDomainFactory)

@@ -36,7 +36,8 @@ namespace AgentMulder.ReSharper.Tests
 
             RunFixture(fileSet, () => { 
                 var solutionAnalyzer = Solution.GetComponent<SolutionAnalyzer>();
-                solutionAnalyzer.AddContainer(ContainerInfo);
+                solutionAnalyzer.KnownContainers.Clear();
+                solutionAnalyzer.KnownContainers.Add(ContainerInfo);
 
                 var patternManager = Solution.GetComponent<IPatternManager>();
 

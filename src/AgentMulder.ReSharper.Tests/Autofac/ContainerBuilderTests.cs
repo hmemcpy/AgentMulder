@@ -1,19 +1,13 @@
 using AgentMulder.Containers.Autofac;
-using AgentMulder.ReSharper.Domain.Containers;
 
 namespace AgentMulder.ReSharper.Tests.Autofac
 {
-    [TestAutofac]
-    public class ContainerBuilderTests : AgentMulderTestBase
+    [TestWithNuGetPackage(Packages = new[] { "Autofac" })]
+    public class ContainerBuilderTests : AgentMulderTestBase<AutofacContainerInfo>
     {
         protected override string RelativeTestDataPath
         {
             get { return @"Autofac"; }
-        }
-
-        protected override IContainerInfo ContainerInfo
-        {
-            get { return new AutofacContainerInfo(); }
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
@@ -14,7 +15,7 @@ namespace AgentMulder.Containers.Autofac
             get { return "Autofac"; }
         }
 
-        public override System.Collections.Generic.IEnumerable<string> ContainerQualifiedNames
+        public override IEnumerable<string> ContainerQualifiedNames
         {
             get { yield return "Autofac"; }
         } 

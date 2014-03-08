@@ -42,20 +42,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.3.0\lib\net40\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
-    </Reference>
-    <Reference Include="Catel.Core">
-      <HintPath>..\packages\Catel.Core.3.9.0\lib\net45\Catel.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
@@ -64,20 +50,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Ninject.3.0.2-unstable-9049\lib\net45-full\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="SimpleInjector">
-      <HintPath>..\packages\SimpleInjector.2.4.1\lib\net45\SimpleInjector.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleInjector.Diagnostics">
-      <HintPath>..\packages\SimpleInjector.2.4.1\lib\net45\SimpleInjector.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -91,26 +64,20 @@
   <ItemGroup>
     <Compile Include="Autofac\ContainerBuilderTests.cs" />
     <Compile Include="Autofac\RegisterAssemblyTypesTests.cs" />
-    <Compile Include="Autofac\TestAutofacAttribute.cs" />
-    <Compile Include="Catel\TestCatelAttribute.cs" />
     <Compile Include="Catel\ServiceLocatorTests.cs" />
     <Compile Include="AgentMulderTestBase.cs" />
-    <Compile Include="Ninject\TestNinjectAttribute.cs" />
     <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="Ninject\ModuleTests.cs" />
     <Compile Include="Ninject\SanityTests.cs" />
     <Compile Include="SimpleInjector\ContainerTests.cs" />
-    <Compile Include="SimpleInjector\TestSimpleInjectorAttribute.cs" />
     <Compile Include="StructureMap\ContainerTests.cs" />
-    <Compile Include="StructureMap\TestStructureMapAttribute.cs" />
     <Compile Include="StructureMap\SanityTests.cs" />
     <Compile Include="StructureMap\ScanTests.cs" />
-    <Compile Include="Unity\TestUnityAttribute.cs" />
+    <Compile Include="TestWithNuGetPackageAttribute.cs" />
     <Compile Include="Unity\RegisterTypeTests.cs" />
     <Compile Include="Windsor\AllTypesTests.cs" />
     <Compile Include="Windsor\ClassesTests.cs" />
     <Compile Include="Windsor\TypesTests.cs" />
-    <Compile Include="Windsor\TestWindsorAttribute.cs" />
     <Compile Include="Windsor\ComponentRegistrationTests.cs" />
     <Compile Include="TestEnvironmentAssembly.cs" />
     <Compile Include="Windsor\SanityTests.cs" />

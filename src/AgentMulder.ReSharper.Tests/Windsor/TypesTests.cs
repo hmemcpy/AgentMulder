@@ -4,8 +4,8 @@ using AgentMulder.ReSharper.Domain.Containers;
 
 namespace AgentMulder.ReSharper.Tests.Windsor
 {
-    [TestWindsor]
-    public class TypesTests : AgentMulderTestBase
+    [TestWithNuGetPackage(Packages = new[] { "Castle.Windsor", "Castle.Core" })]
+    public class TypesTests : AgentMulderTestBase<WindsorContainerInfo>
     {
         protected override string RelativeTestDataPath
         {

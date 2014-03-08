@@ -5,10 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using AgentMulder.ReSharper.Domain.Containers;
-using AgentMulder.ReSharper.Domain.Utils;
+using JetBrains.Annotations;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Caches;
 using JetBrains.ReSharper.Psi.Search;
 using JetBrains.Util;
 
@@ -19,19 +19,19 @@ namespace AgentMulder.ReSharper.Plugin.Components
     {
         private readonly List<IContainerInfo> knownContainers = new List<IContainerInfo>();
         private readonly PatternSearcher patternSearcher;
-        private readonly ISolution solution;
         private readonly SearchDomainFactory searchDomainFactory;
+        private readonly IWordIndex wordIndex;
 
         internal List<IContainerInfo> KnownContainers
         {
             get { return knownContainers; }
         }
 
-        public SolutionAnalyzer(PatternSearcher patternSearcher, ISolution solution, SearchDomainFactory searchDomainFactory)
+        public SolutionAnalyzer([NotNull] PatternSearcher patternSearcher, [NotNull] SearchDomainFactory searchDomainFactory, [NotNull] IWordIndex wordIndex)
         {
             this.patternSearcher = patternSearcher;
-            this.solution = solution;
             this.searchDomainFactory = searchDomainFactory;
+            this.wordIndex = wordIndex;
 
             LoadContainerInfos();
         }
@@ -53,31 +53,9 @@ namespace AgentMulder.ReSharper.Plugin.Components
             knownContainers.AddRange(values);
         }
 
-        
-        public IEnumerable<RegistrationInfo> Analyze()
+        public IEnumerable<RegistrationInfo> Analyze([NotNull] IPsiSourceFile sourceFile)
         {
-            ISearchDomain searchDomain = searchDomainFactory.CreateSearchDomain(solution, false);
-            
-            return knownContainers.SelectMany(info => ScanRegistrations(info, searchDomain));
-        }
-
-        public IEnumerable<RegistrationInfo> Analyze(IPsiSourceFile sourceFile)
-        {
-            ICSharpFile cSharpFile = sourceFile.GetCSharpFile();
-            if (cSharpFile == null)
-            {
-                return EmptyList<RegistrationInfo>.InstanceList;
-            }
-
-            // todo - optimization
-            // determine all modules referenced from the source file
-            // scan all type declarations in the file to see if any types' module is the container module
-            
-            var usingStatements = cSharpFile.Imports
-                                            .Where(directive => !directive.ImportedSymbolName.QualifiedName.StartsWith("System"))
-                                            .Select(directive => directive.ImportedSymbolName.QualifiedName).ToList();
-
-            IContainerInfo matchingContainer = GetMatchingContainer(usingStatements);
+            IContainerInfo matchingContainer = GetMatchingContainer(sourceFile);
             if (matchingContainer == null)
             {
                 return EmptyList<RegistrationInfo>.InstanceList;
@@ -88,19 +66,10 @@ namespace AgentMulder.ReSharper.Plugin.Components
             return ScanRegistrations(matchingContainer, searchDomain);
         }
 
-
-
-        public IEnumerable<RegistrationInfo> Analyze(IEnumerable<IPsiSourceFile> sourceFiles)
-        {
-            ISearchDomain searchDomain = searchDomainFactory.CreateSearchDomain(sourceFiles);
-
-            return knownContainers.SelectMany(info => ScanRegistrations(info, searchDomain));
-        }
-
-        private IContainerInfo GetMatchingContainer(IEnumerable<string> usingStatements)
+        private IContainerInfo GetMatchingContainer(IPsiSourceFile sourceFile)
         {
             return knownContainers.FirstOrDefault(knownContainer => 
-                knownContainer.ContainerQualifiedNames.Any(usingStatements.Contains));
+                knownContainer.ContainerQualifiedNames.Any(s => wordIndex.CanContainWord(sourceFile, s)));
         }
 
         private IEnumerable<RegistrationInfo> ScanRegistrations(IContainerInfo containerInfo, ISearchDomain searchDomain)

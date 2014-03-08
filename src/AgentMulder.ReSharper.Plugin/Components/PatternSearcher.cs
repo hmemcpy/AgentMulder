@@ -4,7 +4,6 @@ using JetBrains.Application.Progress;
 using JetBrains.DocumentManagers;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Features.StructuralSearch.Finding;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.Search;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch.Impl;

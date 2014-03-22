@@ -4,5 +4,5 @@ using System.Reflection;
 [assembly: AssemblyProduct("AgentMulder plugin for ReSharper")]
 [assembly: AssemblyCopyright("Copyright © Igal Tabachnik, 2013")]
 
-[assembly: AssemblyVersion("1.1.1")]
-[assembly: AssemblyFileVersion("1.1.1")]
+[assembly: AssemblyVersion("1.1.2")]
+[assembly: AssemblyFileVersion("1.1.2")]

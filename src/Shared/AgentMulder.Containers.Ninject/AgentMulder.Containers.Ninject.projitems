@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>50c0fdab-2fb8-480f-8419-4115be2492e1</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>AgentMulder.Containers.Ninject</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)NinjectContainerInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\BindBasePattern.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\KernelBindGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\KernelBindNonGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\KernelRebindGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\KernelRebindNonGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\ModuleBindGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\ModuleBindNonGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\ModuleRebindGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\ModuleRebindNonGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\To\ToGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\To\ToNonGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Bind\To\ToSelf.cs" />
+  </ItemGroup>
+</Project>

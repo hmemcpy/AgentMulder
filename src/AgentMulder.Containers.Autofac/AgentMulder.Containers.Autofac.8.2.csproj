@@ -54,32 +54,13 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AutofacContainerInfo.cs" />
-    <Compile Include="Patterns\FromAssemblies\BasedOn\AsClosedTypesOf.cs" />
-    <Compile Include="Patterns\FromAssemblies\BasedOn\AsGeneric.cs" />
-    <Compile Include="Patterns\FromAssemblies\BasedOn\AsImplementedInterfaces.cs" />
-    <Compile Include="Patterns\FromAssemblies\BasedOn\AsNonGeneric.cs" />
-    <Compile Include="Patterns\FromAssemblies\BasedOn\AssignableToGeneric.cs" />
-    <Compile Include="Patterns\FromAssemblies\BasedOn\AssignableToNonGeneric.cs" />
-    <Compile Include="Patterns\FromAssemblies\BasedOn\Except.cs" />
-    <Compile Include="Patterns\FromAssemblies\BasedOn\InNamespaceOf.cs" />
-    <Compile Include="Patterns\FromAssemblies\BasedOn\InNamespaceString.cs" />
-    <Compile Include="Patterns\Helpers\ReturnTypeCollector.cs" />
-    <Compile Include="Patterns\FromAssemblies\RegisterAssemblyTypes.cs" />
-    <Compile Include="Patterns\RegisterLambdaExpression.cs" />
-    <Compile Include="Patterns\RegisterLambdaStatements.cs" />
-    <Compile Include="Patterns\RegisterTypeGeneric.cs" />
-    <Compile Include="Patterns\RegisterTypeNonGeneric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registrations\DefaultScanAssemblyRegistration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
-      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
-      <Name>AgentMulder.ReSharper.Domain.8.2</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <None Include="packages.AgentMulder.Containers.Autofac.8.2.config" />
   </ItemGroup>
+  <Import Project="..\Shared\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.projitems')" />
+  <Import Project="..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

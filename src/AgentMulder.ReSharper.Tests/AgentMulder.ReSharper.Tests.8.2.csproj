@@ -17,7 +17,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.ReSharper.Tests</RootNamespace>
     <AssemblyName>AgentMulder.ReSharper.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>bin\$(Configuration)\$(ReSharperSdkVersion)\</OutputPath>
     <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -62,70 +63,21 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Autofac\ContainerBuilderTests.cs" />
-    <Compile Include="Autofac\RegisterAssemblyTypesTests.cs" />
-    <Compile Include="Catel\ServiceLocatorTests.cs" />
-    <Compile Include="AgentMulderTestBase.cs" />
-    <Compile Include="Ninject\KernelTests.cs" />
-    <Compile Include="Ninject\ModuleTests.cs" />
-    <Compile Include="Ninject\SanityTests.cs" />
-    <Compile Include="SimpleInjector\ContainerTests.cs" />
-    <Compile Include="StructureMap\ContainerTests.cs" />
-    <Compile Include="StructureMap\SanityTests.cs" />
-    <Compile Include="StructureMap\ScanTests.cs" />
-    <Compile Include="TestWithNuGetPackageAttribute.cs" />
-    <Compile Include="Unity\RegisterTypeTests.cs" />
-    <Compile Include="Windsor\AllTypesTests.cs" />
-    <Compile Include="Windsor\ClassesTests.cs" />
-    <Compile Include="Windsor\TypesTests.cs" />
-    <Compile Include="Windsor\ComponentRegistrationTests.cs" />
-    <Compile Include="TestEnvironmentAssembly.cs" />
-    <Compile Include="Windsor\SanityTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.8.2.csproj">
-      <Project>{b452529d-2120-473f-b953-821fd14df8df}</Project>
-      <Name>AgentMulder.Containers.Autofac.8.2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.8.2.csproj">
-      <Project>{a3ece176-1a92-4314-8418-efcd6c4c3938}</Project>
-      <Name>AgentMulder.Containers.CastleWindsor.8.2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.Catel\AgentMulder.Containers.Catel.8.2.csproj">
-      <Project>{62838d3c-c7b8-408e-a735-210a71d09e5e}</Project>
-      <Name>AgentMulder.Containers.Catel.8.2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.8.2.csproj">
-      <Project>{925efc80-5dc3-450f-9be0-cfab69488992}</Project>
-      <Name>AgentMulder.Containers.Ninject.8.2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.SimpleInjector\AgentMulder.Containers.SimpleInjector.8.2.csproj">
-      <Project>{95df731b-f078-46a9-ae9b-9fe293b2f5f8}</Project>
-      <Name>AgentMulder.Containers.SimpleInjector.8.2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.8.2.csproj">
-      <Project>{932bc0d7-a525-460d-a3ed-a010464811e8}</Project>
-      <Name>AgentMulder.Containers.StructureMap.8.2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.8.2.csproj">
-      <Project>{7442c236-576b-4d8c-af5a-be69a0540e8f}</Project>
-      <Name>AgentMulder.Containers.Unity.8.2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
-      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
-      <Name>AgentMulder.ReSharper.Domain.8.2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.8.2.csproj">
-      <Project>{28f00abb-62b6-4fda-ab4c-6b71d6b68dfe}</Project>
-      <Name>AgentMulder.ReSharper.Plugin.8.2</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.AgentMulder.ReSharper.Tests.8.2.config" />
   </ItemGroup>
+  <Import Project="..\Shared\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.Containers.Autofac\AgentMulder.Containers.Autofac.projitems')" />
+  <Import Project="..\Shared\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.projitems')" />
+  <Import Project="..\shared\AgentMulder.Containers.Catel\AgentMulder.Containers.Catel.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.Containers.Catel\AgentMulder.Containers.Catel.projitems')" />
+  <Import Project="..\shared\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.projitems')" />
+  <Import Project="..\shared\AgentMulder.Containers.SimpleInjector\AgentMulder.Containers.SimpleInjector.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.Containers.SimpleInjector\AgentMulder.Containers.SimpleInjector.projitems')" />
+  <Import Project="..\shared\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.projitems')" />
+  <Import Project="..\shared\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.projitems')" />
+  <Import Project="..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems')" />
+  <Import Project="..\Shared\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.projitems')" />
+  <Import Project="..\shared\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

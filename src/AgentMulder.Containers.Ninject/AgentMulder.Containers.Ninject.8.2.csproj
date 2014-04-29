@@ -49,28 +49,13 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="NinjectContainerInfo.cs" />
-    <Compile Include="Patterns\Bind\BindBasePattern.cs" />
-    <Compile Include="Patterns\Bind\KernelBindGeneric.cs" />
-    <Compile Include="Patterns\Bind\KernelBindNonGeneric.cs" />
-    <Compile Include="Patterns\Bind\KernelRebindGeneric.cs" />
-    <Compile Include="Patterns\Bind\KernelRebindNonGeneric.cs" />
-    <Compile Include="Patterns\Bind\ModuleBindGeneric.cs" />
-    <Compile Include="Patterns\Bind\ModuleBindNonGeneric.cs" />
-    <Compile Include="Patterns\Bind\ModuleRebindGeneric.cs" />
-    <Compile Include="Patterns\Bind\ModuleRebindNonGeneric.cs" />
-    <Compile Include="Patterns\Bind\To\ToGeneric.cs" />
-    <Compile Include="Patterns\Bind\To\ToNonGeneric.cs" />
-    <Compile Include="Patterns\Bind\To\ToSelf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
-      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
-      <Name>AgentMulder.ReSharper.Domain.8.2</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <None Include="packages.AgentMulder.Containers.Ninject.8.2.config" />
   </ItemGroup>
+  <Import Project="..\shared\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.Containers.Ninject\AgentMulder.Containers.Ninject.projitems')" />
+  <Import Project="..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -54,53 +54,12 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Containers\ContainerInfoBase.cs" />
-    <Compile Include="Containers\IContainerInfo.cs" />
-    <Compile Include="Elements\ElementExtractorDecorator.cs" />
-    <Compile Include="Elements\IElementExtractor.cs" />
-    <Compile Include="Elements\Modules\IModuleExtractor.cs" />
-    <Compile Include="Elements\Modules\Impl\AssemblyNameExtractor.cs" />
-    <Compile Include="Elements\Modules\Impl\CallingAssemblyExtractor.cs" />
-    <Compile Include="Elements\Modules\Impl\GetExecutingAssemblyExtractor.cs" />
-    <Compile Include="Elements\Modules\Impl\TypeAssemblyPropertyExtractor.cs" />
-    <Compile Include="Elements\Modules\Impl\TypeElementExtractor.cs" />
-    <Compile Include="Elements\Modules\Impl\TypeOfExtractor.cs" />
-    <Compile Include="Elements\Modules\ModuleExtractor.cs" />
-    <Compile Include="Elements\Modules\ModuleExtractorDecorator.cs" />
-    <Compile Include="Patterns\BasedOnPatternBase.cs" />
-    <Compile Include="Patterns\ComponentImplementationPatternBase.cs" />
-    <Compile Include="Patterns\ComponentRegistrationPatternBase.cs" />
-    <Compile Include="Patterns\CompositePattern.cs" />
-    <Compile Include="Patterns\IStructuralPatternHolder.cs" />
-    <Compile Include="Patterns\ModuleBasedPatternBase.cs" />
-    <Compile Include="Patterns\IBasedOnPattern.cs" />
-    <Compile Include="Patterns\IRegistrationPattern.cs" />
-    <Compile Include="Patterns\MultipleMatchBasedOnPatternBase.cs" />
-    <Compile Include="Patterns\NamespaceRegistrationPatternBase.cs" />
-    <Compile Include="Patterns\RegisterWithService.cs" />
-    <Compile Include="Patterns\RegistrationPatternBase.cs" />
-    <Compile Include="Registrations\CompositeRegistration.cs" />
-    <Compile Include="Registrations\ExceptRegistration.cs" />
-    <Compile Include="Registrations\FilteredRegistrationBase.cs" />
-    <Compile Include="Registrations\HasAttributeRegistration.cs" />
-    <Compile Include="Registrations\IBasedOnRegistrationCreator.cs" />
-    <Compile Include="Registrations\NegateRegistration.cs" />
-    <Compile Include="Registrations\ServiceRegistration.cs" />
-    <Compile Include="Utils\ContainerExtensions.cs" />
-    <Compile Include="Utils\MaybeMonadExtensions.cs" />
-    <Compile Include="Utils\PsiExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registrations\ComponentRegistrationBase.cs" />
-    <Compile Include="Registrations\ComponentRegistration.cs" />
-    <Compile Include="Registrations\IComponentRegistration.cs" />
-    <Compile Include="Registrations\InNamespaceRegistration.cs" />
-    <Compile Include="Registrations\IRegistrationPatternsProvider.cs" />
-    <Compile Include="Registrations\ModuleBasedOnRegistration.cs" />
-    <Compile Include="Registrations\TypesBasedOnRegistration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.AgentMulder.ReSharper.Domain.8.1.config" />
   </ItemGroup>
+  <Import Project="..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

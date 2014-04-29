@@ -48,24 +48,13 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Patterns\LifestyleCreateRegistration.cs" />
-    <Compile Include="Patterns\RegisterAll.cs" />
-    <Compile Include="Patterns\RegisterDecorator.cs" />
-    <Compile Include="Patterns\RegisterOpenGeneric.cs" />
-    <Compile Include="Patterns\RegisterSingle.cs" />
-    <Compile Include="Patterns\RegisterSingleDecorator.cs" />
-    <Compile Include="Patterns\RegisterSingleOpenGeneric.cs" />
-    <Compile Include="Patterns\Register.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleInjectorContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
-      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
-      <Name>AgentMulder.ReSharper.Domain.8.2</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <None Include="packages.AgentMulder.Containers.SimpleInjector.8.2.config" />
   </ItemGroup>
+  <Import Project="..\shared\AgentMulder.Containers.SimpleInjector\AgentMulder.Containers.SimpleInjector.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.Containers.SimpleInjector\AgentMulder.Containers.SimpleInjector.projitems')" />
+  <Import Project="..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -49,52 +49,13 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Helpers\INamespaceExtractor.cs" />
-    <Compile Include="Helpers\InNamespaceExtractor.cs" />
-    <Compile Include="Helpers\InSameNamespaceAsGenericExtractor.cs" />
-    <Compile Include="Helpers\NamespaceExtractor.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\Pick.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentHasAttributeMethodGroup.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInNamespace.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsGeneric.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\WhereArgument\ComponentIsInSameNamespaceAsNonGeneric.cs" />
-    <Compile Include="Patterns\FromTypes\FromAssemblyContainingNonGeneric.cs" />
-    <Compile Include="Patterns\FromTypes\FromAssemblyNamed.cs" />
-    <Compile Include="Patterns\FromTypes\FromAssembly.cs" />
-    <Compile Include="Patterns\FromTypes\From.cs" />
-    <Compile Include="Patterns\FromTypes\FromAssemblyContainingGeneric.cs" />
-    <Compile Include="Patterns\FromTypes\FromThisAssembly.cs" />
-    <Compile Include="Patterns\FromTypes\FromTypesPatternBase.cs" />
-    <Compile Include="Providers\AllTypesRegistrationProvider.cs" />
-    <Compile Include="Providers\BasedOnRegistrationProvider.cs" />
-    <Compile Include="Providers\ClassesRegistrationProvider.cs" />
-    <Compile Include="Providers\ComponentRegistrationProvider.cs" />
-    <Compile Include="Providers\ImplementedByRegistrationProvider.cs" />
-    <Compile Include="Patterns\Component\ComponentFor\ComponentForBasePattern.cs" />
-    <Compile Include="Patterns\Component\ComponentFor\ComponentForGeneric.cs" />
-    <Compile Include="Patterns\Component\ComponentFor\ComponentForNonGeneric.cs" />
-    <Compile Include="Patterns\Component\ImplementedBy\ImplementedByGeneric.cs" />
-    <Compile Include="Patterns\Component\ImplementedBy\ImplementedByNonGeneric.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\Where.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\BasedOnNonGeneric.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\InNamespace.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\InSameNamespaceAsGeneric.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\InSameNamespaceAsNonGeneric.cs" />
-    <Compile Include="Patterns\WindsorContainerRegisterPattern.cs" />
-    <Compile Include="Patterns\FromTypes\BasedOn\BasedOnGeneric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\TypesRegistrationProvider.cs" />
-    <Compile Include="Registrations\ClassesRegistrationCreator.cs" />
-    <Compile Include="Registrations\TypesRegistrationCreator.cs" />
-    <Compile Include="WindsorContainerInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
-      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
-      <Name>AgentMulder.ReSharper.Domain.8.2</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <None Include="packages.AgentMulder.Containers.CastleWindsor.8.2.config" />
   </ItemGroup>
+  <Import Project="..\Shared\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.projitems')" />
+  <Import Project="..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

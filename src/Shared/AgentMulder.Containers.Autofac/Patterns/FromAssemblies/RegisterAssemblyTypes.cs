@@ -37,7 +37,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
-            IExpressionStatement parentExpression = GetParentExpressionStatemenmt(registrationRootElement);
+            IExpressionStatement parentExpression = GetParentExpressionStatement(registrationRootElement);
             if (parentExpression == null)
             {
                 yield break;
@@ -66,7 +66,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
             }
         }
 
-        private IExpressionStatement GetParentExpressionStatemenmt(ITreeNode node)
+        private IExpressionStatement GetParentExpressionStatement(ITreeNode node)
         {
             for (var n = node; n != null; n = n.Parent)
             {

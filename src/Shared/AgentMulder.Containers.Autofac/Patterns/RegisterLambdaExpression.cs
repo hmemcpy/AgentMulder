@@ -59,7 +59,12 @@ namespace AgentMulder.Containers.Autofac.Patterns
                 IEnumerable<FilteredRegistrationBase> basedOnRegistrations = basedOnPatterns.SelectMany(
                    basedOnPattern => basedOnPattern.GetBasedOnRegistrations(parentExpression.Expression)).ToList();
 
-                yield return new CompositeRegistration(registrationRootElement, componentRegistrations.Concat(basedOnRegistrations));
+                var registrations = componentRegistrations.Concat(basedOnRegistrations);
+
+                if (registrations.Any())
+                {
+                    yield return new CompositeRegistration(registrationRootElement, registrations);
+                }
             }
         }
 

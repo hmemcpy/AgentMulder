@@ -139,14 +139,51 @@ namespace AgentMulder.Containers.Autofac.Patterns
                 }
             }
 
+            var asExpression = expression as IAsExpression;
+            if (asExpression != null)
+            {
+                var typeUsage = asExpression.TypeOperand as IPredefinedTypeUsage;
+                if (typeUsage != null && typeUsage.ScalarPredefinedTypeName != null)
+                {
+                    IResolveResult resolveResult = typeUsage.ScalarPredefinedTypeName.Reference.Resolve().Result;
+                    var typeElement = resolveResult.DeclaredElement as ITypeElement;
+                    if (typeElement != null)
+                    {
+                        yield return new ServiceRegistration(registrationRootElement, typeElement);
+                    }
+                }
+            }
+
             var objectCreationExpression = expression as IObjectCreationExpression;
             if (objectCreationExpression != null && objectCreationExpression.TypeReference != null)
             {
                 IResolveResult resolveResult = objectCreationExpression.TypeReference.Resolve().Result;
+
                 var @class = resolveResult.DeclaredElement as IClass;
                 if (@class != null)
                 {
                     yield return new ComponentRegistration(registrationRootElement, @class, @class);
+                }
+            }
+
+            var invocationExpression = expression as IInvocationExpression;
+            if (invocationExpression != null)
+            {
+                if (invocationExpression.Reference != null)
+                {
+                    var result = invocationExpression.Reference.Resolve().Result.DeclaredElement as IParametersOwner;
+                    if (result != null)
+                    {
+                        var type = result.ReturnType as IDeclaredType;
+                        if (type != null)
+                        {
+                            var @class = type.GetTypeElement();
+                            if (@class != null)
+                            {
+                                yield return new ComponentRegistration(registrationRootElement, @class, @class);
+                            }
+                        }
+                    }
                 }
             }
         }

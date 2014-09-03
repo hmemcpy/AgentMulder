@@ -132,10 +132,10 @@ namespace AgentMulder.Containers.Autofac.Patterns
             var castExpression = expression as ICastExpression;
             if (castExpression != null)
             {
-                var typeUsage = castExpression.TargetType as IPredefinedTypeUsage;
-                if (typeUsage != null && typeUsage.ScalarPredefinedTypeName != null)
+                var predefinedTypeUsage = castExpression.TargetType as IUserTypeUsage;
+                if (predefinedTypeUsage != null && predefinedTypeUsage.ScalarTypeName != null)
                 {
-                    IResolveResult resolveResult = typeUsage.ScalarPredefinedTypeName.Reference.Resolve().Result;
+                    IResolveResult resolveResult = predefinedTypeUsage.ScalarTypeName.Reference.Resolve().Result;
                     var typeElement = resolveResult.DeclaredElement as ITypeElement;
                     if (typeElement != null)
                     {
@@ -147,10 +147,10 @@ namespace AgentMulder.Containers.Autofac.Patterns
             var asExpression = expression as IAsExpression;
             if (asExpression != null)
             {
-                var typeUsage = asExpression.TypeOperand as IPredefinedTypeUsage;
-                if (typeUsage != null && typeUsage.ScalarPredefinedTypeName != null)
+                var typeUsage = asExpression.TypeOperand as IUserTypeUsage;
+                if (typeUsage != null && typeUsage.ScalarTypeName != null)
                 {
-                    IResolveResult resolveResult = typeUsage.ScalarPredefinedTypeName.Reference.Resolve().Result;
+                    IResolveResult resolveResult = typeUsage.ScalarTypeName.Reference.Resolve().Result;
                     var typeElement = resolveResult.DeclaredElement as ITypeElement;
                     if (typeElement != null)
                     {

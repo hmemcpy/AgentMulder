@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Linq;
-using AgentMulder.Containers.Autofac.Registrations;
 using AgentMulder.ReSharper.Domain.Elements.Modules;
-using AgentMulder.ReSharper.Domain.Elements.Modules.Impl;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-using AgentMulder.ReSharper.Domain.Utils;
+using JetBrains.Metadata.Reader.API;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Modules;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
@@ -20,21 +16,23 @@ using JetBrains.Util;
 
 namespace AgentMulder.Containers.Autofac.Patterns.Mvc
 {
-    [Export("ComponentRegistration", typeof(IRegistrationPattern))]
-    public sealed class RegisterControllers : RegistrationPatternBase
+    public abstract class RegisterControllersBase : RegistrationPatternBase
     {
+        private readonly string mvcTypeFqn;
         private readonly IEnumerable<IBasedOnPattern> basedOnPatterns;
 
-        private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$builder$.RegisterControllers($assemblies$)",
+        protected RegisterControllersBase(string expression, string mvcTypeFqn, IEnumerable<IBasedOnPattern> basedOnPatterns)
+            : base(CreatePattern(expression))
+        {
+            this.mvcTypeFqn = mvcTypeFqn;
+            this.basedOnPatterns = basedOnPatterns;
+        }
+
+        private static IStructuralSearchPattern CreatePattern(string expression)
+        {
+            return new CSharpStructuralSearchPattern(string.Format("$builder$.{0}($assemblies$)", expression),
                 new ExpressionPlaceholder("builder", "Autofac.ContainerBuilder", true),
                 new ArgumentPlaceholder("assemblies"));
-
-        [ImportingConstructor]
-        public RegisterControllers([ImportMany] IEnumerable<IBasedOnPattern> basedOnPatterns)
-            : base(pattern)
-        {
-            this.basedOnPatterns = basedOnPatterns;
         }
 
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
@@ -50,7 +48,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.Mvc
             {
                 var arguments = match.GetMatchedElementList("assemblies").Cast<ICSharpArgument>();
 
-                IEnumerable<IModule> modules = arguments.SelectNotNull(argument => ModuleExtractor.GetTargetModule(argument.Value));
+                IEnumerable<IModule> modules = arguments.SelectNotNull(argument => ModuleExtractor.GetTargetModule<ICSharpExpression>(argument.Value));
 
                 IEnumerable<FilteredRegistrationBase> basedOnRegistrations = basedOnPatterns.SelectMany(
                     basedOnPattern => basedOnPattern.GetBasedOnRegistrations(parentExpression.Expression)).ToList();
@@ -61,26 +59,27 @@ namespace AgentMulder.Containers.Autofac.Patterns.Mvc
                     yield return new CompositeRegistration(registrationRootElement, basedOnRegistrations.Concat(
                         new ComponentRegistrationBase[]
                         {
-                            new MvcControllerRegistration(registrationRootElement),
+                            new MvcControllerRegistration(registrationRootElement, mvcTypeFqn),
                             new ModuleBasedOnRegistration(registrationRootElement, module)
                         }));
                 }
             }
         }
 
-        public class MvcControllerRegistration : FilteredRegistrationBase
+        private class MvcControllerRegistration : FilteredRegistrationBase
         {
-            private const string MvcControllerClrTypeName = "System.Web.Mvc.IController";
-
-            public MvcControllerRegistration(ITreeNode registrationRootElement)
+            public MvcControllerRegistration(ITreeNode registrationRootElement, string mvcControllerClrTypeName)
                 : base(registrationRootElement)
             {
-                IDeclaredType mvcControllerType =
-                    TypeFactory.CreateTypeByCLRName(MvcControllerClrTypeName,
-                        registrationRootElement.GetPsiModule(),
-                        registrationRootElement.GetResolveContext());
+                AddFilter(typeElement =>
+                {
+                    ITypeElement mvcControllerType = TypeFactory.CreateTypeByCLRName(
+                        mvcControllerClrTypeName, 
+                        typeElement.Module,
+                        typeElement.ResolveContext).GetTypeElement();
 
-                AddFilter(element => element.GetSuperTypes().Any(type => type.IsSubtypeOf(mvcControllerType)));
+                    return typeElement.IsDescendantOf(mvcControllerType);
+                });
             }
         }
 
@@ -96,5 +95,4 @@ namespace AgentMulder.Containers.Autofac.Patterns.Mvc
             return null;
         }
     }
-
 }

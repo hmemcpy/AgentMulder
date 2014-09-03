@@ -1,6 +1,6 @@
-// Patterns: 1
-// Matches: Foo.cs,Bar.cs,Baz.cs,FooBar.cs
-// NotMatches: IFoo.cs
+﻿// Patterns: 1
+// Matches: Foo.cs,Baz.cs 
+// NotMatches: Static.cs 
 
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
@@ -8,12 +8,10 @@ using Castle.Windsor;
 
 namespace TestApplication.Windsor.TestCases
 {
-    public class FromAssemblyNamedPick : IWindsorInstaller
+    public class SkipsStaticClasses : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            // TestProject is the name of the project that is created in the R# unit test
-
             container.Register(
                 AllTypes.FromAssemblyNamed("TestProject").Pick(),
                 Classes.FromAssemblyNamed("TestProject").Pick(),

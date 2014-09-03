@@ -168,6 +168,9 @@
     <Compile Include="Ninject\ModuleTestCases\ModuleBindGenericToSelf.cs" />
     <Compile Include="Ninject\ModuleTestCases\ModuleBindNonGenericToGeneric.cs" />
     <Compile Include="Ninject\ModuleTestCases\ModuleBindNonGenericToNonGeneric.cs" />
+    <Compile Include="StructureMap\SkipsStaticClasses.cs" />
+    <Compile Include="Types\Static.cs" />
+    <Compile Include="Windsor\TestCases\SkipsStaticClasses.cs" />
     <Compile Include="Windsor\UsingFQN.cs" />
     <Compile Include="Windsor\UsingsInsideNamespace.cs" />
     <None Include="app.config" />

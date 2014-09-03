@@ -57,7 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.AgentMulder.ReSharper.Domain.8.1.config" />
+    <None Include="packages.AgentMulder.ReSharper.Domain.8.2.config" />
   </ItemGroup>
   <Import Project="..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

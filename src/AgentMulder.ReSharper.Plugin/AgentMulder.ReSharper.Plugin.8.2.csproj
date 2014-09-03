@@ -64,12 +64,16 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
+      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
+      <Name>AgentMulder.ReSharper.Domain.8.2</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.AgentMulder.ReSharper.Plugin.8.2.config" />
   </ItemGroup>
   <Import Project="..\Shared\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.projitems')" />
-  <Import Project="..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -55,8 +55,14 @@
   <ItemGroup>
     <None Include="packages.AgentMulder.Containers.CastleWindsor.8.2.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
+      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
+      <Name>AgentMulder.ReSharper.Domain.8.2</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\Shared\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.Containers.CastleWindsor\AgentMulder.Containers.CastleWindsor.projitems')" />
-  <Import Project="..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

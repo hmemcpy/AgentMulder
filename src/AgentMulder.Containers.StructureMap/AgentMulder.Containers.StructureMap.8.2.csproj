@@ -59,8 +59,14 @@
   <ItemGroup>
     <None Include="packages.AgentMulder.Containers.StructureMap.8.2.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.8.2.csproj">
+      <Project>{f0cc3bc6-cdfc-4383-80c1-f07af1a09f76}</Project>
+      <Name>AgentMulder.ReSharper.Domain.8.2</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\shared\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.projitems')" />
-  <Import Project="..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems" Label="Shared" Condition="Exists('..\Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

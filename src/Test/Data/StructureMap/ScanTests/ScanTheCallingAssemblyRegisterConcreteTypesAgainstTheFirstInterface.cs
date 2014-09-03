@@ -3,6 +3,7 @@
 // NotMatches: PrimitiveArgument.cs
 
 using StructureMap;
+using StructureMap.Graph;
 
 namespace TestApplication.StructureMap.ScanTests
 {

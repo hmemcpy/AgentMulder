@@ -3,6 +3,7 @@
 // NotMatches: CommonImpl1.cs,Foo.cs
 
 using StructureMap;
+using StructureMap.Graph;
 using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ScanTests

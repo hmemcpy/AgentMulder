@@ -1,6 +1,7 @@
 ﻿// Patterns: 0
 
 using StructureMap;
+using StructureMap.Graph;
 
 namespace TestApplication.StructureMap.ScanTests
 {

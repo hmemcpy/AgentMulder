@@ -3,6 +3,7 @@
 // NotMatches: Bar.cs
 
 using StructureMap;
+using StructureMap.Graph;
 using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ScanTests

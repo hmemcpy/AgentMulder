@@ -4,6 +4,7 @@
 
 using SomeNamespace;
 using StructureMap.Configuration.DSL;
+using StructureMap.Graph;
 
 namespace TestApplication.StructureMap.ScanTests
 {

@@ -14,6 +14,8 @@ namespace AgentMulder.ReSharper.Domain.Registrations
             : base(registrationRootElement)
         {
             filters.Add(typeElement => !(typeElement is IInterface));
+            filters.Add(typeElement => !(typeElement is IEnum));
+            filters.Add(typeElement => !(typeElement is IStruct));
         }
 
         protected void AddFilter(Predicate<ITypeElement> condition)

@@ -44,10 +44,7 @@ public class TestEnvironmentAssembly : IsolatedReSharperTestEnvironmentAssembly
   /// </summary>
   private static IEnumerable<Assembly> GetAssembliesToLoad()
   {
-    // Test assembly
     yield return Assembly.GetExecutingAssembly();
-
-    yield return typeof(SolutionAnalyzer).Assembly;
   }
 
   public override void SetUp()

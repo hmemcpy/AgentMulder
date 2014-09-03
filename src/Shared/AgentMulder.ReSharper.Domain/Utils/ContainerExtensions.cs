@@ -33,7 +33,7 @@ namespace AgentMulder.ReSharper.Domain.Utils
             return containingType.IsDescendantOf(containerClrType.GetTypeElement());
         }
 
-        private static IDeclaredType CreateTypeByClrName(ITreeNode node, string containerClrTypeName)
+        public static IDeclaredType CreateTypeByClrName(ITreeNode node, string containerClrTypeName)
         {
             return TypeFactory.CreateTypeByCLRName(containerClrTypeName, node.GetPsiModule(), node.GetResolveContext());
         }

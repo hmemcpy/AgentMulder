@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Patterns\FromAssemblies\BasedOn\InNamespaceString.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Patterns\FromAssemblies\RegisterAssemblyTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Patterns\Helpers\ReturnTypeCollector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patterns\Mvc\RegisterControllers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Patterns\RegisterLambdaExpression.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Patterns\RegisterLambdaStatements.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Patterns\RegisterTypeGeneric.cs" />

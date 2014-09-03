@@ -7,28 +7,31 @@ using AgentMulder.ReSharper.Domain.Elements.Modules;
 using AgentMulder.ReSharper.Domain.Elements.Modules.Impl;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
+using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ProjectModel;
+using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Modules;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
-namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
+namespace AgentMulder.Containers.Autofac.Patterns.Mvc
 {
     [Export("ComponentRegistration", typeof(IRegistrationPattern))]
-    public sealed class RegisterAssemblyTypes : RegistrationPatternBase
+    public sealed class RegisterControllers : RegistrationPatternBase
     {
         private readonly IEnumerable<IBasedOnPattern> basedOnPatterns;
 
         private static readonly IStructuralSearchPattern pattern =
-            new CSharpStructuralSearchPattern("$builder$.RegisterAssemblyTypes($assemblies$)",
+            new CSharpStructuralSearchPattern("$builder$.RegisterControllers($assemblies$)",
                 new ExpressionPlaceholder("builder", "Autofac.ContainerBuilder", true),
-                new ArgumentPlaceholder("assemblies", -1, -1));
+                new ArgumentPlaceholder("assemblies"));
 
         [ImportingConstructor]
-        public RegisterAssemblyTypes([ImportMany] IEnumerable<IBasedOnPattern> basedOnPatterns)
+        public RegisterControllers([ImportMany] IEnumerable<IBasedOnPattern> basedOnPatterns)
             : base(pattern)
         {
             this.basedOnPatterns = basedOnPatterns;
@@ -58,10 +61,26 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
                     yield return new CompositeRegistration(registrationRootElement, basedOnRegistrations.Concat(
                         new ComponentRegistrationBase[]
                         {
-                            new DefaultScanAssemblyRegistration(registrationRootElement),
+                            new MvcControllerRegistration(registrationRootElement),
                             new ModuleBasedOnRegistration(registrationRootElement, module)
                         }));
                 }
+            }
+        }
+
+        public class MvcControllerRegistration : FilteredRegistrationBase
+        {
+            private const string MvcControllerClrTypeName = "System.Web.Mvc.IController";
+
+            public MvcControllerRegistration(ITreeNode registrationRootElement)
+                : base(registrationRootElement)
+            {
+                IDeclaredType mvcControllerType =
+                    TypeFactory.CreateTypeByCLRName(MvcControllerClrTypeName,
+                        registrationRootElement.GetPsiModule(),
+                        registrationRootElement.GetResolveContext());
+
+                AddFilter(element => element.GetSuperTypes().Any(type => type.IsSubtypeOf(mvcControllerType)));
             }
         }
 
@@ -77,4 +96,5 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies
             return null;
         }
     }
+
 }

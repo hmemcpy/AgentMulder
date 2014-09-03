@@ -7,8 +7,6 @@ using AgentMulder.ReSharper.Domain.Registrations;
 using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Caches;
-using JetBrains.ReSharper.Psi.IL.Tree;
 using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
@@ -59,7 +57,7 @@ namespace AgentMulder.Containers.Autofac.Patterns
                 IEnumerable<FilteredRegistrationBase> basedOnRegistrations = basedOnPatterns.SelectMany(
                    basedOnPattern => basedOnPattern.GetBasedOnRegistrations(parentExpression.Expression)).ToList();
 
-                var registrations = componentRegistrations.Concat(basedOnRegistrations);
+                var registrations = componentRegistrations.Concat(basedOnRegistrations).ToList();
 
                 if (registrations.Any())
                 {

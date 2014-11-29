@@ -17,9 +17,16 @@ namespace AgentMulder.Containers.Catel.Patterns
 
     using JetBrains.ReSharper.Psi;
     using JetBrains.ReSharper.Psi.CSharp.Tree;
+#if SDK90
+using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch;
+using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.Placeholders;
+using JetBrains.ReSharper.Feature.Services.StructuralSearch;
+using JetBrains.Metadata.Reader.Impl;
+#else
     using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
     using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
     using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+#endif
     using JetBrains.ReSharper.Psi.Tree;
 
     /// <summary>

@@ -4,9 +4,15 @@ using AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereArgum
 using AgentMulder.ReSharper.Domain.Patterns;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+#if SDK90
+using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch;
+using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.Placeholders;
+using JetBrains.ReSharper.Feature.Services.StructuralSearch;
+#else
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+#endif
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
 {
@@ -14,11 +20,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$fromDescriptor$.InSameNamespaceAs<$type$>($subnamespace$)",
-            // ReSharper disable RedundantArgumentDefaultValue
-            // Note: in R# 6.1, the value 'false' is not the default! Don't remove this, otherwise 6.1 matching will fail!
                 new ExpressionPlaceholder("fromDescriptor", "global::Castle.MicroKernel.Registration.FromDescriptor", false),
-            // ReSharper restore RedundantArgumentDefaultValue
-
                 new TypePlaceholder("type"),
                 new ArgumentPlaceholder("subnamespace", 0, 1));
 

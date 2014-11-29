@@ -1,4 +1,7 @@
 using JetBrains.ReSharper.Daemon;
+#if SDK90
+using JetBrains.ReSharper.Feature.Services.Daemon;
+#endif
 
 namespace AgentMulder.ReSharper.Plugin.Highlighting
 {

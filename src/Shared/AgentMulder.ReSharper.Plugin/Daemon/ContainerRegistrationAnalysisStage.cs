@@ -5,6 +5,10 @@ using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.CSharp.Stages;
 using JetBrains.ReSharper.Daemon.UsageChecking;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+#if SDK90
+using JetBrains.ReSharper.Feature.Services.CSharp.Daemon;
+using JetBrains.ReSharper.Feature.Services.Daemon;
+#endif
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {

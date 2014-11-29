@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using AgentMulder.ReSharper.Domain.Registrations;
+#if SDK90
+using JetBrains.ReSharper.Feature.Services.StructuralSearch;
+#else
 using JetBrains.ReSharper.Psi.Services.StructuralSearch;
+#endif
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Domain.Patterns

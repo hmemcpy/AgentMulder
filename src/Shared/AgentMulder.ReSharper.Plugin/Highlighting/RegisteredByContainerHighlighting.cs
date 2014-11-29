@@ -1,8 +1,17 @@
 ﻿using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application;
+using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Daemon;
+
+#if SDK90
+using JetBrains.ReSharper.Feature.Services.Daemon;
+using JetBrains.ReSharper.Feature.Services.Navigation.NavigationExtensions;
+using JetBrains.ReSharper.Resources.Shell;
+#else
 using JetBrains.ReSharper.Feature.Services.Navigation.Navigation.NavigationExtensions;
+#endif
 using JetBrains.ReSharper.Psi.Tree;
+
 
 namespace AgentMulder.ReSharper.Plugin.Highlighting
 {
@@ -24,6 +33,11 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
         public bool IsValid()
         {
             return registrationInfo.Registration.RegistrationElement.IsValid();
+        }
+
+        public DocumentRange CalculateRange()
+        {
+            return registrationInfo.Registration.RegistrationElement.GetDocumentRange();
         }
 
         public string ToolTip

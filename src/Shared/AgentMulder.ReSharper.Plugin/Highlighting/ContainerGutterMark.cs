@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using AgentMulder.ReSharper.Plugin.Highlighting;
 using JetBrains.Application;
 using JetBrains.ProjectModel;
+#if SDK90
+using JetBrains.ReSharper.Feature.Services.Resources;
+using JetBrains.ReSharper.Resources.Shell;
+#else
 using JetBrains.ReSharper.Features.Altering.Resources;
+#endif
 using JetBrains.TextControl.DocumentMarkup;
 using JetBrains.UI.BulbMenu;
 using JetBrains.UI.Icons;

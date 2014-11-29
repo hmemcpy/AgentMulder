@@ -27,7 +27,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
             get { return knownContainers; }
         }
 
-        public SolutionAnalyzer([NotNull] PatternSearcher patternSearcher, [NotNull] SearchDomainFactory searchDomainFactory, [NotNull] IWordIndex wordIndex)
+        public SolutionAnalyzer(PatternSearcher patternSearcher, SearchDomainFactory searchDomainFactory, IWordIndex wordIndex)
         {
             this.patternSearcher = patternSearcher;
             this.searchDomainFactory = searchDomainFactory;
@@ -53,7 +53,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
             knownContainers.AddRange(values);
         }
 
-        public IEnumerable<RegistrationInfo> Analyze([NotNull] IPsiSourceFile sourceFile)
+        public IEnumerable<RegistrationInfo> Analyze(IPsiSourceFile sourceFile)
         {
             IContainerInfo matchingContainer = GetMatchingContainer(sourceFile);
             if (matchingContainer == null)

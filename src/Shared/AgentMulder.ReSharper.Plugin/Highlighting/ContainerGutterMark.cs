@@ -5,6 +5,7 @@ using JetBrains.Application;
 using JetBrains.ProjectModel;
 #if SDK90
 using JetBrains.ReSharper.Feature.Services.Resources;
+using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Resources.Shell;
 #else
 using JetBrains.ReSharper.Features.Altering.Resources;
@@ -39,7 +40,11 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
                     return;
                 }
 
+#if SDK90
+                var clickable = solution.GetComponent<IDaemon>().GetHighlighting(highlighter) as IClickableGutterHighlighting;
+#else
                 var clickable = JetBrains.ReSharper.Daemon.Daemon.GetInstance(solution).GetHighlighting(highlighter) as IClickableGutterHighlighting;
+#endif
                 if (clickable == null)
                 {
                     return;

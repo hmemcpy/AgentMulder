@@ -14,7 +14,7 @@ using JetBrains.ReSharper.Feature.Services.Daemon;
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {
-    public class ContainerRegistrationAnalysisStageProcess : IDaemonStageProcess
+    public partial class ContainerRegistrationAnalysisStageProcess : IDaemonStageProcess
     {
         private readonly IDaemonProcess process;
         private readonly IContextBoundSettingsStore settingsStore;
@@ -35,26 +35,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
 
             foreach (IFile psiFile in EnumeratePsiFiles())
             {
-                IFile file = psiFile;
-                psiFile.ProcessChildren<ITypeDeclaration>(declaration =>
-                {
-                    if (declaration.DeclaredElement == null) // type is not (yet) declared
-                    {
-                        return;
-                    }
-
-                    RegistrationInfo registrationInfo = patternManager.GetRegistrationsForFile(file.GetSourceFile()).
-                        FirstOrDefault(c => c.Registration.IsSatisfiedBy(declaration.DeclaredElement));
-                    if (registrationInfo != null)
-                    {
-                        IPsiSourceFile psiSourceFile = registrationInfo.GetSourceFile();
-                        consumer.AddHighlighting(new RegisteredByContainerHighlighting(registrationInfo),
-                                                 declaration.GetNameDocumentRange(),
-                                                 psiSourceFile.GetTheOnlyPsiFile(psiSourceFile.PrimaryPsiLanguage));
-                        
-                        typeUsageManager.MarkTypeAsUsed(declaration);
-                    }
-                });
+                ProcessFile(psiFile, consumer);
             }
 
             commiter(new DaemonStageResult(consumer.Highlightings));

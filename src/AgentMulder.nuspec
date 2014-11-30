@@ -12,15 +12,13 @@
     <projectUrl>http://hmemcpy.github.io/AgentMulder/</projectUrl>
     <copyright>Copyright &#x00A9; 2013 Igal Tabachnik</copyright>
     <iconUrl>https://raw.github.com/hmemcpy/AgentMulder/master/logo.png</iconUrl>
-    <releaseNotes>Adding support for ReSharper 8.2</releaseNotes>
+    <releaseNotes>Several Autofac fixes (thanks to George Pollard and others for contributing!)</releaseNotes>
     <tags>resharper agent mulder agentmulder ioc di windsor castle autofac ninject structuremap unity simpleinjector</tags>
     <dependencies>
-      <dependency id="Resharper" version="[8.1,8.3)"/>
+      <dependency id="Resharper" version="[8.2,8.3)"/>
     </dependencies>
   </metadata>
   <files>
-    <file src="..\output\$configuration$\8.1\**\*.dll" target="ReSharper\v8.1\plugins"/>
-    <file src="..\output\$configuration$\8.1\**\*.pdb" target="ReSharper\v8.1\plugins"/>
     <file src="..\output\$configuration$\8.2\**\*.dll" target="ReSharper\v8.2\plugins"/>
     <file src="..\output\$configuration$\8.2\**\*.pdb" target="ReSharper\v8.2\plugins"/>
   </files>

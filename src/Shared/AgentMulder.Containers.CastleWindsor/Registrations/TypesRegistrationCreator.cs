@@ -21,7 +21,7 @@ namespace AgentMulder.Containers.CastleWindsor.Registrations
                 AddFilter(typeElement =>
                 {
                     var @class = typeElement as IClass;
-                    if (@class != null && @class.IsAbstract)
+                    if (@class == null || @class.IsAbstract || @class.IsStatic)
                     {
                         return false;
                     }

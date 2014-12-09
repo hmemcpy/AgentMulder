@@ -14,7 +14,7 @@ using JetBrains.UI;
 // The following information is displayed by ReSharper in the Plugins dialog
 [assembly: PluginTitle("Agent Mulder plugin for ReSharper")]
 [assembly: PluginDescription("Provides navigation to and finding usages of types registered or resolved via Dependency Injection (DI) containers.\r\n"+
-                             "Copyright © Igal Tabachnik, 2012")]
+                             "Copyright © Igal Tabachnik, 2012-2015")]
 [assembly: PluginVendor("Igal Tabachnik")]
 #endif
 

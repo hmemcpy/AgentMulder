@@ -21,7 +21,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)StructureMap\ContainerTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StructureMap\SanityTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StructureMap\ScanTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TestEnvironmentAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestWithNuGetPackageAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Unity\RegisterTypeTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Windsor\AllTypesTests.cs" />

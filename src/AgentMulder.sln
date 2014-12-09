@@ -74,6 +74,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Plugi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Tests.9.0", "AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.9.0.csproj", "{DA36BB2B-643E-4206-B7AE-2F3ABA7225B3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8B6A374B-85F7-453A-9F44-8C987EE383A0}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Shared\AgentMulder.ReSharper.Domain\AgentMulder.ReSharper.Domain.projitems*{8260513f-6bab-4afd-9b5d-6bb5bf1a70cf}*SharedItemsImports = 13

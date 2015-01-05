@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AgentMulder.ReSharper.Plugin.Components;
 using AgentMulder.ReSharper.Plugin.Highlighting;
 using JetBrains.ReSharper.Daemon.Stages;
-using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 

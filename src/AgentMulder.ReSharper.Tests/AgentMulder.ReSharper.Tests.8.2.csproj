@@ -106,6 +106,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Net46CompatibleFrameworkLocationHelper.cs" />
     <Compile Include="TestEnvironmentAssembly.8.2.cs" />
   </ItemGroup>
   <Import Project="..\shared\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.projitems')" />

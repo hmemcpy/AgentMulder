@@ -7,6 +7,8 @@
 
 ### To download Agent Mulder, visit http://hmemcpy.github.io/AgentMulder/
 
+[![Join the chat at https://gitter.im/hmemcpy/AgentMulder](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hmemcpy/AgentMulder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 #### Special thanks
 
 ![ReSharper](http://www.jetbrains.com/img/logos/logo_resharper_small.gif)  

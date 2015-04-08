@@ -85,7 +85,6 @@ Global
 		shared\AgentMulder.Containers.Catel\AgentMulder.Containers.Catel.projitems*{62838d3c-c7b8-408e-a735-210a71d09e5e}*SharedItemsImports = 4
 		shared\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.projitems*{4259a34a-6f2e-4b29-bdf6-aaca854009d4}*SharedItemsImports = 4
 		shared\AgentMulder.Containers.SimpleInjector\AgentMulder.Containers.SimpleInjector.projitems*{7a34dc1d-8730-48c8-aecc-717f405ca257}*SharedItemsImports = 4
-		shared\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.projitems*{da36bb2b-643e-4206-b7ae-2f3aba7225b3}*SharedItemsImports = 4
 		shared\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.projitems*{932bc0d7-a525-460d-a3ed-a010464811e8}*SharedItemsImports = 4
 		shared\AgentMulder.Containers.Unity\AgentMulder.Containers.Unity.projitems*{7442c236-576b-4d8c-af5a-be69a0540e8f}*SharedItemsImports = 4
 		shared\AgentMulder.Containers.StructureMap\AgentMulder.Containers.StructureMap.projitems*{51d960ff-093c-4d5b-beb9-c79999056909}*SharedItemsImports = 4

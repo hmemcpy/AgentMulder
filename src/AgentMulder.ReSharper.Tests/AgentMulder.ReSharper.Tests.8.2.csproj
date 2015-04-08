@@ -17,7 +17,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.ReSharper.Tests</RootNamespace>
     <AssemblyName>AgentMulder.ReSharper.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>bin\$(Configuration)\$(ReSharperSdkVersion)\</OutputPath>
     <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
@@ -106,6 +106,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Net46CompatibleFrameworkLocationHelper.cs" />
     <Compile Include="TestEnvironmentAssembly.8.2.cs" />
   </ItemGroup>
   <Import Project="..\shared\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.projitems')" />

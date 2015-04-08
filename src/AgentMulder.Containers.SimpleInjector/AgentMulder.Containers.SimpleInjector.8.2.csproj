@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.Containers.SimpleInjector</RootNamespace>
     <AssemblyName>AgentMulder.Containers.SimpleInjector</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\Containers\</OutputPath>
     <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>

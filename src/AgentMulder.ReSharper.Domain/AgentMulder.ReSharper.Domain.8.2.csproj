@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgentMulder.ReSharper.Domain</RootNamespace>
     <AssemblyName>AgentMulder.ReSharper.Domain</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>..\..\output\$(Configuration)\$(ReSharperSdkVersion)\</OutputPath>
     <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>

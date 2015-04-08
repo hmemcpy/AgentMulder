@@ -1,9 +1,12 @@
+using System;
 using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application;
 using JetBrains.ReSharper;
 using JetBrains.Threading;
 using System.Reflection;
 using System.Collections.Generic;
+using AgentMulder.ReSharper.Tests;
+using JetBrains.Build.AllAssemblies;
 using NUnit.Framework;
 
 /// <summary>
@@ -17,10 +20,10 @@ public abstract class IsolatedReSharperTestEnvironmentAssembly : ReSharperTestEn
 {
     public override IApplicationDescriptor CreateApplicationDescriptor()
     {
-        return new IsolatedReSharperApplicationDescriptor();
+        return new CustomReSharperApplicationDescriptor();
     }
 
-    private class IsolatedReSharperApplicationDescriptor : ReSharperApplicationDescriptor
+    private class CustomReSharperApplicationDescriptor : ReSharperApplicationDescriptor
     {
         public override string ProductName
         {
@@ -32,8 +35,38 @@ public abstract class IsolatedReSharperTestEnvironmentAssembly : ReSharperTestEn
                 return base.ProductName + "_Isolated";
             }
         }
+
+        // ReSharper 8.2 doesn't know anything about .net 4.6, and throws exceptions.
+        // We can teach it by overriding the default FrameworkLocationHelper class, but
+        // it must be overridden before the ShellComponents are composed, and the call
+        // to AssemblyManager in SetUp is too late for that. So, we add this assembly
+        // into the list of product assemblies that are used by default when composing
+        // the Shell container. Hacky, but at least it lets us run the tests.
+        private AllAssembliesXml allAssembliesXml;
+
+        public override AllAssembliesXml AllAssembliesXml
+        {
+            get
+            {
+                if (allAssembliesXml != null)
+                    return allAssembliesXml;
+
+                allAssembliesXml = base.AllAssembliesXml;
+                var assemblies = new List<ProductAssemblyXml>(allAssembliesXml.Assemblies)
+                {
+                    new ProductAssemblyXml
+                    {
+                        Configurations = "Common",
+                        Name = typeof(Net46CompatibleFrameworkLocationHelper).Assembly.GetName().Name
+                    }
+                };
+                allAssembliesXml.Assemblies = assemblies.ToArray();
+                return allAssembliesXml;
+            }
+        }
     }
 }
+
 
 [SetUpFixture]
 public class TestEnvironmentAssembly : IsolatedReSharperTestEnvironmentAssembly
@@ -44,7 +77,8 @@ public class TestEnvironmentAssembly : IsolatedReSharperTestEnvironmentAssembly
   /// </summary>
   private static IEnumerable<Assembly> GetAssembliesToLoad()
   {
-    yield return Assembly.GetExecutingAssembly();
+    // Don't include this assembly, it's already been added as part of AllAssembliesXml above
+    yield return typeof(SolutionAnalyzer).Assembly;
   }
 
   public override void SetUp()

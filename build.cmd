@@ -15,6 +15,6 @@ if "%nuget%" == "" (
 )
 
 %nuget% restore src\AgentMulder.sln
-%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild src\AgentMulder.sln /t:Rebuild /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
+%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild src\AgentMulder.sln /t:Rebuild /p:Configuration="%config%" /m /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false 
  
 %nuget% pack "src\AgentMulder.nuspec" -NoPackageAnalysis -verbosity detailed -o . -Version %version% -p Configuration="%config%"

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$PackageId$</id>
+    <version>$version$</version>
+    <authors>Igal Tabachnik</authors>
+    <owners>Igal Tabachnik</owners>
+    <title>Agent Mulder plugin for ReSharper</title>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://raw.github.com/hmemcpy/AgentMulder/master/License.txt</licenseUrl>
+    <description>Provides navigation to and finding usages of types registered or resolved via Dependency Injection (DI) containers.</description>
+    <projectUrl>http://hmemcpy.github.io/AgentMulder/</projectUrl>
+    <copyright>Copyright &#x00A9; 2012-2014 Igal Tabachnik</copyright>
+    <iconUrl>https://raw.github.com/hmemcpy/AgentMulder/master/logo.png</iconUrl>
+    <releaseNotes>
+&#8226; Build against R# 9.0 RTM SDK binaries;    
+    </releaseNotes>
+    <tags>resharper agent mulder agentmulder ioc di windsor castle autofac ninject structuremap unity simpleinjector</tags>
+    <dependencies>
+      <dependency id="$ReSharperDep$" version="$ReSharperVer$"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\output\$configuration$\9.0\**\AgentMulder.*.dll" target="dotFiles\" />
+    <file src="..\output\$configuration$\9.0\**\AgentMulder.*.pdb" target="dotFiles\" />    
+  </files>
+</package>

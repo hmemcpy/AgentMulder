@@ -4,6 +4,7 @@
   <PropertyGroup>
     <ReSharperSdkVersion>9.0</ReSharperSdkVersion>
     <ReSharperSdkMode>Tests</ReSharperSdkMode>
+    <JetTestProject>True</JetTestProject>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>b4e6420d</NuGetPackageImportStamp>
   </PropertyGroup>
@@ -78,14 +79,6 @@
     </Reference>
     <Reference Include="Microsoft.Deployment.Compression.Cab">
       <HintPath>..\packages\JetBrains.Platform.Lib.Microsoft.Deployment.Compression.Cab.2.0.20140304.0\lib\Microsoft.Deployment.Compression.Cab.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>
@@ -198,6 +191,9 @@
       <Project>{b32f33e1-e0b4-4e8a-9aa5-70a3b2cedddd}</Project>
       <Name>AgentMulder.ReSharper.Plugin.9.0</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="TestEnvironmentAssembly.9.0.cs" />
   </ItemGroup>
   <Import Project="..\shared\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

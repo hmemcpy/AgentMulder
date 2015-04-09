@@ -13,7 +13,7 @@
     <copyright>Copyright &#x00A9; 2012-2014 Igal Tabachnik</copyright>
     <iconUrl>https://raw.github.com/hmemcpy/AgentMulder/master/logo.png</iconUrl>
     <releaseNotes>
-&#8226; Build against R# 9.0 RTM SDK binaries;    
+&#8226; Build against R# 9.1 RTM SDK binaries;    
     </releaseNotes>
     <tags>resharper agent mulder agentmulder ioc di windsor castle autofac ninject structuremap unity simpleinjector</tags>
     <dependencies>

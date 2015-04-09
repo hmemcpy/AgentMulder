@@ -14,7 +14,11 @@
 ﻿using JetBrains.TestFramework.Application.Zones;
 ﻿using NUnit.Framework;
 
-[assembly: TestDataPathBase(@"Test\Data")]
+
+/// <summary>
+/// Test environment. Must be in the global namespace.
+/// </summary>
+// ReSharper disable CheckNamespace
 
 [ZoneDefinition]
 // ReSharper disable once CheckNamespace

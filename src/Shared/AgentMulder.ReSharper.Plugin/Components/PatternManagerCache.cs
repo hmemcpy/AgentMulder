@@ -14,7 +14,7 @@ using System.Linq;
 namespace AgentMulder.ReSharper.Plugin.Components
 {
     [SolutionComponent]
-    public class PatternManagerCache80 : IPatternManager, ICache
+    public class PatternManagerCache : IPatternManager, ICache
     {
         private readonly object lockObject = new object();
         private readonly JetHashSet<IPsiSourceFile> dirtyFiles = new JetHashSet<IPsiSourceFile>();
@@ -24,7 +24,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
         private readonly OneToListMap<IPsiSourceFile, RegistrationInfo> registrationsMap =
             new OneToListMap<IPsiSourceFile, RegistrationInfo>();
 
-        public PatternManagerCache80(SolutionAnalyzer solutionAnalyzer, PsiProjectFileTypeCoordinator projectFileTypeCoordinator)
+        public PatternManagerCache(SolutionAnalyzer solutionAnalyzer, PsiProjectFileTypeCoordinator projectFileTypeCoordinator)
         {
             this.projectFileTypeCoordinator = projectFileTypeCoordinator;
             this.solutionAnalyzer = solutionAnalyzer;

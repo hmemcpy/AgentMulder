@@ -10,7 +10,7 @@ namespace AgentMulder.ReSharper.Tests
     public class TestWithNuGetPackageAttribute : TestPackagesAttribute
     {
 #if SDK90
-        public string[] Sources 
+        private string[] Sources 
         {
             get { return Packages; }
             set { Packages = value; }

@@ -4,7 +4,7 @@ using AgentMulder.ReSharper.Domain.Containers;
 
 namespace AgentMulder.ReSharper.Tests.Windsor
 {
-    [TestWithNuGetPackage(Packages = new[] { "Castle.Windsor", "Castle.Core" })]
+    [TestWithNuGetPackage(Packages = new[] { "Castle.Windsor:3.3.0", "Castle.Core:3.3.0" })]
     public class AllTypesTests : AgentMulderTestBase<WindsorContainerInfo>
     {
         protected override string RelativeTestDataPath

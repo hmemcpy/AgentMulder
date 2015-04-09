@@ -2,7 +2,7 @@
 
 namespace AgentMulder.ReSharper.Tests.StructureMap
 {
-    [TestWithNuGetPackage(Packages = new[] { "StructureMap" })]
+    [TestWithNuGetPackage(Packages = new[] { "StructureMap:3.1.1.134" })]
     public class SanityTests : AgentMulderTestBase<StructureMapContainerInfo>
     {
         protected override string RelativeTestDataPath

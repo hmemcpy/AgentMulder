@@ -4,6 +4,7 @@ using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.CSharp.Util;
 using JetBrains.ReSharper.Psi.Files;
 using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Tree;
@@ -56,6 +57,11 @@ namespace AgentMulder.ReSharper.Domain.Utils
             }
 
             return !@class.IsAbstract;
+        }
+
+        public static bool IsStatic(this IClass @class)
+        {
+            return CSharpDeclaredElementUtil.IsStaticClass(@class);
         }
 
         public static INamespace GetNamespaceDeclaration(ICSharpExpression expression)

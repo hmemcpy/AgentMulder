@@ -2,6 +2,7 @@ using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
+using AgentMulder.ReSharper.Domain.Utils;
 
 namespace AgentMulder.Containers.CastleWindsor.Registrations
 {
@@ -21,7 +22,7 @@ namespace AgentMulder.Containers.CastleWindsor.Registrations
                 AddFilter(typeElement =>
                 {
                     var @class = typeElement as IClass;
-                    if (@class == null || @class.IsAbstract || @class.IsStatic)
+                    if (@class == null || @class.IsAbstract || @class.IsStatic())
                     {
                         return false;
                     }

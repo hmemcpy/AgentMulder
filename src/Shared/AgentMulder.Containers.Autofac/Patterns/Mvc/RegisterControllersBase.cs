@@ -79,6 +79,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.Mvc
             {
                 AddFilter(typeElement =>
                 {
+                    // todo this returns null!
                     ITypeElement mvcControllerType = TypeFactory.CreateTypeByCLRName(
                         mvcControllerClrTypeName, 
                         typeElement.Module,

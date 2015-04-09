@@ -37,7 +37,7 @@ namespace AgentMulder.ReSharper.Tests
             get { return new TContainerInfo(); }
         }
 
-        protected void RunTest(string fileName, Action<IPatternManager> action)
+        private void RunTest(string fileName, Action<IPatternManager> action)
         {
             var typesPath = new DirectoryInfo(Path.Combine(BaseTestDataPath.FullPath, "Types"));
             var fileSet = typesPath.GetFiles("*" + Extension)
@@ -60,7 +60,7 @@ namespace AgentMulder.ReSharper.Tests
             WithSingleProject(fileSet, (lifetime, solution, project) => RunGuarded(action));
         }
 
-        protected ICSharpFile GetCodeFile(string fileName)
+        private ICSharpFile GetCodeFile(string fileName)
         {
             IProjectFile projectFile = Project.GetAllProjectFiles(file => file.Name.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
             if (projectFile == null)

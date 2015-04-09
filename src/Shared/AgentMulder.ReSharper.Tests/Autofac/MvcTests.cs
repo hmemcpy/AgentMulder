@@ -2,7 +2,7 @@
 
 namespace AgentMulder.ReSharper.Tests.Autofac
 {
-    [TestWithNuGetPackage(Packages = new[] { "Autofac", "Autofac.Mvc5", "Microsoft.AspNet.WebApi.Core" })]
+    [TestWithNuGetPackage(Packages = new[] { "Autofac:3.5.2", "Autofac.Mvc5:3.3.3", "Microsoft.AspNet.WebApi.Core:5.2.2" })]
     public class MvcTests : AgentMulderTestBase<AutofacContainerInfo>
     {
         protected override string RelativeTestDataPath

@@ -41,7 +41,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns
                 IEnumerable<IInvocationExpression> invocationExpressions =
                     match.GetMatchedElementList("arguments").Cast<ICSharpArgument>()
                         .Select(argument => argument.Value)
-                        .OfType<IInvocationExpression>();
+                        .OfType<IInvocationExpression>().ToList();
 
                 return from argumentPattern in argumentsPatterns
                        from expression in invocationExpressions

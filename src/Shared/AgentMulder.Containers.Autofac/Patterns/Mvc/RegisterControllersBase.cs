@@ -4,6 +4,7 @@ using System.Linq;
 using AgentMulder.ReSharper.Domain.Elements.Modules;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
+using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.Metadata.Reader.API;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
@@ -80,12 +81,14 @@ namespace AgentMulder.Containers.Autofac.Patterns.Mvc
                 AddFilter(typeElement =>
                 {
                     // todo this returns null!
+                    
                     ITypeElement mvcControllerType = TypeFactory.CreateTypeByCLRName(
                         mvcControllerClrTypeName, 
                         typeElement.Module,
                         typeElement.ResolveContext).GetTypeElement();
 
-                    return typeElement.IsDescendantOf(mvcControllerType);
+                    return typeElement.IsDescendantOf(mvcControllerType) &&
+                           typeElement.GetClrName().ShortName.EndsWith("Controller"); // per Autofac's RegisterApiControllers/RegisterWebApiControllers extension
                 });
             }
         }

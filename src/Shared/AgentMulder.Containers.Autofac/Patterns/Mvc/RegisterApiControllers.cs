@@ -9,7 +9,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.Mvc
     {
         [ImportingConstructor]
         public RegisterApiControllers([ImportMany] IEnumerable<IBasedOnPattern> basedOnPatterns)
-            : base("RegisterApiControllers", "System.Web.Http.ApiController", basedOnPatterns)
+            : base("RegisterApiControllers", "System.Web.Http.Controllers.IHttpController", basedOnPatterns)
         {
         }
     }

@@ -77,36 +77,15 @@ namespace AgentMulder.ReSharper.Tests
             return cSharpFile;
         }
 
-        private void InferProductHomeDir()
-        {
-#if SDK90
-            // TestCases is called before the environment fixture is run, which would either
-            // ensure Product.Root exists, or infer %JetProductHomeDir%. By using SoutionItemsBasePath
-            // in TestCases, we fallback to the non-extension friendly implementation that expects
-            // the source to be laid out as if we're building the product, not an extension, and it
-            // requires Product.Root. We'll infer it instead.
-            var productHomeDir = Environment.GetEnvironmentVariable(AllAssembliesLocator.ProductHomeDirEnvironmentVariableName);
-            if (string.IsNullOrEmpty(productHomeDir))
-            {
-                var assembly = GetType().Assembly;
-                var productBinariesDir = assembly.GetPath().Parent;
-                if (AllAssembliesLocator.TryGetProductHomeDirOnSources(productBinariesDir).IsNullOrEmpty())
-                {
-                    var markerPath = TestUtil.GetTestDataPathBase_Find_FromAttr(assembly) ?? TestUtil.DefaultTestDataPath;
-                    var directoryNameOfItemAbove = FileSystemUtil.GetDirectoryNameOfItemAbove(productBinariesDir, markerPath);
-                    Environment.SetEnvironmentVariable(AllAssembliesLocator.ProductHomeDirEnvironmentVariableName, directoryNameOfItemAbove.FullPath);
-                }
-            }
-#endif
-        }
-
 // ReSharper disable MemberCanBePrivate.Global
         protected IEnumerable TestCases 
 // ReSharper restore MemberCanBePrivate.Global
         {
             get
             {
-                InferProductHomeDir();
+#if SDK90
+                TestUtil.SetHomeDir(GetType().Assembly);
+#endif
                 var testCasesDirectory = new DirectoryInfo(SolutionItemsBasePath);
                 return testCasesDirectory.EnumerateFiles("*.cs").Select(info => new TestCaseData(info.Name)).ToList();
             }

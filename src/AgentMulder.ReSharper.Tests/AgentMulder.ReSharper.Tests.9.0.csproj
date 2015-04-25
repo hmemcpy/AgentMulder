@@ -195,6 +195,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
     <Compile Include="ReSharperTestEnvironmentAssembly.cs" />
   </ItemGroup>
   <Import Project="..\shared\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.projitems" Label="Shared" Condition="Exists('..\shared\AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.projitems')" />

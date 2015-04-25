@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using AgentMulder.ReSharper.Domain.Containers;
 using AgentMulder.ReSharper.Plugin.Components;
@@ -17,7 +16,6 @@ using NUnit.Framework;
 using AgentMulder.ReSharper.Domain.Utils;
 
 #if SDK90
-using JetBrains.Application.BuildScript.Solution;
 using JetBrains.TestFramework.Utils;
 #endif
 
@@ -106,38 +104,22 @@ namespace AgentMulder.ReSharper.Tests
 
                 if (testData.Item1 > 0)
                 {
-                    IEnumerable<ICSharpFile> codeFiles = testData.Item2.SelectNotNull(GetCodeFile);
-                    foreach (ICSharpFile codeFile in codeFiles)
+                    // todo refactor this. This should be a set operation.
+
+                    // checks matching files
+                    foreach (ICSharpFile codeFile in testData.Item2.SelectNotNull(GetCodeFile))
                     {
-#if SDK90
-                        foreach (var declaration in codeFile.ThisAndDescendants<ITypeDeclaration>())
-#else
                         codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
-#endif
-                            Assert.That(patterns.Any(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)),
-                                "Of {0} registrations, at least one should match '{1}'", patterns.Count,
-                                declaration.CLRName)
-#if SDK90
-                                ;
-#else
-                        );
-#endif
+                        Assert.That(patterns.Any(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)),
+                                "Of {0} registrations, at least one should match '{1}'", patterns.Count, declaration.CLRName));
                     }
-                    codeFiles = testData.Item3.SelectNotNull(GetCodeFile);
-                    foreach (ICSharpFile codeFile in codeFiles)
+
+                    // checks non-matching files
+                    foreach (ICSharpFile codeFile in testData.Item3.SelectNotNull(GetCodeFile))
                     {
-#if SDK90
-                        foreach (var declaration in codeFile.ThisAndDescendants<ITypeDeclaration>())
-#else
                         codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
-#endif
-                             Assert.That(patterns.All(r => !r.Registration.IsSatisfiedBy(declaration.DeclaredElement)),
-                             "Of {0} registrations, none should match '{1}'", patterns.Count, declaration.CLRName)
-#if SDK90
-                            ;
-#else
-                        );
-#endif
+                            Assert.That(patterns.All(r => !r.Registration.IsSatisfiedBy(declaration.DeclaredElement)),
+                                "Of {0} registrations, none should match '{1}'", patterns.Count, declaration.CLRName));
                     }
                 }
             });

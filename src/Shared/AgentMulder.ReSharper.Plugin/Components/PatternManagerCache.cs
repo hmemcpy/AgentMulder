@@ -45,7 +45,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
 
         object ICache.Build(IPsiSourceFile sourceFile, bool isStartup)
         {
-            return ProcessSourceFile(sourceFile);
+            return ProcessSourceFile(sourceFile).ToList();
         }
 
         private IEnumerable<RegistrationInfo> ProcessSourceFile(IPsiSourceFile sourceFile)

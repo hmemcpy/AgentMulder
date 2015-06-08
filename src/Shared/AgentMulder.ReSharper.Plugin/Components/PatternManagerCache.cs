@@ -125,6 +125,19 @@ namespace AgentMulder.ReSharper.Plugin.Components
 
         void ICache.OnPsiChange(ITreeNode elementContainingChanges, PsiChangedElementType type)
         {
+          if (type == PsiChangedElementType.Whitespaces)
+            return;
+
+          if (elementContainingChanges == null)
+            return;
+
+          var sourceFile = elementContainingChanges.GetSourceFile();
+          if (sourceFile == null) return;
+
+          lock (lockObject)
+          {
+            dirtyFiles.Add(sourceFile);
+          }
         }
 
         void ICache.OnDocumentChange(IPsiSourceFile sourceFile, ProjectFileDocumentCopyChange change)
@@ -135,6 +148,14 @@ namespace AgentMulder.ReSharper.Plugin.Components
 
         void ICache.SyncUpdate(bool underTransaction)
         {
+          lock (lockObject)
+          {
+            foreach (var psiSourceFile in dirtyFiles)
+            {
+              registrationsMap.RemoveKey(psiSourceFile);
+            }
+            dirtyFiles.Clear();
+          }
         }
 
         bool ICache.UpToDate(IPsiSourceFile sourceFile)

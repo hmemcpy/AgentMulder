@@ -21,8 +21,10 @@ namespace AgentMulder.ReSharper.Plugin.Components
 
         public void MarkTypeAsUsed(ITypeDeclaration declaration)
         {
-            SetConstructorsState(declaration.DeclaredElement, UsageState.USED_MASK | UsageState.CANNOT_BE_PRIVATE |
-                                                         UsageState.CANNOT_BE_INTERNAL | UsageState.CANNOT_BE_PROTECTED);
+          SetConstructorsState(declaration.DeclaredElement, UsageState.USED_MASK |
+                                                            UsageState.CANNOT_BE_PRIVATE |
+                                                            UsageState.CANNOT_BE_INTERNAL |
+                                                            UsageState.CANNOT_BE_PROTECTED);
 
             collectUsagesStageProcess.SetElementState(declaration.DeclaredElement, UsageState.ACCESSED);
         }

@@ -34,11 +34,6 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                 return null;
             }
 
-            if (processKind != DaemonProcessKind.VISIBLE_DOCUMENT)
-            {
-                return null;
-            }
-
             var collectUsagesStageProcess = process.GetStageProcess<CollectUsagesStageProcess>();
             var typeUsageManager = new TypeUsageManager(collectUsagesStageProcess);
 

@@ -18,14 +18,12 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
     {
         private readonly IDaemonProcess process;
         private readonly IContextBoundSettingsStore settingsStore;
-        private readonly ITypeUsageManager typeUsageManager;
         private readonly IPatternManager patternManager;
 
-        public ContainerRegistrationAnalysisStageProcess(IDaemonProcess process, IContextBoundSettingsStore settingsStore, ITypeUsageManager typeUsageManager, IPatternManager patternManager)
+        public ContainerRegistrationAnalysisStageProcess(IDaemonProcess process, IContextBoundSettingsStore settingsStore, IPatternManager patternManager)
         {
             this.process = process;
             this.settingsStore = settingsStore;
-            this.typeUsageManager = typeUsageManager;
             this.patternManager = patternManager;
         }
 

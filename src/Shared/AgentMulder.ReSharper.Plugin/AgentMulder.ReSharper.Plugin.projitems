@@ -11,11 +11,10 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Components\IPatternManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\IRegistrationInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Components\ITypeUsageManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\PatternManagerCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\PatternSearcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\SolutionAnalyzer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Components\TypeUsageManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\UnusedWarningSuppressor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Daemon\ContainerRegistrationAnalysisStage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Daemon\ContainerRegistrationAnalysisStageProcess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Highlighting\ContainerGutterMark.cs" />

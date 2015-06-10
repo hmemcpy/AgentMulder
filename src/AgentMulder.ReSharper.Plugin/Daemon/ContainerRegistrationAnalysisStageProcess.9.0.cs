@@ -25,12 +25,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                                                                    FirstOrDefault(c => c.Registration.IsSatisfiedBy(declaration.DeclaredElement));
                 if (registrationInfo != null)
                 {
-                    IPsiSourceFile psiSourceFile = registrationInfo.GetSourceFile();
-                    consumer.AddHighlighting(new RegisteredByContainerHighlighting(registrationInfo),
-                        declaration.GetNameDocumentRange(),
-                        psiSourceFile.GetTheOnlyPsiFile(psiSourceFile.PrimaryPsiLanguage));
-
-                    typeUsageManager.MarkTypeAsUsed(declaration);
+                    consumer.AddHighlighting(new RegisteredByContainerHighlighting(registrationInfo), declaration.GetNameDocumentRange(), psiFile);
                 }
             }
         }

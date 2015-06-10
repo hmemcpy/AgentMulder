@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ReSharperSdkVersion>9.0</ReSharperSdkVersion>
-    <HostFullIdentifier>ReSharperPlatformVs14ReSharper</HostFullIdentifier>
+    <HostFullIdentifier>ReSharperPlatformVs14AgentMulder</HostFullIdentifier>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>31a1768e</NuGetPackageImportStamp>
   </PropertyGroup>
@@ -22,7 +22,7 @@
     <BaseIntermediateOutputPath>obj\$(ReSharperSdkVersion)</BaseIntermediateOutputPath>
     <StartAction>Program</StartAction>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
-    <StartArguments>/rootsuffix ReSharper /ReSharper.Internal</StartArguments>
+    <StartArguments>/rootsuffix AgentMulder /ReSharper.Internal</StartArguments>
     <StartWorkingDirectory>$(MSBuildProjectDirectory)\$(OutputPath)</StartWorkingDirectory>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
   </PropertyGroup>

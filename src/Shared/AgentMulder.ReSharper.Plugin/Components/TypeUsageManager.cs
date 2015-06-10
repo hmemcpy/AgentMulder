@@ -1,11 +1,14 @@
 using System;
+using JetBrains.Annotations;
 using JetBrains.ReSharper.Daemon.UsageChecking;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.Files;
 using JetBrains.ReSharper.Psi.Tree;
+using JetBrains.Util;
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {
-    internal class TypeUsageManager : ITypeUsageManager
+    internal class TypeUsageManager
     {
         private readonly CollectUsagesStageProcess collectUsagesStageProcess;
 
@@ -19,14 +22,20 @@ namespace AgentMulder.ReSharper.Plugin.Components
             this.collectUsagesStageProcess = collectUsagesStageProcess;
         }
 
+
+
         public void MarkTypeAsUsed(ITypeDeclaration declaration)
         {
-          SetConstructorsState(declaration.DeclaredElement, UsageState.USED_MASK |
-                                                            UsageState.CANNOT_BE_PRIVATE |
-                                                            UsageState.CANNOT_BE_INTERNAL |
-                                                            UsageState.CANNOT_BE_PROTECTED);
+            //ITypeElement element = declaration.DeclaredElement;
 
-            collectUsagesStageProcess.SetElementState(declaration.DeclaredElement, UsageState.ACCESSED);
+            //UsageState mask = UsageState.USED_MASK |
+            //                  UsageState.CANNOT_BE_PRIVATE |
+            //                  UsageState.CANNOT_BE_INTERNAL |
+            //                  UsageState.CANNOT_BE_PROTECTED;
+
+            //SetConstructorsState(element, mask);
+
+            //collectUsagesStageProcess.SetElementState(element, UsageState.ACCESSED);
         }
 
         private void SetConstructorsState(ITypeElement typeElement, UsageState state)
@@ -36,5 +45,8 @@ namespace AgentMulder.ReSharper.Plugin.Components
                 collectUsagesStageProcess.SetElementState(constructor, state);
             }
         }
+
+        [NotNull]
+        private static readonly Key ImplicitlyUsedCtorsKey = new Key("Implicitly used constructors");
     }
 }

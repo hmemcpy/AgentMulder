@@ -34,10 +34,7 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                 return null;
             }
 
-            var collectUsagesStageProcess = process.GetStageProcess<CollectUsagesStageProcess>();
-            var typeUsageManager = new TypeUsageManager(collectUsagesStageProcess);
-
-            return new ContainerRegistrationAnalysisStageProcess(process, settings, typeUsageManager, patternManager);
+            return new ContainerRegistrationAnalysisStageProcess(process, settings, patternManager);
         }
     }
 }

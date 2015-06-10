@@ -27,8 +27,6 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
                     consumer.AddHighlighting(new RegisteredByContainerHighlighting(registrationInfo),
                         declaration.GetNameDocumentRange(),
                         psiSourceFile.GetTheOnlyPsiFile(psiSourceFile.PrimaryPsiLanguage));
-
-                    typeUsageManager.MarkTypeAsUsed(declaration);
                 }
             });
         }

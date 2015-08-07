@@ -21,7 +21,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\output\$configuration$\8.2\**\AgentMulder.*.dll" target="ReSharper\v8.2\plugins"/>
-    <file src="..\output\$configuration$\8.2\**\AgentMulder.*.pdb" target="ReSharper\v8.2\plugins"/>
+    <file src="..\output\$configuration$\9.0\**\AgentMulder.*.dll" target="dotFiles\" />
+    <file src="..\output\$configuration$\9.0\**\AgentMulder.*.pdb" target="dotFiles\" />    
   </files>
 </package>

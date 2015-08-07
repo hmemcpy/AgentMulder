@@ -9,6 +9,7 @@ using JetBrains.Util;
 using System;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace AgentMulder.ReSharper.Plugin.Components
@@ -51,6 +52,11 @@ namespace AgentMulder.ReSharper.Plugin.Components
         private IEnumerable<RegistrationInfo> ProcessSourceFile(IPsiSourceFile sourceFile)
         {
             return solutionAnalyzer.Analyze(sourceFile);
+        }
+
+        public void Dump(TextWriter writer, IPsiSourceFile sourceFile)
+        {
+            
         }
 
         public bool HasDirtyFiles

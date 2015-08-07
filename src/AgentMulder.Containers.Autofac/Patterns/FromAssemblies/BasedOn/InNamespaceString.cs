@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Feature.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using PsiExtensions = AgentMulder.ReSharper.Domain.Utils.PsiExtensions;
 
 namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
 {
@@ -28,7 +29,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.FromAssemblies.BasedOn
             var argument = match.GetMatchedElement("argument") as ICSharpArgument;
             if (argument != null)
             {
-                INamespace @namespace = ReSharper.Domain.Utils.PsiExtensions.GetNamespaceDeclaration(argument.Value);
+                INamespace @namespace = PsiExtensions.GetNamespaceDeclaration(argument.Value);
                 if (@namespace != null)
                 {
                     yield return new InNamespaceRegistration(registrationRootElement, @namespace, true);

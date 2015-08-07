@@ -4,15 +4,16 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Primitives;
+using System.Reflection;
+using AgentMulder.ReSharper.Domain.Containers;
+
 namespace AgentMulder.Containers.Catel
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.Composition;
-    using System.ComponentModel.Composition.Hosting;
-    using System.ComponentModel.Composition.Primitives;
-    using System.Reflection;
-    using ReSharper.Domain.Containers;
 
     [Export(typeof(IContainerInfo))]
     public class CatelContainerInfo : ContainerInfoBase

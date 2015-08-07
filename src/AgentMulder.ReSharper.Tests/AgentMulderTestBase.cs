@@ -5,16 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using AgentMulder.ReSharper.Domain.Containers;
+using AgentMulder.ReSharper.Domain.Utils;
 using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.TestFramework;
+using JetBrains.TestFramework.Utils;
 using JetBrains.Util;
 using NUnit.Framework;
-using AgentMulder.ReSharper.Domain.Utils;
-using JetBrains.TestFramework.Utils;
 
 namespace AgentMulder.ReSharper.Tests
 {

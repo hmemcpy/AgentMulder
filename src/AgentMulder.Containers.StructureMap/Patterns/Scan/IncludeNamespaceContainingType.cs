@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
+﻿using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Patterns;
-using AgentMulder.ReSharper.Domain.Registrations;
-using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Feature.Services.StructuralSearch;
-using JetBrains.ReSharper.Psi.Tree;
+using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.Containers.StructureMap.Patterns.Scan
 {

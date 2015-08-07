@@ -21,7 +21,13 @@
 // Preprocessor directives for enabling/disabling functionality
 // depending on platform features. If the platform has an appropriate
 // #DEFINE then these should be set automatically below.
-#define EXPRESSIONS                         // Platform supports System.Linq.Expressions
+#define EXPRESSIONS
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+
+// Platform supports System.Linq.Expressions
 #define APPDOMAIN_GETASSEMBLIES             // Platform supports getting all assemblies from the AppDomain object
 #define UNBOUND_GENERICS_GETCONSTRUCTORS    // Platform supports GetConstructors on unbound generic types
 #define GETPARAMETERS_OPEN_GENERICS         // Platform supports GetParameters on open generics
@@ -60,10 +66,6 @@
 namespace TinyIoC
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-
 #if EXPRESSIONS
     using System.Linq.Expressions;
 #endif
@@ -166,7 +168,7 @@ namespace TinyIoC
             {
 				assemblies = assembly.GetTypes();
             }
-            catch (System.IO.FileNotFoundException)
+            catch (FileNotFoundException)
             {
                 assemblies = new Type[] { };
             }

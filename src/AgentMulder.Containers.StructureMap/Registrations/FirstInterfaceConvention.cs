@@ -1,8 +1,8 @@
 ﻿using System.Linq;
+using AgentMulder.ReSharper.Domain.Utils;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
-using AgentMulder.ReSharper.Domain.Utils;
 
 namespace AgentMulder.Containers.StructureMap.Registrations
 {

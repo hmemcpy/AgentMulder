@@ -1,5 +1,4 @@
 using System;
-using AgentMulder.ReSharper.Domain.Elements;
 using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.Containers.CastleWindsor.Helpers

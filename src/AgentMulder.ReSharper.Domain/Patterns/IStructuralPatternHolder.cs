@@ -1,5 +1,5 @@
-using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Feature.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.ReSharper.Domain.Patterns
 {

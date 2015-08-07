@@ -4,22 +4,22 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
+using AgentMulder.ReSharper.Domain.Patterns;
+using AgentMulder.ReSharper.Domain.Registrations;
+using JetBrains.Metadata.Reader.Impl;
+using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch;
+using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.Placeholders;
+using JetBrains.ReSharper.Feature.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.Catel.Patterns
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AgentMulder.ReSharper.Domain.Patterns;
-    using AgentMulder.ReSharper.Domain.Registrations;
-    using JetBrains.ReSharper.Psi;
-    using JetBrains.ReSharper.Psi.CSharp.Tree;
-    using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch;
-    using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.Placeholders;
-    using JetBrains.ReSharper.Feature.Services.StructuralSearch;
-    using JetBrains.Metadata.Reader.Impl;
-    using JetBrains.ReSharper.Psi.Tree;
 
     /// <summary>
     /// The service locator registration pattern base.

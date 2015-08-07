@@ -4,9 +4,9 @@ using System.Linq;
 using AgentMulder.ReSharper.Plugin.Components;
 using AgentMulder.ReSharper.Plugin.Highlighting;
 using JetBrains.Application.Settings;
+using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
-using JetBrains.ReSharper.Feature.Services.Daemon;
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {

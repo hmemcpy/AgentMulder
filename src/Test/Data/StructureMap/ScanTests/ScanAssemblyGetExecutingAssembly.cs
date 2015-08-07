@@ -4,7 +4,6 @@
 
 using System.Reflection;
 using StructureMap;
-using TestApplication.Types;
 
 namespace TestApplication.StructureMap.ScanTests
 {

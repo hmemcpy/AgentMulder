@@ -1,5 +1,4 @@
 using AgentMulder.ReSharper.Domain.Patterns;
-using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Feature.Services.StructuralSearch;

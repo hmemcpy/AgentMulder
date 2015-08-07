@@ -1,12 +1,9 @@
 ﻿using AgentMulder.ReSharper.Plugin.Components;
-using JetBrains.Application;
 using JetBrains.DocumentModel;
-using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Feature.Services.Navigation.NavigationExtensions;
-using JetBrains.ReSharper.Resources.Shell;
 using JetBrains.ReSharper.Psi.Tree;
-
+using JetBrains.ReSharper.Resources.Shell;
 
 namespace AgentMulder.ReSharper.Plugin.Highlighting
 {

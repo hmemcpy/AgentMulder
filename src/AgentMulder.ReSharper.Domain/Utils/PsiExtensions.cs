@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.CSharp.Util;
-using JetBrains.ReSharper.Psi.Files;
 using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Tree;
 
@@ -59,17 +56,11 @@ namespace AgentMulder.ReSharper.Domain.Utils
             return !@class.IsAbstract;
         }
 
-        public static bool IsStatic(this IClass @class)
-        {
-            return CSharpDeclaredElementUtil.IsStaticClass(@class);
-        }
-
         public static INamespace GetNamespaceDeclaration(ICSharpExpression expression)
         {
             CSharpElementFactory elementFactory = CSharpElementFactory.GetInstance(expression.GetPsiModule());
 
-            if (expression.ConstantValue != null &&
-                expression.ConstantValue.IsString())
+            if (expression.ConstantValue.IsString())
             {
                 string namespaceName = Convert.ToString(expression.ConstantValue.Value);
 
@@ -103,12 +94,7 @@ namespace AgentMulder.ReSharper.Domain.Utils
 
             // otherwise, try finding the lambda expression, and take its invocation
             var lambdaExpression = node.GetParentExpression<ILambdaExpression>();
-            if (lambdaExpression != null)
-            {
-                return lambdaExpression.BodyExpression as IInvocationExpression;
-            }
-
-            return null;
+            return lambdaExpression?.BodyExpression as IInvocationExpression;
         }
 
         public static ICSharpFile GetCSharpFile(this IPsiSourceFile sourceFile)

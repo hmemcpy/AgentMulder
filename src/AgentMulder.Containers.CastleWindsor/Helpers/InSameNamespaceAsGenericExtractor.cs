@@ -1,7 +1,7 @@
 using System;
+using JetBrains.ReSharper.Feature.Services.StructuralSearch;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Feature.Services.StructuralSearch;
 
 namespace AgentMulder.Containers.CastleWindsor.Helpers
 {

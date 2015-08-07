@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.Composition;
 using AgentMulder.ReSharper.Domain.Patterns;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Feature.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 using PsiExtensions = AgentMulder.ReSharper.Domain.Utils.PsiExtensions;
 
 namespace AgentMulder.Containers.StructureMap.Patterns.Scan

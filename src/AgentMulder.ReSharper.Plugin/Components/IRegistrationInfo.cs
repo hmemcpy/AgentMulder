@@ -1,6 +1,5 @@
 ﻿using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {

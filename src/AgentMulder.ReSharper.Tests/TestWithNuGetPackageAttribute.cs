@@ -1,5 +1,4 @@
 ﻿using System;
-
 using JetBrains.ReSharper.TestFramework;
 
 namespace AgentMulder.ReSharper.Tests

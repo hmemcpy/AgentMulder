@@ -1,16 +1,15 @@
-﻿using JetBrains.Application.Progress;
-using JetBrains.DataFlow;
+﻿using System;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using JetBrains.Application.Progress;
 using JetBrains.DocumentManagers.impl;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Caches;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
-using System;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {

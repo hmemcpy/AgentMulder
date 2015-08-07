@@ -2,13 +2,13 @@
 // Matches: Foo.cs,Baz.cs 
 // NotMatches: Bar.cs 
 
+using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.SubSystems.Configuration;
+using Castle.Windsor;
+using TestApplication.Types;
+
 namespace TestApplication.Windsor
 {
-    using Castle.MicroKernel.Registration;
-    using Castle.MicroKernel.SubSystems.Configuration;
-    using Castle.Windsor;
-    using Types;
-
     public class UsingsInsideNamespace : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
@@ -16,7 +16,7 @@ namespace TestApplication.Windsor
             container.Register(
                 AllTypes.FromThisAssembly().BasedOn<IFoo>(),
                 Classes.FromThisAssembly().BasedOn<IFoo>(),
-                Types.FromThisAssembly().BasedOn<IFoo>()
+                Castle.MicroKernel.Registration.Types.FromThisAssembly().BasedOn<IFoo>()
                 );
         }
     }

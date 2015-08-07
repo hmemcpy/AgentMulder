@@ -1,9 +1,9 @@
 using AgentMulder.Containers.CastleWindsor.Helpers;
 using AgentMulder.ReSharper.Domain.Patterns;
-using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Feature.Services.StructuralSearch;
+using JetBrains.ReSharper.Psi;
 
 namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn.WhereArgument
 {

@@ -2,14 +2,9 @@
 using JetBrains.Application;
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Daemon;
-
-#if SDK90
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Feature.Services.Navigation.NavigationExtensions;
 using JetBrains.ReSharper.Resources.Shell;
-#else
-using JetBrains.ReSharper.Feature.Services.Navigation.Navigation.NavigationExtensions;
-#endif
 using JetBrains.ReSharper.Psi.Tree;
 
 

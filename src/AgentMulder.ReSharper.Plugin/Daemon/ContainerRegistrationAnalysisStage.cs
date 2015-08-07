@@ -1,14 +1,9 @@
 ﻿using System;
 using AgentMulder.ReSharper.Plugin.Components;
 using JetBrains.Application.Settings;
-using JetBrains.ReSharper.Daemon;
-using JetBrains.ReSharper.Daemon.CSharp.Stages;
-using JetBrains.ReSharper.Daemon.UsageChecking;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-#if SDK90
 using JetBrains.ReSharper.Feature.Services.CSharp.Daemon;
 using JetBrains.ReSharper.Feature.Services.Daemon;
-#endif
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {

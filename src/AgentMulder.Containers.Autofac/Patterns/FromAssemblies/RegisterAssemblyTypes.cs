@@ -4,20 +4,13 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.Containers.Autofac.Registrations;
 using AgentMulder.ReSharper.Domain.Elements.Modules;
-using AgentMulder.ReSharper.Domain.Elements.Modules.Impl;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
 using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-#if SDK90
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Feature.Services.StructuralSearch;
-#else
-using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
-using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
-using JetBrains.ReSharper.Psi.Services.StructuralSearch;
-#endif
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 

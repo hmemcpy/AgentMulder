@@ -14,10 +14,7 @@ using JetBrains.ReSharper.TestFramework;
 using JetBrains.Util;
 using NUnit.Framework;
 using AgentMulder.ReSharper.Domain.Utils;
-
-#if SDK90
 using JetBrains.TestFramework.Utils;
-#endif
 
 namespace AgentMulder.ReSharper.Tests
 {
@@ -81,9 +78,7 @@ namespace AgentMulder.ReSharper.Tests
         {
             get
             {
-#if SDK90
                 TestUtil.SetHomeDir(GetType().Assembly);
-#endif
                 var testCasesDirectory = new DirectoryInfo(SolutionItemsBasePath);
                 return testCasesDirectory.EnumerateFiles("*.cs").Select(info => new TestCaseData(info.Name)).ToList();
             }

@@ -30,7 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT;SDK90</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -38,7 +38,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE;SDK90</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -178,7 +178,6 @@
     <Compile Include="Components\TypeUsageManager.cs" />
     <Compile Include="Components\UnusedWarningSuppressor.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStage.cs" />
-    <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.9.0.cs" />
     <Compile Include="Daemon\ContainerRegistrationAnalysisStageProcess.cs" />
     <Compile Include="Highlighting\ContainerGutterMark.cs" />
     <Compile Include="Highlighting\IClickableGutterHighlighting.cs" />

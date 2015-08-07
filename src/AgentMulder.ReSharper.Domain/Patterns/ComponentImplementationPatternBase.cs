@@ -1,8 +1,4 @@
-#if SDK90
 using JetBrains.ReSharper.Feature.Services.StructuralSearch;
-#else
-using JetBrains.ReSharper.Psi.Services.StructuralSearch;
-#endif
 
 namespace AgentMulder.ReSharper.Domain.Patterns
 {

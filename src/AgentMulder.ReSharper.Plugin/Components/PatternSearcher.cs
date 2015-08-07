@@ -5,13 +5,8 @@ using JetBrains.DocumentManagers;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Features.StructuralSearch.Finding;
 using JetBrains.ReSharper.Psi.Search;
-#if SDK90
 using JetBrains.ReSharper.Feature.Services.StructuralSearch;
 using JetBrains.ReSharper.Feature.Services.StructuralSearch.Impl;
-#else
-using JetBrains.ReSharper.Psi.Services.StructuralSearch;
-using JetBrains.ReSharper.Psi.Services.StructuralSearch.Impl;
-#endif
 
 namespace AgentMulder.ReSharper.Plugin.Components
 {

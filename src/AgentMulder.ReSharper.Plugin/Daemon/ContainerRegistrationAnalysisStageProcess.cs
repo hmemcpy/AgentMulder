@@ -4,25 +4,20 @@ using System.Linq;
 using AgentMulder.ReSharper.Plugin.Components;
 using AgentMulder.ReSharper.Plugin.Highlighting;
 using JetBrains.Application.Settings;
-using JetBrains.ReSharper.Daemon;
-using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
-#if SDK90
 using JetBrains.ReSharper.Feature.Services.Daemon;
-#endif
 
 namespace AgentMulder.ReSharper.Plugin.Daemon
 {
-    public partial class ContainerRegistrationAnalysisStageProcess : IDaemonStageProcess
+    public class ContainerRegistrationAnalysisStageProcess : IDaemonStageProcess
     {
-        private readonly IDaemonProcess process;
         private readonly IContextBoundSettingsStore settingsStore;
         private readonly IPatternManager patternManager;
 
         public ContainerRegistrationAnalysisStageProcess(IDaemonProcess process, IContextBoundSettingsStore settingsStore, IPatternManager patternManager)
         {
-            this.process = process;
+            this.DaemonProcess = process;
             this.settingsStore = settingsStore;
             this.patternManager = patternManager;
         }
@@ -39,14 +34,30 @@ namespace AgentMulder.ReSharper.Plugin.Daemon
             commiter(new DaemonStageResult(consumer.Highlightings));
         }
 
+        private void ProcessFile(IFile psiFile, DefaultHighlightingConsumer consumer)
+        {
+            foreach (var declaration in psiFile.ThisAndDescendants<ITypeDeclaration>())
+            {
+                if (declaration.DeclaredElement == null) // type is not (yet) declared
+                {
+                    return;
+                }
+
+                RegistrationInfo registrationInfo = patternManager.GetRegistrationsForFile(psiFile.GetSourceFile()).
+                                                                   FirstOrDefault(c => c.Registration.IsSatisfiedBy(declaration.DeclaredElement));
+                if (registrationInfo != null)
+                {
+                    consumer.AddHighlighting(new RegisteredByContainerHighlighting(registrationInfo), declaration.GetNameDocumentRange(), psiFile);
+                }
+            }
+        }
+
+
         private IEnumerable<IFile> EnumeratePsiFiles()
         {
             return DaemonProcess.SourceFile.EnumerateDominantPsiFiles();
         }
 
-        public IDaemonProcess DaemonProcess
-        {
-            get { return process; }
-        }
+        public IDaemonProcess DaemonProcess { get; }
     }
 }

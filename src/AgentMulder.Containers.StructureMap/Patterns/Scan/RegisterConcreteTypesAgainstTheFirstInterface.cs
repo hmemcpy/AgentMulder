@@ -3,15 +3,9 @@ using System.ComponentModel.Composition;
 using AgentMulder.Containers.StructureMap.Registrations;
 using AgentMulder.ReSharper.Domain.Patterns;
 using AgentMulder.ReSharper.Domain.Registrations;
-#if SDK90
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch;
 using JetBrains.ReSharper.Feature.Services.CSharp.StructuralSearch.Placeholders;
 using JetBrains.ReSharper.Feature.Services.StructuralSearch;
-#else
-using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch;
-using JetBrains.ReSharper.Psi.Services.CSharp.StructuralSearch.Placeholders;
-using JetBrains.ReSharper.Psi.Services.StructuralSearch;
-#endif
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.Containers.StructureMap.Patterns.Scan

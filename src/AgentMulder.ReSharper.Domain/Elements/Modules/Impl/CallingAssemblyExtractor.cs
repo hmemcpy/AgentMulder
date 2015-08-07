@@ -1,7 +1,5 @@
-﻿#if SDK90
-using JetBrains.Metadata.Reader.API;
+﻿using JetBrains.Metadata.Reader.API;
 using JetBrains.Metadata.Reader.Impl;
-#endif
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;

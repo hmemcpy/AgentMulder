@@ -1,6 +1,11 @@
 What's new in Agent Mulder
 ==========================
 
+v1.2.9.2
+======
+
++ ReSharper 9.2 support!
+
 v1.2.0
 ======
 

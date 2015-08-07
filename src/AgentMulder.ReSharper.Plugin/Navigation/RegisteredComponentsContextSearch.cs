@@ -6,18 +6,14 @@ using JetBrains.Application.DataContext;
 using JetBrains.DocumentManagers;
 using JetBrains.DocumentModel;
 using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.ContextNavigation.Util;
+using JetBrains.ReSharper.Feature.Services.Navigation.ContextNavigation;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace AgentMulder.ReSharper.Plugin.Navigation
 {
-#if SDK80
-    [ShellFeaturePart]
-#else
     [FeaturePart]
-#endif
     public partial class RegisteredComponentsContextSearch : IRegisteredComponentsContextSearch
     {
         private readonly IShellLocks locks;
@@ -48,12 +44,7 @@ namespace AgentMulder.ReSharper.Plugin.Navigation
             var invokedNode = dataContext.GetSelectedTreeNode<IExpression>();
 
 
-#if SDK70 || SDK80
-            IDocument document = dataContext.GetData(JetBrains.DocumentModel.DataConstants.DOCUMENT);
-#else
             IDocument document = dataContext.GetData(JetBrains.IDE.DataConstants.DOCUMENT);
-#endif
-
             if (document == null)
                 return null;
 

@@ -1,5 +1,5 @@
 using JetBrains.Application.DataContext;
-using JetBrains.ReSharper.Feature.Services.ContextNavigation.ContextSearches;
+using JetBrains.ReSharper.Feature.Services.Navigation;
 
 namespace AgentMulder.ReSharper.Plugin.Navigation
 {

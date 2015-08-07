@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "Test\Data\TestApplication.csproj", "{2A40748D-310D-4193-A2E8-079A53040A93}"
 EndProject
@@ -25,6 +25,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Plugin", "AgentMulder.ReSharper.Plugin\AgentMulder.ReSharper.Plugin.csproj", "{B32F33E1-E0B4-4E8A-9AA5-70A3B2CEDDDD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentMulder.ReSharper.Tests", "AgentMulder.ReSharper.Tests\AgentMulder.ReSharper.Tests.csproj", "{DA36BB2B-643E-4206-B7AE-2F3ABA7225B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EE0160C0-E82B-4375-813D-24DD427222D0}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

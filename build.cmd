@@ -4,7 +4,7 @@ if "%config%" == "" (
    set config=Release
 )
  
-set version=1.2.9.2-RC
+set version=1.2.92.0
 if not "%PackageVersion%" == "" (
    set version=%PackageVersion%
 )

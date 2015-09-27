@@ -1,6 +1,6 @@
 ﻿namespace TestApplication.Types
 {
-    [MyAttribute]
+    [My]
     public class HaveAttribute
     {
          

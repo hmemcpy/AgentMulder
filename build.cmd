@@ -4,7 +4,7 @@ if "%config%" == "" (
    set config=Release
 )
  
-set version=1.1.3
+set version=1.2.92.0
 if not "%PackageVersion%" == "" (
    set version=%PackageVersion%
 )
@@ -15,6 +15,8 @@ if "%nuget%" == "" (
 )
 
 %nuget% restore src\AgentMulder.sln
-%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild src\AgentMulder.sln /t:Rebuild /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
- 
-%nuget% pack "src\AgentMulder.nuspec" -NoPackageAnalysis -verbosity detailed -o . -Version %version% -p Configuration="%config%"
+"%ProgramFiles(x86)%\MSBuild\14.0\Bin\msbuild" src\AgentMulder.sln /t:Rebuild /p:Configuration="%config%" /m /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false 
+
+set package_id="ReSharper.AgentMulder"
+
+%nuget% pack "src\AgentMulder.nuspec" -NoPackageAnalysis -Version %version% -Properties "Configuration=%config%;ReSharperDep=Wave;ReSharperVer=[3.0];PackageId=%package_id%"

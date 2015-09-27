@@ -4,7 +4,6 @@
 
 using Autofac;
 using TestApplication.Types;
-using Module = Autofac.Module;
 
 namespace TestApplication.Autofac.RegisterAssemblyTypesTests
 {

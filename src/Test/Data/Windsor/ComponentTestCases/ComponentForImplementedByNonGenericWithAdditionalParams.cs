@@ -13,7 +13,7 @@ namespace TestApplication.Windsor.ComponentTestCases
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Castle.MicroKernel.Registration.Component.For(typeof(IFoo)).Named("foo").LifestyleScoped().ImplementedBy(typeof(Foo)).Forward<IBar>());
+            container.Register(Component.For(typeof(IFoo)).Named("foo").LifestyleScoped().ImplementedBy(typeof(Foo)).Forward<IBar>());
         }
     }
 }

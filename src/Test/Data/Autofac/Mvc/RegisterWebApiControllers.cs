@@ -14,7 +14,7 @@ namespace TestApplication.Autofac.Mvc
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterApiControllers(typeof(MyMvcController).Assembly);
+            builder.RegisterApiControllers(typeof(MyWebApiController).Assembly);
         }
     }
 }

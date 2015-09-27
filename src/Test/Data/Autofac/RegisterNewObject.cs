@@ -1,7 +1,6 @@
 ﻿// Patterns: 0
 
 using Autofac;
-using TestApplication.Types;
 
 namespace TestApplication.Autofac
 {

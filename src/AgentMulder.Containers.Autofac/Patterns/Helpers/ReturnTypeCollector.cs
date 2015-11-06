@@ -57,7 +57,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.Helpers
 
         private IDeclaredType GetVoidType(IPsiModule module)
         {
-            return module.GetPredefinedType(module.GetContextFromModule()).Void;
+            return module.GetPredefinedType().Void;
         }
 
     }

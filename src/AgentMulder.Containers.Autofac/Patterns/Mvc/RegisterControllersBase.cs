@@ -74,10 +74,7 @@ namespace AgentMulder.Containers.Autofac.Patterns.Mvc
                 {
                     // todo this returns null!
                     
-                    ITypeElement mvcControllerType = TypeFactory.CreateTypeByCLRName(
-                        mvcControllerClrTypeName, 
-                        typeElement.Module,
-                        typeElement.ResolveContext).GetTypeElement();
+                    ITypeElement mvcControllerType = TypeFactory.CreateTypeByCLRName(mvcControllerClrTypeName, typeElement.Module).GetTypeElement();
 
                     return typeElement.IsDescendantOf(mvcControllerType) &&
                            typeElement.GetClrName().ShortName.EndsWith("Controller"); // per Autofac's RegisterApiControllers/RegisterWebApiControllers extension

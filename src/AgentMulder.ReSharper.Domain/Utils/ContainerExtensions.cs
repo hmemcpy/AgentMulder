@@ -34,7 +34,7 @@ namespace AgentMulder.ReSharper.Domain.Utils
 
         public static IDeclaredType CreateTypeByClrName(ITreeNode node, string containerClrTypeName)
         {
-            return TypeFactory.CreateTypeByCLRName(containerClrTypeName, node.GetPsiModule(), node.GetResolveContext());
+            return TypeFactory.CreateTypeByCLRName(containerClrTypeName, node.GetPsiModule());
         }
 
         public static IEnumerable<ITypeElement> GetRegisteredTypes(this ICSharpExpression expression)

@@ -36,7 +36,7 @@ namespace AgentMulder.Containers.CastleWindsor.Patterns.FromTypes.BasedOn
             if (match.Matched)
             {
                 ITypeElement objectTypeElement = registrationRootElement.GetPsiModule()
-                                                                        .GetPredefinedType(UniversalModuleReferenceContext.Instance)
+                                                                        .GetPredefinedType()
                                                                         .Object.GetTypeElement();
 
                 if (objectTypeElement != null)

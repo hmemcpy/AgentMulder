@@ -32,20 +32,11 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
             return registrationInfo.Registration.RegistrationElement.GetDocumentRange();
         }
 
-        public string ToolTip
-        {
-            get { return string.Format("Registered by {0} (click to navigate)", containerName); }
-        }
+        public string ToolTip => $"Created by {containerName} (click to navigate)";
 
-        public string ErrorStripeToolTip
-        {
-            get { return "Blah"; }
-        }
+        public string ErrorStripeToolTip => "Blah";
 
-        public int NavigationOffsetPatch
-        {
-            get { return 0; }
-        }
+        public int NavigationOffsetPatch => 0;
 
         public void OnClick()
         {

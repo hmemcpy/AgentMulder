@@ -58,10 +58,7 @@ namespace AgentMulder.ReSharper.Plugin.Components
             
         }
 
-        public bool HasDirtyFiles
-        {
-            get { return Enumerable.Any(dirtyFiles); }
-        }
+        public bool HasDirtyFiles => dirtyFiles.Any();
 
         void ICache.Save(IProgressIndicator progress, bool enablePersistence)
         {

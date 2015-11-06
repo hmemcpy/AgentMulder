@@ -20,6 +20,9 @@ namespace AgentMulder.ReSharper.Plugin.Components
 
             var patternManager = typeElement.GetSolution().GetComponent<IPatternManager>();
             IPsiSourceFile file = typeElement.GetSingleOrDefaultSourceFile();
+            if (file == null)
+                return false;
+
             IEnumerable<RegistrationInfo> registrations = patternManager.GetRegistrationsForFile(file);
 
             if (registrations.Any(info => info.Registration.IsSatisfiedBy(typeElement)))

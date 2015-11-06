@@ -13,7 +13,7 @@
     <copyright>Copyright &#x00A9; 2012-2015 Igal Tabachnik</copyright>
     <iconUrl>https://raw.github.com/hmemcpy/AgentMulder/master/logo.png</iconUrl>
     <releaseNotes>
-&#8226; Adding support for ReSharper 9.2
+&#8226; Adding support for ReSharper 10
     </releaseNotes>
     <tags>resharper agent mulder agentmulder ioc di windsor castle autofac ninject structuremap unity simpleinjector</tags>
     <dependencies>
@@ -21,7 +21,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\output\$configuration$\9.0\**\AgentMulder.*.dll" target="dotFiles\" />
-    <file src="..\output\$configuration$\9.0\**\AgentMulder.*.pdb" target="dotFiles\" />    
+    <file src="..\output\$configuration$\10.0\**\AgentMulder.*.dll" target="dotFiles\" />
+    <file src="..\output\$configuration$\10.0\**\AgentMulder.*.pdb" target="dotFiles\" />    
   </files>
 </package>

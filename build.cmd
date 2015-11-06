@@ -4,7 +4,7 @@ if "%config%" == "" (
    set config=Release
 )
  
-set version=1.3.92.0
+set version=1.4.0
 if not "%PackageVersion%" == "" (
    set version=%PackageVersion%
 )
@@ -19,4 +19,4 @@ if "%nuget%" == "" (
 
 set package_id="ReSharper.AgentMulder"
 
-%nuget% pack "src\AgentMulder.nuspec" -NoPackageAnalysis -Version %version% -Properties "Configuration=%config%;ReSharperDep=Wave;ReSharperVer=[3.0];PackageId=%package_id%"
+%nuget% pack "src\AgentMulder.nuspec" -NoPackageAnalysis -Version %version% -Properties "Configuration=%config%;ReSharperDep=Wave;ReSharperVer=[4.0];PackageId=%package_id%"

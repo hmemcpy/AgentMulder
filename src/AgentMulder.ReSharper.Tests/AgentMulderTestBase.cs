@@ -55,9 +55,9 @@ namespace AgentMulder.ReSharper.Tests
             WithSingleProject(fileSet, (lifetime, solution, project) => RunGuarded(action));
         }
 
-        private ICSharpFile GetCodeFile(string fileName)
+        private static ICSharpFile GetCodeFile(IProject project, string fileName)
         {
-            IProjectFile projectFile = Project.GetAllProjectFiles(file => file.Name.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+            IProjectFile projectFile = project.GetAllProjectFiles(file => file.Name.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
             if (projectFile == null)
                 return null;
 
@@ -89,7 +89,7 @@ namespace AgentMulder.ReSharper.Tests
         {
             RunTest(fileName, patternManager =>
             {
-                ICSharpFile cSharpFile = GetCodeFile(fileName);
+                ICSharpFile cSharpFile = GetCodeFile(Project, fileName);
                 var testData = GetTestData(cSharpFile);
 
                 var patterns = patternManager.GetRegistrationsForFile(cSharpFile.GetSourceFile()).ToList();
@@ -102,7 +102,7 @@ namespace AgentMulder.ReSharper.Tests
                     // todo refactor this. This should be a set operation.
 
                     // checks matching files
-                    foreach (ICSharpFile codeFile in testData.Item2.SelectNotNull(GetCodeFile))
+                    foreach (ICSharpFile codeFile in testData.Item2.SelectNotNull(f => GetCodeFile(Project, f)))
                     {
                         codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
                         Assert.That(patterns.Any(r => r.Registration.IsSatisfiedBy(declaration.DeclaredElement)),
@@ -110,7 +110,7 @@ namespace AgentMulder.ReSharper.Tests
                     }
 
                     // checks non-matching files
-                    foreach (ICSharpFile codeFile in testData.Item3.SelectNotNull(GetCodeFile))
+                    foreach (ICSharpFile codeFile in testData.Item3.SelectNotNull(f => GetCodeFile(Project, f)))
                     {
                         codeFile.ProcessChildren<ITypeDeclaration>(declaration =>
                             Assert.That(patterns.All(r => !r.Registration.IsSatisfiedBy(declaration.DeclaredElement)),

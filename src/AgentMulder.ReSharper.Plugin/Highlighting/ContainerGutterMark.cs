@@ -29,18 +29,9 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
             yield return new BulbMenuItem(new ExecutableItem(() =>
             {
                 ISolution solution = GetCurrentSolution();
-                if (solution == null)
-                {
-                    return;
-                }
 
-                var clickable = solution.GetComponent<IDaemon>().GetHighlighting(highlighter) as IClickableGutterHighlighting;
-                if (clickable == null)
-                {
-                    return;
-                }
-
-                clickable.OnClick();
+                var clickable = solution?.GetComponent<IDaemon>().GetHighlighting(highlighter) as IClickableGutterHighlighting;
+                clickable?.OnClick();
 
             }), highlighter.ToolTip, IconId, BulbMenuAnchors.PermanentBackgroundItems, true);
         }

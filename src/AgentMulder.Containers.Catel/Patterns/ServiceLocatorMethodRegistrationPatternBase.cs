@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServiceLocatorRegistrationPatternBase.cs" company="Catel & Agent Mulder development teams">
-//   Copyright (c) 2008 - 2012 Catel & Agent Mulder development teams. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using AgentMulder.ReSharper.Domain.Patterns;
@@ -21,51 +15,21 @@ namespace AgentMulder.Containers.Catel.Patterns
 {
     using System;
 
-    /// <summary>
-    /// The service locator registration pattern base.
-    /// </summary>
     [InheritedExport("ComponentRegistration", typeof(IRegistrationPattern))]
     public abstract class ServiceLocatorRegistrationPatternBase : ComponentRegistrationPatternBase
     {
-        #region Constants and Fields
-
-        /// <summary>
-        /// The clr type name.
-        /// </summary>
         private static readonly ClrTypeName clrTypeName = new ClrTypeName("System.Type");
 
-        #endregion
-
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceLocatorRegistrationPatternBase"/> class. 
-        /// </summary>
-        /// <param name="methodName">
-        /// The method name.
-        /// </param>
         protected ServiceLocatorRegistrationPatternBase(string methodName)
             : base(
                 new CSharpStructuralSearchPattern(
-                    string.Format("$container$.{0}($arguments$)", methodName), 
+                    $"$container$.{methodName}($arguments$)", 
                     new ExpressionPlaceholder("container", "global::Catel.IoC.IServiceLocator", false), 
                     new ArgumentPlaceholder("arguments", -1, -1)), 
                 string.Empty)
         {
         }
 
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// The get component registrations.
-        /// </summary>
-        /// <param name="registrationRootElement">
-        /// The registration root element.
-        /// </param>
-        /// <returns>
-        /// </returns>
         public override IEnumerable<IComponentRegistration> GetComponentRegistrations(ITreeNode registrationRootElement)
         {
             IStructuralMatchResult match = Match(registrationRootElement);
@@ -95,24 +59,6 @@ namespace AgentMulder.Containers.Catel.Patterns
             }
         }
 
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// The create registration.
-        /// </summary>
-        /// <param name="invocationExpression">
-        /// The invocation expression.
-        /// </param>
-        /// <param name="first">
-        /// The first.
-        /// </param>
-        /// <param name="last">
-        /// The last.
-        /// </param>
-        /// <returns>
-        /// </returns>
         private static IEnumerable<IComponentRegistration> CreateRegistration(
             IInvocationExpression invocationExpression, IDeclaredType first, IDeclaredType last)
         {
@@ -133,14 +79,6 @@ namespace AgentMulder.Containers.Catel.Patterns
             }
         }
 
-        /// <summary>
-        /// The from generic arguments.
-        /// </summary>
-        /// <param name="invocationExpression">
-        /// The invocation expression.
-        /// </param>
-        /// <returns>
-        /// </returns>
         private static IEnumerable<IComponentRegistration> FromGenericArguments(
             IInvocationExpression invocationExpression)
         {
@@ -150,14 +88,6 @@ namespace AgentMulder.Containers.Catel.Patterns
             return CreateRegistration(invocationExpression, first, last);
         }
 
-        /// <summary>
-        /// The from arguments.
-        /// </summary>
-        /// <param name="invocationExpression">
-        /// The invocation expression.
-        /// </param>
-        /// <returns>
-        /// </returns>
         private IEnumerable<IComponentRegistration> FromArguments(IInvocationExpression invocationExpression)
         {
             List<ITypeofExpression> arguments = invocationExpression.ArgumentList.Arguments.Where(
@@ -173,6 +103,5 @@ namespace AgentMulder.Containers.Catel.Patterns
             return CreateRegistration(invocationExpression, first, last);
         }
 
-        #endregion
     }
 }

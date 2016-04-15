@@ -11,9 +11,7 @@ namespace AgentMulder.Containers.Unity.Patterns
     {
         private static readonly IStructuralSearchPattern pattern =
             new CSharpStructuralSearchPattern("$container$.RegisterType($arguments$)",
-            // ReSharper disable RedundantArgumentDefaultValue
             new ExpressionPlaceholder("container", "Microsoft.Practices.Unity.IUnityContainer", false),
-            // ReSharper restore RedundantArgumentDefaultValue
             new ArgumentPlaceholder("arguments", -1, -1));
 
         public RegisterType()

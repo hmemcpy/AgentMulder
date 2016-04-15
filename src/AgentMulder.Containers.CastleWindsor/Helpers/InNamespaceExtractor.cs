@@ -31,8 +31,7 @@ namespace AgentMulder.Containers.CastleWindsor.Helpers
             if (arguments.Length == 2)
             {
                 ICSharpArgument boolArgument = arguments[1];
-                if (boolArgument.Value.ConstantValue != null &&
-                    boolArgument.Value.ConstantValue.IsBoolean())
+                if (boolArgument.Value.ConstantValue.IsBoolean())
                 {
                     includeSubnamespaces = Convert.ToBoolean(boolArgument.Value.ConstantValue.Value);
                 }

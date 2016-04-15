@@ -37,7 +37,7 @@ namespace AgentMulder.ReSharper.Tests
             var typesPath = new DirectoryInfo(Path.Combine(BaseTestDataPath.FullPath, "Types"));
             var fileSet = typesPath.GetFiles("*" + Extension)
                                    .SelectNotNull(fs => fs.FullName)
-                                   .Concat(new[] { Path.Combine(SolutionItemsBasePath, fileName) });
+                                   .Concat(new[] { Path.Combine(SolutionItemsBasePath.FullPath, fileName) });
 
             RunFixture(fileSet, () => { 
                 var solutionAnalyzer = Solution.GetComponent<SolutionAnalyzer>();
@@ -79,7 +79,7 @@ namespace AgentMulder.ReSharper.Tests
             get
             {
                 TestUtil.SetHomeDir(GetType().Assembly);
-                var testCasesDirectory = new DirectoryInfo(SolutionItemsBasePath);
+                var testCasesDirectory = new DirectoryInfo(SolutionItemsBasePath.FullPath);
                 return testCasesDirectory.EnumerateFiles("*.cs").Select(info => new TestCaseData(info.Name)).ToList();
             }
         }

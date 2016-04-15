@@ -7,7 +7,6 @@ using JetBrains.ReSharper.Feature.Services.Resources;
 using JetBrains.ReSharper.Resources.Shell;
 using JetBrains.TextControl.DocumentMarkup;
 using JetBrains.UI.BulbMenu;
-using JetBrains.UI.Icons;
 
 [assembly: RegisterHighlighter("Container Registration", EffectType = EffectType.GUTTER_MARK, GutterMarkType = typeof(ContainerGutterMark), Layer = 2001)]
 
@@ -15,8 +14,8 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
 {
     public class ContainerGutterMark : IconGutterMark
     {
-        public ContainerGutterMark(IThemedIconManager iconManager)
-            : base(AlteringFeatuThemedIcons.GeneratedMembers.Id, iconManager)
+        public ContainerGutterMark()
+            : base(AlteringFeatuThemedIcons.GeneratedMembers.Id)
         {
         }
 
@@ -43,7 +42,7 @@ namespace AgentMulder.ReSharper.Plugin.Highlighting
 
                 clickable.OnClick();
 
-            }), highlighter.ToolTip, IconId, BulbMenuAnchorPositions.PermanentBackgroundItems, true);
+            }), highlighter.ToolTip, IconId, BulbMenuAnchors.PermanentBackgroundItems, true);
         }
     }
 }

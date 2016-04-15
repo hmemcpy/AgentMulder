@@ -232,7 +232,6 @@
     <Compile Include="Windsor\TestCases\SkipsStaticClasses.cs" />
     <Compile Include="Windsor\UsingFQN.cs" />
     <Compile Include="Windsor\UsingsInsideNamespace.cs" />
-    <None Include="app.config" />
     <None Include="Ninject\_DoesNotCompile-BrokenReference.cs" />
     <Compile Include="Ninject\ModuleTestCases\ModuleBindNonGenericToSelf.cs" />
     <Compile Include="Ninject\ModuleTestCases\ModuleGenericOpenType.cs" />
@@ -320,8 +319,6 @@
     <Compile Include="StructureMap\ScanTests\ScanTheCallingAssemblyWithDefaultConventions.cs" />
     <None Include="StructureMap\_DoesNotCompile-BrokenReference.cs" />
     <Compile Include="StructureMap\TypeWithPrivateConstructor.cs" />
-    <Compile Include="Types\TinyIoC.cs" />
-    <Compile Include="TinyIoC\RegisterGeneric.cs" />
     <Compile Include="Types\SaveCommand.cs" />
     <Compile Include="Types\Bar.cs" />
     <Compile Include="Types\BaseCommonComponent.cs" />

@@ -10,10 +10,10 @@
     <licenseUrl>https://raw.github.com/hmemcpy/AgentMulder/master/License.txt</licenseUrl>
     <description>Provides navigation to and finding usages of types registered or resolved via Dependency Injection (DI) containers.</description>
     <projectUrl>http://hmemcpy.github.io/AgentMulder/</projectUrl>
-    <copyright>Copyright &#x00A9; 2012-2015 Igal Tabachnik</copyright>
+    <copyright>Copyright &#x00A9; 2012-2016 Igal Tabachnik</copyright>
     <iconUrl>https://raw.github.com/hmemcpy/AgentMulder/master/logo.png</iconUrl>
     <releaseNotes>
-&#8226; Adding support for ReSharper 10
+&#8226; Adding support for ReSharper 2016.1
     </releaseNotes>
     <tags>resharper agent mulder agentmulder ioc di windsor castle autofac ninject structuremap unity simpleinjector</tags>
     <dependencies>
